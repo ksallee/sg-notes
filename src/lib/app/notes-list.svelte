@@ -22,7 +22,7 @@
 -->
 <script lang="ts">
 	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
-	import { cellValue, formatDateTime, preferencesOf } from '@sg-widgets/core';
+	import { cellValue, collapseAll, expandAll, formatDateTime, isCollapsed, preferencesOf, toggleCollapsed, type CollapseState } from '@sg-widgets/core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
@@ -39,12 +39,13 @@
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import EntityChip from '$lib/components/entity-chip.svelte';
+	import MatchText from '$lib/components/match-text.svelte';
 	import StateLine from '$lib/components/state-line.svelte';
 	import StatusBadge from '$lib/components/status-badge.svelte';
 	import Thumbnail from '$lib/components/thumbnail.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
 	import { cn } from '$lib/utils.js';
-	import { GROUP_OPTIONS, groupNotes, isClientFacing, lastActivity, refKey, refOf, refsOf, runsOf, SORT_OPTIONS, text, WAITING_OPTIONS, waitingOn, type GroupBy, type SortBy, type Waiting, type WaitingKind } from '$lib/notes';
+	import { GROUP_OPTIONS, groupNotes, isClientFacing, lastActivity, refKey, refOf, refsOf, SORT_OPTIONS, text, WAITING_OPTIONS, waitingOn, type GroupBy, type SortBy, type Waiting, type WaitingKind } from '$lib/notes';
 	import { ago } from './time';
 
 	type Props = {
@@ -122,12 +123,12 @@
 		if (id !== undefined) toggle(id);
 	}
 
-	export function collapseAll(): void {
-		setShut({ all: true, except: [] });
+	export function collapseAllGroups(): void {
+		setShut(collapseAll());
 	}
 
-	export function expandAll(): void {
-		setShut({ all: false, except: [] });
+	export function expandAllGroups(): void {
+		setShut(expandAll());
 	}
 
 	const shown = $derived.by(() => {
@@ -311,12 +312,6 @@
 	}
 </script>
 
-{#snippet runs(value: string)}
-	{#each runsOf(value, query) as run, index (index)}
-		{#if run.hit}<span class="text-foreground font-semibold">{run.text}</span>{:else}{run.text}{/if}
-	{/each}
-{/snippet}
-
 {#snippet glyph(ref: EntityRef | null)}
 	{@const code = statusOf(ref)}
 	{#if code}
@@ -372,10 +367,10 @@
 				{/each}
 			</Select.Content>
 		</Select.Root>
-		<Button size="icon" variant="ghost" aria-label="Collapse all" title={grouped ? 'Collapse all' : 'Nothing to collapse without a grouping'} disabled={!grouped} onclick={collapseAll}>
+		<Button size="icon" variant="ghost" aria-label="Collapse all" title={grouped ? 'Collapse all' : 'Nothing to collapse without a grouping'} disabled={!grouped} onclick={collapseAllGroups}>
 			<ChevronsDownUp aria-hidden="true" />
 		</Button>
-		<Button size="icon" variant="ghost" aria-label="Expand all" title={grouped ? 'Expand all' : 'Nothing to expand without a grouping'} disabled={!grouped} onclick={expandAll}>
+		<Button size="icon" variant="ghost" aria-label="Expand all" title={grouped ? 'Expand all' : 'Nothing to expand without a grouping'} disabled={!grouped} onclick={expandAllGroups}>
 			<ChevronsUpDown aria-hidden="true" />
 		</Button>
 		<Button variant={selected.size > 1 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
@@ -470,7 +465,7 @@
 								<span class="min-w-0 truncate font-medium" title={group.record.name}>{group.record.name}</span>
 							{:else if group.record}
 								{@const parent = parentOf(group.record)}
-								<Thumbnail src={imageOf(record)} alt="" size="sm" />
+								<Thumbnail src={imageOf(record)} entityType={group.record.type} alt="" size="sm" />
 								<EntityChip entity={group.record} variant="text" {context} class="min-w-0 truncate font-medium" />
 								{@render glyph(group.record)}
 								{#if parent}
@@ -535,7 +530,7 @@
 												{#if unread}
 													<span class="bg-primary size-1.5 shrink-0 rounded-full" role="img" aria-label="Unread"></span>
 												{/if}
-												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}>{@render runs(firstLine(note))}</span>
+												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}><MatchText text={firstLine(note)} {query} /></span>
 												{#if code}
 													<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 												{/if}
@@ -551,7 +546,7 @@
 													</span>
 												{/if}
 											</span>
-											<span class="text-muted-foreground min-w-0 truncate text-xs" title={text(note, 'content')}>{@render runs(text(note, 'content'))}</span>
+											<span class="text-muted-foreground min-w-0 truncate text-xs" title={text(note, 'content')}><MatchText text={text(note, 'content')} {query} /></span>
 											{#if links.length > 0}
 												<span class="flex min-w-0 items-center gap-2 text-xs" data-slot="notes-row-links">
 													{#each links.slice(0, 3) as ref (refKey(ref))}

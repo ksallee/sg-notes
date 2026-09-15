@@ -292,29 +292,6 @@ export function searchFilter(
 	return words.length === 1 ? anywhere(words[0]!) : group('and', words.map(anywhere));
 }
 
-/** A piece of text, and whether a search word landed on it. */
-export interface Run {
-	text: string;
-	hit: boolean;
-}
-
-/** `text` cut where the search words land, case-blind, so a list can embolden the hits. */
-export function runsOf(value: string, query: string): Run[] {
-	const words = query.trim().split(/\s+/).filter(Boolean);
-	if (words.length === 0 || !value) return [{ text: value, hit: false }];
-	const pattern = new RegExp(words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'gi');
-	const out: Run[] = [];
-	let at = 0;
-	for (const match of value.matchAll(pattern)) {
-		const start = match.index ?? 0;
-		if (start > at) out.push({ text: value.slice(at, start), hit: false });
-		out.push({ text: match[0], hit: true });
-		at = start + match[0].length;
-	}
-	if (at < value.length) out.push({ text: value.slice(at), hit: false });
-	return out;
-}
-
 /** How the list is ordered. The first two are the site's sort; the rest order the loaded rows. */
 export type SortBy = 'newest' | 'oldest' | 'replies' | 'waiting';
 

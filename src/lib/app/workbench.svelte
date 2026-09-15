@@ -332,7 +332,15 @@
 
 <div class="flex min-h-0 flex-1 flex-col" data-slot="workbench">
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-3 py-2">
-		<FilterBar entityType="Note" {context} facets={FACETS} baseFilter={group('and', [PROJECT])} bind:value={filter} size="sm" class="min-w-0 flex-1" />
+		<FilterBar
+			entityType="Note"
+			{context}
+			facets={FACETS}
+			labels={{ addressings_to: 'To', created_by: 'From', sg_note_type: 'Type', read_by_current_user: 'Read' }}
+			baseFilter={group('and', [PROJECT])}
+			bind:value={filter}
+			class="min-w-0 flex-1"
+		/>
 		<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums" data-slot="row-count">
 			{#if total === null}
 				{snapshot.rows.length}{snapshot.hasMore ? '+' : ''} notes
@@ -415,8 +423,8 @@
 	onGroupBy={(value) => (groupBy = value)}
 	onSelectAll={() => setSelection(snapshot.rows.map((row) => row.id), null)}
 	onClearSelection={() => setSelection([], null)}
-	onCollapseAll={() => list?.collapseAll()}
-	onExpandAll={() => list?.expandAll()}
+	onCollapseAll={() => list?.collapseAllGroups()}
+	onExpandAll={() => list?.expandAllGroups()}
 	onOpen={openInWebApp}
 	onJobRead={() => (job = null)}
 />

@@ -47,7 +47,6 @@
 		hierarchyLoader,
 		hierarchySearcher,
 		isEmptyValue,
-		matchRuns,
 		NO_MATCH_LABEL,
 		NO_ROWS_LABEL,
 		pathOf,
@@ -66,6 +65,7 @@
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import { cn, type WithElementRef } from '$lib/utils.js';
 	import FieldValue from '$lib/components/field-value.svelte';
+	import MatchText from '$lib/components/match-text.svelte';
 	import StateLine from '$lib/components/state-line.svelte';
 	import StatusBadge from '$lib/components/status-badge.svelte';
 	import Thumbnail from '$lib/components/thumbnail.svelte';
@@ -429,7 +429,7 @@
 				aria-label={searchPlaceholder}
 				aria-busy={snap.searching ? true : undefined}
 				data-slot="entity-tree-search"
-				class="h-9 px-3 pe-8"
+				class="h-8 px-3 pe-8"
 			/>
 			{#if snap.searching}
 				<Loader
@@ -588,18 +588,25 @@
 								{#if thumbnail !== false}
 									<span class={cn('flex shrink-0 items-center', LEAD[size])}>
 										{#if thumbOf(node)}
-											<Thumbnail src={thumbOf(node)} aspect="square" size={LEAF[size]} />
+											<Thumbnail
+												src={thumbOf(node)}
+												aspect="square"
+												size={LEAF[size]}
+												entityType={node.entity?.type ?? null}
+											/>
 										{/if}
 									</span>
 								{/if}
 
 								<span class="flex min-w-0 flex-1 flex-col">
 									<span class="flex min-w-0 items-center gap-1.5">
-										<span data-slot="entity-tree-label" class="truncate" title={name}>
-											{#each matchRuns(name, snap.search) as part, i (i)}
-												{#if part.match}<span class="font-semibold">{part.text}</span>{:else}{part.text}{/if}
-											{/each}
-										</span>
+										<MatchText
+											data-slot="entity-tree-label"
+											text={name}
+											query={snap.search}
+											class="truncate"
+											title={name}
+										/>
 										{#if code}
 											<span data-slot="entity-tree-code" class="text-muted-foreground shrink-0 font-mono text-xs"
 												>{code}</span

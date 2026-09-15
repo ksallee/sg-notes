@@ -67,7 +67,21 @@ the read state, so a schema override that only retypes a declared field never fi
 bar offered the pill disabled under its programmatic name. Fixed in #202: the override adds the
 field when the schema lacks it, and the pill reads "Read by Current User".
 
-## 7. Not a seam: the live pattern carried over as is
+## 7. What the design review found in the library
+
+`docs/ux-review.md` set ten findings apart as the library's. Filed and fixed on `dev` the same day:
+the thumbnail's empty state (#207, PR #216), the entity card's two statuses (#208, #216), a clear on
+a mandatory field (#209, #217), status values as plain text in the filter bar and no label override
+(#210 and #215, #219), the control ladder at 28/32/36 with the rule corrected rather than the
+registry (#212, #220), the dark palette's non-text tokens (#213, #221: ring 6.99:1, border 1.32:1,
+accent 1.50:1), the search highlight as a `match-text` item (#214, #222), the pill capped at
+`max-w-64` with `+n` (#211, #219), and collapse state as a mode plus exceptions in core so
+"collapse all" holds across pages (#223, #224). This app took every one on a clean reinstall: the
+list imports the collapse state, the bar names its pills To, From, Type and Read through `labels`,
+the rows draw `MatchText`, and the dark block carries the site's corrected values. Left with the
+designer: the primitives' half-strength focus ring at 2.67:1 and muted text on a highlighted row.
+
+## 8. Not a seam: the live pattern carried over as is
 
 The docs site's `live.ts`, the two launcher endpoints and the dev-token endpoint moved into
 SvelteKit without a change of shape. `RestClient` from the browser, `createSgContext` once,
