@@ -5,7 +5,7 @@
  * Framework-neutral on purpose, so the rules are testable without a page, and so
  * the ones that survive can move to sg-widgets core when a second host wants them.
  */
-import type { EntityRef, EntityRow, SgClient } from '@sg-widgets/core';
+import type { EntityRef, EntityRow, FilterGroup, SgClient } from '@sg-widgets/core';
 import { condition, group, toApi3Hash } from '@sg-widgets/core';
 
 /** What a note row carries in the list and the thread (entity_types/Note). */
@@ -93,27 +93,101 @@ export function versionOf(note: EntityRow): EntityRef | null {
 	return refsOf(note, 'note_links').find((ref) => ref.type === 'Version') ?? null;
 }
 
+/** What the list groups on: a way to a record, a link as such, a person, or a value. */
+export type GroupBy = 'record' | 'link' | 'task' | 'version' | 'author' | 'addressee' | 'status' | 'type' | 'none';
+
+export const GROUP_OPTIONS: ReadonlyArray<{ value: GroupBy; label: string }> = [
+	{ value: 'record', label: 'Record' },
+	{ value: 'link', label: 'Link' },
+	{ value: 'task', label: 'Task' },
+	{ value: 'version', label: 'Version' },
+	{ value: 'author', label: 'Author' },
+	{ value: 'addressee', label: 'Addressed to' },
+	{ value: 'status', label: 'Status' },
+	{ value: 'type', label: 'Note type' },
+	{ value: 'none', label: 'Nothing' }
+];
+
+/** What a note falls under when it has no value for the grouping. */
+const NO_VALUE: Record<GroupBy, string> = {
+	record: 'Linked to nothing',
+	link: 'Linked to nothing',
+	task: 'No task',
+	version: 'No version',
+	author: 'Nobody',
+	addressee: 'Addressed to nobody',
+	status: 'No status',
+	type: 'No type',
+	none: 'All notes'
+};
+
 export interface NoteGroup {
-	/** `Type:id` of the record, or `none` for notes linked to nothing. */
+	/** `Type:id` of an entity, `value:<code>` of a value, or `none`. */
 	key: string;
+	/** The entity the group is, when it is one. */
 	record: EntityRef | null;
+	/** The value the group is, when it is one: a status code, a note type. */
+	value: string | null;
+	/** What the header says when there is no entity to name. */
+	label: string;
 	notes: EntityRow[];
 }
 
-/** Notes under the record they are about, groups in the order the rows arrived. */
-export function groupNotes(rows: readonly EntityRow[], records?: ReadonlyMap<string, EntityRow>): NoteGroup[] {
-	const groups = new Map<string, NoteGroup>();
-	for (const note of rows) {
-		const record = recordOf(note, records);
-		const key = record ? refKey(record) : 'none';
-		let bucket = groups.get(key);
-		if (!bucket) {
-			bucket = { key, record, notes: [] };
-			groups.set(key, bucket);
+/** The entities or values one note falls under. Several for a multi-valued field. */
+function groupsOf(note: EntityRow, by: GroupBy, records?: ReadonlyMap<string, EntityRow>): Array<{ record?: EntityRef; value?: string }> {
+	switch (by) {
+		case 'record': {
+			const record = recordOf(note, records);
+			return record ? [{ record }] : [];
 		}
-		bucket.notes.push(note);
+		case 'link':
+			return refsOf(note, 'note_links').map((record) => ({ record }));
+		case 'task':
+			return refsOf(note, 'tasks').map((record) => ({ record }));
+		case 'version':
+			return refsOf(note, 'note_links').filter((ref) => ref.type === 'Version').map((record) => ({ record }));
+		case 'author': {
+			const author = refOf(note, 'created_by');
+			return author ? [{ record: author }] : [];
+		}
+		case 'addressee':
+			return addressees(note).map((record) => ({ record }));
+		case 'status':
+			return text(note, 'sg_status_list') ? [{ value: text(note, 'sg_status_list') }] : [];
+		case 'type':
+			return text(note, 'sg_note_type') ? [{ value: text(note, 'sg_note_type') }] : [];
+		default:
+			return [{ value: '' }];
 	}
-	return [...groups.values()];
+}
+
+/**
+ * Notes under what they are grouped on, groups in the order the rows arrived. A
+ * note with two links, two tasks or two addressees is under each of them; a note
+ * with none is under the group that says so, which comes last.
+ */
+export function groupNotes(rows: readonly EntityRow[], records?: ReadonlyMap<string, EntityRow>, by: GroupBy = 'record'): NoteGroup[] {
+	const groups = new Map<string, NoteGroup>();
+	const none: NoteGroup = { key: 'none', record: null, value: null, label: NO_VALUE[by], notes: [] };
+	for (const note of rows) {
+		const under = groupsOf(note, by, records);
+		if (under.length === 0) {
+			none.notes.push(note);
+			continue;
+		}
+		for (const { record, value } of under) {
+			const key = record ? refKey(record) : `value:${value}`;
+			let bucket = groups.get(key);
+			if (!bucket) {
+				bucket = { key, record: record ?? null, value: value ?? null, label: record?.name ?? value ?? '', notes: [] };
+				groups.set(key, bucket);
+			}
+			bucket.notes.push(note);
+		}
+	}
+	const out = [...groups.values()];
+	if (none.notes.length > 0) out.push(none);
+	return out;
 }
 
 /** Everyone a note is addressed to, `to` first. */
@@ -153,6 +227,43 @@ export function waitingOn(note: EntityRow, replies: readonly EntityRow[]): Waiti
 		return author ? { kind: 'author', who: author } : { kind: 'nobody' };
 	}
 	return { kind: 'addressees', who: to };
+}
+
+/**
+ * A search as the site runs it, over everything the list can group on: the
+ * subject and content, the author's and the addressees' names, the note type,
+ * a status whose label matches, the linked task's name and the name of any
+ * linked record, one path per type the site lets a note link (the `valid_types`
+ * of `note_links`, which the site's preferences decide). A dotted path through a
+ * multi-entity field filters, though it will not read (finding 016). A record's
+ * name is reached as `cached_display_name`, which filters through a link on every
+ * type; `code` and `name` each fail on some (a Booking has no `code`, a Group no
+ * `name`: measured on the operator's site, 2026-09-15).
+ */
+export function searchFilter(
+	query: string,
+	linkTypes: readonly string[],
+	statuses: Readonly<Record<string, { name: string }>> = {},
+	noteTypes: readonly string[] = []
+): FilterGroup | null {
+	const q = query.trim();
+	if (!q) return null;
+	const matches = (label: string): boolean => label.toLowerCase().includes(q.toLowerCase());
+	const codes = Object.entries(statuses).filter(([, status]) => matches(status.name)).map(([code]) => code);
+	// A list field takes `in`, not `contains` (measured: 400 on the operator's site).
+	const types = noteTypes.filter(matches);
+	return group('or', [
+		condition('subject', 'contains', q),
+		condition('content', 'contains', q),
+		condition('created_by.HumanUser.name', 'contains', q),
+		condition('addressings_to.HumanUser.name', 'contains', q),
+		condition('addressings_cc.HumanUser.name', 'contains', q),
+		condition('addressings_to.Group.code', 'contains', q),
+		condition('tasks.Task.content', 'contains', q),
+		...linkTypes.map((type) => condition(`note_links.${type}.cached_display_name`, 'contains', q)),
+		...(codes.length > 0 ? [condition('sg_status_list', 'in', codes)] : []),
+		...(types.length > 0 ? [condition('sg_note_type', 'in', types)] : [])
+	]);
 }
 
 /** Rows in `created_at` order, oldest first, the order a thread reads in. */

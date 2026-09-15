@@ -21,6 +21,8 @@ return {
 	rows: rows.length,
 	unread: $$('[data-slot="notes-row"][data-unread]').length,
 	facets: $$('[data-slot="workbench"] > div:first-child button').map((b) => text(b) + (b.disabled ? ' (disabled)' : '')),
+	groupBy: $('[data-slot="notes-list"]').dataset.groupBy,
+	tools: $$('[data-slot="notes-tools"] button').map((b) => b.getAttribute('aria-label') || text(b)),
 	firstGroup: text(groups[0]?.firstElementChild),
 	firstRow: text(rows[0]),
 	thread: {

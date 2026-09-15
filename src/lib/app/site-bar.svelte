@@ -58,6 +58,12 @@
 	}
 
 	function pickProject(value: EntityRef | null): void {
+		// The picker resolves a bare `{type, id}` on mount and reports it: the same project, now
+		// with its name, is not a change, and reloading on it would reload forever.
+		if (value?.id === live.project?.id) {
+			if (value && value.name !== live.project?.name) setProject({ id: value.id, name: value.name });
+			return;
+		}
 		setProject(value ? { id: value.id, name: value.name } : null);
 		location.reload();
 	}

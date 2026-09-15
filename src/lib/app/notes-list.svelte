@@ -18,11 +18,16 @@
 	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
 	import { cellValue, formatDateTime, preferencesOf } from '@sg-widgets/core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
+	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
+	import SearchIcon from '@lucide/svelte/icons/search';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import Inbox from '@lucide/svelte/icons/inbox';
 	import MessageSquare from '@lucide/svelte/icons/message-square';
 	import Paperclip from '@lucide/svelte/icons/paperclip';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Input } from '$lib/components/ui/input/index.js';
+	import * as Select from '$lib/components/ui/select/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import EntityChip from '$lib/components/entity-chip.svelte';
 	import StateLine from '$lib/components/state-line.svelte';
@@ -30,7 +35,7 @@
 	import Thumbnail from '$lib/components/thumbnail.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
 	import { cn } from '$lib/utils.js';
-	import { groupNotes, refKey, refOf, refsOf, text, waitingOn, type Waiting } from '$lib/notes';
+	import { GROUP_OPTIONS, groupNotes, refKey, refOf, refsOf, text, waitingOn, type GroupBy, type Waiting } from '$lib/notes';
 	import { ago } from './time';
 
 	type Props = {
@@ -52,22 +57,51 @@
 		statuses: Record<string, StatusRecord>;
 		selected: EntityRef | null;
 		onSelect: (note: EntityRow) => void;
+		/** What the rows are grouped on, two-way. */
+		groupBy?: GroupBy;
+		/** The search the page applies, two-way. The list draws the box; the page reads. */
+		query?: string;
 	};
 
-	let { context, rows, status, error, hasMore, filtered, onLoadMore, onRetry, replies, records, people, statuses, selected, onSelect }: Props = $props();
+	let {
+		context,
+		rows,
+		status,
+		error,
+		hasMore,
+		filtered,
+		onLoadMore,
+		onRetry,
+		replies,
+		records,
+		people,
+		statuses,
+		selected,
+		onSelect,
+		groupBy = $bindable('record'),
+		query = $bindable('')
+	}: Props = $props();
 
-	const groups = $derived(groupNotes(rows, records));
+	const groups = $derived(groupNotes(rows, records, groupBy));
+	const groupLabel = $derived(GROUP_OPTIONS.find((option) => option.value === groupBy)?.label ?? '');
+	const grouped = $derived(groupBy !== 'none');
 	const selectedKey = $derived(selected ? refKey(selected) : '');
 	const prefs = $derived(preferencesOf(context));
 	/** The first read, with nothing to show yet. A later read keeps the rows and dims them. */
 	const firstRead = $derived((status === 'loading' || status === 'idle') && rows.length === 0);
 	const rereading = $derived(status === 'loading' && rows.length > 0);
 
-	let shut = $state<string[]>([]);
+	/** What is shut, per grouping, so switching away and back finds the groups as they were left. */
+	let shutBy = $state<Partial<Record<GroupBy, string[]>>>({});
+	const shut = $derived(shutBy[groupBy] ?? []);
 	let list = $state<HTMLElement | null>(null);
 
+	function setShut(keys: string[]): void {
+		shutBy = { ...shutBy, [groupBy]: keys };
+	}
+
 	function toggle(key: string): void {
-		shut = shut.includes(key) ? shut.filter((k) => k !== key) : [...shut, key];
+		setShut(shut.includes(key) ? shut.filter((k) => k !== key) : [...shut, key]);
 	}
 
 	/** Arrow keys walk the rows, Home and End jump, so a lead reads the list without a mouse. */
@@ -84,6 +118,28 @@
 		if (next === at && at !== -1) return;
 		event.preventDefault();
 		buttons[next === -1 ? 0 : next]?.focus({ preventScroll: false });
+	}
+
+	/** The row a link resolves to, when it has been read. */
+	function rowOf(ref: EntityRef | null | undefined): EntityRow | undefined {
+		return ref ? records.get(refKey(ref)) : undefined;
+	}
+
+	function statusOf(ref: EntityRef | null | undefined): string {
+		const row = rowOf(ref);
+		return row ? String(cellValue(row, 'sg_status_list') ?? '') : '';
+	}
+
+	/** What a linked row belongs to: a Task's or a Version's entity, a Shot's sequence, whatever the row carries as `entity`. */
+	function parentOf(ref: EntityRef | null | undefined): EntityRef | null {
+		const row = rowOf(ref);
+		return row ? refOf(row, 'entity') : null;
+	}
+
+	/** The note's links beyond what the group already names, so a row says where else it sits. */
+	function otherLinks(note: EntityRow, shown: Array<EntityRef | null>): EntityRef[] {
+		const hide = new Set(shown.filter((ref): ref is EntityRef => ref !== null).map(refKey));
+		return [...refsOf(note, 'note_links'), ...refsOf(note, 'tasks')].filter((ref) => !hide.has(refKey(ref)));
 	}
 
 	function imageOf(row: EntityRow | undefined): string | null {
@@ -115,7 +171,43 @@
 	}
 </script>
 
-<div class="flex min-h-0 flex-1 flex-col" data-slot="notes-list" data-state={status}>
+{#snippet glyph(ref: EntityRef | null)}
+	{@const code = statusOf(ref)}
+	{#if code}
+		<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
+	{/if}
+{/snippet}
+
+{#snippet link(ref: EntityRef, muted: boolean)}
+	<span class="flex min-w-0 items-center gap-1">
+		<EntityChip entity={ref} variant="text" {context} size="xs" class={cn('min-w-0 truncate', muted && 'text-muted-foreground')} />
+		{@render glyph(ref)}
+	</span>
+{/snippet}
+
+<div class="flex min-h-0 flex-1 flex-col" data-slot="notes-list" data-state={status} data-group-by={groupBy}>
+	<div class="border-border flex shrink-0 items-center gap-2 border-b px-2 py-1.5" data-slot="notes-tools">
+		<div class="relative min-w-0 flex-1 max-w-xs">
+			<SearchIcon aria-hidden="true" class="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2" />
+			<Input type="search" bind:value={query} placeholder="Search" aria-label="Search notes" class="h-7 pl-7 text-sm" />
+		</div>
+		<Select.Root type="single" value={groupBy} onValueChange={(value) => (groupBy = value as GroupBy)}>
+			<Select.Trigger size="sm" aria-label="Group by" class="ml-auto">
+				<span data-slot="select-value"><span class="text-muted-foreground">Group by</span> {groupLabel}</span>
+			</Select.Trigger>
+			<Select.Content>
+				{#each GROUP_OPTIONS as option (option.value)}
+					<Select.Item value={option.value} label={option.label} />
+				{/each}
+			</Select.Content>
+		</Select.Root>
+		<Button size="icon-xs" variant="ghost" aria-label="Collapse all" title="Collapse all" disabled={!grouped} onclick={() => setShut(groups.map((group) => group.key))}>
+			<ChevronsDownUp aria-hidden="true" />
+		</Button>
+		<Button size="icon-xs" variant="ghost" aria-label="Expand all" title="Expand all" disabled={!grouped} onclick={() => setShut([])}>
+			<ChevronsUpDown aria-hidden="true" />
+		</Button>
+	</div>
 	{#if status === 'error'}
 		<StateLine state="error" pad="table" icon={CircleAlert} label={error?.message ?? 'The read failed.'}>
 			<Button size="sm" variant="outline" onclick={onRetry}>Try again</Button>
@@ -140,7 +232,7 @@
 			{/each}
 		</div>
 	{:else if rows.length === 0}
-		<StateLine state="empty" pad="table" icon={Inbox} label={filtered ? 'No note matches this filter' : 'No notes in this project yet'} />
+		<StateLine state="empty" pad="table" icon={Inbox} label={filtered || query ? 'No note matches this filter' : 'No notes in this project yet'} />
 	{:else}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -- the handler only moves focus between the row buttons -->
 		<div
@@ -153,30 +245,39 @@
 		>
 			{#each groups as group (group.key)}
 				{@const record = group.record ? records.get(group.key) : undefined}
-				{@const recordStatus = record ? String(cellValue(record, 'sg_status_list') ?? '') : ''}
-				{@const closed = shut.includes(group.key)}
+				{@const closed = grouped && shut.includes(group.key)}
 				<section data-slot="notes-group" data-group-key={group.key}>
-					<div class="bg-muted/50 border-border sticky top-0 z-10 flex items-center gap-2 border-b px-2 py-1.5 text-sm">
-						<button
-							type="button"
-							aria-expanded={!closed}
-							aria-label={closed ? 'Show these notes' : 'Hide these notes'}
-							onclick={() => toggle(group.key)}
-							class="focus-visible:ring-ring focus-visible:ring-offset-background text-muted-foreground hover:text-foreground -m-1 flex size-6 shrink-0 items-center justify-center rounded-md outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2"
-						>
-							<ChevronRight aria-hidden="true" class={cn('size-4 transition-transform duration-150 ease-out motion-reduce:transition-none', !closed && 'rotate-90')} />
-						</button>
-						{#if group.record}
-							<Thumbnail src={imageOf(record)} alt="" size="sm" />
-							<EntityChip entity={group.record} variant="text" {context} class="min-w-0 truncate font-medium" />
-							{#if recordStatus}
-								<StatusBadge code={recordStatus} status={statuses[recordStatus] ?? null} variant="glyph" size="xs" />
+					{#if grouped}
+						<div class="bg-muted/50 border-border sticky top-0 z-10 flex items-center gap-2 border-b px-2 py-1.5 text-sm">
+							<button
+								type="button"
+								aria-expanded={!closed}
+								aria-label={closed ? 'Show these notes' : 'Hide these notes'}
+								onclick={() => toggle(group.key)}
+								class="focus-visible:ring-ring focus-visible:ring-offset-background text-muted-foreground hover:text-foreground -m-1 flex size-6 shrink-0 items-center justify-center rounded-md outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2"
+							>
+								<ChevronRight aria-hidden="true" class={cn('size-4 transition-transform duration-150 ease-out motion-reduce:transition-none', !closed && 'rotate-90')} />
+							</button>
+							{#if group.record?.type === 'HumanUser'}
+								<UserAvatar name={group.record.name ?? '?'} image={imageOf(people.get(group.record.id))} size="sm" />
+								<span class="min-w-0 truncate font-medium" title={group.record.name}>{group.record.name}</span>
+							{:else if group.record}
+								{@const parent = parentOf(group.record)}
+								<Thumbnail src={imageOf(record)} alt="" size="sm" />
+								<EntityChip entity={group.record} variant="text" {context} class="min-w-0 truncate font-medium" />
+								{@render glyph(group.record)}
+								{#if parent}
+									<span class="text-muted-foreground text-xs">on</span>
+									{@render link(parent, false)}
+								{/if}
+							{:else if group.value !== null && groupBy === 'status'}
+								<StatusBadge code={group.value} status={statuses[group.value] ?? null} size="xs" />
+							{:else}
+								<span class={cn('min-w-0 truncate font-medium', group.value === null && 'text-muted-foreground')}>{group.label}</span>
 							{/if}
-						{:else}
-							<span class="text-muted-foreground font-medium">Linked to nothing</span>
-						{/if}
-						<span class="text-muted-foreground ml-auto font-mono text-xs tabular-nums">{group.notes.length}</span>
-					</div>
+							<span class="text-muted-foreground ml-auto font-mono text-xs tabular-nums">{group.notes.length}</span>
+						</div>
+					{/if}
 					{#if !closed}
 						<ul class="flex flex-col">
 							{#each group.notes as note (note.id)}
@@ -187,6 +288,7 @@
 								{@const waiting = thread ? waitingOn(note, thread) : null}
 								{@const chosen = selectedKey === `Note:${note.id}`}
 								{@const when = text(note, 'created_at')}
+								{@const links = otherLinks(note, [group.record, parentOf(group.record)])}
 								<li
 									data-slot="notes-row"
 									data-row-key="Note:{note.id}"
@@ -213,7 +315,7 @@
 												{/if}
 												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}>{firstLine(note)}</span>
 												{#if code}
-													<StatusBadge {code} status={statuses[code] ?? null} variant="glyph" size="xs" />
+													<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 												{/if}
 												{#if cellValue(note, 'client_note') === true}
 													<span class="text-muted-foreground shrink-0 text-xs">client</span>
@@ -230,13 +332,21 @@
 											<span class="text-muted-foreground min-w-0 truncate text-xs" title={text(note, 'content')}>
 												{author?.name ?? ''}{text(note, 'content') ? ` · ${text(note, 'content')}` : ''}
 											</span>
+											{#if links.length > 0}
+												<span class="flex min-w-0 items-center gap-2 text-xs" data-slot="notes-row-links">
+													{#each links.slice(0, 3) as ref (refKey(ref))}
+														{@render link(ref, true)}
+													{/each}
+													{#if links.length > 3}
+														<span class="text-muted-foreground tabular-nums">+{links.length - 3}</span>
+													{/if}
+												</span>
+											{/if}
 										</span>
 										<span class="flex shrink-0 flex-col items-end gap-0.5 text-xs">
 											<span class="text-muted-foreground tabular-nums" title={formatDateTime(when, prefs)}>{ago(when)}</span>
 											{#if waiting === null}
 												<Skeleton class="h-3 w-20" />
-											{:else if waiting.kind === 'nobody'}
-												<span class="text-warning">{waitingLabel(waiting)}</span>
 											{:else if waiting.kind !== 'closed'}
 												<span class="text-muted-foreground max-w-40 truncate" title={waitingLabel(waiting)}>{waitingLabel(waiting)}</span>
 											{/if}

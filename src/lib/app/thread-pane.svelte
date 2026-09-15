@@ -197,7 +197,7 @@
 		</StateLine>
 	{/await}
 
-	<p class={waiting.kind === 'nobody' ? 'text-warning text-xs' : 'text-muted-foreground text-xs'} data-slot="thread-waiting">{waitingLine(waiting)}</p>
+	<p class="text-muted-foreground text-xs" data-slot="thread-waiting">{waitingLine(waiting)}</p>
 
 	<form class="flex flex-col gap-2" onsubmit={(event) => (event.preventDefault(), void send())}>
 		<Textarea bind:value={draft} placeholder={replyable ? 'Reply…' : 'This client cannot create a Reply.'} disabled={!replyable || sending} rows={3} />

@@ -38,7 +38,15 @@ them by hand. Worth a line on the install page, or a `utils` item.
 copying the widget's header and row anatomy. A `groupKey(row)` option, with the source left
 sorted as the caller says, would let the widget do it.
 
-## 5. Not a seam: the live pattern carried over as is
+## 5. The status sprite disappears on a dark page
+
+`StatusGlyph` draws a stock status from the site's sprite, dark strokes made for the web app's light
+page. On a dark host the bare `glyph` variant of `StatusBadge` is near invisible for Pending Review,
+On Hold and the other stock icons, while the coloured shipped cells read fine. The `icon` variant
+puts a surface behind it and is what this app uses in lists. The glyph wants a dark-mode treatment
+of its own: an inverted or recoloured sprite, or a mask drawn in `currentColor`.
+
+## 6. Not a seam: the live pattern carried over as is
 
 The docs site's `live.ts`, the two launcher endpoints and the dev-token endpoint moved into
 SvelteKit without a change of shape. `RestClient` from the browser, `createSgContext` once,

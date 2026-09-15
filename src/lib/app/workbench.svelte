@@ -7,7 +7,7 @@
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
 	import { condition, createEntitySource, emptyFilter, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, throughRefs } from '$lib/notes';
+	import { addressees, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, throughRefs, type GroupBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import ThreadPane from './thread-pane.svelte';
@@ -18,9 +18,38 @@
 	const FACETS = ['sg_status_list', 'addressings_to', 'created_by', 'sg_note_type', 'client_note', 'read_by_current_user'];
 	// The project and the context are what this component was built for; the page rebuilds it to change them.
 	const PROJECT = condition('project', 'is', { type: 'Project', id: untrack(() => projectId) });
-	const scope = (tree: FilterGroup): FilterGroup => group('and', [PROJECT, tree]);
+	const scope = (tree: FilterGroup, search: FilterGroup | null = null): FilterGroup => group('and', [PROJECT, tree, ...(search ? [search] : [])]);
 
 	let filter = $state<FilterGroup>(emptyFilter());
+	/** A search is a filter the site runs, so it reaches every page, not the ones loaded. */
+	let query = $state('');
+	const GROUP_KEY = 'sg-notes:group';
+	const storedGroup = ((): GroupBy => {
+		try {
+			const value = localStorage.getItem(GROUP_KEY);
+			return GROUP_OPTIONS.some((option) => option.value === value) ? (value as GroupBy) : 'record';
+		} catch {
+			return 'record';
+		}
+	})();
+	let groupBy = $state<GroupBy>(storedGroup);
+	$effect(() => {
+		try {
+			localStorage.setItem(GROUP_KEY, groupBy);
+		} catch {
+			/* A remembered grouping is a convenience. */
+		}
+	});
+
+	/** What the Note schema says a note may link and what types it may be, so a search reaches them. */
+	let linkTypes = $state<string[]>([]);
+	let noteTypes = $state<string[]>([]);
+	onMount(() => {
+		void context.client.fields('Note').then((fields) => {
+			linkTypes = fields.note_links?.validTypes ?? [];
+			noteTypes = fields.sg_note_type?.validValues ?? [];
+		});
+	});
 
 	const source = createEntitySource({
 		client: untrack(() => context).client,
@@ -35,16 +64,6 @@
 	$effect(() => source.subscribe(() => (snapshot = source.snapshot())));
 	onMount(() => void source.load());
 
-	// Keystrokes settle before the set is read again; an unchanged tree is not re-read.
-	const wire = $derived(JSON.stringify(toApi3Hash(scope(filter))));
-	$effect(() => {
-		const next = wire;
-		const timer = setTimeout(() => {
-			if (JSON.stringify(source.filters) !== next) void source.setFilters(JSON.parse(next) as WireGroup | null);
-		}, 250);
-		return () => clearTimeout(timer);
-	});
-
 	/* What the rows point at, read once per row and kept. */
 	let replies = $state<Map<number, EntityRow[]>>(new Map());
 	let records = $state<Map<string, EntityRow>>(new Map());
@@ -54,6 +73,17 @@
 	onMount(() => {
 		void context.statuses.byCode().then((table) => (statuses = Object.fromEntries(table)));
 	});
+
+	// Keystrokes settle before the set is read again; an unchanged tree is not re-read.
+	const wire = $derived(JSON.stringify(toApi3Hash(scope(filter, searchFilter(query, linkTypes, statuses, noteTypes)))));
+	$effect(() => {
+		const next = wire;
+		const timer = setTimeout(() => {
+			if (JSON.stringify(source.filters) !== next) void source.setFilters(JSON.parse(next) as WireGroup | null);
+		}, 250);
+		return () => clearTimeout(timer);
+	});
+
 
 	$effect(() => {
 		const rows = snapshot.rows;
@@ -135,6 +165,8 @@
 			{statuses}
 			selected={selectedRef}
 			onSelect={(note) => (selectedRef = { type: 'Note', id: note.id })}
+			bind:groupBy
+			bind:query
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
 			{#if selected}
