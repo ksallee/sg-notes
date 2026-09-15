@@ -7,7 +7,7 @@
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
 	import { condition, createEntitySource, emptyFilter, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, NOTE_FIELDS, readPeople, readRecords, readReplies, recordOf, refKey, refOf } from '$lib/notes';
+	import { addressees, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, throughRefs } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import ThreadPane from './thread-pane.svelte';
@@ -64,14 +64,21 @@
 
 	async function enrich(rows: EntityRow[]): Promise<void> {
 		const newNotes = rows.filter((note) => !replies.has(note.id));
-		const newRecords = rows.map(recordOf).filter((ref): ref is EntityRef => ref !== null && !records.has(refKey(ref)));
-		const [threads, linked] = await Promise.all([readReplies(context.client, newNotes), readRecords(context.client, newRecords)]);
+		// Every link is read: a Version or a Task is the way to the record, the rest are records.
+		const unknown = (refs: EntityRef[]): EntityRef[] => refs.filter((ref) => !records.has(refKey(ref)));
+		const newLinks = unknown(rows.flatMap((note) => [...refsOf(note, 'note_links'), ...refsOf(note, 'tasks')]));
+		const [threads, linked] = await Promise.all([readReplies(context.client, newNotes), readRecords(context.client, newLinks)]);
 		if (newNotes.length > 0) {
 			const next = new Map(replies);
 			for (const note of newNotes) next.set(note.id, threads.get(note.id) ?? []);
 			replies = next;
 		}
 		if (linked.size > 0) records = new Map([...records, ...linked]);
+		// Then the records those links reach, so their thumbnails and statuses head the groups.
+		const parents = unknown(
+			rows.flatMap(throughRefs).map((ref) => records.get(refKey(ref))).flatMap((row) => (row ? (refOf(row, 'entity') ?? []) : []))
+		);
+		if (parents.length > 0) records = new Map([...records, ...(await readRecords(context.client, parents))]);
 		const faces: EntityRef[] = [];
 		for (const note of rows) {
 			const author = refOf(note, 'created_by');
@@ -82,8 +89,8 @@
 				if (user) faces.push(user);
 			}
 		}
-		const unknown = faces.filter((ref) => !people.has(ref.id));
-		if (unknown.length > 0) people = new Map([...people, ...(await readPeople(context.client, unknown))]);
+		const strangers = faces.filter((ref) => !people.has(ref.id));
+		if (strangers.length > 0) people = new Map([...people, ...(await readPeople(context.client, strangers))]);
 	}
 
 	let selectedRef = $state<EntityRef | null>(null);
@@ -134,7 +141,7 @@
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
 			{#if selected}
 				{#key selected.id}
-					<ThreadPane {context} {writer} note={selected} replies={replies.get(selected.id) ?? []} {people} {statuses} {projectId} onStatus={setStatus} onReply={reply} />
+					<ThreadPane {context} {writer} note={selected} replies={replies.get(selected.id) ?? []} {people} {records} {statuses} {projectId} onStatus={setStatus} onReply={reply} />
 				{/key}
 			{:else}
 				<p class="text-muted-foreground flex items-center justify-center px-4 py-10 text-sm">Pick a note to read its thread.</p>

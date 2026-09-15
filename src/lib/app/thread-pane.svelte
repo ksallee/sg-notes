@@ -26,16 +26,18 @@
 		note: EntityRow;
 		replies: EntityRow[];
 		people: Map<number, EntityRow>;
+		/** The linked records, keyed `Type:id`, so a Version's or a Task's entity is known. */
+		records: Map<string, EntityRow>;
 		statuses: Record<string, StatusRecord>;
 		projectId: number;
 		onStatus: (code: string) => Promise<void>;
 		onReply: (content: string) => Promise<void>;
 	};
 
-	let { context, writer, note, replies, people, statuses, projectId, onStatus, onReply }: Props = $props();
+	let { context, writer, note, replies, people, records, statuses, projectId, onStatus, onReply }: Props = $props();
 
 	const author = $derived(refOf(note, 'created_by'));
-	const record = $derived(recordOf(note));
+	const record = $derived(recordOf(note, records));
 	/** The Version the note was written on, when it is not the record itself. */
 	const version = $derived.by(() => {
 		const on = versionOf(note);

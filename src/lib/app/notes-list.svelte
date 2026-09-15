@@ -56,7 +56,7 @@
 
 	let { context, rows, status, error, hasMore, filtered, onLoadMore, onRetry, replies, records, people, statuses, selected, onSelect }: Props = $props();
 
-	const groups = $derived(groupNotes(rows));
+	const groups = $derived(groupNotes(rows, records));
 	const selectedKey = $derived(selected ? refKey(selected) : '');
 	const prefs = $derived(preferencesOf(context));
 	/** The first read, with nothing to show yet. A later read keeps the rows and dims them. */

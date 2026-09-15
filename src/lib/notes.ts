@@ -56,14 +56,36 @@ export function text(row: EntityRow, path: string): string {
 }
 
 /**
- * The record a note is about. A note written from a Version links the Version and
- * the Shot or Asset it belongs to (`note_links` carries both, finding 067); the
- * Shot or Asset is the record, the Version is where it was said. A note on a
- * Version alone falls under that Version.
+ * Types a note reaches a record through rather than being about. A Version or a
+ * Task carries `entity`, the Shot, Asset, Sequence or whatever the site links it
+ * to; the note is about that. Any other linked type is the record itself: the
+ * site's preferences say which types take notes at all, and the Note schema's
+ * `note_links` lists them as its `valid_types`.
  */
-export function recordOf(note: EntityRow): EntityRef | null {
+const THROUGH = new Set(['Version', 'Task']);
+
+/**
+ * The record a note is about. The first link that is not a Version or a Task;
+ * else the `entity` of the first Version or Task whose row is known; else the
+ * link itself until that row is read. A note on a Task alone falls under the
+ * Task's entity the same way.
+ */
+export function recordOf(note: EntityRow, records?: ReadonlyMap<string, EntityRow>): EntityRef | null {
 	const links = refsOf(note, 'note_links');
-	return links.find((ref) => ref.type !== 'Version') ?? links[0] ?? null;
+	const direct = links.find((ref) => !THROUGH.has(ref.type));
+	if (direct) return direct;
+	const through = [...links, ...refsOf(note, 'tasks')];
+	for (const ref of through) {
+		const row = records?.get(refKey(ref));
+		const parent = row ? refOf(row, 'entity') : null;
+		if (parent) return parent;
+	}
+	return through[0] ?? null;
+}
+
+/** The rows a record is reached through, so their `entity` can be read. */
+export function throughRefs(note: EntityRow): EntityRef[] {
+	return [...refsOf(note, 'note_links'), ...refsOf(note, 'tasks')].filter((ref) => THROUGH.has(ref.type));
 }
 
 /** The Version a note was written on, when it was. */
@@ -79,10 +101,10 @@ export interface NoteGroup {
 }
 
 /** Notes under the record they are about, groups in the order the rows arrived. */
-export function groupNotes(rows: readonly EntityRow[]): NoteGroup[] {
+export function groupNotes(rows: readonly EntityRow[], records?: ReadonlyMap<string, EntityRow>): NoteGroup[] {
 	const groups = new Map<string, NoteGroup>();
 	for (const note of rows) {
-		const record = recordOf(note);
+		const record = recordOf(note, records);
 		const key = record ? refKey(record) : 'none';
 		let bucket = groups.get(key);
 		if (!bucket) {
@@ -166,8 +188,12 @@ export async function readReplies(client: SgClient, notes: readonly EntityRow[])
 	return out;
 }
 
-/** What the list shows of a record: its thumbnail and its status. Names come with the link. */
-const RECORD_FIELDS = ['code', 'image', 'sg_status_list'];
+/**
+ * What the list shows of a record: its thumbnail and its status, and `entity` on
+ * the types that reach a record through it. A name a type does not have is
+ * dropped from the answer without a word (probe 004), so one list serves every type.
+ */
+const RECORD_FIELDS = ['code', 'image', 'sg_status_list', 'entity'];
 
 /**
  * The records a set of notes point at, keyed `Type:id`. One read per type; a
