@@ -5,7 +5,8 @@ record it is about, threaded, with reply, close and forward as first-class actio
 whom" as a column. Built on `../sg-widgets` and meant to be the first real host those widgets live
 in. It started life as an artist landing page; `research/` holds why it changed.
 
-Status, 2026-09-15: research, probes, a seed and a capture exist. No page yet.
+Status, 2026-09-15: the read-only lead view stands on the live sandbox, with a status write. The seed
+is growing to a lead's month and the client additions are on their way in sg-widgets.
 
 ## Why this, and why first
 
@@ -42,6 +43,20 @@ Status, 2026-09-15: research, probes, a seed and a capture exist. No page yet.
   standard-library PNG generator. The artist persona is the site's Artist-permission account; the
   supervisor is the operator, so notes written in the web app land on the page.
 - Name: `sg-notes`.
+- **SvelteKit at the repo root**, one process: the page, the two launcher routes and the dev-only
+  token route. `pnpm dev` and it is up.
+- **Live only, no mock.** The page reads a real site through the browser, the way the docs site's
+  Live mode does (probe 062), or says why it cannot. The fixtures are reference shapes, not a data
+  source. A dev-only route mints a bearer from `.env.local` so a headless drive needs no approval.
+- **The widgets are registry copies**, installed with the documented one-liner from a local build
+  of the registry, with `@sg-widgets/core` linked until it is published. Every seam that fought
+  is in `docs/seams.md`, each one an sg-widgets issue in waiting.
+- **The list groups notes itself.** `GroupedList` groups on a sorted path, and the record a note is
+  about is derived from `note_links`, which the site will not sort on. The app's grouping follows
+  the widget's anatomy; a `groupKey` option is the issue to file.
+- **"Waiting on whom", first rule.** The thread's last row is the note or its newest reply. An
+  addressee wrote it: the author owes the next word. Anyone else: the addressees do. Closed waits
+  on nobody; addressed to nobody is called out as such.
 
 ## Sources
 
@@ -91,16 +106,20 @@ no tasks and no attachments (`research/07`). Three layers, and the demo runs on 
 
 ## Open questions
 
-- Which sg-widgets items the lead view uses, and which foreign widgets it deliberately pulls in.
-- Local service tooling: plain Vite plus a small server, or the sg-comfyui route style.
-- The lead's "waiting on whom" rule when a note has several addressees and a mixed thread.
+- Which foreign widgets the compose pass deliberately pulls in: a sidebar, a resizable split, a
+  command palette, toasts.
+- Whether the "waiting on whom" rule holds on a lead's month of mixed threads.
 - How the page survives a project where every optional column is empty.
+- Whether `read_by_current_user` can be written, for "mark read".
 
 ## Build order
 
 1. Done: the probes, the seed and capture for one day, the research.
-2. The sg-widgets client issues, filed and merged, so the page has `create` and `threadContents`.
-3. The seed grown to a lead's month, captured, then the authored month.
-4. The read-only lead view on the mock source: list, filters, groups, thread, annotation previews.
-5. The local service: proxy, browser sign-in, the first write (reply), then note status.
+2. In progress: the sg-widgets client issues, filed and merged, so the page has `create` and
+   `threadContents`.
+3. In progress: the seed grown to a lead's month, captured. Timestamps stay the seed's own: the
+   event log cannot be authored, and the month is measured by volume, not by dates.
+4. Done: the lead view on the live site: list, filters, groups, thread, annotation previews,
+   sign-in, the status write. `tools/qa.mjs` drives it headless.
+5. The reply, once `create` lands. Then the thread through `threadContents`.
 6. The "mine" view. Then the compose pass with the foreign widgets, logging every seam.
