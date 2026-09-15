@@ -13,10 +13,12 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import StatusBadge from '$lib/components/status-badge.svelte';
 	import { cn } from '$lib/utils.js';
+	import { formatDateTime, preferencesOf } from '@sg-widgets/core';
+	import type { SgContext } from '@sg-widgets/core';
 	import { refOf, text } from '$lib/notes';
-	import { ago } from './time';
 
 	type Props = {
+		context: SgContext;
 		notes: EntityRow[];
 		statuses: Record<string, StatusRecord>;
 		/** The notes shown in full. */
@@ -26,7 +28,8 @@
 		pane: Snippet<[EntityRow]>;
 	};
 
-	let { notes, statuses, expanded, onExpand, pane }: Props = $props();
+	let { context, notes, statuses, expanded, onExpand, pane }: Props = $props();
+	const prefs = $derived(preferencesOf(context));
 </script>
 
 <div class="flex flex-col" data-slot="thread-stack">
@@ -58,7 +61,7 @@
 					<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 				{/if}
 				<span class="text-muted-foreground max-w-32 truncate text-xs">{refOf(note, 'created_by')?.name ?? ''}</span>
-				<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums">{ago(text(note, 'created_at'))}</span>
+				<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums">{formatDateTime(text(note, 'created_at'), prefs)}</span>
 			</button>
 			{#if open}
 				{@render pane(note)}

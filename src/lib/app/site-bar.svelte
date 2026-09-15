@@ -89,7 +89,7 @@
 				<Button size="sm" variant="ghost" onclick={() => (editingSite = false)}>Cancel</Button>
 			{/if}
 		{:else}
-			<span class="text-muted-foreground truncate text-sm" title={live.siteUrl}>{shortHost(live.siteUrl)}</span>
+			<span class="text-muted-foreground truncate text-sm" title={live.siteUrl}><span class="text-xs">Site</span> {shortHost(live.siteUrl)}</span>
 			<Button size="sm" variant="ghost" onclick={() => ((siteDraft = live.siteUrl), (editingSite = true))}>Change</Button>
 			{#if live.problem === null}
 				<div class="w-64">
@@ -109,9 +109,9 @@
 			{:else if approving}
 				<span class="text-muted-foreground">Approve the request in the tab that opened.</span>
 			{:else if live.devToken}
-				<span class="text-muted-foreground">Reading with the dev key</span>
+				<span class="text-muted-foreground text-xs">Dev key</span>
 			{/if}
-			<Button size="sm" variant={live.devToken ? 'outline' : 'default'} onclick={onSignIn} disabled={approving}>Sign in</Button>
+			<Button size="sm" variant={live.devToken ? 'outline' : 'default'} onclick={onSignIn} disabled={approving}>{live.devToken ? 'Sign in as yourself' : 'Sign in'}</Button>
 		{/if}
 	</div>
 </header>

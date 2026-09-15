@@ -195,7 +195,7 @@
 				</Dialog.Description>
 			</Dialog.Header>
 			<div class="bg-muted h-1 w-full overflow-hidden rounded-full" role="progressbar" aria-valuemin="0" aria-valuemax={job.total} aria-valuenow={job.done}>
-				<div class="bg-primary h-full transition-[width] duration-150 ease-out motion-reduce:transition-none" style="width:{job.total ? (100 * job.done) / job.total : 100}%"></div>
+				<div class="bg-primary h-full origin-left transition-transform duration-150 ease-out motion-reduce:transition-none" style="transform:scaleX({job.total ? job.done / job.total : 1})"></div>
 			</div>
 			{#if job.failures.length > 0}
 				<ul class="text-destructive flex flex-col gap-1 text-xs">

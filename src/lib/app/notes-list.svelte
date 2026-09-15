@@ -27,6 +27,7 @@
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import SearchIcon from '@lucide/svelte/icons/search';
+	import X from '@lucide/svelte/icons/x';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import Inbox from '@lucide/svelte/icons/inbox';
 	import MessageSquare from '@lucide/svelte/icons/message-square';
@@ -43,7 +44,7 @@
 	import Thumbnail from '$lib/components/thumbnail.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
 	import { cn } from '$lib/utils.js';
-	import { GROUP_OPTIONS, groupNotes, isClientFacing, refKey, refOf, refsOf, text, waitingOn, type GroupBy, type Waiting } from '$lib/notes';
+	import { GROUP_OPTIONS, groupNotes, isClientFacing, refKey, refOf, refsOf, text, WAITING_OPTIONS, waitingOn, type GroupBy, type Waiting, type WaitingKind } from '$lib/notes';
 	import { ago } from './time';
 
 	type Props = {
@@ -71,6 +72,7 @@
 		groupBy?: GroupBy;
 		/** The search the page applies, two-way. The list draws the box; the page reads. */
 		query?: string;
+		onClearFilters: () => void;
 		onActions: () => void;
 	};
 
@@ -91,8 +93,12 @@
 		onSelectionChange,
 		groupBy = $bindable('record'),
 		query = $bindable(''),
+		onClearFilters,
 		onActions
 	}: Props = $props();
+
+	/** Who a note has to be waiting on to be shown. Decided on the loaded rows. */
+	let waitingFilter = $state<WaitingKind | 'any'>('any');
 
 	/** Reads the next page whenever the foot of the list scrolls into view. */
 	function sentinel(node: HTMLElement): () => void {
@@ -115,7 +121,10 @@
 		setShut([]);
 	}
 
-	const groups = $derived(groupNotes(rows, records, groupBy));
+	const shown = $derived(
+		waitingFilter === 'any' ? rows : rows.filter((note) => waitingOn(note, replies.get(note.id) ?? null)?.kind === waitingFilter)
+	);
+	const groups = $derived(groupNotes(shown, records, groupBy));
 	const groupLabel = $derived(GROUP_OPTIONS.find((option) => option.value === groupBy)?.label ?? '');
 	const grouped = $derived(groupBy !== 'none');
 	const anySelected = $derived(selected.size > 0);
@@ -256,10 +265,15 @@
 		return ref ? imageOf(people.get(ref.id)) : null;
 	}
 
+	/** The people a note waits on, for the column's avatars. */
+	function waitingWho(waiting: Waiting): EntityRef[] {
+		return waiting.kind === 'author' ? [waiting.who] : waiting.kind === 'addressees' ? waiting.who : [];
+	}
+
 	function waitingLabel(waiting: Waiting): string {
 		switch (waiting.kind) {
 			case 'closed':
-				return '';
+				return 'Closed';
 			case 'nobody':
 				return 'Addressed to nobody';
 			case 'author':
@@ -293,11 +307,26 @@
 <div class="flex min-h-0 flex-1 flex-col" data-slot="notes-list" data-state={status} data-group-by={groupBy}>
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-2 py-1.5" data-slot="notes-tools">
 		<div class="relative min-w-0 flex-1 max-w-xs">
-			<SearchIcon aria-hidden="true" class="text-muted-foreground pointer-events-none absolute top-1/2 left-2 size-3.5 -translate-y-1/2" />
-			<Input type="search" bind:value={query} placeholder="Search" aria-label="Search notes" class="h-7 pl-7 text-sm" />
+			<SearchIcon aria-hidden="true" class="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
+			<Input type="text" bind:value={query} placeholder="Search" aria-label="Search notes" class="h-8 pr-8 pl-8 text-sm" data-slot="search" />
+			{#if query}
+				<Button size="icon-xs" variant="ghost" aria-label="Clear the search" class="absolute top-1/2 right-1 -translate-y-1/2" onclick={() => (query = '')}>
+					<X aria-hidden="true" />
+				</Button>
+			{/if}
 		</div>
+		<Select.Root type="single" value={waitingFilter} onValueChange={(value) => (waitingFilter = value as WaitingKind | 'any')}>
+			<Select.Trigger aria-label="Waiting on" class="ml-auto" data-slot="waiting-filter">
+				<span data-slot="select-value"><span class="text-muted-foreground">Waiting on</span> {WAITING_OPTIONS.find((option) => option.value === waitingFilter)?.label ?? ''}</span>
+			</Select.Trigger>
+			<Select.Content>
+				{#each WAITING_OPTIONS as option (option.value)}
+					<Select.Item value={option.value} label={option.label} />
+				{/each}
+			</Select.Content>
+		</Select.Root>
 		<Select.Root type="single" value={groupBy} onValueChange={(value) => (groupBy = value as GroupBy)}>
-			<Select.Trigger size="sm" aria-label="Group by" class="ml-auto">
+			<Select.Trigger aria-label="Group by">
 				<span data-slot="select-value"><span class="text-muted-foreground">Group by</span> {groupLabel}</span>
 			</Select.Trigger>
 			<Select.Content>
@@ -306,13 +335,13 @@
 				{/each}
 			</Select.Content>
 		</Select.Root>
-		<Button size="icon-xs" variant="ghost" aria-label="Collapse all" title="Collapse all" disabled={!grouped} onclick={collapseAll}>
+		<Button size="icon" variant="ghost" aria-label="Collapse all" title={grouped ? 'Collapse all' : 'Nothing to collapse without a grouping'} disabled={!grouped} onclick={collapseAll}>
 			<ChevronsDownUp aria-hidden="true" />
 		</Button>
-		<Button size="icon-xs" variant="ghost" aria-label="Expand all" title="Expand all" disabled={!grouped} onclick={expandAll}>
+		<Button size="icon" variant="ghost" aria-label="Expand all" title={grouped ? 'Expand all' : 'Nothing to expand without a grouping'} disabled={!grouped} onclick={expandAll}>
 			<ChevronsUpDown aria-hidden="true" />
 		</Button>
-		<Button size="sm" variant={selected.size > 1 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
+		<Button variant={selected.size > 1 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
 			{selected.size > 1 ? `${selected.size} selected` : 'Actions'}
 			<Kbd>⌘K</Kbd>
 		</Button>
@@ -340,8 +369,26 @@
 				</div>
 			{/each}
 		</div>
-	{:else if rows.length === 0}
-		<StateLine state="empty" pad="table" icon={Inbox} label={filtered || query ? 'No note matches this filter' : 'No notes in this project yet'} />
+	{:else if rows.length === 0 || shown.length === 0}
+		<div class="flex flex-1 flex-col items-center justify-center gap-3 px-4 py-10 text-center" data-slot="notes-empty">
+			<Inbox aria-hidden="true" class="text-muted-foreground size-6" />
+			<p class="text-muted-foreground text-sm">
+				{#if rows.length === 0 && query.trim()}
+					No note matches “{query.trim()}”{filtered ? ' with these filters' : ''}.
+				{:else if rows.length === 0 && filtered}
+					No note matches these filters.
+				{:else if rows.length === 0}
+					No notes in this project yet.
+				{:else}
+					No loaded note is waiting on {WAITING_OPTIONS.find((option) => option.value === waitingFilter)?.label.toLowerCase()}.
+				{/if}
+			</p>
+			{#if rows.length === 0 && (query.trim() || filtered)}
+				<Button size="sm" variant="outline" onclick={onClearFilters}>Clear the search and filters</Button>
+			{:else if rows.length > 0}
+				<Button size="sm" variant="outline" onclick={() => (waitingFilter = 'any')}>Show every note</Button>
+			{/if}
+		</div>
 	{:else}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -- the handler only moves focus between the row buttons -->
 		<div
@@ -418,8 +465,9 @@
 									data-state={chosen ? 'selected' : undefined}
 									data-unread={unread ? 'true' : undefined}
 									class={cn(
-										'group/row border-border/50 flex items-stretch border-b transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
-										chosen ? 'bg-accent text-accent-foreground' : 'hover:bg-muted/50'
+										'group/row border-border flex items-stretch border-b border-l-2 transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
+										chosen ? 'bg-primary/12 border-l-primary' : 'border-l-transparent hover:bg-foreground/4',
+										code === 'clsd' && !chosen && 'opacity-60'
 									)}
 								>
 									<span class="flex shrink-0 items-start pt-2 pl-2">
@@ -478,14 +526,24 @@
 												</span>
 											{/if}
 										</span>
-										<span class="flex shrink-0 flex-col items-end gap-0.5 text-xs">
-											<span class="text-muted-foreground font-mono tabular-nums" title={formatDateTime(when, prefs)}>{ago(when)}</span>
+										<span class="flex w-44 shrink-0 items-center gap-1.5 text-xs" data-slot="waiting-on" data-waiting={waiting?.kind ?? 'pending'}>
 											{#if waiting === null}
-												<Skeleton class="h-3 w-20" />
-											{:else if waiting.kind !== 'closed'}
-												<span class="text-muted-foreground max-w-40 truncate" title={waitingLabel(waiting)}>{waitingLabel(waiting)}</span>
+												<span class="text-muted-foreground" aria-label="Reading the thread">…</span>
+											{:else if waiting.kind === 'closed'}
+												<span class="text-muted-foreground">Closed</span>
+											{:else if waiting.kind === 'nobody'}
+												<span class="text-muted-foreground">Addressed to nobody</span>
+											{:else}
+												{@const who = waitingWho(waiting)}
+												<span class="flex shrink-0 -space-x-1">
+													{#each who.slice(0, 3) as ref (ref.id)}
+														<UserAvatar name={ref.name ?? '?'} image={personImage(ref)} size="sm" class="ring-background ring-1" />
+													{/each}
+												</span>
+												<span class="min-w-0 truncate" title={waitingLabel(waiting)}>{who.map((ref) => ref.name ?? '').filter(Boolean).join(', ')}</span>
 											{/if}
 										</span>
+										<span class="text-muted-foreground w-14 shrink-0 text-right font-mono text-xs tabular-nums" title={formatDateTime(when, prefs)}>{ago(when)}</span>
 									</button>
 								</li>
 							{/each}

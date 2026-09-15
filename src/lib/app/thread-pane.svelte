@@ -100,7 +100,8 @@
 		return value && typeof value.url === 'string' ? value.url : null;
 	}
 
-	function waitingLine(state: Waiting): string {
+	function waitingLine(state: Waiting | null): string {
+		if (state === null) return 'Reading the thread…';
 		switch (state.kind) {
 			case 'closed':
 				return 'Closed.';
@@ -126,7 +127,7 @@
 
 <article class="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150 flex flex-col gap-4 p-4" data-slot="thread-pane" data-note-id={note.id}>
 	{#if record}
-		<EntityCard {context} entity={record} variant="card" size="sm" fields={['sg_status_list', 'description']} />
+		<EntityCard {context} entity={record} variant="card" size="sm" fields={['description']} />
 	{/if}
 
 	<header class="flex flex-col gap-2">

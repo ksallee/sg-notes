@@ -18,7 +18,7 @@ const byStatusWord = { count: count(), rows: rows() };
 await pw.fill('[data-slot="notes-tools"] input', '');
 await wait(2500);
 
-await pw.click('[data-slot="notes-tools"] [data-slot="select-trigger"]');
+await pw.click('[data-slot="notes-tools"] [aria-label="Group by"]');
 await wait(300);
 await pw.click('[role="option"]:has-text("Status")');
 await wait(500);
@@ -29,12 +29,12 @@ await wait(300);
 const collapsed = { rows: rows(), expanded: $$('[data-slot="notes-group"] [aria-expanded="true"]').length };
 
 // Back to Record: its groups are still open, and back to Status they are still shut.
-await pw.click('[data-slot="notes-tools"] [data-slot="select-trigger"]');
+await pw.click('[data-slot="notes-tools"] [aria-label="Group by"]');
 await wait(300);
 await pw.click('[role="option"]:has-text("Record")');
 await wait(300);
 const backOnRecord = { groupBy: $('[data-slot="notes-list"]').dataset.groupBy, rows: rows() };
-await pw.click('[data-slot="notes-tools"] [data-slot="select-trigger"]');
+await pw.click('[data-slot="notes-tools"] [aria-label="Group by"]');
 await wait(300);
 await pw.click('[role="option"]:has-text("Status")');
 await wait(300);
@@ -45,5 +45,6 @@ await wait(300);
 const ok =
 	searched.rows < before.rows && searched.rows > 0 && byPerson.rows > 0 && byStatusWord.rows > 0 &&
 	byStatus.groupBy === 'status' && byStatus.groups < before.groups &&
-	collapsed.rows === 0 && backOnRecord.rows === before.rows && backOnStatus.rows === 0 && rows() === before.rows;
+	// Collapsing every group brings the foot into view, which reads the rest of the set in.
+	collapsed.rows === 0 && backOnRecord.rows >= before.rows && backOnStatus.rows === 0 && rows() >= before.rows;
 return { verdict: ok ? 'PASS' : 'FAIL see fields', before, searched, byPerson, byStatusWord, byStatus, collapsed, backOnRecord, backOnStatus, restored: rows() };

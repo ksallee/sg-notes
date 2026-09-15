@@ -18,7 +18,8 @@
 	let { context, writer, projectId }: { context: SgContext; writer: SgClient; projectId: number } = $props();
 
 	/** The pills the bar offers, in the order a lead reaches for them. */
-	const FACETS = ['sg_status_list', 'addressings_to', 'created_by', 'sg_note_type', 'client_note', 'read_by_current_user'];
+	// `client_note` is false on every API-written note (README), so it is not offered.
+	const FACETS = ['sg_status_list', 'addressings_to', 'created_by', 'sg_note_type', 'read_by_current_user'];
 	// The project and the context are what this component was built for; the page rebuilds it to change them.
 	const PROJECT = condition('project', 'is', { type: 'Project', id: untrack(() => projectId) });
 	const scope = (tree: FilterGroup, search: FilterGroup | null = null): FilterGroup => group('and', [PROJECT, tree, ...(search ? [search] : [])]);
@@ -81,12 +82,22 @@
 
 	// Keystrokes settle before the set is read again; an unchanged tree is not re-read.
 	const wire = $derived(JSON.stringify(toApi3Hash(scope(filter, searchFilter(query, linkTypes, statuses, noteTypes)))));
+	/** What the filter matches on the site, from `_summarize`; null until it answers. */
+	let total = $state<number | null>(null);
 	$effect(() => {
 		const next = wire;
+		let live = true;
 		const timer = setTimeout(() => {
 			if (JSON.stringify(source.filters) !== next) void source.setFilters(JSON.parse(next) as WireGroup | null);
+			total = null;
+			void source.count().then((answer) => {
+				if (live) total = answer;
+			}, () => undefined);
 		}, 250);
-		return () => clearTimeout(timer);
+		return () => {
+			live = false;
+			clearTimeout(timer);
+		};
 	});
 
 
@@ -228,7 +239,13 @@
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-3 py-2">
 		<FilterBar entityType="Note" {context} facets={FACETS} baseFilter={group('and', [PROJECT])} bind:value={filter} size="sm" class="min-w-0 flex-1" />
 		<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums" data-slot="row-count">
-			{snapshot.rows.length}{snapshot.hasMore ? '+' : ''} notes
+			{#if total === null}
+				{snapshot.rows.length}{snapshot.hasMore ? '+' : ''} notes
+			{:else if snapshot.hasMore}
+				{snapshot.rows.length} of {total} notes
+			{:else}
+				{total} {total === 1 ? 'note' : 'notes'}
+			{/if}
 		</span>
 	</div>
 	<div class="flex min-h-0 flex-1">
@@ -250,11 +267,16 @@
 			onSelectionChange={setSelection}
 			bind:groupBy
 			bind:query
+			onClearFilters={() => {
+				filter = emptyFilter();
+				query = '';
+			}}
 			onActions={() => (paletteOpen = true)}
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
 			{#if selectedRows.length > 1}
 				<ThreadStack
+					{context}
 					notes={selectedRows}
 					{statuses}
 					{expanded}
@@ -268,8 +290,8 @@
 				{#key single.id}
 					{@render pane(single)}
 				{/key}
-			{:else}
-				<p class="text-muted-foreground flex items-center justify-center px-4 py-10 text-sm">Pick a note to read its thread.</p>
+			{:else if snapshot.rows.length > 0}
+				<p class="text-muted-foreground flex items-center justify-center px-4 py-10 text-sm">Select a note to read its thread.</p>
 			{/if}
 		</aside>
 	</div>

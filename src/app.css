@@ -72,7 +72,7 @@ html {
 	--secondary-foreground: oklch(0.9702 0.0137 241.9);
 	--muted: oklch(1 0.0211 241.9 / 0.02); /* surface.level300 #222933 */
 	--muted-foreground: oklch(0.6262 0.0048 241.9); /* text.dim over surface.level300 */
-	--accent: oklch(1 0.0327 241.9 / 0.04); /* surface.level100 #454f61 */
+	--accent: oklch(1 0.0327 241.9 / 0.08); /* surface.level100 #454f61, doubled: 4% measured 1.10:1 */
 	--accent-foreground: oklch(0.9702 0.0137 241.9);
 	--destructive: oklch(0.6507 0.1858 23.8376); /* status.error #eb5555 */
 	--destructive-foreground: oklch(0.2369 0.0137 253.0936);
@@ -82,9 +82,11 @@ html {
 	--warning-foreground: oklch(0.2369 0.0137 253.0936);
 	--info: oklch(0.7002 0.1253 232.5245); /* reference.accent #38abdf */
 	--info-foreground: oklch(0.2369 0.0137 253.0936);
-	--border: oklch(1 0.003 241.9 / 0.05); /* divider.heavyweight over surface.level350 */
-	--input: oklch(1 0.003 241.9 / 0.08); /* border.base over surface.level350 */
-	--ring: oklch(1 0.005 241.9 / 0.12); /* reference.accent */
+	/* The site's values were 5%, 8% and a 12% ring, which measured 1.06:1, 1.13:1 and 1.41:1 against the
+	   page (docs/ux-review.md). A divider has to be seen and a focus ring is held to 3:1. */
+	--border: oklch(1 0.003 241.9 / 0.11);
+	--input: oklch(1 0.003 241.9 / 0.16);
+	--ring: oklch(0.7002 0.1253 232.5245); /* reference.accent #38abdf, 6.2:1 on the page */
 	--chart-1: oklch(0.7002 0.1253 232.5245);
 	--chart-2: oklch(0.7117 0.1513 127.6839);
 	--chart-3: oklch(0.8203 0.1452 74.6168);

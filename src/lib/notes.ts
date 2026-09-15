@@ -105,7 +105,7 @@ export const GROUP_OPTIONS: ReadonlyArray<{ value: GroupBy; label: string }> = [
 	{ value: 'addressee', label: 'Addressed to' },
 	{ value: 'status', label: 'Status' },
 	{ value: 'type', label: 'Note type' },
-	{ value: 'none', label: 'Nothing' }
+	{ value: 'none', label: 'No grouping' }
 ];
 
 /** What a note falls under when it has no value for the grouping. */
@@ -199,6 +199,17 @@ export function isClientFacing(note: EntityRow): boolean {
 	return note.attributes.client_note === true || text(note, 'sg_note_type') === 'Client';
 }
 
+/** The one word a waiting state filters on. */
+export type WaitingKind = Waiting['kind'];
+
+export const WAITING_OPTIONS: ReadonlyArray<{ value: WaitingKind | 'any'; label: string }> = [
+	{ value: 'any', label: 'Anyone' },
+	{ value: 'addressees', label: 'The addressees' },
+	{ value: 'author', label: 'The author' },
+	{ value: 'nobody', label: 'Nobody: unaddressed' },
+	{ value: 'closed', label: 'Nobody: closed' }
+];
+
 /** Everyone a note is addressed to, `to` first. */
 export function addressees(note: EntityRow): EntityRef[] {
 	const seen = new Set<string>();
@@ -225,12 +236,14 @@ export type Waiting =
  * a note addressed to nobody, which is the forum's "note on the wrong record"
  * (research/03).
  */
-export function waitingOn(note: EntityRow, replies: readonly EntityRow[]): Waiting {
+export function waitingOn(note: EntityRow, replies: readonly EntityRow[] | null): Waiting | null {
 	if (text(note, 'sg_status_list') === CLOSED) return { kind: 'closed' };
 	const author = refOf(note, 'created_by');
 	const to = addressees(note);
 	if (to.length === 0) return { kind: 'nobody' };
-	const last = replies.length > 0 ? refOf(replies[replies.length - 1]!, 'user') : author;
+	// The note's own `replies` says whether there is a thread; only then are the reply rows needed.
+	if (replies === null && refsOf(note, 'replies').length > 0) return null;
+	const last = replies && replies.length > 0 ? refOf(replies[replies.length - 1]!, 'user') : author;
 	const lastKey = last ? refKey(last) : '';
 	if (to.some((ref) => refKey(ref) === lastKey)) {
 		return author ? { kind: 'author', who: author } : { kind: 'nobody' };
