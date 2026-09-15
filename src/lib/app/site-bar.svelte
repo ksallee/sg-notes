@@ -100,9 +100,7 @@
 	</div>
 
 	<div class="flex shrink-0 items-center gap-2 text-sm">
-		{#if live.devToken}
-			<span class="text-muted-foreground">Reading with the dev key</span>
-		{:else if live.session}
+		{#if live.session}
 			<span class="text-muted-foreground truncate" title={live.session.login}>{live.session.login}</span>
 			<Button size="sm" variant="ghost" onclick={onSignOut}>Sign out</Button>
 		{:else if live.siteUrl}
@@ -110,8 +108,10 @@
 				<span class="text-destructive truncate" title={refusal}>{refusal}</span>
 			{:else if approving}
 				<span class="text-muted-foreground">Approve the request in the tab that opened.</span>
+			{:else if live.devToken}
+				<span class="text-muted-foreground">Reading with the dev key</span>
 			{/if}
-			<Button size="sm" onclick={onSignIn} disabled={approving}>Sign in</Button>
+			<Button size="sm" variant={live.devToken ? 'outline' : 'default'} onclick={onSignIn} disabled={approving}>Sign in</Button>
 		{/if}
 	</div>
 </header>

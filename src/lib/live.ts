@@ -7,14 +7,14 @@
  * and a request header outside `authorization,content-type` drops every CORS
  * header, so browser calls carry nothing but what `RestClient` already sends.
  *
- * The bearer comes from one of two places. In `vite dev`, `/live/dev-token`
- * mints one from the script key in `.env.local`, so local QA needs no login;
- * that endpoint is 404 in a production build. Otherwise it is minted in the
- * browser from a session token the person approved through the App Session
- * Launcher (probe 052), which this module keeps in `localStorage`. The token is
- * a credential for that person and never leaves this browser: the launcher's
- * two calls go through this app's own endpoints under `/live/`, which hold
- * nothing.
+ * The bearer comes from one of two places. A session token the person approved
+ * through the App Session Launcher (probe 052), kept in `localStorage`, is the
+ * first choice: it is a credential for that person and never leaves this browser,
+ * since the launcher's two calls go through this app's own endpoints under
+ * `/live/`, which hold nothing. Failing that, in `vite dev`, `/live/dev-token`
+ * mints one from the script key in `.env.local`, so local QA needs no login; that
+ * endpoint is 404 in a production build. A person can sign in over the dev key,
+ * and everything they write is then theirs, not the script's.
  */
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/public';
@@ -155,15 +155,16 @@ let ready: Promise<LiveState> | null = null;
 
 async function resolve(): Promise<LiveState> {
 	const picked = project();
-	const devToken = await mintDevToken();
 	const stored = session();
+	// A person's own session wins; the dev key only stands in while nobody is signed in.
+	const devToken = stored ? null : await mintDevToken();
 	// The dev endpoint knows its own site, and it is the one its key opens.
-	const site = devToken?.siteUrl ?? stored?.siteUrl ?? siteUrl();
+	const site = stored?.siteUrl ?? devToken?.siteUrl ?? siteUrl();
 	if (devToken) setSiteUrl(devToken.siteUrl);
 
 	let token: (() => Promise<string>) | null = null;
-	if (devToken) token = devTokenAuth(devToken);
-	else if (stored && stored.siteUrl === site) token = createSessionTokenAuth({ siteUrl: site, sessionToken: stored.token });
+	if (stored && stored.siteUrl === site) token = createSessionTokenAuth({ siteUrl: site, sessionToken: stored.token });
+	else if (devToken) token = devTokenAuth(devToken);
 
 	// Never silently answer with nothing: with no site or no login every read fails,
 	// and the widgets show the error state they show for any refusal.
