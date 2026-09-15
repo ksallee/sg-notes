@@ -20,7 +20,7 @@ return {
 	groups: groups.length,
 	rows: rows.length,
 	unread: $$('[data-slot="notes-row"][data-unread]').length,
-	facets: $$('[data-slot="workbench"] > div:first-child button').map(text),
+	facets: $$('[data-slot="workbench"] > div:first-child button').map((b) => text(b) + (b.disabled ? ' (disabled)' : '')),
 	firstGroup: text(groups[0]?.firstElementChild),
 	firstRow: text(rows[0]),
 	thread: {
