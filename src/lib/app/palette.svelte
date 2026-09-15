@@ -232,8 +232,8 @@
 					<Command.Item value="set status" onSelect={() => (page = 'status')}>
 						<Tag aria-hidden="true" /> Set the status of {count} {noun}…
 					</Command.Item>
-					<Command.Item value="addressees" onSelect={() => run(() => (addressOpen = true))}>
-						<UserPlus aria-hidden="true" /> Addressees of {count} {noun}…<span class="text-muted-foreground ml-1 text-xs">To and CC</span> <Command.Shortcut>F</Command.Shortcut>
+					<Command.Item value="change recipients" onSelect={() => run(() => (addressOpen = true))}>
+						<UserPlus aria-hidden="true" /> Change recipients…<span class="text-muted-foreground ml-1 text-xs">To and CC of {count} {noun}</span> <Command.Shortcut>F</Command.Shortcut>
 					</Command.Item>
 					<Command.Item value="forward copy" onSelect={() => run(() => (forwardOpen = true))}>
 						<Forward aria-hidden="true" /> Forward a copy of {count} {noun}…<span class="text-muted-foreground ml-1 text-xs">a new note, the original untouched</span>
@@ -264,7 +264,7 @@
 					<Keyboard aria-hidden="true" />
 					<span class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
 						<span><Kbd>↑</Kbd><Kbd>↓</Kbd> move</span><span><Kbd>⇧↑</Kbd><Kbd>⇧↓</Kbd> extend</span><span><Kbd>X</Kbd> select</span>
-						<span><Kbd>R</Kbd> reply</span><span><Kbd>E</Kbd> close</span><span><Kbd>U</Kbd> read</span><span><Kbd>F</Kbd> addressees</span><span><Kbd>/</Kbd> search</span><span><Kbd>Esc</Kbd> back out</span>
+						<span><Kbd>R</Kbd> reply</span><span><Kbd>E</Kbd> close</span><span><Kbd>U</Kbd> read</span><span><Kbd>F</Kbd> recipients</span><span><Kbd>/</Kbd> search</span><span><Kbd>Esc</Kbd> back out</span>
 					</span>
 				</Command.Item>
 			</Command.Group>
@@ -322,7 +322,7 @@
 <Dialog.Root bind:open={addressOpen}>
 	<Dialog.Content class="max-w-md" data-slot="address-dialog">
 		<Dialog.Header>
-			<Dialog.Title>Addressees of {count === 1 ? 'the note' : `${count} notes`}</Dialog.Title>
+			<Dialog.Title>Recipients of {count === 1 ? 'the note' : `${count} notes`}</Dialog.Title>
 			<Dialog.Description>
 				{#if count === 1}
 					Who the note is for, and who is copied. The thread stays one thread.

@@ -35,5 +35,5 @@ await wait(300);
 await pw.press('body', 'Meta+k');
 await wait(400);
 const items = $$('[data-slot="command-item"]').map(text);
-const ok = /Select a note/.test(emptyPalette) && slash === 'search' && afterEsc !== 'search' && afterX === 0 && afterX2 === 1 && afterR === 'reply-box' && forward && items.some((t) => /Reply to 1 note and close/.test(t)) && items.some((t) => /Forward a copy of 1 note/.test(t)) && items.some((t) => /Addressees of 1 note/.test(t));
+const ok = /Select a note/.test(emptyPalette) && slash === 'search' && afterEsc !== 'search' && afterX === 0 && afterX2 === 1 && afterR === 'reply-box' && forward && items.some((t) => /Reply to 1 note and close/.test(t)) && items.some((t) => /Forward a copy of 1 note/.test(t)) && items.some((t) => /Change recipients/.test(t));
 return { verdict: ok ? 'PASS' : 'FAIL see fields', emptyPalette: emptyPalette.slice(0, 80), slash, afterEsc, afterX, afterX2, afterR, forward, items: items.slice(0, 9) };
