@@ -125,7 +125,7 @@
     },
     "primary_entity": {
      "id": 32114,
-     "image": "pending",
+     "image": "media/Task_46844_image.jpg",
      "name": "sq010_sh020_roto_v001",
      "sg_status_list": "apr",
      "sg_task": {
@@ -164,7 +164,7 @@
     },
     "primary_entity": {
      "id": 32113,
-     "image": "pending",
+     "image": "media/Version_32113_image.jpg",
      "name": "sq010_sh020_comp_v001",
      "sg_status_list": "rev",
      "sg_task": {

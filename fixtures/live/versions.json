@@ -5,9 +5,9 @@
     "code": "env_kitchen_texture_v002",
     "created_at": "2026-09-15T17:25:11Z",
     "description": "Texture for env_kitchen",
-    "image": "pending",
+    "image": "media/Task_46849_image.jpg",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:25:13Z"
+    "updated_at": "2026-09-15T17:25:48Z"
    },
    "id": 32116,
    "links": {
@@ -66,9 +66,9 @@
     "code": "charA_model_v003",
     "created_at": "2026-09-15T17:25:09Z",
     "description": "Model for charA",
-    "image": "pending",
+    "image": "media/Task_46848_image.jpg",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:25:11Z"
+    "updated_at": "2026-09-15T17:25:38Z"
    },
    "id": 32115,
    "links": {
@@ -127,9 +127,9 @@
     "code": "sq010_sh020_roto_v001",
     "created_at": "2026-09-15T17:25:07Z",
     "description": "Roto for sq010_sh020",
-    "image": "pending",
+    "image": "media/Task_46844_image.jpg",
     "sg_status_list": "apr",
-    "updated_at": "2026-09-15T17:25:26Z"
+    "updated_at": "2026-09-15T17:25:38Z"
    },
    "id": 32114,
    "links": {
@@ -188,9 +188,9 @@
     "code": "sq010_sh020_comp_v001",
     "created_at": "2026-09-15T17:25:05Z",
     "description": "Comp for sq010_sh020",
-    "image": "pending",
+    "image": "media/Version_32113_image.jpg",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:25:07Z"
+    "updated_at": "2026-09-15T17:25:38Z"
    },
    "id": 32113,
    "links": {
@@ -249,7 +249,7 @@
     "code": "sq010_sh010_comp_v002",
     "created_at": "2026-09-15T17:25:03Z",
     "description": "Comp for sq010_sh010",
-    "image": "media/Version_32112_image.jpg",
+    "image": "media/Task_46842_image.jpg",
     "sg_status_list": "rev",
     "updated_at": "2026-09-15T17:25:33Z"
    },

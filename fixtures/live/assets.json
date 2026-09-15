@@ -4,7 +4,7 @@
    "attributes": {
     "code": "charA",
     "description": "Hero character, look-dev approved",
-    "image": "pending",
+    "image": "media/Task_46848_image.jpg",
     "sg_asset_type": "Character",
     "sg_status_list": "wtg",
     "updated_at": "2026-09-15T17:25:21Z"
@@ -20,7 +20,7 @@
    "attributes": {
     "code": "env_kitchen",
     "description": "The kitchen set extension",
-    "image": "pending",
+    "image": "media/Task_46849_image.jpg",
     "sg_asset_type": "Environment",
     "sg_status_list": "wtg",
     "updated_at": "2026-09-15T17:25:23Z"
