@@ -1,10 +1,34 @@
 # sg-notes
 
-The notes workbench for Flow Production Tracking. `BRIEF.md` is the plan;
-`research/` is what the community and the docs say the day looks like; `tools/` seeds and captures
-the sandbox; `fixtures/` is what the page is built on.
+The notes workbench for Flow Production Tracking: every note in a project, grouped by what it is
+about, searched, threaded, ticked and acted on in bulk. `BRIEF.md` is the plan; `research/` is what
+the community and the docs say the day looks like; `tools/` seeds and captures the sandbox and drives
+the page headless; `fixtures/` is the reference for what the site's rows look like; `docs/seams.md`
+is what fought when the sg-widgets registry met its first host.
 
-## Run
+## Run the app
+
+    pnpm install
+    pnpm dev
+
+Open the URL Vite prints, name the site, sign in through the App Session Launcher when the tab
+opens, and pick a project. The pick is remembered. With `.env.local` holding `FPT_API_SITE_URL`,
+`FPT_API_SCRIPT_NAME` and `FPT_API_API_KEY` (see `.env.example`), `pnpm dev` reads through the
+script key and no sign-in is needed; a production build ignores those and always signs in.
+
+`@sg-widgets/core` is linked from `../sg-widgets/packages/core`, so that checkout has to exist and
+be built (`pnpm --filter @sg-widgets/core build` there). The widgets under `src/lib/components` are
+registry copies; `docs/seams.md` says how they were installed and what to repair after an `add`.
+
+    pnpm check                                             # svelte-check
+    node tools/qa.mjs --project 1180 --drive tools/drives/lead-view.js   # drive the page headless
+    node tools/qa.mjs --project 1180 --shot .playwright-mcp/lead.png     # and screenshot it
+
+A drive is the body of an async function; it returns `{verdict, ...}` and the exit code follows.
+`tools/drives/` holds one per behaviour: the lead view, search and grouping, a reply, bulk actions.
+The reply and bulk drives write to the project they run on.
+
+## Seed and capture
 
 Both scripts read `../sg-groundtruth/.env.local` and use its client, so run them with that repo's
 interpreter:

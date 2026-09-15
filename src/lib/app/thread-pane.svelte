@@ -20,7 +20,7 @@
 	import StateLine from '$lib/components/state-line.svelte';
 	import StatusPicker from '$lib/components/status-picker.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
-	import { addressees, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
+	import { addressees, isClientFacing, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
 	import { canCreate } from '$lib/writes';
 
 	type Props = {
@@ -147,7 +147,7 @@
 				<EntityChip entity={task} variant="chip" size="xs" {context} />
 			{/each}
 			{#if text(note, 'sg_note_type')}<span>{text(note, 'sg_note_type')}</span>{/if}
-			{#if cellValue(note, 'client_note') === true}<span>client-facing</span>{/if}
+			{#if isClientFacing(note)}<span>client-facing</span>{/if}
 			{#if noteUrl}
 				<a href={noteUrl} target="_blank" rel="noopener" class="hover:text-foreground ml-auto flex items-center gap-1 transition-colors duration-150">
 					Open in the web app <ExternalLink aria-hidden="true" class="size-3.5" />

@@ -26,7 +26,9 @@
 	import MessageSquare from '@lucide/svelte/icons/message-square';
 	import Paperclip from '@lucide/svelte/icons/paperclip';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { Kbd } from '$lib/components/ui/kbd/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import EntityChip from '$lib/components/entity-chip.svelte';
@@ -35,7 +37,7 @@
 	import Thumbnail from '$lib/components/thumbnail.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
 	import { cn } from '$lib/utils.js';
-	import { GROUP_OPTIONS, groupNotes, refKey, refOf, refsOf, text, waitingOn, type GroupBy, type Waiting } from '$lib/notes';
+	import { GROUP_OPTIONS, groupNotes, isClientFacing, refKey, refOf, refsOf, text, waitingOn, type GroupBy, type Waiting } from '$lib/notes';
 	import { ago } from './time';
 
 	type Props = {
@@ -61,6 +63,10 @@
 		groupBy?: GroupBy;
 		/** The search the page applies, two-way. The list draws the box; the page reads. */
 		query?: string;
+		/** Ids of the ticked notes, for a bulk action. */
+		ticked: ReadonlySet<number>;
+		onTickChange: (ids: number[], on: boolean) => void;
+		onActions: () => void;
 	};
 
 	let {
@@ -79,12 +85,47 @@
 		selected,
 		onSelect,
 		groupBy = $bindable('record'),
-		query = $bindable('')
+		query = $bindable(''),
+		ticked,
+		onTickChange,
+		onActions
 	}: Props = $props();
+
+	export function collapseAll(): void {
+		setShut(groups.map((group) => group.key));
+	}
+
+	export function expandAll(): void {
+		setShut([]);
+	}
 
 	const groups = $derived(groupNotes(rows, records, groupBy));
 	const groupLabel = $derived(GROUP_OPTIONS.find((option) => option.value === groupBy)?.label ?? '');
 	const grouped = $derived(groupBy !== 'none');
+
+	/** The last row ticked, so a shift-click ticks the run between. */
+	let lastTick = $state<number | null>(null);
+	let shiftHeld = false;
+
+	/** Every note id in the order the list shows them, across groups. */
+	const order = $derived(groups.flatMap((group) => group.notes.map((note) => note.id)));
+
+	function tick(note: EntityRow, on: boolean): void {
+		let ids = [note.id];
+		if (shiftHeld && lastTick !== null) {
+			const a = order.indexOf(lastTick);
+			const b = order.indexOf(note.id);
+			if (a !== -1 && b !== -1) ids = order.slice(Math.min(a, b), Math.max(a, b) + 1);
+		}
+		lastTick = note.id;
+		onTickChange([...new Set(ids)], on);
+	}
+
+	function groupTick(group: { notes: EntityRow[] }): 'all' | 'some' | 'none' {
+		const on = group.notes.filter((note) => ticked.has(note.id)).length;
+		return on === 0 ? 'none' : on === group.notes.length ? 'all' : 'some';
+	}
+
 	const selectedKey = $derived(selected ? refKey(selected) : '');
 	const prefs = $derived(preferencesOf(context));
 	/** The first read, with nothing to show yet. A later read keeps the rows and dims them. */
@@ -201,11 +242,15 @@
 				{/each}
 			</Select.Content>
 		</Select.Root>
-		<Button size="icon-xs" variant="ghost" aria-label="Collapse all" title="Collapse all" disabled={!grouped} onclick={() => setShut(groups.map((group) => group.key))}>
+		<Button size="icon-xs" variant="ghost" aria-label="Collapse all" title="Collapse all" disabled={!grouped} onclick={collapseAll}>
 			<ChevronsDownUp aria-hidden="true" />
 		</Button>
-		<Button size="icon-xs" variant="ghost" aria-label="Expand all" title="Expand all" disabled={!grouped} onclick={() => setShut([])}>
+		<Button size="icon-xs" variant="ghost" aria-label="Expand all" title="Expand all" disabled={!grouped} onclick={expandAll}>
 			<ChevronsUpDown aria-hidden="true" />
+		</Button>
+		<Button size="sm" variant={ticked.size > 0 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
+			{ticked.size > 0 ? `${ticked.size} ticked` : 'Actions'}
+			<Kbd>⌘K</Kbd>
 		</Button>
 	</div>
 	{#if status === 'error'}
@@ -248,7 +293,8 @@
 				{@const closed = grouped && shut.includes(group.key)}
 				<section data-slot="notes-group" data-group-key={group.key}>
 					{#if grouped}
-						<div class="bg-muted/50 border-border sticky top-0 z-10 flex items-center gap-2 border-b px-2 py-1.5 text-sm">
+						{@const tickState = groupTick(group)}
+						<div class="border-border sticky top-0 z-10 flex items-center gap-2 border-b bg-[color-mix(in_oklab,var(--muted)_70%,var(--background))] px-2 py-1.5 text-sm">
 							<button
 								type="button"
 								aria-expanded={!closed}
@@ -258,6 +304,12 @@
 							>
 								<ChevronRight aria-hidden="true" class={cn('size-4 transition-transform duration-150 ease-out motion-reduce:transition-none', !closed && 'rotate-90')} />
 							</button>
+							<Checkbox
+								checked={tickState === 'all'}
+								indeterminate={tickState === 'some'}
+								aria-label="Tick every note in this group"
+								onCheckedChange={(on) => onTickChange(group.notes.map((note) => note.id), on === true)}
+							/>
 							{#if group.record?.type === 'HumanUser'}
 								<UserAvatar name={group.record.name ?? '?'} image={imageOf(people.get(group.record.id))} size="sm" />
 								<span class="min-w-0 truncate font-medium" title={group.record.name}>{group.record.name}</span>
@@ -289,21 +341,31 @@
 								{@const chosen = selectedKey === `Note:${note.id}`}
 								{@const when = text(note, 'created_at')}
 								{@const links = otherLinks(note, [group.record, parentOf(group.record)])}
+								{@const isTicked = ticked.has(note.id)}
 								<li
 									data-slot="notes-row"
 									data-row-key="Note:{note.id}"
 									data-state={chosen ? 'selected' : undefined}
 									data-unread={unread ? 'true' : undefined}
-									class="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150"
+									data-ticked={isTicked ? 'true' : undefined}
+									class={cn(
+										'border-border/50 flex items-stretch border-b transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
+										chosen ? 'bg-accent text-accent-foreground' : isTicked ? 'bg-accent/40' : 'hover:bg-muted/50'
+									)}
 								>
+									<span class="flex shrink-0 items-start pt-2 pl-2">
+										<Checkbox
+											checked={isTicked}
+											aria-label="Tick {firstLine(note)}"
+											onclick={(event: MouseEvent) => (shiftHeld = event.shiftKey)}
+											onCheckedChange={(on) => tick(note, on === true)}
+										/>
+									</span>
 									<button
 										type="button"
 										aria-pressed={chosen}
 										onclick={() => onSelect(note)}
-										class={cn(
-											'border-border/50 focus-visible:ring-ring focus-visible:ring-offset-background flex w-full items-start gap-2 border-b px-2 py-1.5 text-left text-sm outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-inset',
-											chosen ? 'bg-accent text-accent-foreground' : 'hover:bg-muted/50'
-										)}
+										class="focus-visible:ring-ring focus-visible:ring-offset-background flex min-w-0 flex-1 items-start gap-2 px-2 py-1.5 text-left text-sm outline-none focus-visible:ring-2 focus-visible:ring-inset"
 									>
 										<span class="flex h-5 shrink-0 items-center">
 											<UserAvatar name={author?.name ?? '?'} image={personImage(author)} size="sm" />

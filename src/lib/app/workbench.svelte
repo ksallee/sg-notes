@@ -4,12 +4,14 @@
 -->
 <script lang="ts">
 	import { onMount, untrack } from 'svelte';
+	import { SvelteSet } from 'svelte/reactivity';
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
-	import { condition, createEntitySource, emptyFilter, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
+	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, throughRefs, type GroupBy } from '$lib/notes';
+	import { addressees, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
+	import Palette, { type Job } from './palette.svelte';
 	import ThreadPane from './thread-pane.svelte';
 
 	let { context, writer, projectId }: { context: SgContext; writer: SgClient; projectId: number } = $props();
@@ -44,10 +46,12 @@
 	/** What the Note schema says a note may link and what types it may be, so a search reaches them. */
 	let linkTypes = $state<string[]>([]);
 	let noteTypes = $state<string[]>([]);
+	let noteStatuses = $state<string[]>([]);
 	onMount(() => {
 		void context.client.fields('Note').then((fields) => {
 			linkTypes = fields.note_links?.validTypes ?? [];
 			noteTypes = fields.sg_note_type?.validValues ?? [];
+			noteStatuses = fields.sg_status_list?.validValues ?? [];
 		});
 	});
 
@@ -130,6 +134,71 @@
 		await source.updateRow({ type: 'Note', id: selected.id }, { sg_status_list: code });
 	}
 
+	/* Ticking, and what is done to the ticked. */
+
+	const ticked = new SvelteSet<number>();
+	let list = $state<NotesList | null>(null);
+	let paletteOpen = $state(false);
+	let job = $state<Job | null>(null);
+
+	function tickChange(ids: number[], on: boolean): void {
+		for (const id of ids) {
+			if (on) ticked.add(id);
+			else ticked.delete(id);
+		}
+	}
+
+	/** The ticked notes as the source holds them, else the open one. */
+	const targets = $derived(ticked.size > 0 ? snapshot.rows.filter((row) => ticked.has(row.id)) : selected ? [selected] : []);
+
+	function onKeydown(event: KeyboardEvent): void {
+		if (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) {
+			event.preventDefault();
+			paletteOpen = !paletteOpen;
+		}
+	}
+
+	/** One write per note, in order, each failure named; then everything is read again. */
+	async function runJob(label: string, notes: EntityRow[], write: (note: EntityRow) => Promise<void>): Promise<void> {
+		job = { label, done: 0, total: notes.length, failures: [] };
+		for (const note of notes) {
+			try {
+				await write(note);
+			} catch (error) {
+				const title = text(note, 'subject') || `Note ${note.id}`;
+				job = { ...job, failures: [...job.failures, `${title}: ${error instanceof Error ? error.message : String(error)}`] };
+			}
+			job = { ...job, done: job.done + 1 };
+		}
+		context.invalidate();
+		const fresh = await readReplies(context.client, notes);
+		replies = new Map([...replies, ...fresh]);
+		await source.refresh();
+	}
+
+	function bulkStatus(notes: EntityRow[], code: string): void {
+		const name = statuses[code]?.name ?? code;
+		void runJob(`Setting ${notes.length} to ${name}`, notes, (note) => source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: code }).then(() => undefined));
+	}
+
+	/** `read_by_current_user` takes a PUT as the person whose state it is (README, "What surprised"). */
+	function bulkRead(notes: EntityRow[], read: boolean): void {
+		void runJob(`Marking ${notes.length} ${read ? 'read' : 'unread'}`, notes, (note) =>
+			source.updateRow({ type: 'Note', id: note.id }, { read_by_current_user: read ? 'read' : 'unread' }).then(() => undefined)
+		);
+	}
+
+	function bulkReply(notes: EntityRow[], content: string): void {
+		void runJob(`Replying to ${notes.length}`, notes, (note) => createReply(writer, { type: 'Note', id: note.id }, content).then(() => undefined));
+	}
+
+	function openInWebApp(notes: EntityRow[]): void {
+		for (const note of notes) {
+			const url = entityDetailUrl(context.siteUrl, { type: 'Note', id: note.id });
+			if (url) window.open(url, '_blank', 'noopener');
+		}
+	}
+
 	async function reply(content: string): Promise<void> {
 		if (!selected) return;
 		const note = selected;
@@ -142,6 +211,8 @@
 	}
 </script>
 
+<svelte:window onkeydown={onKeydown} />
+
 <div class="flex min-h-0 flex-1 flex-col" data-slot="workbench">
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-3 py-2">
 		<FilterBar entityType="Note" {context} facets={FACETS} baseFilter={group('and', [PROJECT])} bind:value={filter} size="sm" class="min-w-0 flex-1" />
@@ -151,6 +222,7 @@
 	</div>
 	<div class="flex min-h-0 flex-1">
 		<NotesList
+			bind:this={list}
 			{context}
 			rows={snapshot.rows}
 			status={snapshot.status}
@@ -167,6 +239,9 @@
 			onSelect={(note) => (selectedRef = { type: 'Note', id: note.id })}
 			bind:groupBy
 			bind:query
+			{ticked}
+			onTickChange={tickChange}
+			onActions={() => (paletteOpen = true)}
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
 			{#if selected}
@@ -179,3 +254,23 @@
 		</aside>
 	</div>
 </div>
+
+<Palette
+	bind:open={paletteOpen}
+	{targets}
+	ticked={ticked.size > 0}
+	{statuses}
+	{noteStatuses}
+	{groupBy}
+	{job}
+	onStatus={bulkStatus}
+	onRead={bulkRead}
+	onReply={bulkReply}
+	onGroupBy={(value) => (groupBy = value)}
+	onSelectAll={() => tickChange(snapshot.rows.map((row) => row.id), true)}
+	onClearSelection={() => ticked.clear()}
+	onCollapseAll={() => list?.collapseAll()}
+	onExpandAll={() => list?.expandAll()}
+	onOpen={openInWebApp}
+	onJobRead={() => (job = null)}
+/>

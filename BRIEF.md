@@ -5,8 +5,10 @@ record it is about, threaded, with reply, close and forward as first-class actio
 whom" as a column. Built on `../sg-widgets` and meant to be the first real host those widgets live
 in. It started life as an artist landing page; `research/` holds why it changed.
 
-Status, 2026-09-15: the read-only lead view stands on the live sandbox, with a status write. The seed
-is growing to a lead's month and the client additions are on their way in sg-widgets.
+Status, 2026-09-15, evening: the lead view stands on a seeded month of 321 notes: grouped on
+anything, searched on everything, threaded, with reply, status and read state as writes, singly or
+in bulk through a command palette. The sg-widgets client has what it needed; the registry seams are
+being closed.
 
 ## Why this, and why first
 
@@ -117,11 +119,13 @@ no tasks and no attachments (`research/07`). Two layers, and the page runs on th
 ## Build order
 
 1. Done: the probes, the seed and capture for one day, the research.
-2. In progress: the sg-widgets client issues, filed and merged, so the page has `create` and
-   `threadContents`.
-3. In progress: the seed grown to a lead's month, captured. Timestamps stay the seed's own: the
-   event log cannot be authored, and the month is measured by volume, not by dates.
-4. Done: the lead view on the live site: list, filters, groups, thread, annotation previews,
-   sign-in, the status write. `tools/qa.mjs` drives it headless.
-5. The reply, once `create` lands. Then the thread through `threadContents`.
-6. The "mine" view. Then the compose pass with the foreign widgets, logging every seam.
+2. Done: the sg-widgets client issues (#192, #193), merged to `dev`: `create`, `upload`,
+   `threadContents`, `eventLog`, `following`.
+3. Done: the seed grown to a lead's month and captured. `created_at` is accepted on create, so the
+   month has real dates; the event log alone cannot be authored.
+4. Done: the lead view on the live site: list, filters, groups on anything, search on everything,
+   thread through `threadContents`, annotation previews, sign-in. `tools/qa.mjs` drives it headless.
+5. Done: the writes: reply, status, read state, singly from the pane and in bulk from the ⌘K
+   palette over ticked rows.
+6. The "mine" view. The event log as "what changed since". The rest of the compose pass: a sidebar
+   for projects and saved filters, a resizable split, toasts. Every seam logged.

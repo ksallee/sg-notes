@@ -190,6 +190,15 @@ export function groupNotes(rows: readonly EntityRow[], records?: ReadonlyMap<str
 	return out;
 }
 
+/**
+ * Whether a note faces the client. `client_note` cannot be set over the API (a
+ * create is refused, an update is "editable on create only": README, "What the
+ * site would not take"), so on any API-written site the type carries the signal.
+ */
+export function isClientFacing(note: EntityRow): boolean {
+	return note.attributes.client_note === true || text(note, 'sg_note_type') === 'Client';
+}
+
 /** Everyone a note is addressed to, `to` first. */
 export function addressees(note: EntityRow): EntityRef[] {
 	const seen = new Set<string>();
@@ -246,24 +255,28 @@ export function searchFilter(
 	statuses: Readonly<Record<string, { name: string }>> = {},
 	noteTypes: readonly string[] = []
 ): FilterGroup | null {
-	const q = query.trim();
-	if (!q) return null;
-	const matches = (label: string): boolean => label.toLowerCase().includes(q.toLowerCase());
-	const codes = Object.entries(statuses).filter(([, status]) => matches(status.name)).map(([code]) => code);
-	// A list field takes `in`, not `contains` (measured: 400 on the operator's site).
-	const types = noteTypes.filter(matches);
-	return group('or', [
-		condition('subject', 'contains', q),
-		condition('content', 'contains', q),
-		condition('created_by.HumanUser.name', 'contains', q),
-		condition('addressings_to.HumanUser.name', 'contains', q),
-		condition('addressings_cc.HumanUser.name', 'contains', q),
-		condition('addressings_to.Group.code', 'contains', q),
-		condition('tasks.Task.content', 'contains', q),
-		...linkTypes.map((type) => condition(`note_links.${type}.cached_display_name`, 'contains', q)),
-		...(codes.length > 0 ? [condition('sg_status_list', 'in', codes)] : []),
-		...(types.length > 0 ? [condition('sg_note_type', 'in', types)] : [])
-	]);
+	// Every word has to land somewhere, so "sq020 050" finds sq020_sh050 the way a person types it.
+	const words = query.trim().split(/\s+/).filter(Boolean);
+	if (words.length === 0) return null;
+	const anywhere = (q: string): FilterGroup => {
+		const matches = (label: string): boolean => label.toLowerCase().includes(q.toLowerCase());
+		const codes = Object.entries(statuses).filter(([, status]) => matches(status.name)).map(([code]) => code);
+		// A list field takes `in`, not `contains` (measured: 400 on the operator's site).
+		const types = noteTypes.filter(matches);
+		return group('or', [
+			condition('subject', 'contains', q),
+			condition('content', 'contains', q),
+			condition('created_by.HumanUser.name', 'contains', q),
+			condition('addressings_to.HumanUser.name', 'contains', q),
+			condition('addressings_cc.HumanUser.name', 'contains', q),
+			condition('addressings_to.Group.code', 'contains', q),
+			condition('tasks.Task.content', 'contains', q),
+			...linkTypes.map((type) => condition(`note_links.${type}.cached_display_name`, 'contains', q)),
+			...(codes.length > 0 ? [condition('sg_status_list', 'in', codes)] : []),
+			...(types.length > 0 ? [condition('sg_note_type', 'in', types)] : [])
+		]);
+	};
+	return words.length === 1 ? anywhere(words[0]!) : group('and', words.map(anywhere));
 }
 
 /** Rows in `created_at` order, oldest first, the order a thread reads in. */
