@@ -1,6 +1,6 @@
-# sg-artistpage
+# sg-notes
 
-An artist's landing page for their day on Flow Production Tracking. `BRIEF.md` is the plan;
+The notes workbench for Flow Production Tracking. `BRIEF.md` is the plan;
 `research/` is what the community and the docs say the day looks like; `tools/` seeds and captures
 the sandbox; `fixtures/` is what the page is built on.
 
