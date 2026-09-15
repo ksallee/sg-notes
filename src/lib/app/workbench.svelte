@@ -137,15 +137,19 @@
 	let paletteOpen = $state(false);
 	let job = $state<Job | null>(null);
 
-	/** The note the pane opens when several are ticked: the last one ticked, unless a line was pressed since. */
-	let expandedId = $state<number | null>(null);
+	/** The notes the pane shows in full when several are ticked: the last one ticked, until lines are pressed. */
+	const expanded = new SvelteSet<number>();
 
 	function tickChange(ids: number[], on: boolean, last?: number): void {
 		for (const id of ids) {
 			if (on) ticked.add(id);
 			else ticked.delete(id);
 		}
-		expandedId = on && last !== undefined ? last : expandedId !== null && ticked.has(expandedId) ? expandedId : null;
+		for (const id of expanded) if (!ticked.has(id)) expanded.delete(id);
+		if (on && last !== undefined) {
+			expanded.clear();
+			expanded.add(last);
+		}
 	}
 
 	/** The ticked notes in the order the source holds them. */
@@ -231,7 +235,7 @@
 <div class="flex min-h-0 flex-1 flex-col" data-slot="workbench">
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-3 py-2">
 		<FilterBar entityType="Note" {context} facets={FACETS} baseFilter={group('and', [PROJECT])} bind:value={filter} size="sm" class="min-w-0 flex-1" />
-		<span class="text-muted-foreground shrink-0 text-xs tabular-nums" data-slot="row-count">
+		<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums" data-slot="row-count">
 			{snapshot.rows.length}{snapshot.hasMore ? '+' : ''} notes
 		</span>
 	</div>
@@ -260,7 +264,16 @@
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
 			{#if tickedRows.length > 1}
-				<ThreadStack notes={tickedRows} {statuses} expanded={expandedId} onExpand={(id) => (expandedId = id)} {pane} />
+				<ThreadStack
+					notes={tickedRows}
+					{statuses}
+					{expanded}
+					onExpand={(ids) => {
+						expanded.clear();
+						for (const id of ids) expanded.add(id);
+					}}
+					{pane}
+				/>
 			{:else if selected}
 				{#key selected.id}
 					{@render pane(selected)}

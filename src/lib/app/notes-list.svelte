@@ -421,7 +421,7 @@
 											{/if}
 										</span>
 										<span class="flex shrink-0 flex-col items-end gap-0.5 text-xs">
-											<span class="text-muted-foreground tabular-nums" title={formatDateTime(when, prefs)}>{ago(when)}</span>
+											<span class="text-muted-foreground font-mono tabular-nums" title={formatDateTime(when, prefs)}>{ago(when)}</span>
 											{#if waiting === null}
 												<Skeleton class="h-3 w-20" />
 											{:else if waiting.kind !== 'closed'}

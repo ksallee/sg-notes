@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import SiteBar from '$lib/app/site-bar.svelte';
+	import Wordmark from '$lib/app/wordmark.svelte';
 	import Workbench from '$lib/app/workbench.svelte';
 	import { liveContext, liveWriter, prepareLive } from '$lib/live';
 </script>
 
-<svelte:head><title>sg-notes</title></svelte:head>
+<svelte:head><title>SG Notes</title></svelte:head>
 
 <div class="bg-background text-foreground flex h-dvh flex-col">
 	{#await prepareLive()}
 		<div class="border-border flex h-12 shrink-0 items-center gap-4 border-b px-3" aria-busy="true" aria-label="Reaching the site">
-			<span class="flex items-center gap-1.5 text-sm"><span class="font-medium">sg</span><span class="text-muted-foreground">notes</span></span>
+			<span class="text-sm"><Wordmark /></span>
 			<Skeleton class="h-4 w-24" />
 			<Skeleton class="h-8 w-64" />
 		</div>

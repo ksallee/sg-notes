@@ -119,7 +119,7 @@
 		<UserAvatar name={author?.name ?? '?'} image={author?.image ?? null} size="sm" />
 		<span class="min-w-0 truncate text-sm font-medium">{author?.name ?? 'Unknown'}</span>
 		{#if at}
-			<span class="text-muted-foreground ml-auto shrink-0 text-xs tabular-nums" title={at}>{formatDateTime(at, prefs)}</span>
+			<span class="text-muted-foreground ml-auto shrink-0 font-mono text-xs tabular-nums" title={at}>{formatDateTime(at, prefs)}</span>
 		{/if}
 	</div>
 {/snippet}
@@ -131,7 +131,7 @@
 
 	<header class="flex flex-col gap-2">
 		<div class="flex items-center gap-2">
-			<h2 class="min-w-0 flex-1 truncate text-base font-medium" title={text(note, 'subject')}>{text(note, 'subject') || 'No subject'}</h2>
+			<h2 class="min-w-0 flex-1 truncate text-lg font-semibold tracking-tight" title={text(note, 'subject')}>{text(note, 'subject') || 'No subject'}</h2>
 			<div class="w-40 shrink-0">
 				<StatusPicker {context} entityType="Note" {projectId} value={text(note, 'sg_status_list')} size="sm" onValueChange={(code) => void pickStatus(code)} />
 			</div>

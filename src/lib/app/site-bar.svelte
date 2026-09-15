@@ -10,6 +10,7 @@
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import ProjectPicker from '$lib/components/project-picker.svelte';
+	import Wordmark from './wordmark.svelte';
 	import { setProject, setSiteUrl, signIn, signOut, type LiveState } from '$lib/live';
 
 	let { live, context }: { live: LiveState; context: SgContext } = $props();
@@ -69,9 +70,9 @@
 	}
 </script>
 
-<header class="border-border bg-background flex h-12 shrink-0 items-center gap-4 border-b px-3" data-slot="site-bar">
-	<a href="/" class="flex items-center gap-1.5 text-sm">
-		<span class="font-medium">sg</span><span class="text-muted-foreground">notes</span>
+<header class="border-border bg-background flex h-12 shrink-0 items-center gap-5 border-b px-4" data-slot="site-bar">
+	<a href="/" class="focus-visible:ring-ring rounded-md text-sm outline-none focus-visible:ring-2" aria-label="SG Notes, home">
+		<Wordmark />
 	</a>
 
 	<div class="flex min-w-0 flex-1 items-center gap-2">
