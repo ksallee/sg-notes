@@ -1,0 +1,32 @@
+{
+ "data": [
+  {
+   "content": "Thumbs are still short. Compare against the reference sheet, page 2.",
+   "created_at": "2026-09-15T17:08:50Z",
+   "created_by": {
+    "id": 88,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11035,
+   "sg_status_list": "opn",
+   "subject": "v003 hands",
+   "type": "Note"
+  },
+  {
+   "content": "Lengthened 8%. Turntable v004 coming.",
+   "created_at": "2026-09-15T17:08:50Z",
+   "id": 613,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11035/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject"
+ }
+}

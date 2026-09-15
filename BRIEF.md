@@ -4,7 +4,8 @@ An artist's landing page for their day on Flow Production Tracking. One screen: 
 you, what changed since you left, the notes waiting on your reply, and one click to act. Built on
 `../sg-widgets`, and meant to be the first real host those widgets live in.
 
-Status: a brief. Nothing is built. Read `Open questions` before any code.
+Status: build-order step 1 done on 2026-09-15 (the feed probe, the seed, the capture, three research
+passes under `research/`). No page yet. Read `Open questions` before any code.
 
 ## Why this, and why first
 
@@ -51,9 +52,13 @@ client.
 | Notes waiting | Note linked to my tasks and its thread. `corpus/endpoints/get_entity_notes_id_thread_contents.md` |
 | Following | who and what I follow. `human_users/<id>/following`, `.../followers` |
 
-Open probe: whether a HumanUser has its own activity stream (one feed of my day), or whether "my
-feed" must be fanned out over my tasks' entities. This decides the page's data shape. One
-sg-groundtruth probe answers it.
+Settled by probe 066 (2026-09-15): a HumanUser's activity stream is what that person *created*, not
+what they follow. "My feed" is a fan-out over the Shots and Assets behind my tasks, one stream each,
+merged on update id. A Shot's stream holds its Tasks, Versions, Notes and Replies; a Task's holds
+less. Probe 067: replies and person-attributed creates reach every linked stream in about 33 s; a
+Note written by the bare script user never appears, so the seed writes as people
+(`sudo_as_login`). Status changes made over the API had not appeared after ten minutes; how long
+they take is still open, and the seeded rows are the measurement.
 
 ## Simulating activity
 
@@ -114,7 +119,6 @@ The handshake transcript and the six-method public surface are in
 
 Prototype, don't search.
 
-- The user-feed probe above: one entity's stream, or a fan-out over my tasks' entities.
 - Local service tooling: plain Vite plus a small server, or the sg-comfyui route style in Node.
 - Which sg-widgets items the page uses, and which foreign widgets it deliberately pulls in to stress.
 - How "one click" maps to commands: open in app (Toolkit bootstrap), reply to a note (write), change
@@ -123,13 +127,15 @@ Prototype, don't search.
 Decisions.
 
 - The name.
-- Whether the seed writes a fresh project each run or reuses one sandbox.
-- Whether generated thumbnails come from sg-comfyui or a trivial local generator.
-- Git: not initialised yet, on purpose. `git init` when the first file lands.
+- Decided 2026-09-15: the seed reuses the one sandbox and keeps a manifest of what it made;
+  thumbnails are a trivial local generator (standard library PNG); git is initialised.
+- Which account is "the artist". HumanUser 253 is an Admin; the only Artist-permission account on
+  the site is 451, which cannot create Tasks. A page tested as 253 will not hit artist limits.
 
 ## Build order
 
-1. The user-feed probe, and the seed and capture scripts. Fixtures first: the page is built on them.
+1. Done: the user-feed probe, and the seed and capture scripts (`tools/`, `fixtures/live/`).
+   Still to do in this step: the authored day, layer three, tuned from `fixtures/live/`.
 2. The read-only page on the mock source: tasks, activity, notes, thumbnails.
 3. The local service: proxy, session login, one read command.
 4. The agent channel, then the first write command.

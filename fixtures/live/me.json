@@ -1,0 +1,19 @@
+{
+ "data": {
+  "attributes": {
+   "email": "<email>",
+   "image": "media/HumanUser_253_image.jpg",
+   "login": "<email>",
+   "name": "Kevin Sallee"
+  },
+  "id": 253,
+  "links": {
+   "self": "/api/v1/entity/human_users/253"
+  },
+  "relationships": {},
+  "type": "HumanUser"
+ },
+ "links": {
+  "self": "/api/v1/entity/human_users/253?fields=login%2Cname%2Cimage%2Cemail"
+ }
+}

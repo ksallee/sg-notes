@@ -1,0 +1,56 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "code": "charA",
+    "description": "Hero character, look-dev approved",
+    "image": "media/Task_46821_image.jpg",
+    "sg_asset_type": "Character",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:46Z"
+   },
+   "id": 10127,
+   "links": {
+    "self": "/api/v1/entity/assets/10127"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "env_kitchen",
+    "description": "The kitchen set extension",
+    "image": "media/Task_46822_image.jpg",
+    "sg_asset_type": "Environment",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:49Z"
+   },
+   "id": 10128,
+   "links": {
+    "self": "/api/v1/entity/assets/10128"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "prop_lamp",
+    "description": "Practical lamp, hero prop",
+    "image": "media/Task_46823_image.jpg",
+    "sg_asset_type": "Prop",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:50Z"
+   },
+   "id": 10129,
+   "links": {
+    "self": "/api/v1/entity/assets/10129"
+   },
+   "relationships": {},
+   "type": "Asset"
+  }
+ ],
+ "links": {
+  "next": "/api/v1/entity/assets/_search?page%5Bnumber%5D=2&page%5Bsize%5D=200",
+  "self": "/api/v1/entity/assets/_search"
+ }
+}

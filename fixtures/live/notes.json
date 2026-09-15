@@ -1,0 +1,615 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "content": "Grout reads brand new. Add wear along the traffic line to the sink.",
+    "created_at": "2026-09-15T17:08:52Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "opn",
+    "subject": "grout",
+    "updated_at": "2026-09-15T17:08:54Z"
+   },
+   "id": 11036,
+   "links": {
+    "self": "/api/v1/entity/notes/11036"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [
+      {
+       "id": 3378,
+       "name": "annot_version_32110.1.png",
+       "type": "Attachment"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11036/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 10128,
+       "name": "env_kitchen",
+       "type": "Asset"
+      },
+      {
+       "id": 32110,
+       "name": "env_kitchen_texture_v002",
+       "type": "Version"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [
+      {
+       "id": 46822,
+       "name": "Texture",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11036/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11036/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  },
+  {
+   "attributes": {
+    "content": "Thumbs are still short. Compare against the reference sheet, page 2.",
+    "created_at": "2026-09-15T17:08:50Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "opn",
+    "subject": "v003 hands",
+    "updated_at": "2026-09-15T17:08:51Z"
+   },
+   "id": 11035,
+   "links": {
+    "self": "/api/v1/entity/notes/11035"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11035/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 10127,
+       "name": "charA",
+       "type": "Asset"
+      },
+      {
+       "id": 32109,
+       "name": "charA_model_v003",
+       "type": "Version"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [
+      {
+       "id": 613,
+       "name": "Lengthened 8%. Turntable v004 coming.",
+       "type": "Reply"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [
+      {
+       "id": 46821,
+       "name": "Model",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11035/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11035/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  },
+  {
+   "attributes": {
+    "content": "Clean. Approved.",
+    "created_at": "2026-09-15T17:08:49Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "clsd",
+    "subject": "roto approved",
+    "updated_at": "2026-09-15T17:08:57Z"
+   },
+   "id": 11033,
+   "links": {
+    "self": "/api/v1/entity/notes/11033"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11033/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 7814,
+       "name": "sq010_sh020",
+       "type": "Shot"
+      },
+      {
+       "id": 32108,
+       "name": "sq010_sh020_roto_v001",
+       "type": "Version"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [
+      {
+       "id": 46817,
+       "name": "Roto",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11033/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11033/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  },
+  {
+   "attributes": {
+    "content": "Rain is too even. Cluster it toward the top of frame.",
+    "created_at": "2026-09-15T17:08:45Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "opn",
+    "subject": "rain density",
+    "updated_at": "2026-09-15T17:08:47Z"
+   },
+   "id": 11032,
+   "links": {
+    "self": "/api/v1/entity/notes/11032"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11032/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 7814,
+       "name": "sq010_sh020",
+       "type": "Shot"
+      },
+      {
+       "id": 32107,
+       "name": "sq010_sh020_comp_v001",
+       "type": "Version"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [
+      {
+       "id": 611,
+       "name": "Clustered, and slowed the streaks 15%. New version this afternoon.",
+       "type": "Reply"
+      },
+      {
+       "id": 612,
+       "name": "Good. Keep the streak speed, the slowdown reads better.",
+       "type": "Reply"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [
+      {
+       "id": 46816,
+       "name": "Comp",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11032/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11032/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  },
+  {
+   "attributes": {
+    "content": "Flicker reads mechanical. Try 3 uneven pulses over 24 frames, and lift the wall spill 10%.",
+    "created_at": "2026-09-15T17:08:42Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "opn",
+    "subject": "v002 flicker timing",
+    "updated_at": "2026-09-15T17:08:44Z"
+   },
+   "id": 11031,
+   "links": {
+    "self": "/api/v1/entity/notes/11031"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [
+      {
+       "id": 3377,
+       "name": "annot_version_32106.1012.png",
+       "type": "Attachment"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11031/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 7813,
+       "name": "sq010_sh010",
+       "type": "Shot"
+      },
+      {
+       "id": 32106,
+       "name": "sq010_sh010_comp_v002",
+       "type": "Version"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [
+      {
+       "id": 46815,
+       "name": "Comp",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11031/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11031/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  },
+  {
+   "attributes": {
+    "content": "Insert is being re-shot Thursday. Hold comp until the new plate lands.",
+    "created_at": "2026-09-15T17:08:49Z",
+    "read_by_current_user": "unread",
+    "sg_note_type": "Internal",
+    "sg_status_list": "opn",
+    "subject": "sh040 re-shoot",
+    "updated_at": "2026-09-15T17:08:49Z"
+   },
+   "id": 11034,
+   "links": {
+    "self": "/api/v1/entity/notes/11034"
+   },
+   "relationships": {
+    "addressings_cc": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/addressings_cc"
+     }
+    },
+    "addressings_to": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/addressings_to"
+     }
+    },
+    "attachments": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/attachments"
+     }
+    },
+    "created_by": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11034/relationships/created_by"
+     }
+    },
+    "note_links": {
+     "data": [
+      {
+       "id": 7816,
+       "name": "sq010_sh040",
+       "type": "Shot"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/note_links"
+     }
+    },
+    "replies": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/replies"
+     }
+    },
+    "tasks": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/notes/11034/relationships/tasks"
+     }
+    },
+    "user": {
+     "data": {
+      "id": 88,
+      "name": "Kevin Sallee",
+      "type": "HumanUser"
+     },
+     "links": {
+      "related": "/api/v1/entity/human_users/88",
+      "self": "/api/v1/entity/notes/11034/relationships/user"
+     }
+    }
+   },
+   "type": "Note"
+  }
+ ]
+}

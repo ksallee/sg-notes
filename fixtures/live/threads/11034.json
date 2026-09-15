@@ -1,0 +1,20 @@
+{
+ "data": [
+  {
+   "content": "Insert is being re-shot Thursday. Hold comp until the new plate lands.",
+   "created_at": "2026-09-15T17:08:49Z",
+   "created_by": {
+    "id": 88,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11034,
+   "sg_status_list": "opn",
+   "subject": "sh040 re-shoot",
+   "type": "Note"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11034/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject"
+ }
+}

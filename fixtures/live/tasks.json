@@ -1,0 +1,662 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "content": "Roto",
+    "created_at": "2026-09-15T17:08:23Z",
+    "due_date": "2026-09-08",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46817_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Roto the window frame for the rain pass.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:56Z"
+   },
+   "id": 46817,
+   "links": {
+    "self": "/api/v1/entity/tasks/46817"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7814,
+      "name": "sq010_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7814",
+      "self": "/api/v1/entity/tasks/46817/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46817/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 134,
+      "name": "Roto",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/134",
+      "self": "/api/v1/entity/tasks/46817/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46817/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Model",
+    "created_at": "2026-09-15T17:08:26Z",
+    "due_date": "2026-09-14",
+    "entity.Asset.image": "media/Task_46821_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Hands need another pass; thumbs read short in the turntable.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:58Z"
+   },
+   "id": 46821,
+   "links": {
+    "self": "/api/v1/entity/tasks/46821"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10127,
+      "name": "charA",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10127",
+      "self": "/api/v1/entity/tasks/46821/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46821/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 14,
+      "name": "Model",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/14",
+      "self": "/api/v1/entity/tasks/46821/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46821/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-15T17:08:22Z",
+    "due_date": "2026-09-16",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46815_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Integrate the flicker; match the plate's warm spill on the wall.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:59Z"
+   },
+   "id": 46815,
+   "links": {
+    "self": "/api/v1/entity/tasks/46815"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7813,
+      "name": "sq010_sh010",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7813",
+      "self": "/api/v1/entity/tasks/46815/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46815/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46815/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46815/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-15T17:08:23Z",
+    "due_date": "2026-09-16",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46817_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Rain on the glass, subtle. Plate has no rain.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:55Z"
+   },
+   "id": 46816,
+   "links": {
+    "self": "/api/v1/entity/tasks/46816"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7814,
+      "name": "sq010_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7814",
+      "self": "/api/v1/entity/tasks/46816/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46816/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46816/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46816/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Texture",
+    "created_at": "2026-09-15T17:08:27Z",
+    "due_date": "2026-09-17",
+    "entity.Asset.image": "media/Task_46822_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Tile grout too clean, dirty it up.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:59Z"
+   },
+   "id": 46822,
+   "links": {
+    "self": "/api/v1/entity/tasks/46822"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10128,
+      "name": "env_kitchen",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10128",
+      "self": "/api/v1/entity/tasks/46822/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46822/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 16,
+      "name": "Texture",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/16",
+      "self": "/api/v1/entity/tasks/46822/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46822/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-09-15T17:08:24Z",
+    "due_date": "2026-09-18",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46818_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the lamp, fill from the window. Match sh010.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:57Z"
+   },
+   "id": 46818,
+   "links": {
+    "self": "/api/v1/entity/tasks/46818"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7815,
+      "name": "sq010_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7815",
+      "self": "/api/v1/entity/tasks/46818/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46818/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/46818/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46818/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-15T17:08:25Z",
+    "due_date": "2026-09-22",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46818_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Waits on Light.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:25Z"
+   },
+   "id": 46819,
+   "links": {
+    "self": "/api/v1/entity/tasks/46819"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7815,
+      "name": "sq010_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7815",
+      "self": "/api/v1/entity/tasks/46819/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46819/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46819/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46819/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-15T17:08:25Z",
+    "due_date": "2026-09-25",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46820_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "On hold until the insert is re-shot.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "hld",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:58Z"
+   },
+   "id": 46820,
+   "links": {
+    "self": "/api/v1/entity/tasks/46820"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7816,
+      "name": "sq010_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7816",
+      "self": "/api/v1/entity/tasks/46820/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46820/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46820/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46820/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Model",
+    "created_at": "2026-09-15T17:08:28Z",
+    "due_date": "2026-09-29",
+    "entity.Asset.image": "media/Task_46823_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Block out from the art department sketch.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T17:08:28Z"
+   },
+   "id": 46823,
+   "links": {
+    "self": "/api/v1/entity/tasks/46823"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10129,
+      "name": "prop_lamp",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10129",
+      "self": "/api/v1/entity/tasks/46823/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46823/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 14,
+      "name": "Model",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/14",
+      "self": "/api/v1/entity/tasks/46823/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46823/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  }
+ ],
+ "links": {
+  "next": "/api/v1/entity/tasks/_search?page%5Bnumber%5D=2&page%5Bsize%5D=200",
+  "self": "/api/v1/entity/tasks/_search"
+ },
+ "statuses": {
+  "entity.Asset.image": [
+   [
+    0,
+    "no_bubble_source"
+   ],
+   [
+    2,
+    "no_bubble_source"
+   ],
+   [
+    3,
+    "no_bubble_source"
+   ],
+   [
+    5,
+    "no_bubble_source"
+   ],
+   [
+    6,
+    "no_bubble_source"
+   ],
+   [
+    7,
+    "no_bubble_source"
+   ]
+  ],
+  "entity.Shot.image": [
+   [
+    1,
+    "no_bubble_source"
+   ],
+   [
+    4,
+    "no_bubble_source"
+   ],
+   [
+    8,
+    "no_bubble_source"
+   ]
+  ]
+ }
+}

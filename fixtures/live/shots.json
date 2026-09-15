@@ -1,0 +1,120 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "code": "sq010_sh010",
+    "description": "Hero walks into the kitchen, practical lamp flickers",
+    "image": "media/Task_46815_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:48Z"
+   },
+   "id": 7813,
+   "links": {
+    "self": "/api/v1/entity/shots/7813"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1626,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1626",
+      "self": "/api/v1/entity/shots/7813/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh020",
+    "description": "Reverse on the window, rain added in comp",
+    "image": "media/Task_46817_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:51Z"
+   },
+   "id": 7814,
+   "links": {
+    "self": "/api/v1/entity/shots/7814"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1626,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1626",
+      "self": "/api/v1/entity/shots/7814/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh030",
+    "description": "Wide of the kitchen, full CG lamp",
+    "image": "media/Task_46818_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:56Z"
+   },
+   "id": 7815,
+   "links": {
+    "self": "/api/v1/entity/shots/7815"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1626,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1626",
+      "self": "/api/v1/entity/shots/7815/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh040",
+    "description": "Insert on the lamp switch",
+    "image": "media/Task_46820_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "wtg",
+    "updated_at": "2026-09-15T17:08:46Z"
+   },
+   "id": 7816,
+   "links": {
+    "self": "/api/v1/entity/shots/7816"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1626,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1626",
+      "self": "/api/v1/entity/shots/7816/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  }
+ ],
+ "links": {
+  "next": "/api/v1/entity/shots/_search?page%5Bnumber%5D=2&page%5Bsize%5D=200",
+  "self": "/api/v1/entity/shots/_search"
+ }
+}
