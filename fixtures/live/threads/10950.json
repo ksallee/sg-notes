@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Looks good, one note for the timesheet run.",
+   "created_at": "2026-09-03T03:27:37Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "id": 10950,
+   "sg_status_list": "opn",
+   "subject": "Review sbx_0020_normal_opengl_v004",
+   "type": "Note"
+  },
+  {
+   "content": "qa reply 2026-09-15T18:37:08.966Z",
+   "created_at": "2026-09-15T18:37:09Z",
+   "id": 672,
+   "type": "Reply",
+   "user": {
+    "id": 298,
+    "image": null,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/10950/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The burst lands two frames after the cue. Shift the cache.",
+   "created_at": "2026-08-13T17:49:34Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11066,
+   "sg_status_list": "opn",
+   "subject": "timing",
+   "type": "Note"
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-08-17T17:46:54Z",
+   "id": 657,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Will need the updated cache from FX before I can do that.",
+   "created_at": "2026-08-19T10:04:43Z",
+   "id": 658,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-08-20T16:23:41Z",
+   "id": 659,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11066/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

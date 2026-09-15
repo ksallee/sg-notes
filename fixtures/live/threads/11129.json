@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Rim light is fighting the composition. Pull it back and let the silhouette do the work.",
+   "created_at": "2026-08-23T10:14:02Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11129,
+   "sg_status_list": "opn",
+   "subject": "rim",
+   "type": "Note"
+  },
+  {
+   "content": "Pushed 8%. Turntable coming.",
+   "created_at": "2026-08-24T10:07:53Z",
+   "id": 733,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:38:42Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32362.48.png",
+   "id": 3412,
+   "image": "media/Attachment_3412_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11129/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

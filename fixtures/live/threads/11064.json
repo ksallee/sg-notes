@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No blinks in the whole shot. Add two, one on the head turn.",
+   "created_at": "2026-08-13T16:46:15Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11064,
+   "sg_status_list": "clsd",
+   "subject": "blink",
+   "type": "Note"
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-08-14T17:35:54Z",
+   "id": 656,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11064/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

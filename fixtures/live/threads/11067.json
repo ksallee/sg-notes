@@ -1,0 +1,69 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The silhouette does not read at a distance. Simplify the upper half.",
+   "created_at": "2026-08-13T17:55:50Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11067,
+   "sg_status_list": "clsd",
+   "subject": "silhouette read",
+   "type": "Note"
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-08-14T15:57:23Z",
+   "id": 660,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-08-17T16:36:58Z",
+   "id": 661,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Will need the updated cache from FX before I can do that.",
+   "created_at": "2026-08-18T09:05:56Z",
+   "id": 662,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:36:50Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "env_city_far_reference_frame.png",
+   "id": 3384,
+   "image": "media/Attachment_3384_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11067/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

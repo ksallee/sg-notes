@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No bounce off the floor. The lower half of the character reads flat.",
+   "created_at": "2026-09-01T15:27:35Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11217,
+   "sg_status_list": "clsd",
+   "subject": "bounce",
+   "type": "Note"
+  },
+  {
+   "content": "That was a render artefact, not comp. Re-submitting.",
+   "created_at": "2026-09-03T10:04:31Z",
+   "id": 828,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11217/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

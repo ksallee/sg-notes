@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Rain is too even across frame. Cluster it toward the top and let it thin toward the floor.",
+   "created_at": "2026-08-24T13:42:53Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11138,
+   "sg_status_list": "opn",
+   "subject": "rain density",
+   "type": "Note"
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-08-25T18:42:23Z",
+   "id": 744,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:38:58Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32332.12.png",
+   "id": 3416,
+   "image": "media/Attachment_3416_image.jpg",
+   "type": "Attachment"
+  },
+  {
+   "created_at": "2026-09-15T18:38:59Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh030_paint-out.png",
+   "id": 3417,
+   "image": "media/Attachment_3417_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11138/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

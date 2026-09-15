@@ -1,0 +1,535 @@
+{
+ "data": {
+  "earliest_update_id": 0,
+  "entity_id": 10162,
+  "entity_type": "Asset",
+  "latest_update_id": 248768,
+  "updates": [
+   {
+    "created_at": "2026-09-15T18:44:59Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248693,
+    "meta": {
+     "content": "I read that differently. Can we look at it in dailies?",
+     "entity_id": 968,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11339,
+     "name": "UV seam - A seam is visible down the inside of the arm.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:35Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248590,
+    "meta": {
+     "entity_id": 11289,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11289,
+     "name": "palette - The palette fights the sequence&#x27;s key. Bring it toward the warm side.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:39:35Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248306,
+    "meta": {
+     "content": "Can you point me at the reference frame?",
+     "entity_id": 763,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11157,
+     "name": "palette - The palette fights the sequence&#x27;s key. Bring it toward the warm side.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [
+      {
+       "id": 47063,
+       "name": "Texture",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:04Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248205,
+    "meta": {
+     "content": "Yes please.",
+     "entity_id": 710,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11109,
+     "name": "Continuity - The lamp is off here and on in the next shot.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 47063,
+       "name": "Texture",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:36:22Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248072,
+    "meta": {
+     "entity_id": 32428,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32428,
+     "image": "media/Task_47062_image.jpg",
+     "name": "veh_van_art_v001",
+     "sg_status_list": "vwd",
+     "sg_task": {
+      "id": 47064,
+      "name": "Art",
+      "type": "Task"
+     },
+     "status": "vwd",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:20Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248071,
+    "meta": {
+     "entity_id": 32427,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32427,
+     "image": "media/Version_32427_image.jpg",
+     "name": "veh_van_txtr_v002",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 47063,
+      "name": "Texture",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:19Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248070,
+    "meta": {
+     "entity_id": 32426,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32426,
+     "image": null,
+     "name": "veh_van_txtr_v001",
+     "sg_status_list": "vwd",
+     "sg_task": {
+      "id": 47063,
+      "name": "Texture",
+      "type": "Task"
+     },
+     "status": "vwd",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:17Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248069,
+    "meta": {
+     "entity_id": 32425,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32425,
+     "image": "media/Version_32425_image.jpg",
+     "name": "veh_van_dsgn_v003",
+     "sg_status_list": "ip",
+     "sg_task": {
+      "id": 47062,
+      "name": "Design",
+      "type": "Task"
+     },
+     "status": "ip",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:16Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248068,
+    "meta": {
+     "entity_id": 32424,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32424,
+     "image": "media/Version_32424_image.jpg",
+     "name": "veh_van_dsgn_v002",
+     "sg_status_list": "apr",
+     "sg_task": {
+      "id": 47062,
+      "name": "Design",
+      "type": "Task"
+     },
+     "status": "apr",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:14Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248067,
+    "meta": {
+     "entity_id": 32423,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32423,
+     "image": "media/Version_32423_image.jpg",
+     "name": "veh_van_dsgn_v001",
+     "sg_status_list": "fin",
+     "sg_task": {
+      "id": 47062,
+      "name": "Design",
+      "type": "Task"
+     },
+     "status": "fin",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:34Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247916,
+    "meta": {
+     "entity_id": 47064,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-07",
+     "id": 47064,
+     "name": "Art",
+     "sg_status_list": "apr",
+     "status": "apr",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:33Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247915,
+    "meta": {
+     "entity_id": 47063,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-24",
+     "id": 47063,
+     "name": "Texture",
+     "sg_status_list": "rev",
+     "status": "rev",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:33Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247914,
+    "meta": {
+     "entity_id": 47062,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-27",
+     "id": 47062,
+     "name": "Design",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:33Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247809,
+    "meta": {
+     "entity_id": 10162,
+     "entity_type": "Asset",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 10162,
+     "name": "veh_van",
+     "status": "rev",
+     "type": "Asset"
+    },
+    "read": false,
+    "update_type": "create"
+   }
+  ]
+ },
+ "links": {
+  "self": "/api/v1/entity/assets/10162/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+ }
+}

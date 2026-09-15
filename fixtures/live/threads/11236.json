@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The whole sequence is playing darker than the last cut. Can we lift it?",
+   "created_at": "2026-09-03T17:33:53Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11236,
+   "sg_status_list": "opn",
+   "subject": "Too dark",
+   "type": "Note"
+  },
+  {
+   "content": "Yes please.",
+   "created_at": "2026-09-05T16:50:02Z",
+   "id": 849,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Pushed 8%. Turntable coming.",
+   "created_at": "2026-09-07T10:18:29Z",
+   "id": 850,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:41:56Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32304.0.png",
+   "id": 3467,
+   "image": "media/Attachment_3467_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11236/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

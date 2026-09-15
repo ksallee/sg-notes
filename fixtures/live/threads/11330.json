@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The CG is undistorted against a distorted plate. Apply the shot's lens grid.",
+   "created_at": "2026-09-14T09:10:58Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11330,
+   "sg_status_list": "opn",
+   "subject": "lens distortion",
+   "type": "Note"
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-09-15T10:21:25Z",
+   "id": 955,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:44:43Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32328.48.png",
+   "id": 3507,
+   "image": "media/Attachment_3507_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11330/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

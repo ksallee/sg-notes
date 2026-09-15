@@ -1,0 +1,93 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Fill is too cool against the plate. Warm it toward the window.",
+   "created_at": "2026-09-09T10:25:33Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11285,
+   "sg_status_list": "clsd",
+   "subject": "colour temperature",
+   "type": "Note"
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-09-10T17:13:21Z",
+   "id": 911,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-09-14T10:15:57Z",
+   "id": 912,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-09-14T15:44:48Z",
+   "id": 913,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-09-15T09:29:20Z",
+   "id": 914,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:43:28Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh040_diagram.png",
+   "id": 3489,
+   "image": "media/Attachment_3489_image.jpg",
+   "type": "Attachment"
+  },
+  {
+   "created_at": "2026-09-15T18:43:29Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh040_reference_frame.png",
+   "id": 3490,
+   "image": "media/Attachment_3490_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11285/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

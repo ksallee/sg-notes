@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Note for editorial rather than you: the music drops out under this.",
+   "created_at": "2026-08-31T19:01:02Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11208,
+   "sg_status_list": "clsd",
+   "subject": "Sound",
+   "type": "Note"
+  },
+  {
+   "content": "Yes please.",
+   "created_at": "2026-09-02T17:30:47Z",
+   "id": 823,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11208/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

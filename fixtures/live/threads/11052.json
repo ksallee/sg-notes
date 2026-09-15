@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Green is still in the hair on the left side. Despill and rebuild the edge colour.",
+   "created_at": "2026-08-11T13:12:05Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11052,
+   "sg_status_list": "ip",
+   "subject": "despill",
+   "type": "Note"
+  },
+  {
+   "content": "That was a render artefact, not comp. Re-submitting.",
+   "created_at": "2026-08-11T14:20:07Z",
+   "id": 636,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-08-12T13:11:36Z",
+   "id": 637,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-08-13T10:22:01Z",
+   "id": 638,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11052/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

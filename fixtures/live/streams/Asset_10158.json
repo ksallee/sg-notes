@@ -1,0 +1,616 @@
+{
+ "data": {
+  "earliest_update_id": 0,
+  "entity_id": 10158,
+  "entity_type": "Asset",
+  "latest_update_id": 248768,
+  "updates": [
+   {
+    "created_at": "2026-09-15T18:43:37Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248591,
+    "meta": {
+     "entity_id": 11290,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11290,
+     "name": "silhouette read - The silhouette does not read at a distance. Simplify the upper half.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:43:21Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248569,
+    "meta": {
+     "content": "Done. The change is in the next version.",
+     "entity_id": 902,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11281,
+     "name": "Question - Is the reflection in the window a real element or built?",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:41:00Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248406,
+    "meta": {
+     "content": "This one is blocked on the new plate.",
+     "entity_id": 818,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11202,
+     "name": "Too dark - The whole sequence is playing darker than the last cut. Can we lift it?",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:37Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248243,
+    "meta": {
+     "entity_id": 11126,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11126,
+     "name": "topology - Topology at the elbow will not deform. Reflow the loops.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:38:27Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248231,
+    "meta": {
+     "content": "Fine for the client version; we will revisit for final.",
+     "entity_id": 725,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11120,
+     "name": "bevels - Hard edges everywhere. Bevel anything the camera gets close to.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:37:58Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248195,
+    "meta": {
+     "content": "Thanks, that answers it.",
+     "entity_id": 704,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11105,
+     "name": "Colour - The greens are reading a little sickly on our monitor.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:37:55Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248192,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 703,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11103,
+     "name": "silhouette - The silhouette is soft at the shoulder. Sharpen it against the concept.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 47054,
+       "name": "Art",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:37:39Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248176,
+    "meta": {
+     "entity_id": 11095,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11095,
+     "name": "Colour - The greens are reading a little sickly on our monitor.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 47052,
+       "name": "Design",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:37:34Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248168,
+    "meta": {
+     "content": "On it. New version this afternoon.",
+     "entity_id": 691,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11091,
+     "name": "palette - The palette fights the sequence&#x27;s key. Bring it toward the warm side.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 47052,
+       "name": "Design",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:36:06Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248061,
+    "meta": {
+     "entity_id": 32417,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32417,
+     "image": "media/Version_32417_image.jpg",
+     "name": "prop_lamp_model_v003",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 47053,
+      "name": "Model",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:05Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248060,
+    "meta": {
+     "entity_id": 32416,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32416,
+     "image": null,
+     "name": "prop_lamp_model_v002",
+     "sg_status_list": "ip",
+     "sg_task": {
+      "id": 47053,
+      "name": "Model",
+      "type": "Task"
+     },
+     "status": "ip",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:03Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248059,
+    "meta": {
+     "entity_id": 32415,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32415,
+     "image": "media/Task_47053_image.jpg",
+     "name": "prop_lamp_model_v001",
+     "sg_status_list": "fin",
+     "sg_task": {
+      "id": 47053,
+      "name": "Model",
+      "type": "Task"
+     },
+     "status": "fin",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:28Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247906,
+    "meta": {
+     "entity_id": 47054,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-05",
+     "id": 47054,
+     "name": "Art",
+     "sg_status_list": "wtg",
+     "status": "wtg",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:28Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247905,
+    "meta": {
+     "entity_id": 47053,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-08-29",
+     "id": 47053,
+     "name": "Model",
+     "sg_status_list": "fin",
+     "status": "fin",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:27Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247904,
+    "meta": {
+     "entity_id": 47052,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-17",
+     "id": 47052,
+     "name": "Design",
+     "sg_status_list": "wtg",
+     "status": "wtg",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:27Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247805,
+    "meta": {
+     "entity_id": 10158,
+     "entity_type": "Asset",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 10158,
+     "name": "prop_lamp",
+     "status": "ip",
+     "type": "Asset"
+    },
+    "read": false,
+    "update_type": "create"
+   }
+  ]
+ },
+ "links": {
+  "self": "/api/v1/entity/assets/10158/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+ }
+}

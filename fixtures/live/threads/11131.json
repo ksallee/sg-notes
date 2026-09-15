@@ -1,0 +1,81 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The table is blocking the doorway the hero exits through.",
+   "created_at": "2026-08-23T16:09:49Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "id": 11131,
+   "sg_status_list": "opn",
+   "subject": "set dressing",
+   "type": "Note"
+  },
+  {
+   "content": "Pushed 8%. Turntable coming.",
+   "created_at": "2026-08-24T10:11:46Z",
+   "id": 734,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Good. Keep the speed, the slower version read better.",
+   "created_at": "2026-08-25T15:43:07Z",
+   "id": 735,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-08-27T15:48:31Z",
+   "id": 736,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Talk to Light before you change that.",
+   "created_at": "2026-08-28T10:26:47Z",
+   "id": 737,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Fixed and rendering now.",
+   "created_at": "2026-08-28T19:50:18Z",
+   "id": 738,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11131/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

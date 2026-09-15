@@ -1,0 +1,1002 @@
+{
+ "data": {
+  "earliest_update_id": 0,
+  "entity_id": 7856,
+  "entity_type": "Shot",
+  "latest_update_id": 248768,
+  "updates": [
+   {
+    "created_at": "2026-09-15T18:41:57Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248472,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 850,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11236,
+     "name": "Too dark - The whole sequence is playing darker than the last cut. Can we lift it?",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46974,
+       "name": "FX",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:41:05Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248412,
+    "meta": {
+     "entity_id": 11206,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11206,
+     "name": "arcs - The hand arc breaks halfway through the reach. Smooth it in the graph editor.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [
+      {
+       "id": 46975,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:40:25Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248360,
+    "meta": {
+     "content": "On it. New version this afternoon.",
+     "entity_id": 792,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11182,
+     "name": "contact - The foot slides on contact between 1018 and 1026. Lock it.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [
+      {
+       "id": 46974,
+       "name": "FX",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:40:18Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248352,
+    "meta": {
+     "entity_id": 11179,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11179,
+     "name": "exposure - The whole frame is half a stop hot against the neighbouring shot.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:39:51Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248326,
+    "meta": {
+     "content": "Addressed everything except the last point.",
+     "entity_id": 774,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11166,
+     "name": "dissipation - The smoke dissipates too quickly. Double the lifetime and lower the dissipation.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46974,
+       "name": "FX",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:39:44Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248317,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 769,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11162,
+     "name": "exposure - The whole frame is half a stop hot against the neighbouring shot.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46974,
+       "name": "FX",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:39:22Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248291,
+    "meta": {
+     "content": "Talk to Light before you change that.",
+     "entity_id": 754,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11151,
+     "name": "density - The sim is too dense to read the character behind it.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:54Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248264,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 743,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11135,
+     "name": "collision - Particles pass through the rail. Fix the collider.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:52Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248261,
+    "meta": {
+     "content": "We will look at it in the next review.",
+     "entity_id": 741,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11134,
+     "name": "Pacing - This runs long. Is there a version that gets to the door faster?",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46975,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:36Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248242,
+    "meta": {
+     "entity_id": 11125,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11125,
+     "name": "colour temperature - Fill is too cool against the plate. Warm it toward the window.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46973,
+       "name": "Animation",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:38:25Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248228,
+    "meta": {
+     "entity_id": 11119,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11119,
+     "name": "Overall note - We like where this is going. The performance sells it.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:37:52Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248188,
+    "meta": {
+     "entity_id": 11101,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11101,
+     "name": "Sound - Note for editorial rather than you: the music drops out under this.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:36:38Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248097,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 653,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11058,
+     "name": "blink - No blinks in the whole shot. Add two, one on the head turn.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:33:24Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247950,
+    "meta": {
+     "entity_id": 32306,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32306,
+     "image": null,
+     "name": "sq010_sh060_light_v003",
+     "sg_status_list": "cmpt",
+     "sg_task": {
+      "id": 46975,
+      "name": "Light",
+      "type": "Task"
+     },
+     "status": "cmpt",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:22Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247949,
+    "meta": {
+     "entity_id": 32305,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32305,
+     "image": "media/Version_32305_image.jpg",
+     "name": "sq010_sh060_light_v002",
+     "sg_status_list": "cmpt",
+     "sg_task": {
+      "id": 46975,
+      "name": "Light",
+      "type": "Task"
+     },
+     "status": "cmpt",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:20Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247948,
+    "meta": {
+     "entity_id": 32304,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32304,
+     "image": "media/Task_46974_image.jpg",
+     "name": "sq010_sh060_light_v001",
+     "sg_status_list": "fin",
+     "sg_task": {
+      "id": 46975,
+      "name": "Light",
+      "type": "Task"
+     },
+     "status": "fin",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:18Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247947,
+    "meta": {
+     "entity_id": 32303,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32303,
+     "image": "media/Version_32303_image.jpg",
+     "name": "sq010_sh060_fx_v003",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 46974,
+      "name": "FX",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:17Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247946,
+    "meta": {
+     "entity_id": 32302,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32302,
+     "image": "media/Version_32302_image.jpg",
+     "name": "sq010_sh060_fx_v002",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 46974,
+      "name": "FX",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:16Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247945,
+    "meta": {
+     "entity_id": 32301,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32301,
+     "image": null,
+     "name": "sq010_sh060_fx_v001",
+     "sg_status_list": "fin",
+     "sg_task": {
+      "id": 46974,
+      "name": "FX",
+      "type": "Task"
+     },
+     "status": "fin",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:14Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247944,
+    "meta": {
+     "entity_id": 32300,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32300,
+     "image": "media/Version_32300_image.jpg",
+     "name": "sq010_sh060_anim_v002",
+     "sg_status_list": "vwd",
+     "sg_task": {
+      "id": 46973,
+      "name": "Animation",
+      "type": "Task"
+     },
+     "status": "vwd",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:33:13Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247943,
+    "meta": {
+     "entity_id": 32299,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32299,
+     "image": "media/Version_32299_image.jpg",
+     "name": "sq010_sh060_anim_v001",
+     "sg_status_list": "na",
+     "sg_task": {
+      "id": 46973,
+      "name": "Animation",
+      "type": "Task"
+     },
+     "status": "na",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:44Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247827,
+    "meta": {
+     "entity_id": 46975,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-08-30",
+     "id": 46975,
+     "name": "Light",
+     "sg_status_list": "hld",
+     "status": "hld",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:44Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247826,
+    "meta": {
+     "entity_id": 46974,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-10-06",
+     "id": 46974,
+     "name": "FX",
+     "sg_status_list": "fin",
+     "status": "fin",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:43Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247825,
+    "meta": {
+     "entity_id": 46973,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-24",
+     "id": 46973,
+     "name": "Animation",
+     "sg_status_list": "rev",
+     "status": "rev",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:30:47Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247781,
+    "meta": {
+     "entity_id": 7856,
+     "entity_type": "Shot",
+     "platform_id": null,
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 7856,
+     "name": "sq010_sh060",
+     "status": "ip",
+     "type": "Shot"
+    },
+    "read": false,
+    "update_type": "create"
+   }
+  ]
+ },
+ "links": {
+  "self": "/api/v1/entity/shots/7856/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+ }
+}

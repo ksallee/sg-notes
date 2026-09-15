@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Is the reflection in the window a real element or built?",
+   "created_at": "2026-09-08T17:58:10Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11281,
+   "sg_status_list": "opn",
+   "subject": "Question",
+   "type": "Note"
+  },
+  {
+   "content": "Thanks, that answers it.",
+   "created_at": "2026-09-09T18:01:39Z",
+   "id": 901,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-09-10T14:49:01Z",
+   "id": 902,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:43:19Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "prop_lamp_paint-out.png",
+   "id": 3488,
+   "image": "media/Attachment_3488_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11281/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

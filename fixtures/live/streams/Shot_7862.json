@@ -1,0 +1,1426 @@
+{
+ "data": {
+  "earliest_update_id": 0,
+  "entity_id": 7862,
+  "entity_type": "Shot",
+  "latest_update_id": 248768,
+  "updates": [
+   {
+    "created_at": "2026-09-15T18:45:48Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248749,
+    "meta": {
+     "content": "I read that differently. Can we look at it in dailies?",
+     "entity_id": 1002,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11361,
+     "name": "garbage matte - Garbage matte clips the elbow at the end of the move.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:45:47Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248747,
+    "meta": {
+     "entity_id": 11360,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11360,
+     "name": "garbage matte - Garbage matte clips the elbow at the end of the move.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:45:44Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248744,
+    "meta": {
+     "content": "Thanks, that answers it.",
+     "entity_id": 1000,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11358,
+     "name": "Too dark - The whole sequence is playing darker than the last cut. Can we lift it?",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:45:05Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248698,
+    "meta": {
+     "entity_id": 11342,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      },
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11342,
+     "name": "bounce - No bounce off the floor. The lower half of the character reads flat.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:44:29Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248656,
+    "meta": {
+     "content": "Much better.",
+     "entity_id": 945,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11325,
+     "name": "Question - Is the reflection in the window a real element or built?",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46993,
+       "name": "Tracking",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:32Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248586,
+    "meta": {
+     "entity_id": 11286,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11286,
+     "name": "rim - Rim light is fighting the composition. Pull it back and let the silhouette do the work.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46995,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:43:32Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248585,
+    "meta": {
+     "content": "Done. The change is in the next version.",
+     "entity_id": 914,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11285,
+     "name": "colour temperature - Fill is too cool against the plate. Warm it toward the window.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:27Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248580,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 910,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11284,
+     "name": "solve drift - The solve drifts in the last 40 frames. Add survey points on the far wall.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46994,
+       "name": "Roto",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:24Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248575,
+    "meta": {
+     "content": "Can we see it against the previous version?",
+     "entity_id": 906,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11283,
+     "name": "Colour - The greens are reading a little sickly on our monitor.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46993,
+       "name": "Tracking",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:22Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248571,
+    "meta": {
+     "content": "Fixed and rendering now.",
+     "entity_id": 903,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11282,
+     "name": "solve drift - The solve drifts in the last 40 frames. Add survey points on the far wall.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [
+      {
+       "id": 46993,
+       "name": "Tracking",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:43:12Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248563,
+    "meta": {
+     "entity_id": 11277,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11277,
+     "name": "jitter - There is a one-pixel jitter on the vertical. Smooth the solve.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46994,
+       "name": "Roto",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:43:01Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248550,
+    "meta": {
+     "content": "Better. Ship it.",
+     "entity_id": 892,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 253,
+       "name": "Kevin Sallee",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11272,
+     "name": "survey - No survey for the set extension. Track the floor plane as well.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:42:58Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248547,
+    "meta": {
+     "content": "Thanks, that answers it.",
+     "entity_id": 890,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11271,
+     "name": "Sound - Note for editorial rather than you: the music drops out under this.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:42:54Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248538,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 883,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11269,
+     "name": "Overall note - We like where this is going. The performance sells it.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46993,
+       "name": "Tracking",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:42:46Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248529,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 877,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11266,
+     "name": "shadow density - Contact shadow under the foot is missing. Add an occlusion pass.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46994,
+       "name": "Roto",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:42:36Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248519,
+    "meta": {
+     "entity_id": 11260,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11260,
+     "name": "Question - Is the reflection in the window a real element or built?",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:42:34Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248518,
+    "meta": {
+     "entity_id": 11259,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11259,
+     "name": "Question - Is the reflection in the window a real element or built?",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [
+      {
+       "id": 46994,
+       "name": "Roto",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:42:04Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248476,
+    "meta": {
+     "content": "We will look at it in the next review.",
+     "entity_id": 852,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11238,
+     "name": "Sound - Note for editorial rather than you: the music drops out under this.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46995,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:41:23Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248432,
+    "meta": {
+     "entity_id": 11218,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11218,
+     "name": "Continuity - The lamp is off here and on in the next shot.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:41:23Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248431,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 828,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11217,
+     "name": "bounce - No bounce off the floor. The lower half of the character reads flat.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:41:03Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248409,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 819,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11204,
+     "name": "shadow density - Contact shadow under the foot is missing. Add an occlusion pass.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:40:22Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248357,
+    "meta": {
+     "content": "Much better.",
+     "entity_id": 790,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11181,
+     "name": "Approved for the cut - Happy with this one. Please cut it in.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 46995,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:40:19Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248353,
+    "meta": {
+     "entity_id": 11180,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11180,
+     "name": "exposure - The whole frame is half a stop hot against the neighbouring shot.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:40:09Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248339,
+    "meta": {
+     "entity_id": 11174,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11174,
+     "name": "shadow density - Contact shadow under the foot is missing. Add an occlusion pass.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:40:05Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248334,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 777,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11171,
+     "name": "key direction - The key is too frontal. Bring it round 20 degrees to match the practical.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [
+      {
+       "id": 46995,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:39:25Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248299,
+    "meta": {
+     "content": "I read that differently. Can we look at it in dailies?",
+     "entity_id": 759,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11154,
+     "name": "colour temperature - Fill is too cool against the plate. Warm it toward the window.",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:36:34Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248088,
+    "meta": {
+     "content": "Fixed and rendering now.",
+     "entity_id": 646,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11056,
+     "name": "rim - Rim light is fighting the composition. Pull it back and let the silhouette do the work.",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:34:07Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247981,
+    "meta": {
+     "entity_id": 32337,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32337,
+     "image": "media/Task_46993_image.jpg",
+     "name": "sq020_sh040_roto_v002",
+     "sg_status_list": "apr",
+     "sg_task": {
+      "id": 46994,
+      "name": "Roto",
+      "type": "Task"
+     },
+     "status": "apr",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:07Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247980,
+    "meta": {
+     "entity_id": 32336,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32336,
+     "image": null,
+     "name": "sq020_sh040_roto_v001",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 46994,
+      "name": "Roto",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:05Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247979,
+    "meta": {
+     "entity_id": 32335,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32335,
+     "image": "media/Version_32335_image.jpg",
+     "name": "sq020_sh040_track_v002",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 46993,
+      "name": "Tracking",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:03Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 247978,
+    "meta": {
+     "entity_id": 32334,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32334,
+     "image": "media/Version_32334_image.jpg",
+     "name": "sq020_sh040_track_v001",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 46993,
+      "name": "Tracking",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:55Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247847,
+    "meta": {
+     "entity_id": 46995,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-30",
+     "id": 46995,
+     "name": "Light",
+     "sg_status_list": "ready",
+     "status": "ready",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:55Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247846,
+    "meta": {
+     "entity_id": 46994,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-10-04",
+     "id": 46994,
+     "name": "Roto",
+     "sg_status_list": "ip",
+     "status": "ip",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:54Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247845,
+    "meta": {
+     "entity_id": 46993,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-12",
+     "id": 46993,
+     "name": "Tracking",
+     "sg_status_list": "fin",
+     "status": "fin",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:30:57Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247787,
+    "meta": {
+     "entity_id": 7862,
+     "entity_type": "Shot",
+     "platform_id": null,
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 7862,
+     "name": "sq020_sh040",
+     "status": "ip",
+     "type": "Shot"
+    },
+    "read": false,
+    "update_type": "create"
+   }
+  ]
+ },
+ "links": {
+  "self": "/api/v1/entity/shots/7862/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+ }
+}

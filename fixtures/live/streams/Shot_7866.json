@@ -1,0 +1,496 @@
+{
+ "data": {
+  "earliest_update_id": 0,
+  "entity_id": 7866,
+  "entity_type": "Shot",
+  "latest_update_id": 248768,
+  "updates": [
+   {
+    "created_at": "2026-09-15T18:41:09Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248415,
+    "meta": {
+     "content": "That was a render artefact, not comp. Re-submitting.",
+     "entity_id": 822,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [],
+     "id": 11207,
+     "name": "Pacing - This runs long. Is there a version that gets to the door faster?",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:40:41Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248379,
+    "meta": {
+     "content": "Fine for the client version; we will revisit for final.",
+     "entity_id": 803,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      },
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11190,
+     "name": "solve drift - The solve drifts in the last 40 frames. Add survey points on the far wall.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [
+      {
+       "id": 47010,
+       "name": "Light",
+       "template_task_id": null,
+       "type": "Task"
+      }
+     ],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:38:55Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248265,
+    "meta": {
+     "entity_id": 11136,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11136,
+     "name": "Question - Is the reflection in the window a real element or built?",
+     "sg_status_list": "clsd",
+     "status": "clsd",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:38:43Z",
+    "created_by": {
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248248,
+    "meta": {
+     "content": "Pushed 8%. Turntable coming.",
+     "entity_id": 733,
+     "entity_type": "Reply",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11129,
+     "name": "rim - Rim light is fighting the composition. Pull it back and let the silhouette do the work.",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create_reply"
+   },
+   {
+    "created_at": "2026-09-15T18:37:00Z",
+    "created_by": {
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
+     "name": "Kevin Sallee",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248126,
+    "meta": {
+     "entity_id": 11073,
+     "entity_type": "Note",
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "addressings_to": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "id": 11073,
+     "name": "Pacing - This runs long. Is there a version that gets to the door faster?",
+     "sg_status_list": "opn",
+     "status": "opn",
+     "tasks": [],
+     "type": "Note"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:45Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248006,
+    "meta": {
+     "entity_id": 32362,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32362,
+     "image": "media/Version_32362_image.jpg",
+     "name": "sq020_sh080_light_v001",
+     "sg_status_list": "rev",
+     "sg_task": {
+      "id": 47010,
+      "name": "Light",
+      "type": "Task"
+     },
+     "status": "rev",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:45Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248005,
+    "meta": {
+     "entity_id": 32361,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32361,
+     "image": null,
+     "name": "sq020_sh080_track_v002",
+     "sg_status_list": "ip",
+     "sg_task": {
+      "id": 47009,
+      "name": "Tracking",
+      "type": "Task"
+     },
+     "status": "ip",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:34:43Z",
+    "created_by": {
+     "id": 517,
+     "image": null,
+     "name": "Other Artist",
+     "status": "act",
+     "type": "HumanUser"
+    },
+    "id": 248004,
+    "meta": {
+     "entity_id": 32360,
+     "entity_type": "Version",
+     "platform_id": null,
+     "sudo_actual_user": {
+      "id": 298,
+      "name": "<FPT_API_SCRIPT_NAME> 1.0",
+      "type": "ApiUser",
+      "uuid": "6fbae62a-a653-11f1-b0c3-0a58a9feac02",
+      "valid": "valid"
+     },
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 32360,
+     "image": "media/Task_47008_image.jpg",
+     "name": "sq020_sh080_track_v001",
+     "sg_status_list": "apr",
+     "sg_task": {
+      "id": 47009,
+      "name": "Tracking",
+      "type": "Task"
+     },
+     "status": "apr",
+     "type": "Version"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:04Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247862,
+    "meta": {
+     "entity_id": 47010,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-08-30",
+     "id": 47010,
+     "name": "Light",
+     "sg_status_list": "apr",
+     "status": "apr",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:03Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247861,
+    "meta": {
+     "entity_id": 47009,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-01",
+     "id": 47009,
+     "name": "Tracking",
+     "sg_status_list": "rev",
+     "status": "rev",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:03Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247860,
+    "meta": {
+     "entity_id": 47008,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-09-08",
+     "id": 47008,
+     "name": "Animation",
+     "sg_status_list": "wtg",
+     "status": "wtg",
+     "task_assignees": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:32:02Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247859,
+    "meta": {
+     "entity_id": 47007,
+     "entity_type": "Task",
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "due_date": "2026-10-01",
+     "id": 47007,
+     "name": "Layout",
+     "sg_status_list": "ready",
+     "status": "ready",
+     "task_assignees": [
+      {
+       "id": 517,
+       "name": "Other Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "type": "Task"
+    },
+    "read": false,
+    "update_type": "create"
+   },
+   {
+    "created_at": "2026-09-15T18:31:04Z",
+    "created_by": {
+     "id": 298,
+     "image": null,
+     "name": "<FPT_API_SCRIPT_NAME> 1.0",
+     "status": null,
+     "type": "ApiUser"
+    },
+    "id": 247791,
+    "meta": {
+     "entity_id": 7866,
+     "entity_type": "Shot",
+     "platform_id": null,
+     "type": "new_entity"
+    },
+    "primary_entity": {
+     "id": 7866,
+     "name": "sq020_sh080",
+     "status": "rev",
+     "type": "Shot"
+    },
+    "read": false,
+    "update_type": "create"
+   }
+  ]
+ },
+ "links": {
+  "self": "/api/v1/entity/shots/7866/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+ }
+}

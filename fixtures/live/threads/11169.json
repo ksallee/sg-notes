@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The sim is too dense to read the character behind it.",
+   "created_at": "2026-08-27T17:30:52Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "id": 11169,
+   "sg_status_list": "opn",
+   "subject": "density",
+   "type": "Note"
+  },
+  {
+   "created_at": "2026-09-15T18:39:57Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32274.12.png",
+   "id": 3433,
+   "image": "media/Attachment_3433_image.jpg",
+   "type": "Attachment"
+  },
+  {
+   "created_at": "2026-09-15T18:39:58Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "filename": "sq010_sh010_diagram.png",
+   "id": 3434,
+   "image": "media/Attachment_3434_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11169/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

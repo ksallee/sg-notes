@@ -1,0 +1,69 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "We like where this is going. The performance sells it.",
+   "created_at": "2026-08-21T15:27:48Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11123,
+   "sg_status_list": "opn",
+   "subject": "Overall note",
+   "type": "Note"
+  },
+  {
+   "content": "Much better.",
+   "created_at": "2026-08-24T10:35:58Z",
+   "id": 727,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Addressed everything except the last point.",
+   "created_at": "2026-08-26T09:06:40Z",
+   "id": 728,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "We will look at it in the next review.",
+   "created_at": "2026-08-26T17:26:34Z",
+   "id": 729,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:38:30Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "note_diagram.png",
+   "id": 3409,
+   "image": "media/Attachment_3409_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11123/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

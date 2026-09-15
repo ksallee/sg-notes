@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The foot slides on contact between 1018 and 1026. Lock it.",
+   "created_at": "2026-09-04T14:02:14Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11247,
+   "sg_status_list": "clsd",
+   "subject": "contact",
+   "type": "Note"
+  },
+  {
+   "created_at": "2026-09-15T18:42:14Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "sq010_sh050_grade_chart.png",
+   "id": 3471,
+   "image": "media/Attachment_3471_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11247/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

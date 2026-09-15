@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Garbage matte clips the elbow at the end of the move.",
+   "created_at": "2026-09-15T10:45:40Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11361,
+   "sg_status_list": "clsd",
+   "subject": "garbage matte",
+   "type": "Note"
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-09-15T11:01:40Z",
+   "id": 1002,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11361/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

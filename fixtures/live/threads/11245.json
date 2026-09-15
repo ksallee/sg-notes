@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The shoulder collapses past 60 degrees.",
+   "created_at": "2026-09-04T13:30:27Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11245,
+   "sg_status_list": "opn",
+   "subject": "deformation",
+   "type": "Note"
+  },
+  {
+   "content": "That was a render artefact, not comp. Re-submitting.",
+   "created_at": "2026-09-07T15:04:33Z",
+   "id": 858,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-09-09T13:56:55Z",
+   "id": 859,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11245/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

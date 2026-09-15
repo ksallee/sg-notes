@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The edge is too hard against a motion-blurred plate.",
+   "created_at": "2026-09-01T10:18:53Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11212,
+   "sg_status_list": "opn",
+   "subject": "edge quality",
+   "type": "Note"
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-09-03T10:36:17Z",
+   "id": 824,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-09-07T17:05:11Z",
+   "id": 825,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:41:15Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh070_grade_chart.png",
+   "id": 3454,
+   "image": "media/Attachment_3454_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11212/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

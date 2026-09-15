@@ -1,0 +1,81 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The screen insert slides against the tracked corners. Re-track the two right markers.",
+   "created_at": "2026-09-08T15:38:10Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11276,
+   "sg_status_list": "opn",
+   "subject": "screen insert",
+   "type": "Note"
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-09-10T15:29:49Z",
+   "id": 897,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Addressed everything except the last point.",
+   "created_at": "2026-09-11T15:01:02Z",
+   "id": 898,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Fixed and rendering now.",
+   "created_at": "2026-09-14T11:22:58Z",
+   "id": 899,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-09-15T10:24:33Z",
+   "id": 900,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:43:09Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32320.24.png",
+   "id": 3484,
+   "image": "media/Attachment_3484_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11276/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

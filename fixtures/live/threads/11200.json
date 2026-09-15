@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Blacks are crushed in the lower third. Lift them to match the reference frame.",
+   "created_at": "2026-08-31T13:13:28Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "id": 11200,
+   "sg_status_list": "opn",
+   "subject": "black levels",
+   "type": "Note"
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-08-31T15:14:56Z",
+   "id": 812,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Thanks. Closing this.",
+   "created_at": "2026-09-02T10:04:49Z",
+   "id": 813,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:40:53Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "filename": "note_diagram.png",
+   "id": 3448,
+   "image": "media/Attachment_3448_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11200/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

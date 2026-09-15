@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "We like where this is going. The performance sells it.",
+   "created_at": "2026-09-11T14:22:51Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11314,
+   "sg_status_list": "clsd",
+   "subject": "Overall note",
+   "type": "Note"
+  },
+  {
+   "created_at": "2026-09-15T18:44:15Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32278.48.png",
+   "id": 3499,
+   "image": "media/Attachment_3499_image.jpg",
+   "type": "Attachment"
+  },
+  {
+   "created_at": "2026-09-15T18:44:16Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq010_sh030_grade_chart.png",
+   "id": 3500,
+   "image": "media/Attachment_3500_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11314/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

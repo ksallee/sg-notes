@@ -2,373 +2,33 @@
  "data": [
   {
    "attributes": {
-    "content": "Roto",
-    "created_at": "2026-09-15T17:24:57Z",
-    "due_date": "2026-09-08",
-    "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46844_image.jpg",
-    "est_in_mins": null,
-    "sg_description": "Roto the window frame for the rain pass.",
-    "sg_priority_1": "2_Tier",
-    "sg_status_list": "fin",
-    "start_date": null,
-    "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:26Z"
-   },
-   "id": 46844,
-   "links": {
-    "self": "/api/v1/entity/tasks/46844"
-   },
-   "relationships": {
-    "entity": {
-     "data": {
-      "id": 7826,
-      "name": "sq010_sh020",
-      "type": "Shot"
-     },
-     "links": {
-      "related": "/api/v1/entity/shots/7826",
-      "self": "/api/v1/entity/tasks/46844/relationships/entity"
-     }
-    },
-    "project": {
-     "data": {
-      "id": 1180,
-      "name": "sg-comfyui Sandbox",
-      "type": "Project"
-     },
-     "links": {
-      "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46844/relationships/project"
-     }
-    },
-    "step": {
-     "data": {
-      "id": 134,
-      "name": "Roto",
-      "type": "Step"
-     },
-     "links": {
-      "related": "/api/v1/entity/steps/134",
-      "self": "/api/v1/entity/tasks/46844/relationships/step"
-     }
-    },
-    "task_assignees": {
-     "data": [
-      {
-       "id": 451,
-       "name": "Kevin Artist",
-       "type": "HumanUser"
-      }
-     ],
-     "links": {
-      "self": "/api/v1/entity/tasks/46844/relationships/task_assignees"
-     }
-    }
-   },
-   "type": "Task"
-  },
-  {
-   "attributes": {
-    "content": "Model",
-    "created_at": "2026-09-15T17:24:59Z",
-    "due_date": "2026-09-14",
-    "entity.Asset.image": "media/Task_46848_image.jpg",
-    "entity.Shot.image": null,
-    "est_in_mins": null,
-    "sg_description": "Hands need another pass; thumbs read short in the turntable.",
-    "sg_priority_1": "1_Tier",
-    "sg_status_list": "ip",
-    "start_date": null,
-    "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:28Z"
-   },
-   "id": 46848,
-   "links": {
-    "self": "/api/v1/entity/tasks/46848"
-   },
-   "relationships": {
-    "entity": {
-     "data": {
-      "id": 10136,
-      "name": "charA",
-      "type": "Asset"
-     },
-     "links": {
-      "related": "/api/v1/entity/assets/10136",
-      "self": "/api/v1/entity/tasks/46848/relationships/entity"
-     }
-    },
-    "project": {
-     "data": {
-      "id": 1180,
-      "name": "sg-comfyui Sandbox",
-      "type": "Project"
-     },
-     "links": {
-      "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46848/relationships/project"
-     }
-    },
-    "step": {
-     "data": {
-      "id": 14,
-      "name": "Model",
-      "type": "Step"
-     },
-     "links": {
-      "related": "/api/v1/entity/steps/14",
-      "self": "/api/v1/entity/tasks/46848/relationships/step"
-     }
-    },
-    "task_assignees": {
-     "data": [
-      {
-       "id": 451,
-       "name": "Kevin Artist",
-       "type": "HumanUser"
-      }
-     ],
-     "links": {
-      "self": "/api/v1/entity/tasks/46848/relationships/task_assignees"
-     }
-    }
-   },
-   "type": "Task"
-  },
-  {
-   "attributes": {
-    "content": "Comp",
-    "created_at": "2026-09-15T17:24:55Z",
-    "due_date": "2026-09-16",
-    "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46842_image.jpg",
-    "est_in_mins": null,
-    "sg_description": "Integrate the flicker; match the plate's warm spill on the wall.",
-    "sg_priority_1": "1_Tier",
-    "sg_status_list": "ip",
-    "start_date": null,
-    "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:29Z"
-   },
-   "id": 46842,
-   "links": {
-    "self": "/api/v1/entity/tasks/46842"
-   },
-   "relationships": {
-    "entity": {
-     "data": {
-      "id": 7825,
-      "name": "sq010_sh010",
-      "type": "Shot"
-     },
-     "links": {
-      "related": "/api/v1/entity/shots/7825",
-      "self": "/api/v1/entity/tasks/46842/relationships/entity"
-     }
-    },
-    "project": {
-     "data": {
-      "id": 1180,
-      "name": "sg-comfyui Sandbox",
-      "type": "Project"
-     },
-     "links": {
-      "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46842/relationships/project"
-     }
-    },
-    "step": {
-     "data": {
-      "id": 8,
-      "name": "Comp",
-      "type": "Step"
-     },
-     "links": {
-      "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46842/relationships/step"
-     }
-    },
-    "task_assignees": {
-     "data": [
-      {
-       "id": 451,
-       "name": "Kevin Artist",
-       "type": "HumanUser"
-      }
-     ],
-     "links": {
-      "self": "/api/v1/entity/tasks/46842/relationships/task_assignees"
-     }
-    }
-   },
-   "type": "Task"
-  },
-  {
-   "attributes": {
-    "content": "Comp",
-    "created_at": "2026-09-15T17:24:56Z",
-    "due_date": "2026-09-16",
-    "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46844_image.jpg",
-    "est_in_mins": null,
-    "sg_description": "Rain on the glass, subtle. Plate has no rain.",
-    "sg_priority_1": "1_Tier",
-    "sg_status_list": "rev",
-    "start_date": null,
-    "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:25Z"
-   },
-   "id": 46843,
-   "links": {
-    "self": "/api/v1/entity/tasks/46843"
-   },
-   "relationships": {
-    "entity": {
-     "data": {
-      "id": 7826,
-      "name": "sq010_sh020",
-      "type": "Shot"
-     },
-     "links": {
-      "related": "/api/v1/entity/shots/7826",
-      "self": "/api/v1/entity/tasks/46843/relationships/entity"
-     }
-    },
-    "project": {
-     "data": {
-      "id": 1180,
-      "name": "sg-comfyui Sandbox",
-      "type": "Project"
-     },
-     "links": {
-      "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46843/relationships/project"
-     }
-    },
-    "step": {
-     "data": {
-      "id": 8,
-      "name": "Comp",
-      "type": "Step"
-     },
-     "links": {
-      "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46843/relationships/step"
-     }
-    },
-    "task_assignees": {
-     "data": [
-      {
-       "id": 451,
-       "name": "Kevin Artist",
-       "type": "HumanUser"
-      }
-     ],
-     "links": {
-      "self": "/api/v1/entity/tasks/46843/relationships/task_assignees"
-     }
-    }
-   },
-   "type": "Task"
-  },
-  {
-   "attributes": {
-    "content": "Texture",
-    "created_at": "2026-09-15T17:24:59Z",
-    "due_date": "2026-09-17",
-    "entity.Asset.image": "media/Task_46849_image.jpg",
-    "entity.Shot.image": null,
-    "est_in_mins": null,
-    "sg_description": "Tile grout too clean, dirty it up.",
-    "sg_priority_1": "2_Tier",
-    "sg_status_list": "rev",
-    "start_date": null,
-    "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:28Z"
-   },
-   "id": 46849,
-   "links": {
-    "self": "/api/v1/entity/tasks/46849"
-   },
-   "relationships": {
-    "entity": {
-     "data": {
-      "id": 10137,
-      "name": "env_kitchen",
-      "type": "Asset"
-     },
-     "links": {
-      "related": "/api/v1/entity/assets/10137",
-      "self": "/api/v1/entity/tasks/46849/relationships/entity"
-     }
-    },
-    "project": {
-     "data": {
-      "id": 1180,
-      "name": "sg-comfyui Sandbox",
-      "type": "Project"
-     },
-     "links": {
-      "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46849/relationships/project"
-     }
-    },
-    "step": {
-     "data": {
-      "id": 16,
-      "name": "Texture",
-      "type": "Step"
-     },
-     "links": {
-      "related": "/api/v1/entity/steps/16",
-      "self": "/api/v1/entity/tasks/46849/relationships/step"
-     }
-    },
-    "task_assignees": {
-     "data": [
-      {
-       "id": 451,
-       "name": "Kevin Artist",
-       "type": "HumanUser"
-      }
-     ],
-     "links": {
-      "self": "/api/v1/entity/tasks/46849/relationships/task_assignees"
-     }
-    }
-   },
-   "type": "Task"
-  },
-  {
-   "attributes": {
     "content": "Light",
-    "created_at": "2026-09-15T17:24:57Z",
-    "due_date": "2026-09-18",
+    "created_at": "2026-09-04T19:40:25Z",
+    "due_date": "2026-08-25",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46845_image.jpg",
+    "entity.Shot.image": "media/Task_46988_image.jpg",
     "est_in_mins": null,
-    "sg_description": "Key from the lamp, fill from the window. Match sh010.",
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
     "sg_priority_1": "2_Tier",
-    "sg_status_list": "ready",
+    "sg_status_list": "rev",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:27Z"
+    "updated_at": "2026-09-15T18:44:20Z"
    },
-   "id": 46845,
+   "id": 46988,
    "links": {
-    "self": "/api/v1/entity/tasks/46845"
+    "self": "/api/v1/entity/tasks/46988"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7827,
-      "name": "sq010_sh030",
+      "id": 7860,
+      "name": "sq020_sh020",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7827",
-      "self": "/api/v1/entity/tasks/46845/relationships/entity"
+      "related": "/api/v1/entity/shots/7860",
+      "self": "/api/v1/entity/tasks/46988/relationships/entity"
      }
     },
     "project": {
@@ -379,7 +39,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46845/relationships/project"
+      "self": "/api/v1/entity/tasks/46988/relationships/project"
      }
     },
     "step": {
@@ -390,7 +50,7 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/7",
-      "self": "/api/v1/entity/tasks/46845/relationships/step"
+      "self": "/api/v1/entity/tasks/46988/relationships/step"
      }
     },
     "task_assignees": {
@@ -402,7 +62,143 @@
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46845/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46988/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-09-10T12:44:27Z",
+    "due_date": "2026-08-26",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46997_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:46:02Z"
+   },
+   "id": 46997,
+   "links": {
+    "self": "/api/v1/entity/tasks/46997"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7863,
+      "name": "sq020_sh050",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7863",
+      "self": "/api/v1/entity/tasks/46997/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46997/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/46997/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46997/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Texture",
+    "created_at": "2026-09-04T14:40:46Z",
+    "due_date": "2026-08-26",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Texture and shade to the look-dev turntable.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:21Z"
+   },
+   "id": 47032,
+   "links": {
+    "self": "/api/v1/entity/tasks/47032"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10151,
+      "name": "char_hero",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10151",
+      "self": "/api/v1/entity/tasks/47032/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47032/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 16,
+      "name": "Texture",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/16",
+      "self": "/api/v1/entity/tasks/47032/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47032/relationships/task_assignees"
      }
     }
    },
@@ -411,32 +207,100 @@
   {
    "attributes": {
     "content": "Comp",
-    "created_at": "2026-09-15T17:24:58Z",
-    "due_date": "2026-09-22",
+    "created_at": "2026-08-28T10:30:17Z",
+    "due_date": "2026-08-27",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46845_image.jpg",
+    "entity.Shot.image": "media/Task_47013_image.jpg",
     "est_in_mins": null,
-    "sg_description": "Waits on Light.",
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:46:08Z"
+   },
+   "id": 47013,
+   "links": {
+    "self": "/api/v1/entity/tasks/47013"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7867,
+      "name": "sq030_sh010",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7867",
+      "self": "/api/v1/entity/tasks/47013/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47013/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/47013/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47013/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-08-21T11:14:57Z",
+    "due_date": "2026-08-27",
+    "entity.Asset.image": "media/Task_47034_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
     "sg_priority_1": "3_Tier",
     "sg_status_list": "wtg",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:24:58Z"
+    "updated_at": "2026-09-15T18:44:17Z"
    },
-   "id": 46846,
+   "id": 47034,
    "links": {
-    "self": "/api/v1/entity/tasks/46846"
+    "self": "/api/v1/entity/tasks/47034"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7827,
-      "name": "sq010_sh030",
-      "type": "Shot"
+      "id": 10152,
+      "name": "char_second",
+      "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7827",
-      "self": "/api/v1/entity/tasks/46846/relationships/entity"
+      "related": "/api/v1/entity/assets/10152",
+      "self": "/api/v1/entity/tasks/47034/relationships/entity"
      }
     },
     "project": {
@@ -447,18 +311,18 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46846/relationships/project"
+      "self": "/api/v1/entity/tasks/47034/relationships/project"
      }
     },
     "step": {
      "data": {
-      "id": 8,
-      "name": "Comp",
+      "id": 129,
+      "name": "Design",
       "type": "Step"
      },
      "links": {
-      "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46846/relationships/step"
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47034/relationships/step"
      }
     },
     "task_assignees": {
@@ -470,7 +334,7 @@
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46846/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/47034/relationships/task_assignees"
      }
     }
    },
@@ -478,33 +342,33 @@
   },
   {
    "attributes": {
-    "content": "Comp",
-    "created_at": "2026-09-15T17:24:58Z",
-    "due_date": "2026-09-25",
+    "content": "Layout",
+    "created_at": "2026-08-13T17:30:54Z",
+    "due_date": "2026-08-29",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46847_image.jpg",
+    "entity.Shot.image": "media/Task_46990_image.jpg",
     "est_in_mins": null,
-    "sg_description": "On hold until the insert is re-shot.",
+    "sg_description": "Block the camera and the set pieces from the previs.",
     "sg_priority_1": "3_Tier",
-    "sg_status_list": "hld",
+    "sg_status_list": "rev",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:27Z"
+    "updated_at": "2026-09-15T18:45:26Z"
    },
-   "id": 46847,
+   "id": 46990,
    "links": {
-    "self": "/api/v1/entity/tasks/46847"
+    "self": "/api/v1/entity/tasks/46990"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7828,
-      "name": "sq010_sh040",
+      "id": 7861,
+      "name": "sq020_sh030",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7828",
-      "self": "/api/v1/entity/tasks/46847/relationships/entity"
+      "related": "/api/v1/entity/shots/7861",
+      "self": "/api/v1/entity/tasks/46990/relationships/entity"
      }
     },
     "project": {
@@ -515,18 +379,18 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46847/relationships/project"
+      "self": "/api/v1/entity/tasks/46990/relationships/project"
      }
     },
     "step": {
      "data": {
-      "id": 8,
-      "name": "Comp",
+      "id": 35,
+      "name": "Layout",
       "type": "Step"
      },
      "links": {
-      "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46847/relationships/step"
+      "related": "/api/v1/entity/steps/35",
+      "self": "/api/v1/entity/tasks/46990/relationships/step"
      }
     },
     "task_assignees": {
@@ -538,7 +402,75 @@
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46847/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46990/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Art",
+    "created_at": "2026-09-07T15:15:27Z",
+    "due_date": "2026-08-29",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Paint the key art for the sequence.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:40:07Z"
+   },
+   "id": 47033,
+   "links": {
+    "self": "/api/v1/entity/tasks/47033"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10151,
+      "name": "char_hero",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10151",
+      "self": "/api/v1/entity/tasks/47033/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47033/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 13,
+      "name": "Art",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/13",
+      "self": "/api/v1/entity/tasks/47033/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47033/relationships/task_assignees"
      }
     }
    },
@@ -547,32 +479,32 @@
   {
    "attributes": {
     "content": "Model",
-    "created_at": "2026-09-15T17:25:00Z",
-    "due_date": "2026-09-29",
-    "entity.Asset.image": "media/Task_46850_image.jpg",
+    "created_at": "2026-08-29T09:56:43Z",
+    "due_date": "2026-08-29",
+    "entity.Asset.image": "media/Task_47053_image.jpg",
     "entity.Shot.image": null,
     "est_in_mins": null,
-    "sg_description": "Block out from the art department sketch.",
+    "sg_description": "Build to the approved concept, keep the topology quad-dominant.",
     "sg_priority_1": "3_Tier",
-    "sg_status_list": "wtg",
+    "sg_status_list": "fin",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:25:00Z"
+    "updated_at": "2026-09-15T18:36:06Z"
    },
-   "id": 46850,
+   "id": 47053,
    "links": {
-    "self": "/api/v1/entity/tasks/46850"
+    "self": "/api/v1/entity/tasks/47053"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 10138,
+      "id": 10158,
       "name": "prop_lamp",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10138",
-      "self": "/api/v1/entity/tasks/46850/relationships/entity"
+      "related": "/api/v1/entity/assets/10158",
+      "self": "/api/v1/entity/tasks/47053/relationships/entity"
      }
     },
     "project": {
@@ -583,7 +515,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46850/relationships/project"
+      "self": "/api/v1/entity/tasks/47053/relationships/project"
      }
     },
     "step": {
@@ -594,7 +526,7 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/14",
-      "self": "/api/v1/entity/tasks/46850/relationships/step"
+      "self": "/api/v1/entity/tasks/47053/relationships/step"
      }
     },
     "task_assignees": {
@@ -606,7 +538,3883 @@
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46850/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/47053/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-09-02T15:49:44Z",
+    "due_date": "2026-08-30",
+    "entity.Asset.image": "media/Task_47041_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:21Z"
+   },
+   "id": 47041,
+   "links": {
+    "self": "/api/v1/entity/tasks/47041"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10154,
+      "name": "env_kitchen",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10154",
+      "self": "/api/v1/entity/tasks/47041/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47041/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47041/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47041/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Rigging",
+    "created_at": "2026-08-28T19:20:38Z",
+    "due_date": "2026-08-30",
+    "entity.Asset.image": "media/Task_47045_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Rig to the animation brief, deliver a picker.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:38:00Z"
+   },
+   "id": 47045,
+   "links": {
+    "self": "/api/v1/entity/tasks/47045"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10155,
+      "name": "env_stairwell",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10155",
+      "self": "/api/v1/entity/tasks/47045/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47045/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 15,
+      "name": "Rigging",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/15",
+      "self": "/api/v1/entity/tasks/47045/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47045/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Layout",
+    "created_at": "2026-08-14T11:21:53Z",
+    "due_date": "2026-08-31",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47028_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Block the camera and the set pieces from the previs.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:14Z"
+   },
+   "id": 47028,
+   "links": {
+    "self": "/api/v1/entity/tasks/47028"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7872,
+      "name": "sq030_sh060",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7872",
+      "self": "/api/v1/entity/tasks/47028/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47028/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 35,
+      "name": "Layout",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/35",
+      "self": "/api/v1/entity/tasks/47028/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47028/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Texture",
+    "created_at": "2026-09-04T10:48:10Z",
+    "due_date": "2026-09-02",
+    "entity.Asset.image": "media/Task_47041_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Texture and shade to the look-dev turntable.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:31Z"
+   },
+   "id": 47042,
+   "links": {
+    "self": "/api/v1/entity/tasks/47042"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10154,
+      "name": "env_kitchen",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10154",
+      "self": "/api/v1/entity/tasks/47042/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47042/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 16,
+      "name": "Texture",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/16",
+      "self": "/api/v1/entity/tasks/47042/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47042/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "FX",
+    "created_at": "2026-08-25T16:47:26Z",
+    "due_date": "2026-09-03",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46958_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Simulate the practical elements, hand off caches to Light.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:10Z"
+   },
+   "id": 46958,
+   "links": {
+    "self": "/api/v1/entity/tasks/46958"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7851,
+      "name": "sq010_sh010",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7851",
+      "self": "/api/v1/entity/tasks/46958/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46958/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 6,
+      "name": "FX",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/6",
+      "self": "/api/v1/entity/tasks/46958/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46958/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-09-02T12:13:48Z",
+    "due_date": "2026-09-03",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46997_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:55Z"
+   },
+   "id": 46998,
+   "links": {
+    "self": "/api/v1/entity/tasks/46998"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7863,
+      "name": "sq020_sh050",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7863",
+      "self": "/api/v1/entity/tasks/46998/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46998/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/46998/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46998/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-08-26T17:17:36Z",
+    "due_date": "2026-09-03",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47021_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:10Z"
+   },
+   "id": 47021,
+   "links": {
+    "self": "/api/v1/entity/tasks/47021"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7869,
+      "name": "sq030_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7869",
+      "self": "/api/v1/entity/tasks/47021/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47021/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/47021/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47021/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-08-25T14:34:26Z",
+    "due_date": "2026-09-04",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:25Z"
+   },
+   "id": 47037,
+   "links": {
+    "self": "/api/v1/entity/tasks/47037"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10153,
+      "name": "char_crowd_a",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10153",
+      "self": "/api/v1/entity/tasks/47037/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47037/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47037/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47037/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Art",
+    "created_at": "2026-09-01T14:24:25Z",
+    "due_date": "2026-09-05",
+    "entity.Asset.image": "media/Task_47053_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Paint the key art for the sequence.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:37:55Z"
+   },
+   "id": 47054,
+   "links": {
+    "self": "/api/v1/entity/tasks/47054"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10158,
+      "name": "prop_lamp",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10158",
+      "self": "/api/v1/entity/tasks/47054/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47054/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 13,
+      "name": "Art",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/13",
+      "self": "/api/v1/entity/tasks/47054/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47054/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-08-12T11:48:25Z",
+    "due_date": "2026-09-06",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46967_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:30Z"
+   },
+   "id": 46967,
+   "links": {
+    "self": "/api/v1/entity/tasks/46967"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7854,
+      "name": "sq010_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7854",
+      "self": "/api/v1/entity/tasks/46967/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46967/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/46967/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46967/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Model",
+    "created_at": "2026-08-17T10:45:05Z",
+    "due_date": "2026-09-07",
+    "entity.Asset.image": "media/Task_47034_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Build to the approved concept, keep the topology quad-dominant.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:25Z"
+   },
+   "id": 47035,
+   "links": {
+    "self": "/api/v1/entity/tasks/47035"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10152,
+      "name": "char_second",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10152",
+      "self": "/api/v1/entity/tasks/47035/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47035/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 14,
+      "name": "Model",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/14",
+      "self": "/api/v1/entity/tasks/47035/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47035/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-08-31T09:49:47Z",
+    "due_date": "2026-09-08",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47008_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:03Z"
+   },
+   "id": 47008,
+   "links": {
+    "self": "/api/v1/entity/tasks/47008"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7866,
+      "name": "sq020_sh080",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7866",
+      "self": "/api/v1/entity/tasks/47008/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47008/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/47008/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47008/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-08-30T11:06:10Z",
+    "due_date": "2026-09-09",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46962_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:41Z"
+   },
+   "id": 46962,
+   "links": {
+    "self": "/api/v1/entity/tasks/46962"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7852,
+      "name": "sq010_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7852",
+      "self": "/api/v1/entity/tasks/46962/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46962/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/46962/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46962/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Art",
+    "created_at": "2026-09-10T10:23:04Z",
+    "due_date": "2026-09-09",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Paint the key art for the sequence.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:44:30Z"
+   },
+   "id": 47040,
+   "links": {
+    "self": "/api/v1/entity/tasks/47040"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10153,
+      "name": "char_crowd_a",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10153",
+      "self": "/api/v1/entity/tasks/47040/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47040/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 13,
+      "name": "Art",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/13",
+      "self": "/api/v1/entity/tasks/47040/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47040/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Roto",
+    "created_at": "2026-08-28T11:30:23Z",
+    "due_date": "2026-09-10",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46981_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Roto the foreground for the hold-out.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:39:45Z"
+   },
+   "id": 46981,
+   "links": {
+    "self": "/api/v1/entity/tasks/46981"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7858,
+      "name": "sq010_sh080",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7858",
+      "self": "/api/v1/entity/tasks/46981/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46981/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 134,
+      "name": "Roto",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/134",
+      "self": "/api/v1/entity/tasks/46981/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46981/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-01T11:13:53Z",
+    "due_date": "2026-09-10",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46985_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:52Z"
+   },
+   "id": 46985,
+   "links": {
+    "self": "/api/v1/entity/tasks/46985"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7859,
+      "name": "sq020_sh010",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7859",
+      "self": "/api/v1/entity/tasks/46985/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46985/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46985/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46985/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-09-14T18:40:30Z",
+    "due_date": "2026-09-11",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47017_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:08Z"
+   },
+   "id": 47017,
+   "links": {
+    "self": "/api/v1/entity/tasks/47017"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7868,
+      "name": "sq030_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7868",
+      "self": "/api/v1/entity/tasks/47017/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47017/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/47017/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47017/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-08-20T13:39:28Z",
+    "due_date": "2026-09-12",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46993_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:44:29Z"
+   },
+   "id": 46993,
+   "links": {
+    "self": "/api/v1/entity/tasks/46993"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7862,
+      "name": "sq020_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7862",
+      "self": "/api/v1/entity/tasks/46993/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46993/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/46993/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46993/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-07T10:35:01Z",
+    "due_date": "2026-09-13",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46958_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:44:24Z"
+   },
+   "id": 46959,
+   "links": {
+    "self": "/api/v1/entity/tasks/46959"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7851,
+      "name": "sq010_sh010",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7851",
+      "self": "/api/v1/entity/tasks/46959/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46959/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46959/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46959/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-08T15:23:52Z",
+    "due_date": "2026-09-13",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46997_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:34:20Z"
+   },
+   "id": 46999,
+   "links": {
+    "self": "/api/v1/entity/tasks/46999"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7863,
+      "name": "sq020_sh050",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7863",
+      "self": "/api/v1/entity/tasks/46999/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46999/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46999/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46999/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Rigging",
+    "created_at": "2026-09-15T09:17:08Z",
+    "due_date": "2026-09-13",
+    "entity.Asset.image": "media/Task_47034_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Rig to the animation brief, deliver a picker.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:37:34Z"
+   },
+   "id": 47036,
+   "links": {
+    "self": "/api/v1/entity/tasks/47036"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10152,
+      "name": "char_second",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10152",
+      "self": "/api/v1/entity/tasks/47036/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47036/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 15,
+      "name": "Rigging",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/15",
+      "self": "/api/v1/entity/tasks/47036/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47036/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Roto",
+    "created_at": "2026-08-27T17:36:02Z",
+    "due_date": "2026-09-14",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47028_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Roto the foreground for the hold-out.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:56Z"
+   },
+   "id": 47029,
+   "links": {
+    "self": "/api/v1/entity/tasks/47029"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7872,
+      "name": "sq030_sh060",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7872",
+      "self": "/api/v1/entity/tasks/47029/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47029/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 134,
+      "name": "Roto",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/134",
+      "self": "/api/v1/entity/tasks/47029/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47029/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-09-14T16:32:06Z",
+    "due_date": "2026-09-14",
+    "entity.Asset.image": "media/Task_47050_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:58Z"
+   },
+   "id": 47050,
+   "links": {
+    "self": "/api/v1/entity/tasks/47050"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10157,
+      "name": "env_city_far",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10157",
+      "self": "/api/v1/entity/tasks/47050/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47050/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47050/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47050/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Rigging",
+    "created_at": "2026-09-11T11:05:44Z",
+    "due_date": "2026-09-14",
+    "entity.Asset.image": "media/Task_47059_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Rig to the animation brief, deliver a picker.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:43:53Z"
+   },
+   "id": 47059,
+   "links": {
+    "self": "/api/v1/entity/tasks/47059"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10160,
+      "name": "prop_keys",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10160",
+      "self": "/api/v1/entity/tasks/47059/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47059/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 15,
+      "name": "Rigging",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/15",
+      "self": "/api/v1/entity/tasks/47059/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47059/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-09-05T17:43:07Z",
+    "due_date": "2026-09-15",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46990_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "hld",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:39:03Z"
+   },
+   "id": 46992,
+   "links": {
+    "self": "/api/v1/entity/tasks/46992"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7861,
+      "name": "sq020_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7861",
+      "self": "/api/v1/entity/tasks/46992/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46992/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46992/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46992/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Art",
+    "created_at": "2026-09-09T14:51:35Z",
+    "due_date": "2026-09-16",
+    "entity.Asset.image": "media/Task_47041_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Paint the key art for the sequence.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:43Z"
+   },
+   "id": 47043,
+   "links": {
+    "self": "/api/v1/entity/tasks/47043"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10154,
+      "name": "env_kitchen",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10154",
+      "self": "/api/v1/entity/tasks/47043/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47043/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 13,
+      "name": "Art",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/13",
+      "self": "/api/v1/entity/tasks/47043/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47043/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Roto",
+    "created_at": "2026-09-01T15:00:21Z",
+    "due_date": "2026-09-17",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46965_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Roto the foreground for the hold-out.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:44:12Z"
+   },
+   "id": 46965,
+   "links": {
+    "self": "/api/v1/entity/tasks/46965"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7853,
+      "name": "sq010_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7853",
+      "self": "/api/v1/entity/tasks/46965/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46965/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 134,
+      "name": "Roto",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/134",
+      "self": "/api/v1/entity/tasks/46965/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46965/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-08-31T15:54:58Z",
+    "due_date": "2026-09-17",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47024_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:39:48Z"
+   },
+   "id": 47024,
+   "links": {
+    "self": "/api/v1/entity/tasks/47024"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7870,
+      "name": "sq030_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7870",
+      "self": "/api/v1/entity/tasks/47024/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47024/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/47024/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47024/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-08-21T18:16:08Z",
+    "due_date": "2026-09-17",
+    "entity.Asset.image": "media/Task_47053_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:37:39Z"
+   },
+   "id": 47052,
+   "links": {
+    "self": "/api/v1/entity/tasks/47052"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10158,
+      "name": "prop_lamp",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10158",
+      "self": "/api/v1/entity/tasks/47052/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47052/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47052/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47052/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Art",
+    "created_at": "2026-08-25T19:34:56Z",
+    "due_date": "2026-09-18",
+    "entity.Asset.image": "media/Task_47045_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Paint the key art for the sequence.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:58Z"
+   },
+   "id": 47046,
+   "links": {
+    "self": "/api/v1/entity/tasks/47046"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10155,
+      "name": "env_stairwell",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10155",
+      "self": "/api/v1/entity/tasks/47046/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47046/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 13,
+      "name": "Art",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/13",
+      "self": "/api/v1/entity/tasks/47046/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47046/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-09-03T15:07:38Z",
+    "due_date": "2026-09-19",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46962_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "omt",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:40Z"
+   },
+   "id": 46961,
+   "links": {
+    "self": "/api/v1/entity/tasks/46961"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7852,
+      "name": "sq010_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7852",
+      "self": "/api/v1/entity/tasks/46961/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46961/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/46961/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46961/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-08-14T17:01:20Z",
+    "due_date": "2026-09-19",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46965_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:46:11Z"
+   },
+   "id": 46964,
+   "links": {
+    "self": "/api/v1/entity/tasks/46964"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7853,
+      "name": "sq010_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7853",
+      "self": "/api/v1/entity/tasks/46964/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46964/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/46964/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46964/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Comp",
+    "created_at": "2026-08-21T09:05:48Z",
+    "due_date": "2026-09-20",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46988_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Assemble the renders, integrate the elements, final grade.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:33:55Z"
+   },
+   "id": 46989,
+   "links": {
+    "self": "/api/v1/entity/tasks/46989"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7860,
+      "name": "sq020_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7860",
+      "self": "/api/v1/entity/tasks/46989/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46989/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 8,
+      "name": "Comp",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/8",
+      "self": "/api/v1/entity/tasks/46989/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46989/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-09-01T17:18:08Z",
+    "due_date": "2026-09-20",
+    "entity.Asset.image": "media/Task_47045_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:42:05Z"
+   },
+   "id": 47044,
+   "links": {
+    "self": "/api/v1/entity/tasks/47044"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10155,
+      "name": "env_stairwell",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10155",
+      "self": "/api/v1/entity/tasks/47044/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47044/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47044/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47044/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-08-12T17:19:00Z",
+    "due_date": "2026-09-21",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46990_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:46:11Z"
+   },
+   "id": 46991,
+   "links": {
+    "self": "/api/v1/entity/tasks/46991"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7861,
+      "name": "sq020_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7861",
+      "self": "/api/v1/entity/tasks/46991/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46991/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/46991/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46991/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-08-31T11:23:55Z",
+    "due_date": "2026-09-23",
+    "entity.Asset.image": "media/Task_47055_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:36:07Z"
+   },
+   "id": 47055,
+   "links": {
+    "self": "/api/v1/entity/tasks/47055"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10159,
+      "name": "prop_phone",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10159",
+      "self": "/api/v1/entity/tasks/47055/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47055/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47055/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47055/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Layout",
+    "created_at": "2026-09-07T09:46:47Z",
+    "due_date": "2026-09-24",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46967_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Block the camera and the set pieces from the previs.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:13Z"
+   },
+   "id": 46966,
+   "links": {
+    "self": "/api/v1/entity/tasks/46966"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7854,
+      "name": "sq010_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7854",
+      "self": "/api/v1/entity/tasks/46966/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46966/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 35,
+      "name": "Layout",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/35",
+      "self": "/api/v1/entity/tasks/46966/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46966/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-09-15T10:18:16Z",
+    "due_date": "2026-09-25",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47004_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:36:26Z"
+   },
+   "id": 47004,
+   "links": {
+    "self": "/api/v1/entity/tasks/47004"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7865,
+      "name": "sq020_sh070",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7865",
+      "self": "/api/v1/entity/tasks/47004/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47004/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/47004/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47004/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Model",
+    "created_at": "2026-08-12T10:48:50Z",
+    "due_date": "2026-09-25",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Build to the approved concept, keep the topology quad-dominant.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:44:11Z"
+   },
+   "id": 47038,
+   "links": {
+    "self": "/api/v1/entity/tasks/47038"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10153,
+      "name": "char_crowd_a",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10153",
+      "self": "/api/v1/entity/tasks/47038/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47038/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 14,
+      "name": "Model",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/14",
+      "self": "/api/v1/entity/tasks/47038/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47038/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "FX",
+    "created_at": "2026-08-12T10:58:38Z",
+    "due_date": "2026-09-26",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47004_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Simulate the practical elements, hand off caches to Light.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:14Z"
+   },
+   "id": 47006,
+   "links": {
+    "self": "/api/v1/entity/tasks/47006"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7865,
+      "name": "sq020_sh070",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7865",
+      "self": "/api/v1/entity/tasks/47006/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47006/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 6,
+      "name": "FX",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/6",
+      "self": "/api/v1/entity/tasks/47006/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47006/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Layout",
+    "created_at": "2026-08-20T10:20:32Z",
+    "due_date": "2026-09-26",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47024_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Block the camera and the set pieces from the previs.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:11Z"
+   },
+   "id": 47022,
+   "links": {
+    "self": "/api/v1/entity/tasks/47022"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7870,
+      "name": "sq030_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7870",
+      "self": "/api/v1/entity/tasks/47022/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47022/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 35,
+      "name": "Layout",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/35",
+      "self": "/api/v1/entity/tasks/47022/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47022/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "FX",
+    "created_at": "2026-09-15T10:00:53Z",
+    "due_date": "2026-09-27",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47017_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Simulate the practical elements, hand off caches to Light.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:42:47Z"
+   },
+   "id": 47016,
+   "links": {
+    "self": "/api/v1/entity/tasks/47016"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7868,
+      "name": "sq030_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7868",
+      "self": "/api/v1/entity/tasks/47016/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47016/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 6,
+      "name": "FX",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/6",
+      "self": "/api/v1/entity/tasks/47016/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47016/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Design",
+    "created_at": "2026-09-03T11:22:07Z",
+    "due_date": "2026-09-27",
+    "entity.Asset.image": "media/Task_47062_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Concept pass from the art department brief.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:36:17Z"
+   },
+   "id": 47062,
+   "links": {
+    "self": "/api/v1/entity/tasks/47062"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10162,
+      "name": "veh_van",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10162",
+      "self": "/api/v1/entity/tasks/47062/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47062/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 129,
+      "name": "Design",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/129",
+      "self": "/api/v1/entity/tasks/47062/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47062/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-09-01T13:03:19Z",
+    "due_date": "2026-09-28",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46981_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:45Z"
+   },
+   "id": 46980,
+   "links": {
+    "self": "/api/v1/entity/tasks/46980"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7858,
+      "name": "sq010_sh080",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7858",
+      "self": "/api/v1/entity/tasks/46980/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46980/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/46980/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46980/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-09-15T09:50:37Z",
+    "due_date": "2026-09-30",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46993_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:43:33Z"
+   },
+   "id": 46995,
+   "links": {
+    "self": "/api/v1/entity/tasks/46995"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7862,
+      "name": "sq020_sh040",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7862",
+      "self": "/api/v1/entity/tasks/46995/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46995/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/46995/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46995/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Roto",
+    "created_at": "2026-09-14T10:05:08Z",
+    "due_date": "2026-09-30",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47017_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Roto the foreground for the hold-out.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:34:56Z"
+   },
+   "id": 47015,
+   "links": {
+    "self": "/api/v1/entity/tasks/47015"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7868,
+      "name": "sq030_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7868",
+      "self": "/api/v1/entity/tasks/47015/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47015/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 134,
+      "name": "Roto",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/134",
+      "self": "/api/v1/entity/tasks/47015/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47015/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Texture",
+    "created_at": "2026-09-15T12:17:28Z",
+    "due_date": "2026-09-30",
+    "entity.Asset.image": "media/Task_47055_image.jpg",
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Texture and shade to the look-dev turntable.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "wtg",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:37:59Z"
+   },
+   "id": 47056,
+   "links": {
+    "self": "/api/v1/entity/tasks/47056"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10159,
+      "name": "prop_phone",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10159",
+      "self": "/api/v1/entity/tasks/47056/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47056/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 16,
+      "name": "Texture",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/16",
+      "self": "/api/v1/entity/tasks/47056/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47056/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Rigging",
+    "created_at": "2026-09-15T10:02:36Z",
+    "due_date": "2026-09-30",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Rig to the animation brief, deliver a picker.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:40:26Z"
+   },
+   "id": 47061,
+   "links": {
+    "self": "/api/v1/entity/tasks/47061"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 10161,
+      "name": "veh_sedan",
+      "type": "Asset"
+     },
+     "links": {
+      "related": "/api/v1/entity/assets/10161",
+      "self": "/api/v1/entity/tasks/47061/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47061/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 15,
+      "name": "Rigging",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/15",
+      "self": "/api/v1/entity/tasks/47061/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47061/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Layout",
+    "created_at": "2026-09-04T14:35:41Z",
+    "due_date": "2026-10-01",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46962_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Block the camera and the set pieces from the previs.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "hld",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:38Z"
+   },
+   "id": 46960,
+   "links": {
+    "self": "/api/v1/entity/tasks/46960"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7852,
+      "name": "sq010_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7852",
+      "self": "/api/v1/entity/tasks/46960/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46960/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 35,
+      "name": "Layout",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/35",
+      "self": "/api/v1/entity/tasks/46960/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46960/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-08-28T19:07:30Z",
+    "due_date": "2026-10-01",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47028_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:19Z"
+   },
+   "id": 47031,
+   "links": {
+    "self": "/api/v1/entity/tasks/47031"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7872,
+      "name": "sq030_sh060",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7872",
+      "self": "/api/v1/entity/tasks/47031/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47031/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/47031/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47031/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-08-11T10:49:40Z",
+    "due_date": "2026-10-02",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46965_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "1_Tier",
+    "sg_status_list": "rev",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:32:45Z"
+   },
+   "id": 46963,
+   "links": {
+    "self": "/api/v1/entity/tasks/46963"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7853,
+      "name": "sq010_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7853",
+      "self": "/api/v1/entity/tasks/46963/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46963/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/46963/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46963/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Light",
+    "created_at": "2026-09-15T09:47:26Z",
+    "due_date": "2026-10-03",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46971_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Key from the practical, fill from the window. Match the neighbouring shot.",
+    "sg_priority_1": "3_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:00Z"
+   },
+   "id": 46971,
+   "links": {
+    "self": "/api/v1/entity/tasks/46971"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7855,
+      "name": "sq010_sh050",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7855",
+      "self": "/api/v1/entity/tasks/46971/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46971/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 7,
+      "name": "Light",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/7",
+      "self": "/api/v1/entity/tasks/46971/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46971/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Tracking",
+    "created_at": "2026-08-27T10:38:44Z",
+    "due_date": "2026-10-03",
+    "entity.Asset.image": null,
+    "entity.Shot.image": null,
+    "est_in_mins": null,
+    "sg_description": "Solve the handheld move, survey the set for the extension.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:35:12Z"
+   },
+   "id": 47026,
+   "links": {
+    "self": "/api/v1/entity/tasks/47026"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7871,
+      "name": "sq030_sh050",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7871",
+      "self": "/api/v1/entity/tasks/47026/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47026/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 133,
+      "name": "Tracking",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/133",
+      "self": "/api/v1/entity/tasks/47026/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47026/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-09-15T10:15:46Z",
+    "due_date": "2026-10-05",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47021_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ready",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:40:00Z"
+   },
+   "id": 47018,
+   "links": {
+    "self": "/api/v1/entity/tasks/47018"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7869,
+      "name": "sq030_sh030",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7869",
+      "self": "/api/v1/entity/tasks/47018/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47018/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/47018/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47018/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "FX",
+    "created_at": "2026-09-01T09:47:48Z",
+    "due_date": "2026-10-05",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47028_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Simulate the practical elements, hand off caches to Light.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "ip",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:45:51Z"
+   },
+   "id": 47030,
+   "links": {
+    "self": "/api/v1/entity/tasks/47030"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7872,
+      "name": "sq030_sh060",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7872",
+      "self": "/api/v1/entity/tasks/47030/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47030/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 6,
+      "name": "FX",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/6",
+      "self": "/api/v1/entity/tasks/47030/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47030/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "FX",
+    "created_at": "2026-09-08T13:04:00Z",
+    "due_date": "2026-10-06",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_46974_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Simulate the practical elements, hand off caches to Light.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "fin",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:41:55Z"
+   },
+   "id": 46974,
+   "links": {
+    "self": "/api/v1/entity/tasks/46974"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7856,
+      "name": "sq010_sh060",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7856",
+      "self": "/api/v1/entity/tasks/46974/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/46974/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 6,
+      "name": "FX",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/6",
+      "self": "/api/v1/entity/tasks/46974/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/46974/relationships/task_assignees"
+     }
+    }
+   },
+   "type": "Task"
+  },
+  {
+   "attributes": {
+    "content": "Animation",
+    "created_at": "2026-09-10T10:58:31Z",
+    "due_date": "2026-10-06",
+    "entity.Asset.image": null,
+    "entity.Shot.image": "media/Task_47017_image.jpg",
+    "est_in_mins": null,
+    "sg_description": "Blocking to spline; hold the eyeline through the turn.",
+    "sg_priority_1": "2_Tier",
+    "sg_status_list": "apr",
+    "start_date": null,
+    "time_logs_sum": 0,
+    "updated_at": "2026-09-15T18:37:56Z"
+   },
+   "id": 47014,
+   "links": {
+    "self": "/api/v1/entity/tasks/47014"
+   },
+   "relationships": {
+    "entity": {
+     "data": {
+      "id": 7868,
+      "name": "sq030_sh020",
+      "type": "Shot"
+     },
+     "links": {
+      "related": "/api/v1/entity/shots/7868",
+      "self": "/api/v1/entity/tasks/47014/relationships/entity"
+     }
+    },
+    "project": {
+     "data": {
+      "id": 1180,
+      "name": "sg-comfyui Sandbox",
+      "type": "Project"
+     },
+     "links": {
+      "related": "/api/v1/entity/projects/1180",
+      "self": "/api/v1/entity/tasks/47014/relationships/project"
+     }
+    },
+    "step": {
+     "data": {
+      "id": 106,
+      "name": "Animation",
+      "type": "Step"
+     },
+     "links": {
+      "related": "/api/v1/entity/steps/106",
+      "self": "/api/v1/entity/tasks/47014/relationships/step"
+     }
+    },
+    "task_assignees": {
+     "data": [
+      {
+       "id": 451,
+       "name": "Kevin Artist",
+       "type": "HumanUser"
+      }
+     ],
+     "links": {
+      "self": "/api/v1/entity/tasks/47014/relationships/task_assignees"
      }
     }
    },
@@ -624,7 +4432,7 @@
     "no_bubble_source"
    ],
    [
-    2,
+    1,
     "no_bubble_source"
    ],
    [
@@ -636,17 +4444,161 @@
     "no_bubble_source"
    ],
    [
-    6,
+    10,
     "no_bubble_source"
    ],
    [
-    7,
+    12,
+    "no_bubble_source"
+   ],
+   [
+    13,
+    "no_bubble_source"
+   ],
+   [
+    14,
+    "no_bubble_source"
+   ],
+   [
+    17,
+    "no_bubble_source"
+   ],
+   [
+    19,
+    "no_bubble_source"
+   ],
+   [
+    20,
+    "no_bubble_source"
+   ],
+   [
+    22,
+    "no_bubble_source"
+   ],
+   [
+    23,
+    "no_bubble_source"
+   ],
+   [
+    24,
+    "no_bubble_source"
+   ],
+   [
+    25,
+    "no_bubble_source"
+   ],
+   [
+    26,
+    "no_bubble_source"
+   ],
+   [
+    27,
+    "no_bubble_source"
+   ],
+   [
+    29,
+    "no_bubble_source"
+   ],
+   [
+    32,
+    "no_bubble_source"
+   ],
+   [
+    34,
+    "no_bubble_source"
+   ],
+   [
+    35,
+    "no_bubble_source"
+   ],
+   [
+    38,
+    "no_bubble_source"
+   ],
+   [
+    39,
+    "no_bubble_source"
+   ],
+   [
+    40,
+    "no_bubble_source"
+   ],
+   [
+    42,
+    "no_bubble_source"
+   ],
+   [
+    44,
+    "no_bubble_source"
+   ],
+   [
+    45,
+    "no_bubble_source"
+   ],
+   [
+    47,
+    "no_bubble_source"
+   ],
+   [
+    48,
+    "no_bubble_source"
+   ],
+   [
+    49,
+    "no_bubble_source"
+   ],
+   [
+    51,
+    "no_bubble_source"
+   ],
+   [
+    52,
+    "no_bubble_source"
+   ],
+   [
+    53,
+    "no_bubble_source"
+   ],
+   [
+    56,
+    "no_bubble_source"
+   ],
+   [
+    57,
+    "no_bubble_source"
+   ],
+   [
+    58,
+    "no_bubble_source"
+   ],
+   [
+    59,
+    "no_bubble_source"
+   ],
+   [
+    60,
+    "no_bubble_source"
+   ],
+   [
+    61,
+    "no_bubble_source"
+   ],
+   [
+    62,
+    "no_bubble_source"
+   ],
+   [
+    63,
+    "no_bubble_source"
+   ],
+   [
+    64,
     "no_bubble_source"
    ]
   ],
   "entity.Shot.image": [
    [
-    1,
+    2,
     "no_bubble_source"
    ],
    [
@@ -654,7 +4606,87 @@
     "no_bubble_source"
    ],
    [
+    6,
+    "no_bubble_source"
+   ],
+   [
+    7,
+    "no_bubble_source"
+   ],
+   [
     8,
+    "no_bubble_source"
+   ],
+   [
+    9,
+    "no_bubble_source"
+   ],
+   [
+    11,
+    "no_bubble_source"
+   ],
+   [
+    15,
+    "no_bubble_source"
+   ],
+   [
+    16,
+    "no_bubble_source"
+   ],
+   [
+    18,
+    "no_bubble_source"
+   ],
+   [
+    21,
+    "no_bubble_source"
+   ],
+   [
+    28,
+    "no_bubble_source"
+   ],
+   [
+    30,
+    "no_bubble_source"
+   ],
+   [
+    31,
+    "no_bubble_source"
+   ],
+   [
+    33,
+    "no_bubble_source"
+   ],
+   [
+    36,
+    "no_bubble_source"
+   ],
+   [
+    37,
+    "no_bubble_source"
+   ],
+   [
+    41,
+    "no_bubble_source"
+   ],
+   [
+    43,
+    "no_bubble_source"
+   ],
+   [
+    46,
+    "no_bubble_source"
+   ],
+   [
+    50,
+    "no_bubble_source"
+   ],
+   [
+    54,
+    "no_bubble_source"
+   ],
+   [
+    55,
     "no_bubble_source"
    ]
   ]

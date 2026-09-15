@@ -1,0 +1,21 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No blinks in the whole shot. Add two, one on the head turn.",
+   "created_at": "2026-09-07T13:35:45Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11258,
+   "sg_status_list": "opn",
+   "subject": "blink",
+   "type": "Note"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11258/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

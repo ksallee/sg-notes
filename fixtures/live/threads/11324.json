@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "We like where this is going. The performance sells it.",
+   "created_at": "2026-09-12T15:05:45Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11324,
+   "sg_status_list": "ip",
+   "subject": "Overall note",
+   "type": "Note"
+  },
+  {
+   "content": "Thanks, that answers it.",
+   "created_at": "2026-09-14T13:10:58Z",
+   "id": 943,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Fixed and rendering now.",
+   "created_at": "2026-09-14T15:49:46Z",
+   "id": 944,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11324/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

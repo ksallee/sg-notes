@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Note for editorial rather than you: the music drops out under this.",
+   "created_at": "2026-09-04T10:10:45Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11238,
+   "sg_status_list": "opn",
+   "subject": "Sound",
+   "type": "Note"
+  },
+  {
+   "content": "We will look at it in the next review.",
+   "created_at": "2026-09-07T15:59:08Z",
+   "id": 852,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:42:01Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh040_grade_chart.png",
+   "id": 3469,
+   "image": "media/Attachment_3469_image.jpg",
+   "type": "Attachment"
+  },
+  {
+   "created_at": "2026-09-15T18:42:02Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "sq020_sh040_grade_chart.png",
+   "id": 3470,
+   "image": "media/Attachment_3470_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11238/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,81 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The hold-out is soft on the right shoulder for the last 30 frames.",
+   "created_at": "2026-09-14T16:08:10Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "id": 11348,
+   "sg_status_list": "clsd",
+   "subject": "hold-out",
+   "type": "Note"
+  },
+  {
+   "content": "Addressed everything except the last point.",
+   "created_at": "2026-09-14T20:58:10Z",
+   "id": 976,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Good. Keep the speed, the slower version read better.",
+   "created_at": "2026-09-15T11:15:17Z",
+   "id": 977,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-09-15T12:59:59Z",
+   "id": 978,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Talk to Light before you change that.",
+   "created_at": "2026-09-15T12:59:59Z",
+   "id": 979,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Fixed and rendering now.",
+   "created_at": "2026-09-15T12:59:59Z",
+   "id": 980,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11348/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

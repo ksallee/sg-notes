@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Rim light is fighting the composition. Pull it back and let the silhouette do the work.",
+   "created_at": "2026-09-14T14:50:50Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11343,
+   "sg_status_list": "clsd",
+   "subject": "rim",
+   "type": "Note"
+  },
+  {
+   "content": "That was a render artefact, not comp. Re-submitting.",
+   "created_at": "2026-09-15T11:31:00Z",
+   "id": 971,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Will need the updated cache from FX before I can do that.",
+   "created_at": "2026-09-15T12:39:18Z",
+   "id": 972,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Fixed and rendering now.",
+   "created_at": "2026-09-15T12:59:59Z",
+   "id": 973,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11343/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

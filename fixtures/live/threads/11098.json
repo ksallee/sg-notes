@@ -1,0 +1,21 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No survey for the set extension. Track the floor plane as well.",
+   "created_at": "2026-08-19T14:28:45Z",
+   "created_by": {
+    "id": 451,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   },
+   "id": 11098,
+   "sg_status_list": "opn",
+   "subject": "survey",
+   "type": "Note"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11098/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

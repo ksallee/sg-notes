@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Garbage matte clips the elbow at the end of the move.",
+   "created_at": "2026-08-15T11:26:11Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11079,
+   "sg_status_list": "ip",
+   "subject": "garbage matte",
+   "type": "Note"
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-08-17T15:26:59Z",
+   "id": 674,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11079/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

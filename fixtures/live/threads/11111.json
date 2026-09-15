@@ -1,0 +1,93 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The greens are reading a little sickly on our monitor.",
+   "created_at": "2026-08-20T16:17:51Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11111,
+   "sg_status_list": "clsd",
+   "subject": "Colour",
+   "type": "Note"
+  },
+  {
+   "content": "Yes please.",
+   "created_at": "2026-08-21T15:20:38Z",
+   "id": 711,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "That was a render artefact, not comp. Re-submitting.",
+   "created_at": "2026-08-21T18:54:30Z",
+   "id": 712,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Yes please.",
+   "created_at": "2026-08-24T10:29:22Z",
+   "id": 713,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Addressed everything except the last point.",
+   "created_at": "2026-08-25T10:29:25Z",
+   "id": 714,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Thanks, that answers it.",
+   "created_at": "2026-08-27T10:40:16Z",
+   "id": 715,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:38:07Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "env_stairwell_reference_frame.png",
+   "id": 3402,
+   "image": "media/Attachment_3402_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11111/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

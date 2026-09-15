@@ -1,0 +1,69 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The screen insert slides against the tracked corners. Re-track the two right markers.",
+   "created_at": "2026-09-11T15:16:14Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "id": 11317,
+   "sg_status_list": "ip",
+   "subject": "screen insert",
+   "type": "Note"
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-09-11T17:40:11Z",
+   "id": 938,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Yes, let us look at it in dailies.",
+   "created_at": "2026-09-14T16:45:59Z",
+   "id": 939,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Agreed, that was sloppy. Corrected.",
+   "created_at": "2026-09-15T10:31:08Z",
+   "id": 940,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "That works. Approved.",
+   "created_at": "2026-09-15T12:28:52Z",
+   "id": 941,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11317/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

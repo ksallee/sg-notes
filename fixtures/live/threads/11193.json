@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Garbage matte clips the elbow at the end of the move.",
+   "created_at": "2026-08-31T09:53:55Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11193,
+   "sg_status_list": "clsd",
+   "subject": "garbage matte",
+   "type": "Note"
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-09-01T11:50:13Z",
+   "id": 804,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-09-02T10:24:28Z",
+   "id": 805,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-09-02T13:49:26Z",
+   "id": 806,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11193/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,21 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The sim is too dense to read the character behind it.",
+   "created_at": "2026-09-03T09:47:52Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "id": 11232,
+   "sg_status_list": "opn",
+   "subject": "density",
+   "type": "Note"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11232/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

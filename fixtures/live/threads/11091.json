@@ -1,0 +1,81 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The palette fights the sequence's key. Bring it toward the warm side.",
+   "created_at": "2026-08-18T11:56:37Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11091,
+   "sg_status_list": "clsd",
+   "subject": "palette",
+   "type": "Note"
+  },
+  {
+   "content": "Can you point me at the reference frame?",
+   "created_at": "2026-08-19T15:22:33Z",
+   "id": 687,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Good. Keep the speed, the slower version read better.",
+   "created_at": "2026-08-20T11:11:56Z",
+   "id": 688,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-08-20T16:21:37Z",
+   "id": 689,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Better. Ship it.",
+   "created_at": "2026-08-24T10:17:20Z",
+   "id": 690,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-08-26T12:41:35Z",
+   "id": 691,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11091/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

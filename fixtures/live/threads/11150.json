@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Green is still in the hair on the left side. Despill and rebuild the edge colour.",
+   "created_at": "2026-08-26T10:24:54Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11150,
+   "sg_status_list": "clsd",
+   "subject": "despill",
+   "type": "Note"
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-08-26T15:32:28Z",
+   "id": 752,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11150/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

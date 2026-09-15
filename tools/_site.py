@@ -47,6 +47,21 @@ def search(c, slug, filters, fields, size=200, sort=None):
     return ok(c.post(f"/entity/{slug}/_search", headers=ARR, json=body), f"search {slug}")
 
 
+def search_all(c, slug, filters, fields, sort=None, size=200, limit=None):
+    """Every page of a `_search`. `links.next` is emitted forever, so stop on a short page (probe 006)."""
+    out, number = [], 1
+    while limit is None or len(out) < limit:
+        body = {"filters": filters, "fields": fields, "page": {"size": size, "number": number}}
+        if sort:
+            body["sort"] = sort
+        rows = ok(c.post(f"/entity/{slug}/_search", headers=ARR, json=body), f"search {slug}")
+        out += rows
+        if len(rows) < size:
+            break
+        number += 1
+    return out[:limit] if limit else out
+
+
 def project_id(c, e):
     """The one project the seed may write into, by the name the corpus repo's env names."""
     name = (e.get("FPT_PROBE_SANDBOX_PROJECT") or "").strip()
@@ -70,8 +85,10 @@ def upload(c, slug, entity_id, field, filename, payload):
     import requests
 
     path = f"/entity/{slug}/{entity_id}/_upload" if field is None else f"/entity/{slug}/{entity_id}/{field}/_upload"
-    b = c.get(path, params={"filename": filename})
-    b = ok(b, f"upload ticket {path}") and c.get(path, params={"filename": filename}).json()
+    r = c.get(path, params={"filename": filename})
+    if not r.ok:
+        raise SystemExit(f"upload ticket {path} -> {r.status_code} {r.text[:300]}")
+    b = r.json()
     requests.put(b["links"]["upload"], data=payload, timeout=60).raise_for_status()
     r = c.post(b["links"]["complete_upload"], headers=JSON, json={"upload_info": b["data"], "upload_data": {}})
     if r.status_code != 201:

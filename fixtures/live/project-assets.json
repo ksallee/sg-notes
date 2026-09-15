@@ -1,0 +1,196 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "code": "char_hero",
+    "description": "Hero character, look-dev approved",
+    "image": null,
+    "sg_asset_type": "Character",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:21Z"
+   },
+   "id": 10151,
+   "links": {
+    "self": "/api/v1/entity/assets/10151"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "char_second",
+    "description": "Second lead, shares the hero rig",
+    "image": "media/Task_47034_image.jpg",
+    "sg_asset_type": "Character",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:29Z"
+   },
+   "id": 10152,
+   "links": {
+    "self": "/api/v1/entity/assets/10152"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "char_crowd_a",
+    "description": "Crowd variant A",
+    "image": null,
+    "sg_asset_type": "Character",
+    "sg_status_list": "fin",
+    "updated_at": "2026-09-15T18:35:43Z"
+   },
+   "id": 10153,
+   "links": {
+    "self": "/api/v1/entity/assets/10153"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "env_kitchen",
+    "description": "The kitchen set extension",
+    "image": "media/Task_47041_image.jpg",
+    "sg_asset_type": "Environment",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:43Z"
+   },
+   "id": 10154,
+   "links": {
+    "self": "/api/v1/entity/assets/10154"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "env_stairwell",
+    "description": "Stairwell, six floors, modular",
+    "image": "media/Task_47045_image.jpg",
+    "sg_asset_type": "Environment",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:49Z"
+   },
+   "id": 10155,
+   "links": {
+    "self": "/api/v1/entity/assets/10155"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "env_rooftop",
+    "description": "Rooftop and the city beyond",
+    "image": "media/Asset_10156_image.jpg",
+    "sg_asset_type": "Environment",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:56Z"
+   },
+   "id": 10156,
+   "links": {
+    "self": "/api/v1/entity/assets/10156"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "env_city_far",
+    "description": "Far city, matte painting with cards",
+    "image": "media/Task_47050_image.jpg",
+    "sg_asset_type": "Environment",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:36:02Z"
+   },
+   "id": 10157,
+   "links": {
+    "self": "/api/v1/entity/assets/10157"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "prop_lamp",
+    "description": "Practical lamp, hero prop",
+    "image": "media/Task_47053_image.jpg",
+    "sg_asset_type": "Prop",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:36:06Z"
+   },
+   "id": 10158,
+   "links": {
+    "self": "/api/v1/entity/assets/10158"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "prop_phone",
+    "description": "Phone, screen replaced in comp",
+    "image": "media/Task_47055_image.jpg",
+    "sg_asset_type": "Prop",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:36:07Z"
+   },
+   "id": 10159,
+   "links": {
+    "self": "/api/v1/entity/assets/10159"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "prop_keys",
+    "description": "Keyring, background",
+    "image": "media/Task_47059_image.jpg",
+    "sg_asset_type": "Prop",
+    "sg_status_list": "fin",
+    "updated_at": "2026-09-15T18:36:10Z"
+   },
+   "id": 10160,
+   "links": {
+    "self": "/api/v1/entity/assets/10160"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "veh_sedan",
+    "description": "Sedan, street level only",
+    "image": null,
+    "sg_asset_type": "Vehicle",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:36:13Z"
+   },
+   "id": 10161,
+   "links": {
+    "self": "/api/v1/entity/assets/10161"
+   },
+   "relationships": {},
+   "type": "Asset"
+  },
+  {
+   "attributes": {
+    "code": "veh_van",
+    "description": "Van, parked, no interior",
+    "image": "media/Task_47062_image.jpg",
+    "sg_asset_type": "Vehicle",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:36:22Z"
+   },
+   "id": 10162,
+   "links": {
+    "self": "/api/v1/entity/assets/10162"
+   },
+   "relationships": {},
+   "type": "Asset"
+  }
+ ]
+}

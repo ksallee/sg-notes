@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The turn is a beat late against the cut. Pull it four frames earlier.",
+   "created_at": "2026-08-21T14:34:04Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11121,
+   "sg_status_list": "clsd",
+   "subject": "timing on the turn",
+   "type": "Note"
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-08-21T16:01:29Z",
+   "id": 726,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11121/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

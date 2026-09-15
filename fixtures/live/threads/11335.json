@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The whole frame is half a stop hot against the neighbouring shot.",
+   "created_at": "2026-09-14T11:05:15Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11335,
+   "sg_status_list": "ip",
+   "subject": "exposure",
+   "type": "Note"
+  },
+  {
+   "content": "Pushed 8%. Turntable coming.",
+   "created_at": "2026-09-15T10:02:37Z",
+   "id": 962,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:44:51Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32295.24.png",
+   "id": 3508,
+   "image": "media/Attachment_3508_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11335/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

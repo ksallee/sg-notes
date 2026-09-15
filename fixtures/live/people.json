@@ -1,0 +1,132 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "email": "<email>",
+    "firstname": "Kevin",
+    "image": "media/HumanUser_253_image.jpg",
+    "lastname": "Sallee",
+    "login": "<email>",
+    "name": "Kevin Sallee",
+    "sg_status_list": "act"
+   },
+   "id": 253,
+   "links": {
+    "self": "/api/v1/entity/human_users/253"
+   },
+   "relationships": {
+    "department": {
+     "data": {
+      "id": 41,
+      "name": "Animation",
+      "type": "Department"
+     },
+     "links": {
+      "related": "/api/v1/entity/departments/41",
+      "self": "/api/v1/entity/human_users/253/relationships/department"
+     }
+    },
+    "groups": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/human_users/253/relationships/groups"
+     }
+    },
+    "permission_rule_set": {
+     "data": {
+      "id": 5,
+      "name": "Admin",
+      "type": "PermissionRuleSet"
+     },
+     "links": {
+      "related": "/api/v1/entity/permission_rule_sets/5",
+      "self": "/api/v1/entity/human_users/253/relationships/permission_rule_set"
+     }
+    }
+   },
+   "type": "HumanUser"
+  },
+  {
+   "attributes": {
+    "email": "<email>",
+    "firstname": "Kevin",
+    "image": null,
+    "lastname": "Artist",
+    "login": "<email>",
+    "name": "Kevin Artist",
+    "sg_status_list": "act"
+   },
+   "id": 451,
+   "links": {
+    "self": "/api/v1/entity/human_users/451"
+   },
+   "relationships": {
+    "department": {
+     "data": null,
+     "links": {
+      "self": "/api/v1/entity/human_users/451/relationships/department"
+     }
+    },
+    "groups": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/human_users/451/relationships/groups"
+     }
+    },
+    "permission_rule_set": {
+     "data": {
+      "id": 8,
+      "name": "Artist",
+      "type": "PermissionRuleSet"
+     },
+     "links": {
+      "related": "/api/v1/entity/permission_rule_sets/8",
+      "self": "/api/v1/entity/human_users/451/relationships/permission_rule_set"
+     }
+    }
+   },
+   "type": "HumanUser"
+  },
+  {
+   "attributes": {
+    "email": "<email>",
+    "firstname": "Other",
+    "image": null,
+    "lastname": "Artist",
+    "login": "<email>",
+    "name": "Other Artist",
+    "sg_status_list": "act"
+   },
+   "id": 517,
+   "links": {
+    "self": "/api/v1/entity/human_users/517"
+   },
+   "relationships": {
+    "department": {
+     "data": null,
+     "links": {
+      "self": "/api/v1/entity/human_users/517/relationships/department"
+     }
+    },
+    "groups": {
+     "data": [],
+     "links": {
+      "self": "/api/v1/entity/human_users/517/relationships/groups"
+     }
+    },
+    "permission_rule_set": {
+     "data": {
+      "id": 8,
+      "name": "Artist",
+      "type": "PermissionRuleSet"
+     },
+     "links": {
+      "related": "/api/v1/entity/permission_rule_sets/8",
+      "self": "/api/v1/entity/human_users/517/relationships/permission_rule_set"
+     }
+    }
+   },
+   "type": "HumanUser"
+  }
+ ]
+}

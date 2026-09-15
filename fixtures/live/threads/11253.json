@@ -1,0 +1,69 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Eyeline drifts off the mark through the pan. Hold it on the door.",
+   "created_at": "2026-09-07T10:08:00Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11253,
+   "sg_status_list": "clsd",
+   "subject": "eyeline",
+   "type": "Note"
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-09-08T17:54:12Z",
+   "id": 861,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-09-09T09:48:26Z",
+   "id": 862,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Will need the updated cache from FX before I can do that.",
+   "created_at": "2026-09-09T19:52:21Z",
+   "id": 863,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Pushed 8%. Turntable coming.",
+   "created_at": "2026-09-10T10:47:35Z",
+   "id": 864,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11253/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The foot slides on contact between 1018 and 1026. Lock it.",
+   "created_at": "2026-08-28T16:54:35Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11182,
+   "sg_status_list": "ip",
+   "subject": "contact",
+   "type": "Note"
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-08-31T10:46:16Z",
+   "id": 791,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "On it. New version this afternoon.",
+   "created_at": "2026-09-01T13:48:03Z",
+   "id": 792,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:40:23Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32300.1012.png",
+   "id": 3442,
+   "image": "media/Attachment_3442_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11182/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

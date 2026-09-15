@@ -1,0 +1,620 @@
+{
+ "data": [
+  {
+   "attributes": {
+    "code": "sq010_sh010",
+    "description": "Hero walks in, practical lamp flickers",
+    "image": "media/Task_46958_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:32:36Z"
+   },
+   "id": 7851,
+   "links": {
+    "self": "/api/v1/entity/shots/7851"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7851/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh020",
+    "description": "Reverse on the window, rain added in comp",
+    "image": "media/Task_46962_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:32:41Z"
+   },
+   "id": 7852,
+   "links": {
+    "self": "/api/v1/entity/shots/7852"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7852/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh030",
+    "description": "Wide of the room, full CG lamp",
+    "image": "media/Task_46965_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:32:51Z"
+   },
+   "id": 7853,
+   "links": {
+    "self": "/api/v1/entity/shots/7853"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7853/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh040",
+    "description": "Insert on the light switch",
+    "image": "media/Task_46967_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:32:58Z"
+   },
+   "id": 7854,
+   "links": {
+    "self": "/api/v1/entity/shots/7854"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7854/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh050",
+    "description": "Hero takes the first flight of stairs",
+    "image": "media/Task_46971_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:33:11Z"
+   },
+   "id": 7855,
+   "links": {
+    "self": "/api/v1/entity/shots/7855"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7855/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh060",
+    "description": "Whip pan to the landing",
+    "image": "media/Task_46974_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:33:24Z"
+   },
+   "id": 7856,
+   "links": {
+    "self": "/api/v1/entity/shots/7856"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7856/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh070",
+    "description": "Handheld push-in on the door",
+    "image": "media/Shot_7857_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:33:30Z"
+   },
+   "id": 7857,
+   "links": {
+    "self": "/api/v1/entity/shots/7857"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7857/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq010_sh080",
+    "description": "Low angle, rig removal on the banister",
+    "image": "media/Task_46981_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:33:38Z"
+   },
+   "id": 7858,
+   "links": {
+    "self": "/api/v1/entity/shots/7858"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1633,
+      "name": "sq010",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1633",
+      "self": "/api/v1/entity/shots/7858/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh010",
+    "description": "Hero clears frame left, set extension behind",
+    "image": "media/Task_46985_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:33:43Z"
+   },
+   "id": 7859,
+   "links": {
+    "self": "/api/v1/entity/shots/7859"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7859/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh020",
+    "description": "Two-shot on the landing, bounce from below",
+    "image": "media/Task_46988_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:33:55Z"
+   },
+   "id": 7860,
+   "links": {
+    "self": "/api/v1/entity/shots/7860"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7860/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh030",
+    "description": "Tilt up to the skylight",
+    "image": "media/Task_46990_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:02Z"
+   },
+   "id": 7861,
+   "links": {
+    "self": "/api/v1/entity/shots/7861"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7861/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh040",
+    "description": "Close on the hand on the rail",
+    "image": "media/Task_46993_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:07Z"
+   },
+   "id": 7862,
+   "links": {
+    "self": "/api/v1/entity/shots/7862"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7862/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh050",
+    "description": "Dawn wide, city set extension",
+    "image": "media/Task_46997_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:20Z"
+   },
+   "id": 7863,
+   "links": {
+    "self": "/api/v1/entity/shots/7863"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7863/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh060",
+    "description": "Hero silhouette against the sun",
+    "image": "media/Shot_7864_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:30Z"
+   },
+   "id": 7864,
+   "links": {
+    "self": "/api/v1/entity/shots/7864"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7864/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh070",
+    "description": "Over-shoulder on the antenna mast",
+    "image": "media/Task_47004_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:41Z"
+   },
+   "id": 7865,
+   "links": {
+    "self": "/api/v1/entity/shots/7865"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7865/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq020_sh080",
+    "description": "Crane down to the ledge",
+    "image": "media/Task_47008_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:34:45Z"
+   },
+   "id": 7866,
+   "links": {
+    "self": "/api/v1/entity/shots/7866"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1634,
+      "name": "sq020",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1634",
+      "self": "/api/v1/entity/shots/7866/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh010",
+    "description": "Insert on the phone screen",
+    "image": "media/Task_47013_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:34:49Z"
+   },
+   "id": 7867,
+   "links": {
+    "self": "/api/v1/entity/shots/7867"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7867/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh020",
+    "description": "Final wide, matte painting background",
+    "image": "media/Task_47017_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "rev",
+    "updated_at": "2026-09-15T18:34:59Z"
+   },
+   "id": 7868,
+   "links": {
+    "self": "/api/v1/entity/shots/7868"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7868/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh030",
+    "description": "Cut-in on the boots",
+    "image": "media/Task_47021_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:03Z"
+   },
+   "id": 7869,
+   "links": {
+    "self": "/api/v1/entity/shots/7869"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7869/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh040",
+    "description": "Rack focus to the far tower",
+    "image": "media/Task_47024_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:07Z"
+   },
+   "id": 7870,
+   "links": {
+    "self": "/api/v1/entity/shots/7870"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7870/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh050",
+    "description": "Pull back to reveal the roofline",
+    "image": null,
+    "sg_shot_type": "VFX",
+    "sg_status_list": "fin",
+    "updated_at": "2026-09-15T18:35:13Z"
+   },
+   "id": 7871,
+   "links": {
+    "self": "/api/v1/entity/shots/7871"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7871/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  },
+  {
+   "attributes": {
+    "code": "sq030_sh060",
+    "description": "Static on the empty doorway",
+    "image": "media/Task_47028_image.jpg",
+    "sg_shot_type": "VFX",
+    "sg_status_list": "ip",
+    "updated_at": "2026-09-15T18:35:19Z"
+   },
+   "id": 7872,
+   "links": {
+    "self": "/api/v1/entity/shots/7872"
+   },
+   "relationships": {
+    "sg_sequence": {
+     "data": {
+      "id": 1635,
+      "name": "sq030",
+      "type": "Sequence"
+     },
+     "links": {
+      "related": "/api/v1/entity/sequences/1635",
+      "self": "/api/v1/entity/shots/7872/relationships/sg_sequence"
+     }
+    }
+   },
+   "type": "Shot"
+  }
+ ]
+}

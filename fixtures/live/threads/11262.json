@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No survey for the set extension. Track the floor plane as well.",
+   "created_at": "2026-09-07T15:54:32Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11262,
+   "sg_status_list": "ip",
+   "subject": "survey",
+   "type": "Note"
+  },
+  {
+   "created_at": "2026-09-15T18:42:40Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32363.1.png",
+   "id": 3477,
+   "image": "media/Attachment_3477_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11262/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

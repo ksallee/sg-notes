@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The shoulder collapses past 60 degrees.",
+   "created_at": "2026-08-28T17:33:49Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11183,
+   "sg_status_list": "clsd",
+   "subject": "deformation",
+   "type": "Note"
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-08-31T10:14:44Z",
+   "id": 793,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11183/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

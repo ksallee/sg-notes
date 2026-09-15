@@ -1,0 +1,57 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "There is a one-pixel jitter on the vertical. Smooth the solve.",
+   "created_at": "2026-09-07T16:06:43Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "id": 11263,
+   "sg_status_list": "ip",
+   "subject": "jitter",
+   "type": "Note"
+  },
+  {
+   "content": "Done. The change is in the next version.",
+   "created_at": "2026-09-08T15:16:33Z",
+   "id": 875,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Thanks. Closing this.",
+   "created_at": "2026-09-10T10:56:01Z",
+   "id": 876,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:42:42Z",
+   "created_by": {
+    "id": 298,
+    "name": "<FPT_API_SCRIPT_NAME> 1.0",
+    "type": "ApiUser"
+   },
+   "filename": "sq020_sh060_reference_frame.png",
+   "id": 3478,
+   "image": "media/Attachment_3478_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11263/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The flicker reads mechanical. Three uneven pulses over 24 frames, and lift the wall spill 10%.",
+   "created_at": "2026-09-11T10:26:00Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11307,
+   "sg_status_list": "ip",
+   "subject": "flicker timing",
+   "type": "Note"
+  },
+  {
+   "created_at": "2026-09-15T18:44:07Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32345.24.png",
+   "id": 3498,
+   "image": "media/Attachment_3498_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11307/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

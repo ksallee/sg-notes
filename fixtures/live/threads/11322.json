@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "Happy with this one. Please cut it in.",
+   "created_at": "2026-09-11T18:37:40Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11322,
+   "sg_status_list": "ip",
+   "subject": "Approved for the cut",
+   "type": "Note"
+  },
+  {
+   "content": "Can we see it against the previous version?",
+   "created_at": "2026-09-14T13:03:56Z",
+   "id": 942,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11322/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The logo on the van has to be legible in the wide.",
+   "created_at": "2026-09-10T10:00:49Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11295,
+   "sg_status_list": "opn",
+   "subject": "Brand",
+   "type": "Note"
+  },
+  {
+   "content": "Thanks, that answers it.",
+   "created_at": "2026-09-10T18:05:22Z",
+   "id": 920,
+   "type": "Reply",
+   "user": {
+    "id": 253,
+    "image": "media/HumanUser_253_image.jpg",
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   }
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11295/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

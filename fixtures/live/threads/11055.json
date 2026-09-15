@@ -1,0 +1,69 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "The palette fights the sequence's key. Bring it toward the warm side.",
+   "created_at": "2026-08-12T10:41:47Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "id": 11055,
+   "sg_status_list": "opn",
+   "subject": "palette",
+   "type": "Note"
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-08-12T16:13:24Z",
+   "id": 642,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "I read that differently. Can we look at it in dailies?",
+   "created_at": "2026-08-14T10:44:33Z",
+   "id": 643,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "This one is blocked on the new plate.",
+   "created_at": "2026-08-14T11:07:44Z",
+   "id": 644,
+   "type": "Reply",
+   "user": {
+    "id": 517,
+    "image": null,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:36:29Z",
+   "created_by": {
+    "id": 253,
+    "name": "Kevin Sallee",
+    "type": "HumanUser"
+   },
+   "filename": "annot_version_32412.0.png",
+   "id": 3382,
+   "image": "media/Attachment_3382_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11055/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}

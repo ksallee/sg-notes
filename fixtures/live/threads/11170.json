@@ -1,0 +1,45 @@
+{
+ "data": [
+  {
+   "client_note": false,
+   "content": "No survey for the set extension. Track the floor plane as well.",
+   "created_at": "2026-08-27T17:35:40Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "id": 11170,
+   "sg_status_list": "opn",
+   "subject": "survey",
+   "type": "Note"
+  },
+  {
+   "content": "Took two passes but it holds now.",
+   "created_at": "2026-08-28T15:37:23Z",
+   "id": 776,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "created_at": "2026-09-15T18:40:00Z",
+   "created_by": {
+    "id": 517,
+    "name": "Other Artist",
+    "type": "HumanUser"
+   },
+   "filename": "sq030_sh030_grade_chart.png",
+   "id": 3435,
+   "image": "media/Attachment_3435_image.jpg",
+   "type": "Attachment"
+  }
+ ],
+ "links": {
+  "self": "/api/v1/entity/notes/11170/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject%2Cclient_note"
+ }
+}
