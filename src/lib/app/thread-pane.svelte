@@ -1,31 +1,35 @@
 <!--
-	One note, read in full: the record it is about, the note, its annotation frames
-	and attachments, the replies in order, who it is waiting on, and the two writes
-	v1 makes: a reply and a status.
+	One note, read in full: the record it is about, then the thread as the site
+	orders it (Note, Attachments and Replies in time order, through
+	`threadContents`), who it is waiting on, and the two writes v1 makes: a reply
+	and a status.
+
+	States. The thread stands behind skeletons while it is read; a failed read is a
+	line with a retry; a failed write says so beside the control that made it.
 -->
 <script lang="ts">
-	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
-	import { cellValue, condition, entityDetailUrl, formatDateTime, group, preferencesOf, toApi3Hash } from '@sg-widgets/core';
+	import type { EntityRef, EntityRow, SgClient, SgContext, StatusRecord, ThreadRow } from '@sg-widgets/core';
+	import { cellValue, entityDetailUrl, formatDateTime, preferencesOf } from '@sg-widgets/core';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
-	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
-	import StateLine from '$lib/components/state-line.svelte';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import EntityCard from '$lib/components/entity-card.svelte';
 	import EntityChip from '$lib/components/entity-chip.svelte';
+	import StateLine from '$lib/components/state-line.svelte';
 	import StatusPicker from '$lib/components/status-picker.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
-	import { addressees, recordOf, refKey, refOf, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
+	import { addressees, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
 	import { canCreate } from '$lib/writes';
 
 	type Props = {
 		context: SgContext;
 		/** The client writes go through. */
-		writer: import('@sg-widgets/core').SgClient;
+		writer: SgClient;
 		note: EntityRow;
+		/** The replies the list knows, for the waiting-on rule. */
 		replies: EntityRow[];
-		people: Map<number, EntityRow>;
 		/** The linked records, keyed `Type:id`, so a Version's or a Task's entity is known. */
 		records: Map<string, EntityRow>;
 		statuses: Record<string, StatusRecord>;
@@ -34,9 +38,8 @@
 		onReply: (content: string) => Promise<void>;
 	};
 
-	let { context, writer, note, replies, people, records, statuses, projectId, onStatus, onReply }: Props = $props();
+	let { context, writer, note, replies, records, statuses, projectId, onStatus, onReply }: Props = $props();
 
-	const author = $derived(refOf(note, 'created_by'));
 	const record = $derived(recordOf(note, records));
 	/** The Version the note was written on, when it is not the record itself. */
 	const version = $derived.by(() => {
@@ -47,16 +50,12 @@
 	const prefs = $derived(preferencesOf(context));
 	const noteUrl = $derived(entityDetailUrl(context.siteUrl, { type: 'Note', id: note.id }));
 
-	/** Attachments carry their own `image` thumbnail; the frame is `this_file` (entity_types/Attachment). */
-	const attachments = $derived.by(async () => {
-		const refs = refsOf(note, 'attachments');
-		if (refs.length === 0) return [] as EntityRow[];
-		const result = await context.client.search('Attachment', {
-			filters: toApi3Hash(group('and', [condition('id', 'in', refs.map((ref) => ref.id))])),
-			fields: ['filename', 'image', 'this_file', 'created_at'],
-			page: { size: 50, number: 1 }
-		});
-		return result.data;
+	/** Bumped after a write, so the thread is read again. */
+	let revision = $state(0);
+	/** An Attachment's thumbnail is `image`; the frame itself is `this_file` (entity_types/Attachment). */
+	const thread = $derived.by(() => {
+		void revision;
+		return context.client.threadContents(note.id, { Attachment: ['filename', 'image', 'this_file'] });
 	});
 
 	let statusFailure = $state<string | null>(null);
@@ -75,13 +74,29 @@
 	let failure = $state<string | null>(null);
 	const replyable = $derived(canCreate(writer));
 
-	function personImage(ref: EntityRef | null): string | null {
-		const value = ref ? cellValue(people.get(ref.id) ?? { type: 'HumanUser', id: 0, attributes: {}, relationships: {} }, 'image') : null;
-		return typeof value === 'string' ? value : null;
+	async function send(): Promise<void> {
+		const content = draft.trim();
+		if (!content || sending) return;
+		sending = true;
+		failure = null;
+		try {
+			await onReply(content);
+			draft = '';
+			revision += 1;
+		} catch (error) {
+			failure = error instanceof Error ? error.message : String(error);
+		} finally {
+			sending = false;
+		}
 	}
 
-	function fileUrl(row: EntityRow): string | null {
-		const value = row.attributes.this_file as { url?: string } | null | undefined;
+	function field(row: ThreadRow, name: string): string {
+		const value = row.fields[name];
+		return typeof value === 'string' ? value : '';
+	}
+
+	function fileUrl(row: ThreadRow): string | null {
+		const value = row.fields.this_file as { url?: string } | null | undefined;
 		return value && typeof value.url === 'string' ? value.url : null;
 	}
 
@@ -97,28 +112,15 @@
 				return `Waiting on ${state.who.map((ref) => ref.name ?? '').filter(Boolean).join(', ')}.`;
 		}
 	}
-
-	async function send(): Promise<void> {
-		const content = draft.trim();
-		if (!content || sending) return;
-		sending = true;
-		failure = null;
-		try {
-			await onReply(content);
-			draft = '';
-		} catch (error) {
-			failure = error instanceof Error ? error.message : String(error);
-		} finally {
-			sending = false;
-		}
-	}
 </script>
 
-{#snippet person(ref: EntityRef | null, at: string)}
+{#snippet person(author: ThreadRow['author'], at: string | null)}
 	<div class="flex items-center gap-2">
-		<UserAvatar name={ref?.name ?? '?'} image={personImage(ref)} size="sm" />
-		<span class="min-w-0 truncate text-sm font-medium">{ref?.name ?? 'Unknown'}</span>
-		<span class="text-muted-foreground ml-auto shrink-0 text-xs tabular-nums" title={at}>{formatDateTime(at, prefs)}</span>
+		<UserAvatar name={author?.name ?? '?'} image={author?.image ?? null} size="sm" />
+		<span class="min-w-0 truncate text-sm font-medium">{author?.name ?? 'Unknown'}</span>
+		{#if at}
+			<span class="text-muted-foreground ml-auto shrink-0 text-xs tabular-nums" title={at}>{formatDateTime(at, prefs)}</span>
+		{/if}
 	</div>
 {/snippet}
 
@@ -162,55 +164,43 @@
 		{/if}
 	</header>
 
-	<section class="flex flex-col gap-2" data-slot="thread-note">
-		{@render person(author, text(note, 'created_at'))}
-		<p class="whitespace-pre-wrap text-sm">{text(note, 'content')}</p>
-		{#await attachments}
-			{#if refsOf(note, 'attachments').length > 0}
-				<ul class="flex flex-wrap gap-2" aria-busy="true" aria-label="Reading the attachments">
-					{#each refsOf(note, 'attachments') as ref (ref.id)}
-						<li><Skeleton class="h-24 w-40" /></li>
-					{/each}
-				</ul>
-			{/if}
-		{:then rows}
-			{#if rows.length > 0}
-				<ul class="flex flex-wrap gap-2">
-					{#each rows as row (row.id)}
-						{@const image = cellValue(row, 'image')}
+	{#await thread}
+		<div class="flex flex-col gap-3" aria-busy="true" aria-label="Reading the thread">
+			<div class="flex items-center gap-2"><Skeleton class="size-6 rounded-full" /><Skeleton class="h-4 w-32" /></div>
+			<Skeleton class="h-4 w-full" />
+			<Skeleton class="h-4 w-4/5" />
+		</div>
+	{:then rows}
+		<ol class="flex flex-col gap-3" data-slot="thread-rows">
+			{#each rows as row (`${row.type}:${row.id}`)}
+				<li class="flex flex-col gap-1" data-thread-type={row.type}>
+					{#if row.type === 'Attachment'}
+						{@const image = field(row, 'image')}
 						{@const href = fileUrl(row)}
-						<li>
-							<a {href} target="_blank" rel="noopener" class="border-border block overflow-hidden rounded-md border" title={text(row, 'filename')}>
-								{#if typeof image === 'string'}
-									<img src={image} alt={text(row, 'filename')} class="h-24 w-auto" />
-								{:else}
-									<span class="text-muted-foreground block px-2 py-1 text-xs">{text(row, 'filename')}</span>
-								{/if}
-							</a>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-		{:catch error}
-			<StateLine state="error" pad="none" icon={CircleAlert} label={error instanceof Error ? error.message : 'The attachments could not be read.'} />
-		{/await}
-	</section>
-
-	{#if replies.length > 0}
-		<ol class="border-border flex flex-col gap-3 border-t pt-3" data-slot="thread-replies">
-			{#each replies as reply (reply.id)}
-				<li class="flex flex-col gap-1">
-					{@render person(refOf(reply, 'user'), text(reply, 'created_at'))}
-					<p class="whitespace-pre-wrap pl-8 text-sm">{text(reply, 'content')}</p>
+						<a {href} target="_blank" rel="noopener" class="border-border block w-fit overflow-hidden rounded-md border" title={field(row, 'filename')}>
+							{#if image}
+								<img src={image} alt={field(row, 'filename')} class="h-24 w-auto" />
+							{:else}
+								<span class="text-muted-foreground block px-2 py-1 text-xs">{field(row, 'filename')}</span>
+							{/if}
+						</a>
+					{:else}
+						{@render person(row.author, row.createdAt)}
+						<p class={row.type === 'Reply' ? 'whitespace-pre-wrap pl-8 text-sm' : 'whitespace-pre-wrap text-sm'}>{row.content ?? ''}</p>
+					{/if}
 				</li>
 			{/each}
 		</ol>
-	{/if}
+	{:catch error}
+		<StateLine state="error" pad="none" icon={CircleAlert} label={error instanceof Error ? error.message : 'The thread could not be read.'}>
+			<Button size="sm" variant="outline" onclick={() => (revision += 1)}>Try again</Button>
+		</StateLine>
+	{/await}
 
 	<p class={waiting.kind === 'nobody' ? 'text-warning text-xs' : 'text-muted-foreground text-xs'} data-slot="thread-waiting">{waitingLine(waiting)}</p>
 
 	<form class="flex flex-col gap-2" onsubmit={(event) => (event.preventDefault(), void send())}>
-		<Textarea bind:value={draft} placeholder={replyable ? 'Reply…' : 'Replying needs the client to gain create; see docs/sg-widgets-issues.md'} disabled={!replyable || sending} rows={3} />
+		<Textarea bind:value={draft} placeholder={replyable ? 'Reply…' : 'This client cannot create a Reply.'} disabled={!replyable || sending} rows={3} />
 		<div class="flex items-center gap-2">
 			<Button type="submit" size="sm" disabled={!replyable || sending || draft.trim() === ''}>{sending ? 'Sending…' : 'Reply'}</Button>
 			{#if failure}<span class="text-destructive text-xs">{failure}</span>{/if}

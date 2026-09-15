@@ -1,7 +1,26 @@
 # What sg-notes needs from the sg-widgets client
 
-Drafts for issues on `../sg-widgets`, one per gap, found on 2026-09-15 while capturing the seeded
-day. Each names the corpus entry the behaviour is measured in. Not filed yet.
+Six gaps, found on 2026-09-15 while capturing the seeded day, each naming the corpus entry the
+behaviour is measured in. Filed and shipped the same day: the reads (2, 3, 5, 6) as ksallee/sg-widgets#192,
+merged to `dev` by #194; the writes (1, 4) as #193, merged by #195. `dev` awaits promotion to `main`.
+
+What landed on `SgClient`:
+
+    create(entityType, body): Promise<EntityRow>
+    upload(entityType, id, {filename, data, field?}): Promise<UploadResult>
+    threadContents(noteId, entityFields?): Promise<ThreadRow[]>
+    eventLog(options?): Promise<EventLogResult>
+    following(userId, {entity?, projectId?}): Promise<EntityRef[]>
+
+Decided where the corpus was silent: `read_by_current_user` is forced to a `list` of `unread`/`read`
+by a schema override, since what `/schema/Note/fields` declares for it was never read; the event log
+sorts `-id` only; an upload through the proxy crosses base64 and runs server-side, since CORS on the
+presigned `PUT` is unmeasured; `eventLog` is never cached.
+
+Follow-ups the work surfaced, not filed: a widget that draws a thread; `Delivery.read_by_current_user`
+needs its own probe; `SgClient` has no `delete`, and a Reply whose `entity` is null cannot be deleted
+(report 005); multipart upload (044) has no path; nothing checks the upload's ETag; a create that also
+uploads, as one call, if the app keeps repeating the pair.
 
 ## 1. `SgClient.create(entityType, body)`
 
