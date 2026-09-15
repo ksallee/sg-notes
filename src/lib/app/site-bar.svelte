@@ -9,11 +9,18 @@
 	import type { EntityRef, SgContext } from '@sg-widgets/core';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import ProjectPicker from '$lib/components/project-picker.svelte';
+	import Palette from '@lucide/svelte/icons/palette';
+	import { MODES, mode as readMode, setMode, setTheme, THEMES, theme as readTheme } from '$lib/theme';
 	import Wordmark from './wordmark.svelte';
-	import { setProject, setSiteUrl, signIn, signOut, type LiveState } from '$lib/live';
+	import UserAvatar from '$lib/components/user-avatar.svelte';
+	import { setProject, setSiteUrl, signIn, signOut, whoAmI, type LiveState } from '$lib/live';
 
 	let { live, context }: { live: LiveState; context: SgContext } = $props();
+
+	let currentTheme = $state(readTheme());
+	let currentMode = $state(readMode());
 
 	let editingSite = $state(false);
 	let siteDraft = $state('');
@@ -100,8 +107,46 @@
 	</div>
 
 	<div class="flex shrink-0 items-center gap-2 text-sm">
+		<DropdownMenu.Root>
+			<DropdownMenu.Trigger>
+				{#snippet child({ props })}
+					<Button {...props} size="icon" variant="ghost" aria-label="Appearance" title="Appearance" data-slot="appearance">
+						<Palette aria-hidden="true" />
+					</Button>
+				{/snippet}
+			</DropdownMenu.Trigger>
+			<DropdownMenu.Content align="end" class="w-56">
+				<DropdownMenu.Group>
+					<DropdownMenu.GroupHeading>Theme</DropdownMenu.GroupHeading>
+					<DropdownMenu.RadioGroup value={currentTheme} onValueChange={(value) => ((currentTheme = value as typeof currentTheme), setTheme(currentTheme))}>
+						{#each THEMES as option (option.value)}
+							<DropdownMenu.RadioItem value={option.value}>
+								<span class="flex flex-col"><span>{option.label}</span><span class="text-muted-foreground text-xs">{option.note}</span></span>
+							</DropdownMenu.RadioItem>
+						{/each}
+					</DropdownMenu.RadioGroup>
+				</DropdownMenu.Group>
+				<DropdownMenu.Separator />
+				<DropdownMenu.Group>
+					<DropdownMenu.GroupHeading>Scheme</DropdownMenu.GroupHeading>
+					<DropdownMenu.RadioGroup value={currentMode} onValueChange={(value) => ((currentMode = value as typeof currentMode), setMode(currentMode))}>
+						{#each MODES as option (option.value)}
+							<DropdownMenu.RadioItem value={option.value}>{option.label}</DropdownMenu.RadioItem>
+						{/each}
+					</DropdownMenu.RadioGroup>
+				</DropdownMenu.Group>
+			</DropdownMenu.Content>
+		</DropdownMenu.Root>
 		{#if live.session}
-			<span class="text-muted-foreground truncate" title={live.session.login}>{live.session.login}</span>
+			{#await whoAmI()}
+				<span class="text-muted-foreground truncate" title={live.session.login}>{live.session.login}</span>
+			{:then person}
+				{@const name = (person?.attributes.name as string | undefined) ?? live.session.login}
+				<span class="flex min-w-0 items-center gap-2" data-slot="signed-in-as" title={live.session.login}>
+					<UserAvatar {name} image={(person?.attributes.image as string | null | undefined) ?? null} size="sm" />
+					<span class="truncate">{name}</span>
+				</span>
+			{/await}
 			<Button size="sm" variant="ghost" onclick={onSignOut}>Sign out</Button>
 		{:else if live.siteUrl}
 			{#if refusal}

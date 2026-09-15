@@ -23,6 +23,12 @@ registry copies; `docs/seams.md` says how they were installed and what to repair
     pnpm check                                             # svelte-check
     node tools/qa.mjs --project 1180 --drive tools/drives/lead-view.js   # drive the page headless
     node tools/qa.mjs --project 1180 --shot .playwright-mcp/lead.png     # and screenshot it
+    node tools/qa.mjs --project 1180 --theme claude --mode light --shot .playwright-mcp/claude.png
+
+The page wears one of three themes, all the sg-widgets docs site's own (Weave, Supabase, Claude), in
+light, dark or the system's scheme, from the palette menu in the bar; `--theme` and `--mode` set them
+for a drive. The app is where the widgets are seen wearing a palette they were not drawn on, beside
+primitives that are not sg-widgets' own.
 
 A drive is the body of an async function; it returns `{verdict, ...}` and the exit code follows.
 `tools/drives/` holds one per behaviour: the lead view, search and grouping, a reply, bulk actions.

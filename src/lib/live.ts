@@ -18,7 +18,7 @@
  */
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/public';
-import { createSessionTokenAuth, createSgContext, RestClient, type SgContext } from '@sg-widgets/core';
+import { createSessionTokenAuth, createSgContext, RestClient, type EntityRow, type SgContext } from '@sg-widgets/core';
 
 const KEYS = {
 	site: 'sg-notes:site',
@@ -198,6 +198,22 @@ export function liveContext(): SgContext {
 export function liveWriter(): RestClient {
 	if (!writer) throw new Error('The site is not ready. Await prepareLive() first.');
 	return writer;
+}
+
+/** The person behind the session: their HumanUser row, by login, read once (probe 060 for the name). */
+let me: Promise<EntityRow | null> | null = null;
+export function whoAmI(): Promise<EntityRow | null> {
+	me ??= (async () => {
+		const login = state.session?.login;
+		if (!login || !context) return null;
+		const result = await context.client.search('HumanUser', {
+			filters: { logical_operator: 'and', conditions: [['login', 'is', login]] },
+			fields: ['name', 'image', 'login'],
+			page: { size: 1, number: 1 }
+		});
+		return result.data[0] ?? null;
+	})();
+	return me;
 }
 
 /* The App Session Launcher, through this app's endpoints. */

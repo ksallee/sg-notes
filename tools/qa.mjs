@@ -2,7 +2,7 @@
 // Drive the app headless and print only what the drive returns.
 //
 //   node tools/qa.mjs --project 1180 --drive tools/drives/lead-view.js
-//   node tools/qa.mjs --project 1180 --shot .playwright-mcp/lead.png
+//   node tools/qa.mjs --project 1180 --shot .playwright-mcp/lead.png --theme paper --mode light
 //
 // Starts `vite dev` on a free port unless --url names a running server, so the dev-only
 // /live/dev-token endpoint signs the page in from .env.local and nobody has to approve a
@@ -37,6 +37,8 @@ function args(argv) {
 			case '--timeout': a.timeout = Number(next()); break;
 			case '--settle': a.settle = Number(next()); break;
 			case '--project': a.project = Number(next()); break;
+			case '--theme': a.theme = next(); break;
+			case '--mode': a.mode = next(); break;
 			case '--reduced-motion': a.reducedMotion = true; break;
 			case '--headed': a.headed = true; break;
 			default: throw new Error(`unknown flag ${k}`);
@@ -107,6 +109,16 @@ async function main() {
 	});
 	if (a.project) {
 		await ctx.addInitScript((id) => localStorage.setItem('sg-notes:project', JSON.stringify({ id })), a.project);
+	}
+	// The look, from the keys $lib/theme reads: `--theme weave|graphite|paper`, `--mode light|dark|system`.
+	if (a.theme || a.mode) {
+		await ctx.addInitScript(
+			([theme, mode]) => {
+				if (theme) localStorage.setItem('sg-notes:theme', theme);
+				if (mode) localStorage.setItem('sg-notes:mode', mode);
+			},
+			[a.theme ?? '', a.mode ?? '']
+		);
 	}
 	const page = await ctx.newPage();
 	const console_ = [];

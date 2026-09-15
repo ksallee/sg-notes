@@ -1,10 +1,23 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en" class="dark" data-sg-theme="weave">
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="color-scheme" content="dark" />
 		<meta name="text-scale" content="scale" />
+		<script>
+			// The theme and the scheme, before the first paint, from the keys $lib/theme writes.
+			(function () {
+				try {
+					var root = document.documentElement;
+					var theme = localStorage.getItem('sg-notes:theme');
+					if (['weave', 'supabase', 'claude'].indexOf(theme) !== -1) root.setAttribute('data-sg-theme', theme);
+					var mode = localStorage.getItem('sg-notes:mode') || 'dark';
+					var dark = mode === 'dark' || (mode === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+					root.classList.toggle('dark', dark);
+					root.style.colorScheme = dark ? 'dark' : 'light';
+				} catch (e) {}
+			})();
+		</script>
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
