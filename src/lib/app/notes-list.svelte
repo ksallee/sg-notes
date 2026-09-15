@@ -92,6 +92,19 @@
 		onActions
 	}: Props = $props();
 
+	/** Reads the next page whenever the foot of the list scrolls into view. */
+	function sentinel(node: HTMLElement): () => void {
+		const root = node.closest('[data-slot="notes-scroll"]');
+		const observer = new IntersectionObserver(
+			(entries) => {
+				if (entries.some((entry) => entry.isIntersecting)) onLoadMore();
+			},
+			{ root, rootMargin: '0px 0px 240px 0px' }
+		);
+		observer.observe(node);
+		return () => observer.disconnect();
+	}
+
 	export function collapseAll(): void {
 		setShut(groups.map((group) => group.key));
 	}
@@ -300,6 +313,7 @@
 			class={cn('min-h-0 flex-1 overflow-auto transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
 			role="region"
 			aria-label="Notes"
+			data-slot="notes-scroll"
 			aria-busy={rereading ? 'true' : undefined}
 			onkeydown={onKeydown}
 		>
@@ -435,11 +449,20 @@
 					{/if}
 				</section>
 			{/each}
-			{#if hasMore || status === 'loadingMore'}
-				<div class="flex justify-center px-2 py-2">
-					<Button size="sm" variant="ghost" onclick={onLoadMore} disabled={status === 'loadingMore'}>
-						{status === 'loadingMore' ? 'Reading more…' : 'Load more'}
-					</Button>
+			{#if status === 'loadingMore'}
+				<div class="flex flex-col" aria-busy="true" aria-label="Reading more notes">
+					{#each { length: 3 } as _, index (index)}
+						<div class="border-border/50 flex items-start gap-2 border-b px-2 py-1.5">
+							<Skeleton class="size-4 shrink-0 rounded-sm" />
+							<Skeleton class="size-6 shrink-0 rounded-full" />
+							<div class="flex flex-1 flex-col gap-1"><Skeleton class="h-4 w-1/2" /><Skeleton class="h-3 w-3/5" /></div>
+						</div>
+					{/each}
+				</div>
+			{:else if hasMore}
+				<!-- The next page reads itself in when this comes into view; the button is for a reader with no scroll. -->
+				<div class="flex justify-center px-2 py-2" {@attach sentinel}>
+					<Button size="sm" variant="ghost" onclick={onLoadMore}>Load more</Button>
 				</div>
 			{/if}
 		</div>
