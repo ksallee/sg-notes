@@ -13,6 +13,7 @@
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import { Button } from '$lib/components/ui/button/index.js';
+	import { Kbd } from '$lib/components/ui/kbd/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import EntityCard from '$lib/components/entity-card.svelte';
@@ -20,7 +21,7 @@
 	import StateLine from '$lib/components/state-line.svelte';
 	import StatusPicker from '$lib/components/status-picker.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
-	import { addressees, isClientFacing, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
+	import { addressees, CLOSED, isClientFacing, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
 	import { canCreate } from '$lib/writes';
 
 	type Props = {
@@ -35,7 +36,8 @@
 		statuses: Record<string, StatusRecord>;
 		projectId: number;
 		onStatus: (code: string) => Promise<void>;
-		onReply: (content: string) => Promise<void>;
+		/** `close` writes the reply, then the closed status, one loop in one press. */
+		onReply: (content: string, close: boolean) => Promise<void>;
 	};
 
 	let { context, writer, note, replies, records, statuses, projectId, onStatus, onReply }: Props = $props();
@@ -74,13 +76,13 @@
 	let failure = $state<string | null>(null);
 	const replyable = $derived(canCreate(writer));
 
-	async function send(): Promise<void> {
+	async function send(close = false): Promise<void> {
 		const content = draft.trim();
 		if (!content || sending) return;
 		sending = true;
 		failure = null;
 		try {
-			await onReply(content);
+			await onReply(content, close);
 			draft = '';
 			revision += 1;
 		} catch (error) {
@@ -201,9 +203,25 @@
 	<p class="text-muted-foreground text-xs" data-slot="thread-waiting">{waitingLine(waiting)}</p>
 
 	<form class="flex flex-col gap-2" onsubmit={(event) => (event.preventDefault(), void send())}>
-		<Textarea bind:value={draft} placeholder={replyable ? 'Reply…' : 'This client cannot create a Reply.'} disabled={!replyable || sending} rows={3} />
+		<Textarea
+			bind:value={draft}
+			placeholder={replyable ? 'Reply…' : 'This client cannot create a Reply.'}
+			disabled={!replyable || sending}
+			rows={3}
+			data-slot="reply-box"
+			onkeydown={(event) => {
+				if (event.key !== 'Enter' || !(event.metaKey || event.ctrlKey)) return;
+				event.preventDefault();
+				void send(event.shiftKey);
+			}}
+		/>
 		<div class="flex items-center gap-2">
-			<Button type="submit" size="sm" disabled={!replyable || sending || draft.trim() === ''}>{sending ? 'Sending…' : 'Reply'}</Button>
+			<Button type="submit" size="sm" disabled={!replyable || sending || draft.trim() === ''}>{sending ? 'Sending…' : 'Reply'} <Kbd>⌘↵</Kbd></Button>
+			{#if text(note, 'sg_status_list') !== CLOSED}
+				<Button type="button" size="sm" variant="outline" disabled={!replyable || sending || draft.trim() === ''} onclick={() => void send(true)} data-slot="reply-and-close">
+					Reply and close <Kbd>⇧⌘↵</Kbd>
+				</Button>
+			{/if}
 			{#if failure}<span class="text-destructive text-xs">{failure}</span>{/if}
 		</div>
 	</form>

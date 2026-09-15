@@ -292,6 +292,65 @@ export function searchFilter(
 	return words.length === 1 ? anywhere(words[0]!) : group('and', words.map(anywhere));
 }
 
+/** A piece of text, and whether a search word landed on it. */
+export interface Run {
+	text: string;
+	hit: boolean;
+}
+
+/** `text` cut where the search words land, case-blind, so a list can embolden the hits. */
+export function runsOf(value: string, query: string): Run[] {
+	const words = query.trim().split(/\s+/).filter(Boolean);
+	if (words.length === 0 || !value) return [{ text: value, hit: false }];
+	const pattern = new RegExp(words.map((word) => word.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'), 'gi');
+	const out: Run[] = [];
+	let at = 0;
+	for (const match of value.matchAll(pattern)) {
+		const start = match.index ?? 0;
+		if (start > at) out.push({ text: value.slice(at, start), hit: false });
+		out.push({ text: match[0], hit: true });
+		at = start + match[0].length;
+	}
+	if (at < value.length) out.push({ text: value.slice(at), hit: false });
+	return out;
+}
+
+/** How the list is ordered. The first two are the site's sort; the rest order the loaded rows. */
+export type SortBy = 'newest' | 'oldest' | 'replies' | 'waiting';
+
+export const SORT_OPTIONS: ReadonlyArray<{ value: SortBy; label: string }> = [
+	{ value: 'newest', label: 'Newest' },
+	{ value: 'oldest', label: 'Oldest' },
+	{ value: 'waiting', label: 'Longest waiting' },
+	{ value: 'replies', label: 'Most replies' }
+];
+
+/** When a thread last moved: its newest reply, else the note. */
+export function lastActivity(note: EntityRow, replies: readonly EntityRow[] | null): string {
+	const last = replies && replies.length > 0 ? replies[replies.length - 1]! : note;
+	return text(last, 'created_at');
+}
+
+/**
+ * The body of the Note that forwards `note` to `to`: the same subject, content,
+ * links, tasks and type, on the same project, with the new addressees. The
+ * forum's own workaround for the Inbox having no Forward (research/03).
+ */
+export function forwardBody(note: EntityRow, project: EntityRef, to: EntityRef[], message: string): Record<string, unknown> {
+	const subject = text(note, 'subject');
+	const author = refOf(note, 'created_by');
+	const original = `${author?.name ?? 'Someone'} wrote:\n${text(note, 'content')}`;
+	return {
+		project: { type: 'Project', id: project.id },
+		subject: subject.startsWith('Fwd: ') ? subject : `Fwd: ${subject}`,
+		content: message.trim() ? `${message.trim()}\n\n${original}` : original,
+		note_links: refsOf(note, 'note_links').map((ref) => ({ type: ref.type, id: ref.id })),
+		tasks: refsOf(note, 'tasks').map((ref) => ({ type: ref.type, id: ref.id })),
+		addressings_to: to.map((ref) => ({ type: ref.type, id: ref.id })),
+		...(text(note, 'sg_note_type') ? { sg_note_type: text(note, 'sg_note_type') } : {})
+	};
+}
+
 /** Rows in `created_at` order, oldest first, the order a thread reads in. */
 export function byCreated(rows: readonly EntityRow[]): EntityRow[] {
 	return [...rows].sort((a, b) => text(a, 'created_at').localeCompare(text(b, 'created_at')));

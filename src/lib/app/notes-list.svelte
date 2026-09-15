@@ -44,7 +44,7 @@
 	import Thumbnail from '$lib/components/thumbnail.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
 	import { cn } from '$lib/utils.js';
-	import { GROUP_OPTIONS, groupNotes, isClientFacing, refKey, refOf, refsOf, text, WAITING_OPTIONS, waitingOn, type GroupBy, type Waiting, type WaitingKind } from '$lib/notes';
+	import { GROUP_OPTIONS, groupNotes, isClientFacing, lastActivity, refKey, refOf, refsOf, runsOf, SORT_OPTIONS, text, WAITING_OPTIONS, waitingOn, type GroupBy, type SortBy, type Waiting, type WaitingKind } from '$lib/notes';
 	import { ago } from './time';
 
 	type Props = {
@@ -70,6 +70,8 @@
 		onSelectionChange: (ids: number[], last: number | null) => void;
 		/** What the rows are grouped on, two-way. */
 		groupBy?: GroupBy;
+		/** How the rows are ordered, two-way. The site orders the first two; the rest order what is loaded. */
+		sortBy?: SortBy;
 		/** The search the page applies, two-way. The list draws the box; the page reads. */
 		query?: string;
 		onClearFilters: () => void;
@@ -92,6 +94,7 @@
 		selected,
 		onSelectionChange,
 		groupBy = $bindable('record'),
+		sortBy = $bindable('newest'),
 		query = $bindable(''),
 		onClearFilters,
 		onActions
@@ -113,6 +116,12 @@
 		return () => observer.disconnect();
 	}
 
+	/** The `x` key: the row the selection last landed on, in or out. */
+	export function toggleAnchor(): void {
+		const id = anchor ?? order[0];
+		if (id !== undefined) toggle(id);
+	}
+
 	export function collapseAll(): void {
 		setShut(groups.map((group) => group.key));
 	}
@@ -121,9 +130,16 @@
 		setShut([]);
 	}
 
-	const shown = $derived(
-		waitingFilter === 'any' ? rows : rows.filter((note) => waitingOn(note, replies.get(note.id) ?? null)?.kind === waitingFilter)
-	);
+	const shown = $derived.by(() => {
+		const kept = waitingFilter === 'any' ? rows : rows.filter((note) => waitingOn(note, replies.get(note.id) ?? null)?.kind === waitingFilter);
+		if (sortBy === 'replies') return [...kept].sort((a, b) => (replies.get(b.id)?.length ?? 0) - (replies.get(a.id)?.length ?? 0));
+		if (sortBy === 'waiting') {
+			// The notes still owed a word, the one quiet longest first; closed and unaddressed after.
+			const owed = (note: EntityRow): number => (['author', 'addressees'].includes(waitingOn(note, replies.get(note.id) ?? null)?.kind ?? '') ? 0 : 1);
+			return [...kept].sort((a, b) => owed(a) - owed(b) || lastActivity(a, replies.get(a.id) ?? null).localeCompare(lastActivity(b, replies.get(b.id) ?? null)));
+		}
+		return kept;
+	});
 	const groups = $derived(groupNotes(shown, records, groupBy));
 	const groupLabel = $derived(GROUP_OPTIONS.find((option) => option.value === groupBy)?.label ?? '');
 	const grouped = $derived(groupBy !== 'none');
@@ -290,6 +306,12 @@
 	}
 </script>
 
+{#snippet runs(value: string)}
+	{#each runsOf(value, query) as run, index (index)}
+		{#if run.hit}<span class="text-foreground font-semibold">{run.text}</span>{:else}{run.text}{/if}
+	{/each}
+{/snippet}
+
 {#snippet glyph(ref: EntityRef | null)}
 	{@const code = statusOf(ref)}
 	{#if code}
@@ -321,6 +343,16 @@
 			</Select.Trigger>
 			<Select.Content>
 				{#each WAITING_OPTIONS as option (option.value)}
+					<Select.Item value={option.value} label={option.label} />
+				{/each}
+			</Select.Content>
+		</Select.Root>
+		<Select.Root type="single" value={sortBy} onValueChange={(value) => (sortBy = value as SortBy)}>
+			<Select.Trigger aria-label="Sort by" data-slot="sort-by">
+				<span data-slot="select-value"><span class="text-muted-foreground">Sort</span> {SORT_OPTIONS.find((option) => option.value === sortBy)?.label ?? ''}</span>
+			</Select.Trigger>
+			<Select.Content>
+				{#each SORT_OPTIONS as option (option.value)}
 					<Select.Item value={option.value} label={option.label} />
 				{/each}
 			</Select.Content>
@@ -421,6 +453,7 @@
 								checked={tickState === 'all'}
 								indeterminate={tickState === 'some'}
 								aria-label="Select every note in this group"
+								tabindex={-1}
 								class={cn(
 									'transition-opacity duration-150 group-hover/header:opacity-100 focus-visible:opacity-100 group-data-[selecting]/list:opacity-100',
 									tickState === 'none' && 'opacity-0'
@@ -474,6 +507,7 @@
 										<Checkbox
 											checked={chosen}
 											aria-label="Select {firstLine(note)}"
+											tabindex={-1}
 											class={cn(
 												'transition-opacity duration-150 group-hover/row:opacity-100 focus-visible:opacity-100 group-data-[selecting]/list:opacity-100',
 												!chosen && 'opacity-0'
@@ -496,7 +530,7 @@
 												{#if unread}
 													<span class="bg-primary size-1.5 shrink-0 rounded-full" role="img" aria-label="Unread"></span>
 												{/if}
-												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}>{firstLine(note)}</span>
+												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}>{@render runs(firstLine(note))}</span>
 												{#if code}
 													<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 												{/if}
@@ -512,9 +546,7 @@
 													</span>
 												{/if}
 											</span>
-											<span class="text-muted-foreground min-w-0 truncate text-xs" title={text(note, 'content')}>
-												{author?.name ?? ''}{text(note, 'content') ? ` · ${text(note, 'content')}` : ''}
-											</span>
+											<span class="text-muted-foreground min-w-0 truncate text-xs" title={text(note, 'content')}>{@render runs(text(note, 'content'))}</span>
 											{#if links.length > 0}
 												<span class="flex min-w-0 items-center gap-2 text-xs" data-slot="notes-row-links">
 													{#each links.slice(0, 3) as ref (refKey(ref))}

@@ -8,7 +8,7 @@
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
 	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy } from '$lib/notes';
+	import { addressees, CLOSED, forwardBody, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
@@ -37,6 +37,11 @@
 		}
 	})();
 	let groupBy = $state<GroupBy>(storedGroup);
+	let sortBy = $state<SortBy>('newest');
+	$effect(() => {
+		const descending = sortBy !== 'oldest';
+		if (source.sort[0]?.descending !== descending) void source.setSort([{ path: 'created_at', descending }]);
+	});
 	$effect(() => {
 		try {
 			localStorage.setItem(GROUP_KEY, groupBy);
@@ -165,8 +170,49 @@
 		if (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) {
 			event.preventDefault();
 			paletteOpen = !paletteOpen;
+			return;
+		}
+		if (event.key === 'Escape') {
+			// Escape backs out one step at a time: a search, then a selection.
+			if (typing(event) && (event.target as HTMLElement).closest('[data-slot="search"]')) {
+				if (query) query = '';
+				(event.target as HTMLElement).blur();
+				return;
+			}
+			if (typing(event)) return;
+			if (query) query = '';
+			else if (selection.size > 0) setSelection([], null);
+			return;
+		}
+		if (typing(event) || event.metaKey || event.ctrlKey || event.altKey) return;
+		switch (event.key) {
+			case '/':
+				event.preventDefault();
+				focusSearch();
+				break;
+			case 'x':
+				event.preventDefault();
+				list?.toggleAnchor();
+				break;
+			case 'e':
+				event.preventDefault();
+				closeSelected();
+				break;
+			case 'u':
+				event.preventDefault();
+				toggleReadSelected();
+				break;
+			case 'r':
+				event.preventDefault();
+				focusReply();
+				break;
+			case 'f':
+				event.preventDefault();
+				if (selectedRows.length > 0) forwardOpen = true;
+				break;
 		}
 	}
+	let forwardOpen = $state(false);
 
 	/** One write per note, in order, each failure named; then everything is read again. */
 	async function runJob(label: string, notes: EntityRow[], write: (note: EntityRow) => Promise<void>): Promise<void> {
@@ -198,8 +244,39 @@
 		);
 	}
 
-	function bulkReply(notes: EntityRow[], content: string): void {
-		void runJob(`Replying to ${notes.length}`, notes, (note) => createReply(writer, { type: 'Note', id: note.id }, content).then(() => undefined));
+	function bulkReply(notes: EntityRow[], content: string, close: boolean): void {
+		void runJob(close ? `Replying to ${notes.length} and closing` : `Replying to ${notes.length}`, notes, async (note) => {
+			await createReply(writer, { type: 'Note', id: note.id }, content);
+			if (close) await source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: CLOSED });
+		});
+	}
+
+	function bulkForward(notes: EntityRow[], to: EntityRef[], message: string): void {
+		void runJob(`Forwarding ${notes.length}`, notes, (note) => writer.create('Note', forwardBody(note, { type: 'Project', id: projectId }, to, message)).then(() => undefined));
+	}
+
+	/** The verbs, on the selection: what the palette lists and what the single keys do. */
+	function closeSelected(): void {
+		if (selectedRows.length > 0) bulkStatus(selectedRows, CLOSED);
+	}
+	function toggleReadSelected(): void {
+		if (selectedRows.length === 0) return;
+		const unread = selectedRows.some((row) => text(row, 'read_by_current_user') === 'unread');
+		bulkRead(selectedRows, unread);
+	}
+	function focusReply(): void {
+		document.querySelector<HTMLTextAreaElement>('[data-slot="thread"] [data-slot="reply-box"]')?.focus({ preventScroll: false });
+	}
+	function focusSearch(): void {
+		document.querySelector<HTMLInputElement>('[data-slot="search"]')?.focus();
+	}
+
+	/** True when a key should not act: the person is typing, or a dialog has the page. */
+	function typing(event: KeyboardEvent): boolean {
+		const target = event.target as HTMLElement | null;
+		if (!target) return false;
+		if (target.closest('input, textarea, select, [contenteditable="true"], [role="dialog"], [data-slot="popover-content"], [data-slot="select-content"]')) return true;
+		return paletteOpen || job !== null;
 	}
 
 	function openInWebApp(notes: EntityRow[]): void {
@@ -209,8 +286,9 @@
 		}
 	}
 
-	async function replyTo(note: EntityRow, content: string): Promise<void> {
+	async function replyTo(note: EntityRow, content: string, close = false): Promise<void> {
 		await createReply(writer, { type: 'Note', id: note.id }, content);
+		if (close) await source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: CLOSED });
 		// The thread is read from Reply rows, and the note's own `replies` list moved too.
 		const fresh = await readReplies(context.client, [note]);
 		replies = new Map([...replies, [note.id, fresh.get(note.id) ?? []]]);
@@ -231,7 +309,7 @@
 		{statuses}
 		{projectId}
 		onStatus={(code) => source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: code }).then(() => undefined)}
-		onReply={(content) => replyTo(note, content)}
+		onReply={(content, close) => replyTo(note, content, close)}
 	/>
 {/snippet}
 
@@ -266,6 +344,7 @@
 			selected={selection}
 			onSelectionChange={setSelection}
 			bind:groupBy
+			bind:sortBy
 			bind:query
 			onClearFilters={() => {
 				filter = emptyFilter();
@@ -305,9 +384,15 @@
 	{noteStatuses}
 	{groupBy}
 	{job}
+	{context}
+	{projectId}
+	bind:forwardOpen
 	onStatus={bulkStatus}
 	onRead={bulkRead}
 	onReply={bulkReply}
+	onForward={bulkForward}
+	onFocusReply={focusReply}
+	onFocusSearch={focusSearch}
 	onGroupBy={(value) => (groupBy = value)}
 	onSelectAll={() => setSelection(snapshot.rows.map((row) => row.id), null)}
 	onClearSelection={() => setSelection([], null)}
