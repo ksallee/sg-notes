@@ -5,6 +5,7 @@
 	progress and what failed in a third, which stays until it is read.
 -->
 <script lang="ts">
+	import { untrack } from 'svelte';
 	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
 	import CheckIcon from '@lucide/svelte/icons/check';
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
@@ -16,6 +17,9 @@
 	import Layers from '@lucide/svelte/icons/layers';
 	import ListChecks from '@lucide/svelte/icons/list-checks';
 	import Forward from '@lucide/svelte/icons/forward';
+	import Plus from '@lucide/svelte/icons/plus';
+	import UserPlus from '@lucide/svelte/icons/user-plus';
+	import X from '@lucide/svelte/icons/x';
 	import Keyboard from '@lucide/svelte/icons/keyboard';
 	import MessageSquareReply from '@lucide/svelte/icons/message-square-reply';
 	import Search from '@lucide/svelte/icons/search';
@@ -29,7 +33,7 @@
 	import { Textarea } from '$lib/components/ui/textarea/index.js';
 	import StatusBadge from '$lib/components/status-badge.svelte';
 	import UserMultiPicker from '$lib/components/user-multi-picker.svelte';
-	import { CLOSED, GROUP_OPTIONS, text, type GroupBy } from '$lib/notes';
+	import { addresseeSpread, CLOSED, GROUP_OPTIONS, refKey, text, type AddresseeEdit, type AddresseeSpread, type AddressField, type GroupBy } from '$lib/notes';
 
 	/** A bulk write as it runs and as it ended. */
 	export interface Job {
@@ -45,6 +49,8 @@
 		projectId: number;
 		/** The Forward dialog, two-way, so a key can open it. */
 		forwardOpen?: boolean;
+		/** The Add-to-To dialog, two-way, so a key can open it. */
+		addressOpen?: boolean;
 		/** The notes an action applies to. */
 		targets: EntityRow[];
 		/** True when more than one note is selected. */
@@ -57,7 +63,8 @@
 		onStatus: (notes: EntityRow[], code: string) => void;
 		onRead: (notes: EntityRow[], read: boolean) => void;
 		onReply: (notes: EntityRow[], content: string, close: boolean) => void;
-		onForward: (notes: EntityRow[], to: EntityRef[], message: string) => void;
+		onForward: (notes: EntityRow[], to: EntityRef[], cc: EntityRef[], message: string) => void;
+		onAddressees: (notes: EntityRow[], to: AddresseeEdit, cc: AddresseeEdit) => void;
 		onFocusReply: () => void;
 		onFocusSearch: () => void;
 		onGroupBy: (value: GroupBy) => void;
@@ -74,6 +81,7 @@
 		context,
 		projectId,
 		forwardOpen = $bindable(false),
+		addressOpen = $bindable(false),
 		targets,
 		several,
 		statuses,
@@ -84,6 +92,7 @@
 		onRead,
 		onReply,
 		onForward,
+		onAddressees,
 		onFocusReply,
 		onFocusSearch,
 		onGroupBy,
@@ -102,7 +111,56 @@
 	let draft = $state('');
 	let closeToo = $state(false);
 	let forwardTo = $state<EntityRef[]>([]);
+	let forwardCc = $state<EntityRef[]>([]);
 	let forwardMessage = $state('');
+
+	/**
+	 * One line of the addressees dialog. The picker holds the people on every selected
+	 * note; taking a chip off removes them from all, adding one puts them on all. The
+	 * people on only some notes wait beside it with a plus and a cross.
+	 */
+	interface Line {
+		field: AddressField;
+		label: string;
+		spread: AddresseeSpread;
+		value: EntityRef[];
+		/** Partial people pressed off every note. */
+		removed: EntityRef[];
+	}
+	let lines = $state<Line[]>([]);
+
+	// The lines are built from the selection each time the dialog opens, by whatever opened it.
+	$effect(() => {
+		if (!addressOpen) return;
+		const notes = untrack(() => targets);
+		lines = (['addressings_to', 'addressings_cc'] as const).map((field) => {
+			const spread = addresseeSpread(notes, field);
+			return { field, label: field === 'addressings_to' ? 'To' : 'CC', spread, value: [...spread.common], removed: [] };
+		});
+	});
+
+	function editOf(line: Line): AddresseeEdit {
+		const was = new Set(line.spread.common.map(refKey));
+		const now = new Set(line.value.map(refKey));
+		return {
+			added: line.value.filter((ref) => !was.has(refKey(ref))),
+			removed: [...line.spread.common.filter((ref) => !now.has(refKey(ref))), ...line.removed]
+		};
+	}
+
+	/** A partial person: a plus puts them on all, a cross takes them off all. */
+	function putOnAll(line: Line, ref: EntityRef): void {
+		line.removed = line.removed.filter((other) => refKey(other) !== refKey(ref));
+		if (!line.value.some((other) => refKey(other) === refKey(ref))) line.value = [...line.value, ref];
+	}
+	function takeOffAll(line: Line, ref: EntityRef): void {
+		line.value = line.value.filter((other) => refKey(other) !== refKey(ref));
+		if (!line.removed.some((other) => refKey(other) === refKey(ref))) line.removed = [...line.removed, ref];
+	}
+	function pendingOf(line: Line): AddresseeSpread['partial'] {
+		return line.spread.partial.filter(({ ref }) => !line.value.some((other) => refKey(other) === refKey(ref)) && !line.removed.some((other) => refKey(other) === refKey(ref)));
+	}
+	const addresseesChanged = $derived(lines.some((line) => editOf(line).added.length > 0 || editOf(line).removed.length > 0));
 
 	const count = $derived(targets.length);
 	const noun = $derived(count === 1 ? 'note' : 'notes');
@@ -129,11 +187,19 @@
 		closeToo = false;
 	}
 
+	function sendAddressees(): void {
+		if (!addresseesChanged) return;
+		addressOpen = false;
+		const [to, cc] = lines;
+		onAddressees(targets, editOf(to!), editOf(cc!));
+	}
+
 	function sendForward(): void {
 		if (forwardTo.length === 0) return;
 		forwardOpen = false;
-		onForward(targets, forwardTo, forwardMessage);
+		onForward(targets, forwardTo, forwardCc, forwardMessage);
 		forwardTo = [];
+		forwardCc = [];
 		forwardMessage = '';
 	}
 
@@ -166,8 +232,11 @@
 					<Command.Item value="set status" onSelect={() => (page = 'status')}>
 						<Tag aria-hidden="true" /> Set the status of {count} {noun}…
 					</Command.Item>
-					<Command.Item value="forward" onSelect={() => run(() => (forwardOpen = true))}>
-						<Forward aria-hidden="true" /> Forward {count} {noun} to…<span class="text-muted-foreground ml-1 text-xs">a copy, with new addressees</span> <Command.Shortcut>F</Command.Shortcut>
+					<Command.Item value="addressees" onSelect={() => run(() => (addressOpen = true))}>
+						<UserPlus aria-hidden="true" /> Addressees of {count} {noun}…<span class="text-muted-foreground ml-1 text-xs">To and CC</span> <Command.Shortcut>F</Command.Shortcut>
+					</Command.Item>
+					<Command.Item value="forward copy" onSelect={() => run(() => (forwardOpen = true))}>
+						<Forward aria-hidden="true" /> Forward a copy of {count} {noun}…<span class="text-muted-foreground ml-1 text-xs">a new note, the original untouched</span>
 					</Command.Item>
 					<Command.Item value="mark read" onSelect={() => run(() => onRead(targets, true))}>
 						<Eye aria-hidden="true" /> Mark {count} {noun} read <Command.Shortcut>U</Command.Shortcut>
@@ -195,7 +264,7 @@
 					<Keyboard aria-hidden="true" />
 					<span class="flex flex-wrap gap-x-3 gap-y-1 text-xs">
 						<span><Kbd>↑</Kbd><Kbd>↓</Kbd> move</span><span><Kbd>⇧↑</Kbd><Kbd>⇧↓</Kbd> extend</span><span><Kbd>X</Kbd> select</span>
-						<span><Kbd>R</Kbd> reply</span><span><Kbd>E</Kbd> close</span><span><Kbd>U</Kbd> read</span><span><Kbd>F</Kbd> forward</span><span><Kbd>/</Kbd> search</span><span><Kbd>Esc</Kbd> back out</span>
+						<span><Kbd>R</Kbd> reply</span><span><Kbd>E</Kbd> close</span><span><Kbd>U</Kbd> read</span><span><Kbd>F</Kbd> addressees</span><span><Kbd>/</Kbd> search</span><span><Kbd>Esc</Kbd> back out</span>
 					</span>
 				</Command.Item>
 			</Command.Group>
@@ -250,6 +319,50 @@
 	</Dialog.Content>
 </Dialog.Root>
 
+<Dialog.Root bind:open={addressOpen}>
+	<Dialog.Content class="max-w-md" data-slot="address-dialog">
+		<Dialog.Header>
+			<Dialog.Title>Addressees of {count === 1 ? 'the note' : `${count} notes`}</Dialog.Title>
+			<Dialog.Description>
+				{#if count === 1}
+					Who the note is for, and who is copied. The thread stays one thread.
+				{:else}
+					The chips are the people on all {count}. Take one off and they leave every note; add one and they join every note.
+					People on only some of them wait below: plus puts them on all, the cross takes them off all.
+				{/if}
+				Whether the site gives a person added after the fact an Inbox entry is not measured.
+			</Dialog.Description>
+		</Dialog.Header>
+		<form class="flex flex-col gap-4" onsubmit={(event) => (event.preventDefault(), sendAddressees())}>
+			{#each lines as line (line.field)}
+				<div class="flex flex-col gap-2" data-slot="address-line" data-field={line.field}>
+					<span class="text-sm font-medium">{line.label}</span>
+					<UserMultiPicker {context} {projectId} bind:value={line.value} placeholder="People on this project…" includeApiUsers={false} />
+					{#if pendingOf(line).length > 0}
+						<ul class="flex flex-wrap gap-2">
+							{#each pendingOf(line) as { ref, count: on } (refKey(ref))}
+								<li class="border-border flex items-center gap-1 rounded-md border pl-2 text-xs">
+									<span class="truncate">{ref.name}</span>
+									<span class="text-muted-foreground tabular-nums">on {on} of {count}</span>
+									<Button type="button" size="icon-xs" variant="ghost" aria-label="Put {ref.name} on all" title="On all" onclick={() => putOnAll(line, ref)}><Plus aria-hidden="true" /></Button>
+									<Button type="button" size="icon-xs" variant="ghost" aria-label="Take {ref.name} off all" title="Off all" onclick={() => takeOffAll(line, ref)}><X aria-hidden="true" /></Button>
+								</li>
+							{/each}
+						</ul>
+					{/if}
+					{#if line.removed.length > 0}
+						<p class="text-muted-foreground text-xs">Off all: {line.removed.map((ref) => ref.name).join(', ')}</p>
+					{/if}
+				</div>
+			{/each}
+			<Dialog.Footer>
+				<Button type="button" variant="ghost" size="sm" onclick={() => (addressOpen = false)}>Cancel</Button>
+				<Button type="submit" size="sm" disabled={!addresseesChanged}>Save</Button>
+			</Dialog.Footer>
+		</form>
+	</Dialog.Content>
+</Dialog.Root>
+
 <Dialog.Root bind:open={forwardOpen}>
 	<Dialog.Content class="max-w-md" data-slot="forward-dialog">
 		<Dialog.Header>
@@ -267,7 +380,8 @@
 			</ul>
 		{/if}
 		<form class="flex flex-col gap-3" onsubmit={(event) => (event.preventDefault(), sendForward())}>
-			<UserMultiPicker {context} {projectId} bind:value={forwardTo} placeholder="To…" includeApiUsers={false} />
+			<div class="flex flex-col gap-2"><span class="text-sm font-medium">To</span><UserMultiPicker {context} {projectId} bind:value={forwardTo} placeholder="People on this project…" includeApiUsers={false} /></div>
+			<div class="flex flex-col gap-2"><span class="text-sm font-medium">CC</span><UserMultiPicker {context} {projectId} bind:value={forwardCc} placeholder="Copied…" includeApiUsers={false} /></div>
 			<Textarea bind:value={forwardMessage} rows={3} placeholder="A word for them, above the original…" />
 			<Dialog.Footer>
 				<Button type="button" variant="ghost" size="sm" onclick={() => (forwardOpen = false)}>Cancel</Button>

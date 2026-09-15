@@ -123,11 +123,11 @@
 	}
 
 	export function collapseAll(): void {
-		setShut(groups.map((group) => group.key));
+		setShut({ all: true, except: [] });
 	}
 
 	export function expandAll(): void {
-		setShut([]);
+		setShut({ all: false, except: [] });
 	}
 
 	const shown = $derived.by(() => {
@@ -239,15 +239,20 @@
 	}
 
 	/** Reads the next page whenever the foot of the list scrolls into view. */
-	let shutBy = $state<Partial<Record<GroupBy, string[]>>>({});
-	const shut = $derived(shutBy[groupBy] ?? []);
+	interface Shut {
+		all: boolean;
+		except: string[];
+	}
+	let shutBy = $state<Partial<Record<GroupBy, Shut>>>({});
+	const shut = $derived(shutBy[groupBy] ?? { all: false, except: [] });
+	const isShut = (key: string): boolean => shut.all !== shut.except.includes(key);
 
-	function setShut(keys: string[]): void {
-		shutBy = { ...shutBy, [groupBy]: keys };
+	function setShut(next: Shut): void {
+		shutBy = { ...shutBy, [groupBy]: next };
 	}
 
 	function toggleGroup(key: string): void {
-		setShut(shut.includes(key) ? shut.filter((k) => k !== key) : [...shut, key]);
+		setShut({ ...shut, except: shut.except.includes(key) ? shut.except.filter((k) => k !== key) : [...shut.except, key] });
 	}
 
 	/** Arrow keys walk the rows, Home and End jump, so a lead reads the list without a mouse. */
@@ -435,7 +440,7 @@
 		>
 			{#each groups as group (group.key)}
 				{@const record = group.record ? records.get(group.key) : undefined}
-				{@const closed = grouped && shut.includes(group.key)}
+				{@const closed = grouped && isShut(group.key)}
 				<section data-slot="notes-group" data-group-key={group.key}>
 					{#if grouped}
 						{@const tickState = groupState(group)}

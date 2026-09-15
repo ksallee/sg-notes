@@ -8,7 +8,7 @@
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
 	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, CLOSED, forwardBody, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
+	import { addressees, CLOSED, editedLine, forwardBody, type AddresseeEdit, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
@@ -208,11 +208,12 @@
 				break;
 			case 'f':
 				event.preventDefault();
-				if (selectedRows.length > 0) forwardOpen = true;
+				if (selectedRows.length > 0) addressOpen = true;
 				break;
 		}
 	}
 	let forwardOpen = $state(false);
+	let addressOpen = $state(false);
 
 	/** One write per note, in order, each failure named; then everything is read again. */
 	async function runJob(label: string, notes: EntityRow[], write: (note: EntityRow) => Promise<void>): Promise<void> {
@@ -251,8 +252,24 @@
 		});
 	}
 
-	function bulkForward(notes: EntityRow[], to: EntityRef[], message: string): void {
-		void runJob(`Forwarding ${notes.length}`, notes, (note) => writer.create('Note', forwardBody(note, { type: 'Project', id: projectId }, to, message)).then(() => undefined));
+	/** The To and CC lines of each note, edited as one: each keeps its own people, less the removed, plus the added. */
+	function bulkAddressees(notes: EntityRow[], to: AddresseeEdit, cc: AddresseeEdit): void {
+		const changed = notes.filter((note) => editedLine(note, 'addressings_to', to) !== null || editedLine(note, 'addressings_cc', cc) !== null);
+		if (changed.length === 0) return;
+		void runJob(`Addressing ${changed.length}`, changed, (note) => {
+			const patch: Record<string, unknown> = {};
+			const nextTo = editedLine(note, 'addressings_to', to);
+			const nextCc = editedLine(note, 'addressings_cc', cc);
+			if (nextTo) patch.addressings_to = nextTo;
+			if (nextCc) patch.addressings_cc = nextCc;
+			return source.updateRow({ type: 'Note', id: note.id }, patch).then(() => undefined);
+		});
+	}
+
+	function bulkForward(notes: EntityRow[], to: EntityRef[], cc: EntityRef[], message: string): void {
+		void runJob(`Forwarding ${notes.length}`, notes, (note) =>
+			writer.create('Note', forwardBody(note, { type: 'Project', id: projectId }, to, message, cc)).then(() => undefined)
+		);
 	}
 
 	/** The verbs, on the selection: what the palette lists and what the single keys do. */
@@ -387,6 +404,8 @@
 	{context}
 	{projectId}
 	bind:forwardOpen
+	bind:addressOpen
+	onAddressees={bulkAddressees}
 	onStatus={bulkStatus}
 	onRead={bulkRead}
 	onReply={bulkReply}

@@ -336,7 +336,7 @@ export function lastActivity(note: EntityRow, replies: readonly EntityRow[] | nu
  * links, tasks and type, on the same project, with the new addressees. The
  * forum's own workaround for the Inbox having no Forward (research/03).
  */
-export function forwardBody(note: EntityRow, project: EntityRef, to: EntityRef[], message: string): Record<string, unknown> {
+export function forwardBody(note: EntityRow, project: EntityRef, to: EntityRef[], message: string, cc: EntityRef[] = []): Record<string, unknown> {
 	const subject = text(note, 'subject');
 	const author = refOf(note, 'created_by');
 	const original = `${author?.name ?? 'Someone'} wrote:\n${text(note, 'content')}`;
@@ -347,8 +347,64 @@ export function forwardBody(note: EntityRow, project: EntityRef, to: EntityRef[]
 		note_links: refsOf(note, 'note_links').map((ref) => ({ type: ref.type, id: ref.id })),
 		tasks: refsOf(note, 'tasks').map((ref) => ({ type: ref.type, id: ref.id })),
 		addressings_to: to.map((ref) => ({ type: ref.type, id: ref.id })),
+		...(cc.length > 0 ? { addressings_cc: cc.map((ref) => ({ type: ref.type, id: ref.id })) } : {}),
 		...(text(note, 'sg_note_type') ? { sg_note_type: text(note, 'sg_note_type') } : {})
 	};
+}
+
+/** The two address lines a note carries. */
+export type AddressField = 'addressings_to' | 'addressings_cc';
+
+/** Who is on a line across several notes: on all of them, or on some, with the count. */
+export interface AddresseeSpread {
+	common: EntityRef[];
+	partial: Array<{ ref: EntityRef; count: number }>;
+}
+
+/** The people on `field` across `notes`: those on every note, and those on only some. */
+export function addresseeSpread(notes: readonly EntityRow[], field: AddressField): AddresseeSpread {
+	const counts = new Map<string, { ref: EntityRef; count: number }>();
+	for (const note of notes) {
+		for (const ref of refsOf(note, field)) {
+			const entry = counts.get(refKey(ref)) ?? { ref, count: 0 };
+			entry.count += 1;
+			counts.set(refKey(ref), entry);
+		}
+	}
+	const common: EntityRef[] = [];
+	const partial: AddresseeSpread['partial'] = [];
+	for (const entry of counts.values()) {
+		if (entry.count === notes.length) common.push(entry.ref);
+		else partial.push(entry);
+	}
+	partial.sort((a, b) => b.count - a.count || (a.ref.name ?? '').localeCompare(b.ref.name ?? ''));
+	return { common, partial };
+}
+
+/** What a line's edit does to every selected note: these people on, these off. */
+export interface AddresseeEdit {
+	added: EntityRef[];
+	removed: EntityRef[];
+}
+
+/**
+ * One note's line after an edit: its own list, minus everyone removed, plus everyone
+ * added, nobody twice. A multi-entity update replaces the whole list
+ * (field_types/multi_entity), so the whole line is sent. Null when nothing changes.
+ */
+export function editedLine(note: EntityRow, field: AddressField, edit: AddresseeEdit): Array<{ type: string; id: number }> | null {
+	const removed = new Set(edit.removed.map(refKey));
+	const before = refsOf(note, field);
+	const seen = new Set<string>();
+	const after: Array<{ type: string; id: number }> = [];
+	for (const ref of [...before.filter((ref) => !removed.has(refKey(ref))), ...edit.added]) {
+		const key = refKey(ref);
+		if (seen.has(key)) continue;
+		seen.add(key);
+		after.push({ type: ref.type, id: ref.id });
+	}
+	const same = after.length === before.length && before.every((ref, index) => refKey(ref) === refKey(after[index]!));
+	return same ? null : after;
 }
 
 /** Rows in `created_at` order, oldest first, the order a thread reads in. */
