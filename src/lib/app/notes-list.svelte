@@ -13,6 +13,12 @@
 	a filter change keeps the rows on screen, dimmed, so the list does not flash;
 	an error is a line with a retry; empty says whether the filter or the project
 	is the reason. A row's "waiting on" is not claimed until its replies are known.
+
+	Selection is one thing, the way Mail, Finder and Linear treat it: a press selects
+	that row alone and the pane shows it; ⌘ toggles a row in or out; shift extends the
+	run from the anchor; arrows move it, shift-arrows extend it, ⌘A takes every loaded
+	row. The checkboxes are the same selection for a mouse with no modifier: they show
+	on hover and stay while anything is selected.
 -->
 <script lang="ts">
 	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
@@ -57,16 +63,14 @@
 		/** People by id, for avatars. */
 		people: Map<number, EntityRow>;
 		statuses: Record<string, StatusRecord>;
-		selected: EntityRef | null;
-		onSelect: (note: EntityRow) => void;
+		/** Ids of the selected notes. */
+		selected: ReadonlySet<number>;
+		/** The whole next selection, and the row the press or key landed on. */
+		onSelectionChange: (ids: number[], last: number | null) => void;
 		/** What the rows are grouped on, two-way. */
 		groupBy?: GroupBy;
 		/** The search the page applies, two-way. The list draws the box; the page reads. */
 		query?: string;
-		/** Ids of the ticked notes, for a bulk action. */
-		ticked: ReadonlySet<number>;
-		/** `last` is the row the press landed on, so the page can open it in the pane. */
-		onTickChange: (ids: number[], on: boolean, last: number) => void;
 		onActions: () => void;
 	};
 
@@ -84,11 +88,9 @@
 		people,
 		statuses,
 		selected,
-		onSelect,
+		onSelectionChange,
 		groupBy = $bindable('record'),
 		query = $bindable(''),
-		ticked,
-		onTickChange,
 		onActions
 	}: Props = $props();
 
@@ -116,80 +118,114 @@
 	const groups = $derived(groupNotes(rows, records, groupBy));
 	const groupLabel = $derived(GROUP_OPTIONS.find((option) => option.value === groupBy)?.label ?? '');
 	const grouped = $derived(groupBy !== 'none');
-
-	/** The last row ticked, so a shift-click ticks the run between. */
-	let lastTick = $state<number | null>(null);
-	let shiftHeld = false;
-
-	/** Every note id in the order the list shows them, across groups. */
-	const order = $derived(groups.flatMap((group) => group.notes.map((note) => note.id)));
-
-	function tick(note: EntityRow, on: boolean, range = shiftHeld): void {
-		let ids = [note.id];
-		const from = lastTick ?? (selected?.type === 'Note' ? selected.id : null);
-		if (range && from !== null) {
-			const a = order.indexOf(from);
-			const b = order.indexOf(note.id);
-			if (a !== -1 && b !== -1) ids = order.slice(Math.min(a, b), Math.max(a, b) + 1);
-		}
-		lastTick = note.id;
-		onTickChange([...new Set(ids)], on, note.id);
-	}
-
-	/** A plain press opens the note; shift ticks the run from the last one; option or ⌘ toggles the tick. */
-	function rowClick(note: EntityRow, event: MouseEvent): void {
-		if (event.shiftKey) {
-			tick(note, true, true);
-			return;
-		}
-		if (event.altKey || event.metaKey || event.ctrlKey) {
-			tick(note, !ticked.has(note.id), false);
-			return;
-		}
-		onSelect(note);
-	}
-
-	function groupTick(group: { notes: EntityRow[] }): 'all' | 'some' | 'none' {
-		const on = group.notes.filter((note) => ticked.has(note.id)).length;
-		return on === 0 ? 'none' : on === group.notes.length ? 'all' : 'some';
-	}
-
-	const selectedKey = $derived(selected ? refKey(selected) : '');
+	const anySelected = $derived(selected.size > 0);
 	const prefs = $derived(preferencesOf(context));
 	/** The first read, with nothing to show yet. A later read keeps the rows and dims them. */
 	const firstRead = $derived((status === 'loading' || status === 'idle') && rows.length === 0);
 	const rereading = $derived(status === 'loading' && rows.length > 0);
 
-	/** What is shut, per grouping, so switching away and back finds the groups as they were left. */
+	/** Where a run starts: the last row selected on its own. */
+	let anchor = $state<number | null>(null);
+	let shiftHeld = false;
+
+	/** Every note id in the order the list shows them, across groups, shut ones included. */
+	const order = $derived(groups.flatMap((group) => group.notes.map((note) => note.id)));
+
+	function run(from: number | null, to: number): number[] {
+		const a = from === null ? -1 : order.indexOf(from);
+		const b = order.indexOf(to);
+		if (a === -1 || b === -1) return [to];
+		return order.slice(Math.min(a, b), Math.max(a, b) + 1);
+	}
+
+	/** This row alone. */
+	function selectOne(id: number): void {
+		anchor = id;
+		onSelectionChange([id], id);
+	}
+
+	/** This row in or out of what is selected. */
+	function toggle(id: number): void {
+		anchor = id;
+		const next = selected.has(id) ? [...selected].filter((other) => other !== id) : [...selected, id];
+		onSelectionChange(next, selected.has(id) ? null : id);
+	}
+
+	/** The run from the anchor to this row, replacing the selection, as Mail does. */
+	function extend(id: number): void {
+		onSelectionChange(run(anchor, id), id);
+	}
+
+	function setMany(ids: number[], on: boolean, last: number): void {
+		const next = on ? [...new Set([...selected, ...ids])] : [...selected].filter((id) => !ids.includes(id));
+		onSelectionChange(next, on ? last : null);
+	}
+
+	/** A plain press selects the row alone; shift extends the run; ⌘, ctrl or option toggles it. */
+	function rowClick(note: EntityRow, event: MouseEvent): void {
+		if (event.shiftKey) extend(note.id);
+		else if (event.metaKey || event.ctrlKey || event.altKey) toggle(note.id);
+		else selectOne(note.id);
+	}
+
+	/** The checkbox is the toggle for a mouse with no modifier; shift still makes a run. */
+	function boxChange(note: EntityRow, on: boolean): void {
+		if (shiftHeld && on) extend(note.id);
+		else if (on !== selected.has(note.id)) toggle(note.id);
+	}
+
+	function groupState(group: { notes: EntityRow[] }): 'all' | 'some' | 'none' {
+		const on = group.notes.filter((note) => selected.has(note.id)).length;
+		return on === 0 ? 'none' : on === group.notes.length ? 'all' : 'some';
+	}
+
+	let list = $state<HTMLElement | null>(null);
+
+	/**
+	 * Arrows move the selection and the focus with it; shift-arrows extend the run; Home
+	 * and End jump; ⌘A takes every loaded row. A row shut in its group is skipped.
+	 */
+	function onKeydown(event: KeyboardEvent): void {
+		if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'a') {
+			event.preventDefault();
+			onSelectionChange(order, anchor);
+			return;
+		}
+		if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key) || !list) return;
+		const buttons = [...list.querySelectorAll<HTMLButtonElement>('[data-slot="notes-row"] button[aria-pressed]')];
+		if (buttons.length === 0) return;
+		const ids = buttons.map((button) => Number(button.closest<HTMLElement>('[data-slot="notes-row"]')?.dataset.noteId));
+		const current = anchor !== null ? ids.indexOf(anchor) : -1;
+		let next = current;
+		if (event.key === 'ArrowDown') next = Math.min(buttons.length - 1, current + 1);
+		else if (event.key === 'ArrowUp') next = Math.max(0, current - 1);
+		else if (event.key === 'Home') next = 0;
+		else next = buttons.length - 1;
+		event.preventDefault();
+		const id = ids[next]!;
+		buttons[next]?.focus({ preventScroll: false });
+		if (event.shiftKey) {
+			// The run grows from the anchor's far end: shift-down from a lone row selects two.
+			const from = anchor ?? id;
+			onSelectionChange(run(from, id), id);
+		} else {
+			selectOne(id);
+		}
+	}
+
+	/** Reads the next page whenever the foot of the list scrolls into view. */
 	let shutBy = $state<Partial<Record<GroupBy, string[]>>>({});
 	const shut = $derived(shutBy[groupBy] ?? []);
-	let list = $state<HTMLElement | null>(null);
 
 	function setShut(keys: string[]): void {
 		shutBy = { ...shutBy, [groupBy]: keys };
 	}
 
-	function toggle(key: string): void {
+	function toggleGroup(key: string): void {
 		setShut(shut.includes(key) ? shut.filter((k) => k !== key) : [...shut, key]);
 	}
 
 	/** Arrow keys walk the rows, Home and End jump, so a lead reads the list without a mouse. */
-	function onKeydown(event: KeyboardEvent): void {
-		if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key) || !list) return;
-		const buttons = [...list.querySelectorAll<HTMLButtonElement>('[data-slot="notes-row"] button')];
-		if (buttons.length === 0) return;
-		const at = buttons.indexOf(document.activeElement as HTMLButtonElement);
-		let next = at;
-		if (event.key === 'ArrowDown') next = Math.min(buttons.length - 1, at + 1);
-		else if (event.key === 'ArrowUp') next = Math.max(0, at - 1);
-		else if (event.key === 'Home') next = 0;
-		else next = buttons.length - 1;
-		if (next === at && at !== -1) return;
-		event.preventDefault();
-		buttons[next === -1 ? 0 : next]?.focus({ preventScroll: false });
-	}
-
-	/** The row a link resolves to, when it has been read. */
 	function rowOf(ref: EntityRef | null | undefined): EntityRow | undefined {
 		return ref ? records.get(refKey(ref)) : undefined;
 	}
@@ -276,8 +312,8 @@
 		<Button size="icon-xs" variant="ghost" aria-label="Expand all" title="Expand all" disabled={!grouped} onclick={expandAll}>
 			<ChevronsUpDown aria-hidden="true" />
 		</Button>
-		<Button size="sm" variant={ticked.size > 0 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
-			{ticked.size > 0 ? `${ticked.size} ticked` : 'Actions'}
+		<Button size="sm" variant={selected.size > 1 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
+			{selected.size > 1 ? `${selected.size} selected` : 'Actions'}
 			<Kbd>⌘K</Kbd>
 		</Button>
 	</div>
@@ -310,10 +346,11 @@
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -- the handler only moves focus between the row buttons -->
 		<div
 			bind:this={list}
-			class={cn('min-h-0 flex-1 overflow-auto transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
+			class={cn('group/list min-h-0 flex-1 overflow-auto transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
 			role="region"
 			aria-label="Notes"
 			data-slot="notes-scroll"
+			data-selecting={anySelected ? 'true' : undefined}
 			aria-busy={rereading ? 'true' : undefined}
 			onkeydown={onKeydown}
 		>
@@ -322,13 +359,13 @@
 				{@const closed = grouped && shut.includes(group.key)}
 				<section data-slot="notes-group" data-group-key={group.key}>
 					{#if grouped}
-						{@const tickState = groupTick(group)}
-						<div class="border-border sticky top-0 z-10 flex items-center gap-2 border-b bg-[color-mix(in_oklab,var(--muted)_70%,var(--background))] px-2 py-1.5 text-sm">
+						{@const tickState = groupState(group)}
+						<div class="group/header border-border sticky top-0 z-10 flex items-center gap-2 border-b bg-[color-mix(in_oklab,var(--muted)_70%,var(--background))] px-2 py-1.5 text-sm">
 							<button
 								type="button"
 								aria-expanded={!closed}
 								aria-label={closed ? 'Show these notes' : 'Hide these notes'}
-								onclick={() => toggle(group.key)}
+								onclick={() => toggleGroup(group.key)}
 								class="focus-visible:ring-ring focus-visible:ring-offset-background text-muted-foreground hover:text-foreground -m-1 flex size-6 shrink-0 items-center justify-center rounded-md outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2"
 							>
 								<ChevronRight aria-hidden="true" class={cn('size-4 transition-transform duration-150 ease-out motion-reduce:transition-none', !closed && 'rotate-90')} />
@@ -336,8 +373,12 @@
 							<Checkbox
 								checked={tickState === 'all'}
 								indeterminate={tickState === 'some'}
-								aria-label="Tick every note in this group"
-								onCheckedChange={(on) => onTickChange(group.notes.map((note) => note.id), on === true, group.notes[group.notes.length - 1]!.id)}
+								aria-label="Select every note in this group"
+								class={cn(
+									'transition-opacity duration-150 group-hover/header:opacity-100 focus-visible:opacity-100 group-data-[selecting]/list:opacity-100',
+									tickState === 'none' && 'opacity-0'
+								)}
+								onCheckedChange={(on) => setMany(group.notes.map((note) => note.id), on === true, group.notes[group.notes.length - 1]!.id)}
 							/>
 							{#if group.record?.type === 'HumanUser'}
 								<UserAvatar name={group.record.name ?? '?'} image={imageOf(people.get(group.record.id))} size="sm" />
@@ -367,27 +408,30 @@
 								{@const code = text(note, 'sg_status_list')}
 								{@const thread = replies.get(note.id)}
 								{@const waiting = thread ? waitingOn(note, thread) : null}
-								{@const chosen = selectedKey === `Note:${note.id}`}
+								{@const chosen = selected.has(note.id)}
 								{@const when = text(note, 'created_at')}
 								{@const links = otherLinks(note, [group.record, parentOf(group.record)])}
-								{@const isTicked = ticked.has(note.id)}
 								<li
 									data-slot="notes-row"
 									data-row-key="Note:{note.id}"
+									data-note-id={note.id}
 									data-state={chosen ? 'selected' : undefined}
 									data-unread={unread ? 'true' : undefined}
-									data-ticked={isTicked ? 'true' : undefined}
 									class={cn(
-										'border-border/50 flex items-stretch border-b transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
-										chosen ? 'bg-accent text-accent-foreground' : isTicked ? 'bg-accent/40' : 'hover:bg-muted/50'
+										'group/row border-border/50 flex items-stretch border-b transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
+										chosen ? 'bg-accent text-accent-foreground' : 'hover:bg-muted/50'
 									)}
 								>
 									<span class="flex shrink-0 items-start pt-2 pl-2">
 										<Checkbox
-											checked={isTicked}
-											aria-label="Tick {firstLine(note)}"
+											checked={chosen}
+											aria-label="Select {firstLine(note)}"
+											class={cn(
+												'transition-opacity duration-150 group-hover/row:opacity-100 focus-visible:opacity-100 group-data-[selecting]/list:opacity-100',
+												!chosen && 'opacity-0'
+											)}
 											onclick={(event: MouseEvent) => (shiftHeld = event.shiftKey)}
-											onCheckedChange={(on) => tick(note, on === true)}
+											onCheckedChange={(on) => boxChange(note, on === true)}
 										/>
 									</span>
 									<button

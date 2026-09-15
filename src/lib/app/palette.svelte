@@ -37,8 +37,8 @@
 		open?: boolean;
 		/** The notes an action applies to. */
 		targets: EntityRow[];
-		/** True when the targets are ticked rows rather than the open note. */
-		ticked: boolean;
+		/** True when more than one note is selected. */
+		several: boolean;
 		statuses: Record<string, StatusRecord>;
 		/** The codes a Note may take on this project, in the schema's order. */
 		noteStatuses: string[];
@@ -59,7 +59,7 @@
 	let {
 		open = $bindable(false),
 		targets,
-		ticked,
+		several,
 		statuses,
 		noteStatuses,
 		groupBy,
@@ -84,7 +84,7 @@
 
 	const count = $derived(targets.length);
 	const noun = $derived(count === 1 ? 'note' : 'notes');
-	const what = $derived(count === 0 ? 'No note' : ticked ? `${count} ticked ${noun}` : `The open note`);
+	const what = $derived(count === 0 ? 'No note selected' : several ? `${count} selected ${noun}` : 'The selected note');
 
 	$effect(() => {
 		if (open) {
@@ -133,8 +133,8 @@
 				</Command.Item>
 			</Command.Group>
 			<Command.Group heading="Selection">
-				<Command.Item value="select all" onSelect={() => run(onSelectAll)}><ListChecks aria-hidden="true" /> Tick every loaded note</Command.Item>
-				<Command.Item value="clear selection" disabled={!ticked} onSelect={() => run(onClearSelection)}><SquareX aria-hidden="true" /> Untick everything</Command.Item>
+				<Command.Item value="select all" onSelect={() => run(onSelectAll)}><ListChecks aria-hidden="true" /> Select every loaded note</Command.Item>
+				<Command.Item value="clear selection" disabled={count === 0} onSelect={() => run(onClearSelection)}><SquareX aria-hidden="true" /> Clear the selection</Command.Item>
 			</Command.Group>
 			<Command.Group heading="List">
 				<Command.Item value="group by" onSelect={() => (page = 'group')}><Layers aria-hidden="true" /> Group by…</Command.Item>

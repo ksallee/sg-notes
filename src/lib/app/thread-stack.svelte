@@ -31,7 +31,7 @@
 
 <div class="flex flex-col" data-slot="thread-stack">
 	<div class="border-border flex items-center gap-2 border-b px-4 py-1.5">
-		<span class="text-muted-foreground font-mono text-xs tabular-nums">{notes.length} ticked</span>
+		<span class="text-muted-foreground font-mono text-xs tabular-nums">{notes.length} selected</span>
 		<Button size="icon-xs" variant="ghost" class="ml-auto" aria-label="Collapse all" title="Collapse all" onclick={() => onExpand([])}>
 			<ChevronsDownUp aria-hidden="true" />
 		</Button>

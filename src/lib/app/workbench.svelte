@@ -126,37 +126,29 @@
 		if (strangers.length > 0) people = new Map([...people, ...(await readPeople(context.client, strangers))]);
 	}
 
-	let selectedRef = $state<EntityRef | null>(null);
-	/** The chosen note as the source now holds it, so a status write shows without a re-pick. */
-	const selected = $derived(selectedRef ? (snapshot.rows.find((row) => row.id === selectedRef!.id) ?? null) : null);
+	/* The selection: what the pane shows and what an action applies to. */
 
-	/* Ticking, and what is done to the ticked. */
-
-	const ticked = new SvelteSet<number>();
+	const selection = new SvelteSet<number>();
+	/** The notes the pane shows in full when several are selected: the last one selected, until lines are pressed. */
+	const expanded = new SvelteSet<number>();
 	let list = $state<NotesList | null>(null);
 	let paletteOpen = $state(false);
 	let job = $state<Job | null>(null);
 
-	/** The notes the pane shows in full when several are ticked: the last one ticked, until lines are pressed. */
-	const expanded = new SvelteSet<number>();
-
-	function tickChange(ids: number[], on: boolean, last?: number): void {
-		for (const id of ids) {
-			if (on) ticked.add(id);
-			else ticked.delete(id);
-		}
-		for (const id of expanded) if (!ticked.has(id)) expanded.delete(id);
-		if (on && last !== undefined) {
+	function setSelection(ids: number[], last: number | null): void {
+		selection.clear();
+		for (const id of ids) selection.add(id);
+		for (const id of expanded) if (!selection.has(id)) expanded.delete(id);
+		if (last !== null) {
 			expanded.clear();
 			expanded.add(last);
 		}
 	}
 
-	/** The ticked notes in the order the source holds them. */
-	const tickedRows = $derived(snapshot.rows.filter((row) => ticked.has(row.id)));
-
-	/** The ticked notes as the source holds them, else the open one. */
-	const targets = $derived(ticked.size > 0 ? snapshot.rows.filter((row) => ticked.has(row.id)) : selected ? [selected] : []);
+	/** The selected notes as the source holds them, so a write shows without a re-pick. */
+	const selectedRows = $derived(snapshot.rows.filter((row) => selection.has(row.id)));
+	const single = $derived(selectedRows.length === 1 ? selectedRows[0]! : null);
+	const targets = $derived(selectedRows);
 
 	function onKeydown(event: KeyboardEvent): void {
 		if (event.key.toLowerCase() === 'k' && (event.metaKey || event.ctrlKey)) {
@@ -254,18 +246,16 @@
 			{records}
 			{people}
 			{statuses}
-			selected={selectedRef}
-			onSelect={(note) => (selectedRef = { type: 'Note', id: note.id })}
+			selected={selection}
+			onSelectionChange={setSelection}
 			bind:groupBy
 			bind:query
-			{ticked}
-			onTickChange={tickChange}
 			onActions={() => (paletteOpen = true)}
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
-			{#if tickedRows.length > 1}
+			{#if selectedRows.length > 1}
 				<ThreadStack
-					notes={tickedRows}
+					notes={selectedRows}
 					{statuses}
 					{expanded}
 					onExpand={(ids) => {
@@ -274,9 +264,9 @@
 					}}
 					{pane}
 				/>
-			{:else if selected}
-				{#key selected.id}
-					{@render pane(selected)}
+			{:else if single}
+				{#key single.id}
+					{@render pane(single)}
 				{/key}
 			{:else}
 				<p class="text-muted-foreground flex items-center justify-center px-4 py-10 text-sm">Pick a note to read its thread.</p>
@@ -288,7 +278,7 @@
 <Palette
 	bind:open={paletteOpen}
 	{targets}
-	ticked={ticked.size > 0}
+	several={selectedRows.length > 1}
 	{statuses}
 	{noteStatuses}
 	{groupBy}
@@ -297,8 +287,8 @@
 	onRead={bulkRead}
 	onReply={bulkReply}
 	onGroupBy={(value) => (groupBy = value)}
-	onSelectAll={() => tickChange(snapshot.rows.map((row) => row.id), true, selectedRef?.id)}
-	onClearSelection={() => ticked.clear()}
+	onSelectAll={() => setSelection(snapshot.rows.map((row) => row.id), null)}
+	onClearSelection={() => setSelection([], null)}
 	onCollapseAll={() => list?.collapseAll()}
 	onExpandAll={() => list?.expandAll()}
 	onOpen={openInWebApp}
