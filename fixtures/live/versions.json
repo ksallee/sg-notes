@@ -3,59 +3,59 @@
   {
    "attributes": {
     "code": "env_kitchen_texture_v002",
-    "created_at": "2026-09-15T17:08:40Z",
+    "created_at": "2026-09-15T17:25:11Z",
     "description": "Texture for env_kitchen",
-    "image": "media/Task_46822_image.jpg",
+    "image": "pending",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:09:15Z"
+    "updated_at": "2026-09-15T17:25:13Z"
    },
-   "id": 32110,
+   "id": 32116,
    "links": {
-    "self": "/api/v1/entity/versions/32110"
+    "self": "/api/v1/entity/versions/32116"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32110/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32116/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 10128,
+      "id": 10137,
       "name": "env_kitchen",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10128",
-      "self": "/api/v1/entity/versions/32110/relationships/entity"
+      "related": "/api/v1/entity/assets/10137",
+      "self": "/api/v1/entity/versions/32116/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46822,
+      "id": 46849,
       "name": "Texture",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46822",
-      "self": "/api/v1/entity/versions/32110/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46849",
+      "self": "/api/v1/entity/versions/32116/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32110/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32116/relationships/user"
      }
     }
    },
@@ -64,59 +64,59 @@
   {
    "attributes": {
     "code": "charA_model_v003",
-    "created_at": "2026-09-15T17:08:38Z",
+    "created_at": "2026-09-15T17:25:09Z",
     "description": "Model for charA",
-    "image": "media/Task_46821_image.jpg",
+    "image": "pending",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:09:20Z"
+    "updated_at": "2026-09-15T17:25:11Z"
    },
-   "id": 32109,
+   "id": 32115,
    "links": {
-    "self": "/api/v1/entity/versions/32109"
+    "self": "/api/v1/entity/versions/32115"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32109/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32115/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 10127,
+      "id": 10136,
       "name": "charA",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10127",
-      "self": "/api/v1/entity/versions/32109/relationships/entity"
+      "related": "/api/v1/entity/assets/10136",
+      "self": "/api/v1/entity/versions/32115/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46821,
+      "id": 46848,
       "name": "Model",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46821",
-      "self": "/api/v1/entity/versions/32109/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46848",
+      "self": "/api/v1/entity/versions/32115/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32109/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32115/relationships/user"
      }
     }
    },
@@ -125,59 +125,59 @@
   {
    "attributes": {
     "code": "sq010_sh020_roto_v001",
-    "created_at": "2026-09-15T17:08:36Z",
+    "created_at": "2026-09-15T17:25:07Z",
     "description": "Roto for sq010_sh020",
-    "image": "media/Task_46817_image.jpg",
+    "image": "pending",
     "sg_status_list": "apr",
-    "updated_at": "2026-09-15T17:09:13Z"
+    "updated_at": "2026-09-15T17:25:26Z"
    },
-   "id": 32108,
+   "id": 32114,
    "links": {
-    "self": "/api/v1/entity/versions/32108"
+    "self": "/api/v1/entity/versions/32114"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32108/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32114/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 7814,
+      "id": 7826,
       "name": "sq010_sh020",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7814",
-      "self": "/api/v1/entity/versions/32108/relationships/entity"
+      "related": "/api/v1/entity/shots/7826",
+      "self": "/api/v1/entity/versions/32114/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46817,
+      "id": 46844,
       "name": "Roto",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46817",
-      "self": "/api/v1/entity/versions/32108/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46844",
+      "self": "/api/v1/entity/versions/32114/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32108/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32114/relationships/user"
      }
     }
    },
@@ -186,59 +186,59 @@
   {
    "attributes": {
     "code": "sq010_sh020_comp_v001",
-    "created_at": "2026-09-15T17:08:33Z",
+    "created_at": "2026-09-15T17:25:05Z",
     "description": "Comp for sq010_sh020",
-    "image": "media/Version_32107_image.jpg",
+    "image": "pending",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:09:11Z"
+    "updated_at": "2026-09-15T17:25:07Z"
    },
-   "id": 32107,
+   "id": 32113,
    "links": {
-    "self": "/api/v1/entity/versions/32107"
+    "self": "/api/v1/entity/versions/32113"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32107/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32113/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 7814,
+      "id": 7826,
       "name": "sq010_sh020",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7814",
-      "self": "/api/v1/entity/versions/32107/relationships/entity"
+      "related": "/api/v1/entity/shots/7826",
+      "self": "/api/v1/entity/versions/32113/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46816,
+      "id": 46843,
       "name": "Comp",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46816",
-      "self": "/api/v1/entity/versions/32107/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46843",
+      "self": "/api/v1/entity/versions/32113/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32107/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32113/relationships/user"
      }
     }
    },
@@ -247,59 +247,59 @@
   {
    "attributes": {
     "code": "sq010_sh010_comp_v002",
-    "created_at": "2026-09-15T17:08:31Z",
+    "created_at": "2026-09-15T17:25:03Z",
     "description": "Comp for sq010_sh010",
-    "image": "media/Task_46815_image.jpg",
+    "image": "media/Version_32112_image.jpg",
     "sg_status_list": "rev",
-    "updated_at": "2026-09-15T17:09:09Z"
+    "updated_at": "2026-09-15T17:25:33Z"
    },
-   "id": 32106,
+   "id": 32112,
    "links": {
-    "self": "/api/v1/entity/versions/32106"
+    "self": "/api/v1/entity/versions/32112"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32106/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32112/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 7813,
+      "id": 7825,
       "name": "sq010_sh010",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7813",
-      "self": "/api/v1/entity/versions/32106/relationships/entity"
+      "related": "/api/v1/entity/shots/7825",
+      "self": "/api/v1/entity/versions/32112/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46815,
+      "id": 46842,
       "name": "Comp",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46815",
-      "self": "/api/v1/entity/versions/32106/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46842",
+      "self": "/api/v1/entity/versions/32112/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32106/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32112/relationships/user"
      }
     }
    },
@@ -308,59 +308,59 @@
   {
    "attributes": {
     "code": "sq010_sh010_comp_v001",
-    "created_at": "2026-09-15T17:08:29Z",
+    "created_at": "2026-09-15T17:25:01Z",
     "description": "Comp for sq010_sh010",
-    "image": "media/Version_32105_image.jpg",
+    "image": "media/Version_32111_image.jpg",
     "sg_status_list": "vwd",
-    "updated_at": "2026-09-15T17:09:10Z"
+    "updated_at": "2026-09-15T17:25:32Z"
    },
-   "id": 32105,
+   "id": 32111,
    "links": {
-    "self": "/api/v1/entity/versions/32105"
+    "self": "/api/v1/entity/versions/32111"
    },
    "relationships": {
     "created_by": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32105/relationships/created_by"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32111/relationships/created_by"
      }
     },
     "entity": {
      "data": {
-      "id": 7813,
+      "id": 7825,
       "name": "sq010_sh010",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7813",
-      "self": "/api/v1/entity/versions/32105/relationships/entity"
+      "related": "/api/v1/entity/shots/7825",
+      "self": "/api/v1/entity/versions/32111/relationships/entity"
      }
     },
     "sg_task": {
      "data": {
-      "id": 46815,
+      "id": 46842,
       "name": "Comp",
       "type": "Task"
      },
      "links": {
-      "related": "/api/v1/entity/tasks/46815",
-      "self": "/api/v1/entity/versions/32105/relationships/sg_task"
+      "related": "/api/v1/entity/tasks/46842",
+      "self": "/api/v1/entity/versions/32111/relationships/sg_task"
      }
     },
     "user": {
      "data": {
-      "id": 253,
-      "name": "Kevin Sallee",
+      "id": 451,
+      "name": "Kevin Artist",
       "type": "HumanUser"
      },
      "links": {
-      "related": "/api/v1/entity/human_users/253",
-      "self": "/api/v1/entity/versions/32105/relationships/user"
+      "related": "/api/v1/entity/human_users/451",
+      "self": "/api/v1/entity/versions/32111/relationships/user"
      }
     }
    },

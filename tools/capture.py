@@ -41,7 +41,9 @@ class Capture:
         self.e = _site.env()
         self.c = _site.client(self.e)
         self.project = _site.project_id(self.c, self.e)
-        self.login = (self.e.get("FPT_USER_LOGIN") or "").strip()
+        # The artist the last seed assigned to, else the env's person.
+        m = _site.read_manifest() or {}
+        self.login = m.get("artist_login") or (self.e.get("FPT_USER_LOGIN") or "").strip()
         self.me = _site.user_id(self.c, self.login)
         self.media = {}         # url path hash -> local file
         OUT.mkdir(parents=True, exist_ok=True)

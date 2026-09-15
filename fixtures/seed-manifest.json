@@ -1,179 +1,180 @@
 {
  "project": 1180,
- "artist": 253,
- "supervisor": 88,
- "seeded_at": "2026-09-15T17:09:01+00:00",
+ "artist": 451,
+ "supervisor": 253,
+ "artist_login": "kevin.sallee@gmail.com_artist",
+ "seeded_at": "2026-09-15T17:25:30+00:00",
  "today": "2026-09-15",
  "created": [
   [
    "sequences",
-   1626,
+   1629,
    "sq010"
   ],
   [
    "shots",
-   7813,
+   7825,
    "sq010_sh010"
   ],
   [
    "shots",
-   7814,
+   7826,
    "sq010_sh020"
   ],
   [
    "shots",
-   7815,
+   7827,
    "sq010_sh030"
   ],
   [
    "shots",
-   7816,
+   7828,
    "sq010_sh040"
   ],
   [
    "assets",
-   10127,
+   10136,
    "charA"
   ],
   [
    "assets",
-   10128,
+   10137,
    "env_kitchen"
   ],
   [
    "assets",
-   10129,
+   10138,
    "prop_lamp"
   ],
   [
    "tasks",
-   46815,
+   46842,
    "sq010_sh010/Comp"
   ],
   [
    "tasks",
-   46816,
+   46843,
    "sq010_sh020/Comp"
   ],
   [
    "tasks",
-   46817,
+   46844,
    "sq010_sh020/Roto"
   ],
   [
    "tasks",
-   46818,
+   46845,
    "sq010_sh030/Light"
   ],
   [
    "tasks",
-   46819,
+   46846,
    "sq010_sh030/Comp"
   ],
   [
    "tasks",
-   46820,
+   46847,
    "sq010_sh040/Comp"
   ],
   [
    "tasks",
-   46821,
+   46848,
    "charA/Model"
   ],
   [
    "tasks",
-   46822,
+   46849,
    "env_kitchen/Texture"
   ],
   [
    "tasks",
-   46823,
+   46850,
    "prop_lamp/Model"
   ],
   [
    "versions",
-   32105,
+   32111,
    "sq010_sh010_comp_v001"
   ],
   [
    "versions",
-   32106,
+   32112,
    "sq010_sh010_comp_v002"
   ],
   [
    "versions",
-   32107,
+   32113,
    "sq010_sh020_comp_v001"
   ],
   [
    "versions",
-   32108,
+   32114,
    "sq010_sh020_roto_v001"
   ],
   [
    "versions",
-   32109,
+   32115,
    "charA_model_v003"
   ],
   [
    "versions",
-   32110,
+   32116,
    "env_kitchen_texture_v002"
   ],
   [
    "notes",
-   11031,
+   11037,
    "note:v002 flicker timing"
   ],
   [
    "notes",
-   11032,
+   11038,
    "note:rain density"
   ],
   [
    "replies",
-   611,
+   614,
    "reply:rain density:me"
   ],
   [
    "replies",
-   612,
+   615,
    "reply:rain density:sup"
   ],
   [
    "notes",
-   11033,
+   11039,
    "note:roto approved"
   ],
   [
    "notes",
-   11034,
+   11040,
    "note:sh040 re-shoot"
   ],
   [
    "notes",
-   11035,
+   11041,
    "note:v003 hands"
   ],
   [
    "replies",
-   613,
+   616,
    "reply:v003 hands:me"
   ],
   [
    "notes",
-   11036,
+   11042,
    "note:grout"
   ],
   [
    "attachments",
-   3377,
-   "attachment:annot_version_32106.1012.png"
+   3379,
+   "attachment:annot_version_32112.1012.png"
   ],
   [
    "attachments",
-   3378,
-   "attachment:annot_version_32110.1.png"
+   3380,
+   "attachment:annot_version_32116.1.png"
   ]
  ]
 }

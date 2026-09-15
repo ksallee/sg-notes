@@ -4,14 +4,14 @@
    "attributes": {
     "code": "charA",
     "description": "Hero character, look-dev approved",
-    "image": "media/Task_46821_image.jpg",
+    "image": "pending",
     "sg_asset_type": "Character",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:46Z"
+    "updated_at": "2026-09-15T17:25:21Z"
    },
-   "id": 10127,
+   "id": 10136,
    "links": {
-    "self": "/api/v1/entity/assets/10127"
+    "self": "/api/v1/entity/assets/10136"
    },
    "relationships": {},
    "type": "Asset"
@@ -20,14 +20,14 @@
    "attributes": {
     "code": "env_kitchen",
     "description": "The kitchen set extension",
-    "image": "media/Task_46822_image.jpg",
+    "image": "pending",
     "sg_asset_type": "Environment",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:49Z"
+    "updated_at": "2026-09-15T17:25:23Z"
    },
-   "id": 10128,
+   "id": 10137,
    "links": {
-    "self": "/api/v1/entity/assets/10128"
+    "self": "/api/v1/entity/assets/10137"
    },
    "relationships": {},
    "type": "Asset"
@@ -36,14 +36,14 @@
    "attributes": {
     "code": "prop_lamp",
     "description": "Practical lamp, hero prop",
-    "image": "media/Task_46823_image.jpg",
+    "image": "media/Task_46850_image.jpg",
     "sg_asset_type": "Prop",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:50Z"
+    "updated_at": "2026-09-15T17:25:25Z"
    },
-   "id": 10129,
+   "id": 10138,
    "links": {
-    "self": "/api/v1/entity/assets/10129"
+    "self": "/api/v1/entity/assets/10138"
    },
    "relationships": {},
    "type": "Asset"

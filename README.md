@@ -13,13 +13,16 @@ interpreter:
 
     PY=../sg-groundtruth/.venv/bin/python
     $PY tools/seed.py                                    # dry run: the plan, no writes
-    $PY tools/seed.py --write --supervisor <login>       # seed the sandbox, as people
+    $PY tools/seed.py --write --artist <login> --supervisor <login>   # seed the sandbox, as people
     $PY tools/capture.py                                 # snapshot to fixtures/live/ and fixtures/media/
     $PY tools/seed.py --clean                            # delete every seeded row
 
-`--supervisor` is the login whose notes and reviews the seed writes through `sudo_as_login`. It has
-to be able to create Notes and change statuses; the Artist permission set cannot create Tasks, so
-Tasks are always created by the script user. Without `--supervisor` the notes are the script's and
+`--artist` is the login the tasks are assigned to and the versions and replies are written as;
+`--supervisor` the login whose notes and reviews are written. Both go through `sudo_as_login`. The
+current day uses the site's Artist-permission account as the artist and the operator's own login as
+the supervisor, so notes written in the web app as yourself land on the artist's page. The seed adds
+the artist to the project's users if needed; the Artist permission set cannot create Tasks, so Tasks
+are always created by the script user. Without `--supervisor` the notes are the script's and
 never reach an activity stream (sg-groundtruth probe 067).
 
 `fixtures/seed-manifest.json` is the list of rows the last seed made, in order. `--clean` deletes

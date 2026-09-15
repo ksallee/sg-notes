@@ -4,25 +4,25 @@
    "attributes": {
     "code": "sq010_sh010",
     "description": "Hero walks into the kitchen, practical lamp flickers",
-    "image": "media/Task_46815_image.jpg",
+    "image": "pending",
     "sg_shot_type": "VFX",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:48Z"
+    "updated_at": "2026-09-15T17:25:18Z"
    },
-   "id": 7813,
+   "id": 7825,
    "links": {
-    "self": "/api/v1/entity/shots/7813"
+    "self": "/api/v1/entity/shots/7825"
    },
    "relationships": {
     "sg_sequence": {
      "data": {
-      "id": 1626,
+      "id": 1629,
       "name": "sq010",
       "type": "Sequence"
      },
      "links": {
-      "related": "/api/v1/entity/sequences/1626",
-      "self": "/api/v1/entity/shots/7813/relationships/sg_sequence"
+      "related": "/api/v1/entity/sequences/1629",
+      "self": "/api/v1/entity/shots/7825/relationships/sg_sequence"
      }
     }
    },
@@ -32,25 +32,25 @@
    "attributes": {
     "code": "sq010_sh020",
     "description": "Reverse on the window, rain added in comp",
-    "image": "media/Task_46817_image.jpg",
+    "image": "pending",
     "sg_shot_type": "VFX",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:51Z"
+    "updated_at": "2026-09-15T17:25:22Z"
    },
-   "id": 7814,
+   "id": 7826,
    "links": {
-    "self": "/api/v1/entity/shots/7814"
+    "self": "/api/v1/entity/shots/7826"
    },
    "relationships": {
     "sg_sequence": {
      "data": {
-      "id": 1626,
+      "id": 1629,
       "name": "sq010",
       "type": "Sequence"
      },
      "links": {
-      "related": "/api/v1/entity/sequences/1626",
-      "self": "/api/v1/entity/shots/7814/relationships/sg_sequence"
+      "related": "/api/v1/entity/sequences/1629",
+      "self": "/api/v1/entity/shots/7826/relationships/sg_sequence"
      }
     }
    },
@@ -60,25 +60,25 @@
    "attributes": {
     "code": "sq010_sh030",
     "description": "Wide of the kitchen, full CG lamp",
-    "image": "media/Task_46818_image.jpg",
+    "image": "media/Task_46845_image.jpg",
     "sg_shot_type": "VFX",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:56Z"
+    "updated_at": "2026-09-15T17:25:19Z"
    },
-   "id": 7815,
+   "id": 7827,
    "links": {
-    "self": "/api/v1/entity/shots/7815"
+    "self": "/api/v1/entity/shots/7827"
    },
    "relationships": {
     "sg_sequence": {
      "data": {
-      "id": 1626,
+      "id": 1629,
       "name": "sq010",
       "type": "Sequence"
      },
      "links": {
-      "related": "/api/v1/entity/sequences/1626",
-      "self": "/api/v1/entity/shots/7815/relationships/sg_sequence"
+      "related": "/api/v1/entity/sequences/1629",
+      "self": "/api/v1/entity/shots/7827/relationships/sg_sequence"
      }
     }
    },
@@ -88,25 +88,25 @@
    "attributes": {
     "code": "sq010_sh040",
     "description": "Insert on the lamp switch",
-    "image": "media/Task_46820_image.jpg",
+    "image": "media/Task_46847_image.jpg",
     "sg_shot_type": "VFX",
     "sg_status_list": "wtg",
-    "updated_at": "2026-09-15T17:08:46Z"
+    "updated_at": "2026-09-15T17:25:14Z"
    },
-   "id": 7816,
+   "id": 7828,
    "links": {
-    "self": "/api/v1/entity/shots/7816"
+    "self": "/api/v1/entity/shots/7828"
    },
    "relationships": {
     "sg_sequence": {
      "data": {
-      "id": 1626,
+      "id": 1629,
       "name": "sq010",
       "type": "Sequence"
      },
      "links": {
-      "related": "/api/v1/entity/sequences/1626",
-      "self": "/api/v1/entity/shots/7816/relationships/sg_sequence"
+      "related": "/api/v1/entity/sequences/1629",
+      "self": "/api/v1/entity/shots/7828/relationships/sg_sequence"
      }
     }
    },

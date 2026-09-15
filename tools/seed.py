@@ -1,7 +1,7 @@
 """Seed one believable artist's day into the sandbox project, through the real API.
 
     python tools/seed.py                          # dry run: resolve ids, print the plan, write nothing
-    python tools/seed.py --write --supervisor LOGIN
+    python tools/seed.py --write --supervisor LOGIN [--artist LOGIN]
     python tools/seed.py --clean                  # delete every row in fixtures/seed-manifest.json
 
 Three layers make the demo (BRIEF.md, "Simulating activity"). This is the first: real rows, real
@@ -107,12 +107,12 @@ def plan_summary():
 # ---------------------------------------------------------------------------------------------------
 
 class Seed:
-    def __init__(self, e, supervisor):
+    def __init__(self, e, supervisor, artist=""):
         self.e = e
         self.script = _site.client(e)
-        self.artist_login = (e.get("FPT_USER_LOGIN") or "").strip()
+        self.artist_login = artist or (e.get("FPT_USER_LOGIN") or "").strip()
         if not self.artist_login:
-            raise SystemExit("set FPT_USER_LOGIN in sg-groundtruth/.env.local: the artist")
+            raise SystemExit("set FPT_USER_LOGIN in sg-groundtruth/.env.local, or pass --artist")
         self.me = _site.client(e, as_login=self.artist_login)
         self.sup = _site.client(e, as_login=supervisor) if supervisor else self.script
         self.project = _site.project_id(self.script, e)
@@ -153,6 +153,18 @@ class Seed:
         _site.upload(c, slug, i, "image", f"{code}.png", _site.png(code))
 
     # -- passes ---------------------------------------------------------------------------------
+
+    def membership(self):
+        """An Artist-permission account sees only the projects it is on: 400 "project [N] can not be
+        accessed by this user" otherwise. Add mode, so nobody else on the project is touched
+        (recipes/009). Membership is not a row, so --clean leaves it."""
+        mine = self.script.get(f"/entity/human_users/{self.artist}", params={"fields": "projects"}).json()
+        on = {p["id"] for p in mine["data"]["relationships"]["projects"]["data"]}
+        if self.project in on:
+            return
+        self.put(self.script, "projects", self.project, {
+            "users": {"multi_entity_update_mode": "add", "value": [{"type": "HumanUser", "id": self.artist}]}},
+            "artist added to the project")
 
     def entities(self):
         print("\n# sequence, shots, assets")
@@ -254,6 +266,7 @@ class Seed:
 
     def manifest(self):
         return {"project": self.project, "artist": self.artist, "supervisor": self.supervisor,
+                "artist_login": self.artist_login,
                 "seeded_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
                 "today": TODAY.isoformat(), "created": self.made}
 
@@ -276,6 +289,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="write the rows; without it, print the plan")
     ap.add_argument("--clean", action="store_true", help="delete every row in the manifest and exit")
+    ap.add_argument("--artist", default="", metavar="LOGIN",
+                    help="HumanUser login the tasks are assigned to and versions and replies are written as; default FPT_USER_LOGIN")
     ap.add_argument("--supervisor", default="", metavar="LOGIN",
                     help="HumanUser login the supervisor's notes and reviews are written as (sudo_as_login)")
     a = ap.parse_args()
@@ -285,7 +300,7 @@ def main():
     if _site.read_manifest():
         raise SystemExit("fixtures/seed-manifest.json exists: run --clean first, the seed does not reuse rows")
 
-    s = Seed(e, a.supervisor)
+    s = Seed(e, a.supervisor, a.artist)
     print(f"project {s.project}, artist HumanUser {s.artist}, "
           f"supervisor {'HumanUser ' + str(s.supervisor) if s.supervisor else 'the script user (notes will not reach the stream, probe 067)'}")
     print(plan_summary())
@@ -293,6 +308,7 @@ def main():
         print("\ndry run. Pass --write to create these rows.")
         return
     try:
+        s.membership()
         s.entities()
         s.tasks()
         s.versions()

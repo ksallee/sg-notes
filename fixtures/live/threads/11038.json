@@ -2,21 +2,33 @@
  "data": [
   {
    "content": "Rain is too even. Cluster it toward the top of frame.",
-   "created_at": "2026-09-15T17:08:45Z",
+   "created_at": "2026-09-15T17:25:15Z",
    "created_by": {
-    "id": 88,
+    "id": 253,
     "name": "Kevin Sallee",
     "type": "HumanUser"
    },
-   "id": 11032,
+   "id": 11038,
    "sg_status_list": "opn",
    "subject": "rain density",
    "type": "Note"
   },
   {
    "content": "Clustered, and slowed the streaks 15%. New version this afternoon.",
-   "created_at": "2026-09-15T17:08:45Z",
-   "id": 611,
+   "created_at": "2026-09-15T17:25:16Z",
+   "id": 614,
+   "type": "Reply",
+   "user": {
+    "id": 451,
+    "image": null,
+    "name": "Kevin Artist",
+    "type": "HumanUser"
+   }
+  },
+  {
+   "content": "Good. Keep the streak speed, the slowdown reads better.",
+   "created_at": "2026-09-15T17:25:18Z",
+   "id": 615,
    "type": "Reply",
    "user": {
     "id": 253,
@@ -24,21 +36,9 @@
     "name": "Kevin Sallee",
     "type": "HumanUser"
    }
-  },
-  {
-   "content": "Good. Keep the streak speed, the slowdown reads better.",
-   "created_at": "2026-09-15T17:08:47Z",
-   "id": 612,
-   "type": "Reply",
-   "user": {
-    "id": 88,
-    "image": "media/HumanUser_88_image.jpg",
-    "name": "Kevin Sallee",
-    "type": "HumanUser"
-   }
   }
  ],
  "links": {
-  "self": "/api/v1/entity/notes/11032/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject"
+  "self": "/api/v1/entity/notes/11038/thread_contents?entity_fields%5BAttachment%5D=filename%2Cimage&entity_fields%5BNote%5D=sg_status_list%2Csubject"
  }
 }

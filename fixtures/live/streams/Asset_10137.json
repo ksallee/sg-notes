@@ -1,22 +1,22 @@
 {
  "data": {
   "earliest_update_id": 0,
-  "entity_id": 10128,
+  "entity_id": 10137,
   "entity_type": "Asset",
-  "latest_update_id": 247377,
+  "latest_update_id": 247443,
   "updates": [
    {
-    "created_at": "2026-09-15T17:08:52Z",
+    "created_at": "2026-09-15T17:25:23Z",
     "created_by": {
-     "id": 88,
-     "image": "media/HumanUser_88_image.jpg",
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
      "name": "Kevin Sallee",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247377,
+    "id": 247443,
     "meta": {
-     "entity_id": 11036,
+     "entity_id": 11042,
      "entity_type": "Note",
      "sudo_actual_user": {
       "id": 298,
@@ -30,18 +30,18 @@
     "primary_entity": {
      "addressings_to": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
-     "id": 11036,
+     "id": 11042,
      "name": "grout - Grout reads brand new. Add wear along the traffic line to the sink.",
      "sg_status_list": "opn",
      "status": "opn",
      "tasks": [
       {
-       "id": 46822,
+       "id": 46849,
        "name": "Texture",
        "template_task_id": null,
        "type": "Task"
@@ -53,17 +53,17 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:40Z",
+    "created_at": "2026-09-15T17:25:11Z",
     "created_by": {
-     "id": 253,
-     "image": "media/HumanUser_253_image.jpg",
-     "name": "Kevin Sallee",
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247368,
+    "id": 247434,
     "meta": {
-     "entity_id": 32110,
+     "entity_id": 32116,
      "entity_type": "Version",
      "platform_id": null,
      "sudo_actual_user": {
@@ -76,12 +76,12 @@
      "type": "new_entity"
     },
     "primary_entity": {
-     "id": 32110,
-     "image": "media/Task_46822_image.jpg",
+     "id": 32116,
+     "image": "pending",
      "name": "env_kitchen_texture_v002",
      "sg_status_list": "rev",
      "sg_task": {
-      "id": 46822,
+      "id": 46849,
       "name": "Texture",
       "type": "Task"
      },
@@ -92,7 +92,7 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:27Z",
+    "created_at": "2026-09-15T17:24:59Z",
     "created_by": {
      "id": 298,
      "image": null,
@@ -100,22 +100,22 @@
      "status": null,
      "type": "ApiUser"
     },
-    "id": 247361,
+    "id": 247427,
     "meta": {
-     "entity_id": 46822,
+     "entity_id": 46849,
      "entity_type": "Task",
      "type": "new_entity"
     },
     "primary_entity": {
      "due_date": "2026-09-17",
-     "id": 46822,
+     "id": 46849,
      "name": "Texture",
      "sg_status_list": "rev",
      "status": "rev",
      "task_assignees": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
@@ -125,7 +125,7 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:18Z",
+    "created_at": "2026-09-15T17:24:52Z",
     "created_by": {
      "id": 298,
      "image": null,
@@ -133,14 +133,14 @@
      "status": null,
      "type": "ApiUser"
     },
-    "id": 247352,
+    "id": 247418,
     "meta": {
-     "entity_id": 10128,
+     "entity_id": 10137,
      "entity_type": "Asset",
      "type": "new_entity"
     },
     "primary_entity": {
-     "id": 10128,
+     "id": 10137,
      "name": "env_kitchen",
      "status": "wtg",
      "type": "Asset"
@@ -151,6 +151,6 @@
   ]
  },
  "links": {
-  "self": "/api/v1/entity/assets/10128/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+  "self": "/api/v1/entity/assets/10137/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
  }
 }

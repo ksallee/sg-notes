@@ -3,32 +3,32 @@
   {
    "attributes": {
     "content": "Roto",
-    "created_at": "2026-09-15T17:08:23Z",
+    "created_at": "2026-09-15T17:24:57Z",
     "due_date": "2026-09-08",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46817_image.jpg",
+    "entity.Shot.image": "pending",
     "est_in_mins": null,
     "sg_description": "Roto the window frame for the rain pass.",
     "sg_priority_1": "2_Tier",
     "sg_status_list": "fin",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:56Z"
+    "updated_at": "2026-09-15T17:25:26Z"
    },
-   "id": 46817,
+   "id": 46844,
    "links": {
-    "self": "/api/v1/entity/tasks/46817"
+    "self": "/api/v1/entity/tasks/46844"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7814,
+      "id": 7826,
       "name": "sq010_sh020",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7814",
-      "self": "/api/v1/entity/tasks/46817/relationships/entity"
+      "related": "/api/v1/entity/shots/7826",
+      "self": "/api/v1/entity/tasks/46844/relationships/entity"
      }
     },
     "project": {
@@ -39,7 +39,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46817/relationships/project"
+      "self": "/api/v1/entity/tasks/46844/relationships/project"
      }
     },
     "step": {
@@ -50,19 +50,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/134",
-      "self": "/api/v1/entity/tasks/46817/relationships/step"
+      "self": "/api/v1/entity/tasks/46844/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46817/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46844/relationships/task_assignees"
      }
     }
    },
@@ -71,9 +71,9 @@
   {
    "attributes": {
     "content": "Model",
-    "created_at": "2026-09-15T17:08:26Z",
+    "created_at": "2026-09-15T17:24:59Z",
     "due_date": "2026-09-14",
-    "entity.Asset.image": "media/Task_46821_image.jpg",
+    "entity.Asset.image": "pending",
     "entity.Shot.image": null,
     "est_in_mins": null,
     "sg_description": "Hands need another pass; thumbs read short in the turntable.",
@@ -81,22 +81,22 @@
     "sg_status_list": "ip",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:58Z"
+    "updated_at": "2026-09-15T17:25:28Z"
    },
-   "id": 46821,
+   "id": 46848,
    "links": {
-    "self": "/api/v1/entity/tasks/46821"
+    "self": "/api/v1/entity/tasks/46848"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 10127,
+      "id": 10136,
       "name": "charA",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10127",
-      "self": "/api/v1/entity/tasks/46821/relationships/entity"
+      "related": "/api/v1/entity/assets/10136",
+      "self": "/api/v1/entity/tasks/46848/relationships/entity"
      }
     },
     "project": {
@@ -107,7 +107,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46821/relationships/project"
+      "self": "/api/v1/entity/tasks/46848/relationships/project"
      }
     },
     "step": {
@@ -118,19 +118,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/14",
-      "self": "/api/v1/entity/tasks/46821/relationships/step"
+      "self": "/api/v1/entity/tasks/46848/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46821/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46848/relationships/task_assignees"
      }
     }
    },
@@ -139,32 +139,32 @@
   {
    "attributes": {
     "content": "Comp",
-    "created_at": "2026-09-15T17:08:22Z",
+    "created_at": "2026-09-15T17:24:55Z",
     "due_date": "2026-09-16",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46815_image.jpg",
+    "entity.Shot.image": "pending",
     "est_in_mins": null,
     "sg_description": "Integrate the flicker; match the plate's warm spill on the wall.",
     "sg_priority_1": "1_Tier",
     "sg_status_list": "ip",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:59Z"
+    "updated_at": "2026-09-15T17:25:29Z"
    },
-   "id": 46815,
+   "id": 46842,
    "links": {
-    "self": "/api/v1/entity/tasks/46815"
+    "self": "/api/v1/entity/tasks/46842"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7813,
+      "id": 7825,
       "name": "sq010_sh010",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7813",
-      "self": "/api/v1/entity/tasks/46815/relationships/entity"
+      "related": "/api/v1/entity/shots/7825",
+      "self": "/api/v1/entity/tasks/46842/relationships/entity"
      }
     },
     "project": {
@@ -175,7 +175,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46815/relationships/project"
+      "self": "/api/v1/entity/tasks/46842/relationships/project"
      }
     },
     "step": {
@@ -186,19 +186,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46815/relationships/step"
+      "self": "/api/v1/entity/tasks/46842/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46815/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46842/relationships/task_assignees"
      }
     }
    },
@@ -207,32 +207,32 @@
   {
    "attributes": {
     "content": "Comp",
-    "created_at": "2026-09-15T17:08:23Z",
+    "created_at": "2026-09-15T17:24:56Z",
     "due_date": "2026-09-16",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46817_image.jpg",
+    "entity.Shot.image": "pending",
     "est_in_mins": null,
     "sg_description": "Rain on the glass, subtle. Plate has no rain.",
     "sg_priority_1": "1_Tier",
     "sg_status_list": "rev",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:55Z"
+    "updated_at": "2026-09-15T17:25:25Z"
    },
-   "id": 46816,
+   "id": 46843,
    "links": {
-    "self": "/api/v1/entity/tasks/46816"
+    "self": "/api/v1/entity/tasks/46843"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7814,
+      "id": 7826,
       "name": "sq010_sh020",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7814",
-      "self": "/api/v1/entity/tasks/46816/relationships/entity"
+      "related": "/api/v1/entity/shots/7826",
+      "self": "/api/v1/entity/tasks/46843/relationships/entity"
      }
     },
     "project": {
@@ -243,7 +243,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46816/relationships/project"
+      "self": "/api/v1/entity/tasks/46843/relationships/project"
      }
     },
     "step": {
@@ -254,19 +254,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46816/relationships/step"
+      "self": "/api/v1/entity/tasks/46843/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46816/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46843/relationships/task_assignees"
      }
     }
    },
@@ -275,9 +275,9 @@
   {
    "attributes": {
     "content": "Texture",
-    "created_at": "2026-09-15T17:08:27Z",
+    "created_at": "2026-09-15T17:24:59Z",
     "due_date": "2026-09-17",
-    "entity.Asset.image": "media/Task_46822_image.jpg",
+    "entity.Asset.image": "pending",
     "entity.Shot.image": null,
     "est_in_mins": null,
     "sg_description": "Tile grout too clean, dirty it up.",
@@ -285,22 +285,22 @@
     "sg_status_list": "rev",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:59Z"
+    "updated_at": "2026-09-15T17:25:28Z"
    },
-   "id": 46822,
+   "id": 46849,
    "links": {
-    "self": "/api/v1/entity/tasks/46822"
+    "self": "/api/v1/entity/tasks/46849"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 10128,
+      "id": 10137,
       "name": "env_kitchen",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10128",
-      "self": "/api/v1/entity/tasks/46822/relationships/entity"
+      "related": "/api/v1/entity/assets/10137",
+      "self": "/api/v1/entity/tasks/46849/relationships/entity"
      }
     },
     "project": {
@@ -311,7 +311,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46822/relationships/project"
+      "self": "/api/v1/entity/tasks/46849/relationships/project"
      }
     },
     "step": {
@@ -322,19 +322,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/16",
-      "self": "/api/v1/entity/tasks/46822/relationships/step"
+      "self": "/api/v1/entity/tasks/46849/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46822/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46849/relationships/task_assignees"
      }
     }
    },
@@ -343,32 +343,32 @@
   {
    "attributes": {
     "content": "Light",
-    "created_at": "2026-09-15T17:08:24Z",
+    "created_at": "2026-09-15T17:24:57Z",
     "due_date": "2026-09-18",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46818_image.jpg",
+    "entity.Shot.image": "media/Task_46845_image.jpg",
     "est_in_mins": null,
     "sg_description": "Key from the lamp, fill from the window. Match sh010.",
     "sg_priority_1": "2_Tier",
     "sg_status_list": "ready",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:57Z"
+    "updated_at": "2026-09-15T17:25:27Z"
    },
-   "id": 46818,
+   "id": 46845,
    "links": {
-    "self": "/api/v1/entity/tasks/46818"
+    "self": "/api/v1/entity/tasks/46845"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7815,
+      "id": 7827,
       "name": "sq010_sh030",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7815",
-      "self": "/api/v1/entity/tasks/46818/relationships/entity"
+      "related": "/api/v1/entity/shots/7827",
+      "self": "/api/v1/entity/tasks/46845/relationships/entity"
      }
     },
     "project": {
@@ -379,7 +379,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46818/relationships/project"
+      "self": "/api/v1/entity/tasks/46845/relationships/project"
      }
     },
     "step": {
@@ -390,19 +390,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/7",
-      "self": "/api/v1/entity/tasks/46818/relationships/step"
+      "self": "/api/v1/entity/tasks/46845/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46818/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46845/relationships/task_assignees"
      }
     }
    },
@@ -411,32 +411,32 @@
   {
    "attributes": {
     "content": "Comp",
-    "created_at": "2026-09-15T17:08:25Z",
+    "created_at": "2026-09-15T17:24:58Z",
     "due_date": "2026-09-22",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46818_image.jpg",
+    "entity.Shot.image": "media/Task_46845_image.jpg",
     "est_in_mins": null,
     "sg_description": "Waits on Light.",
     "sg_priority_1": "3_Tier",
     "sg_status_list": "wtg",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:25Z"
+    "updated_at": "2026-09-15T17:24:58Z"
    },
-   "id": 46819,
+   "id": 46846,
    "links": {
-    "self": "/api/v1/entity/tasks/46819"
+    "self": "/api/v1/entity/tasks/46846"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7815,
+      "id": 7827,
       "name": "sq010_sh030",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7815",
-      "self": "/api/v1/entity/tasks/46819/relationships/entity"
+      "related": "/api/v1/entity/shots/7827",
+      "self": "/api/v1/entity/tasks/46846/relationships/entity"
      }
     },
     "project": {
@@ -447,7 +447,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46819/relationships/project"
+      "self": "/api/v1/entity/tasks/46846/relationships/project"
      }
     },
     "step": {
@@ -458,19 +458,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46819/relationships/step"
+      "self": "/api/v1/entity/tasks/46846/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46819/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46846/relationships/task_assignees"
      }
     }
    },
@@ -479,32 +479,32 @@
   {
    "attributes": {
     "content": "Comp",
-    "created_at": "2026-09-15T17:08:25Z",
+    "created_at": "2026-09-15T17:24:58Z",
     "due_date": "2026-09-25",
     "entity.Asset.image": null,
-    "entity.Shot.image": "media/Task_46820_image.jpg",
+    "entity.Shot.image": "media/Task_46847_image.jpg",
     "est_in_mins": null,
     "sg_description": "On hold until the insert is re-shot.",
     "sg_priority_1": "3_Tier",
     "sg_status_list": "hld",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:58Z"
+    "updated_at": "2026-09-15T17:25:27Z"
    },
-   "id": 46820,
+   "id": 46847,
    "links": {
-    "self": "/api/v1/entity/tasks/46820"
+    "self": "/api/v1/entity/tasks/46847"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 7816,
+      "id": 7828,
       "name": "sq010_sh040",
       "type": "Shot"
      },
      "links": {
-      "related": "/api/v1/entity/shots/7816",
-      "self": "/api/v1/entity/tasks/46820/relationships/entity"
+      "related": "/api/v1/entity/shots/7828",
+      "self": "/api/v1/entity/tasks/46847/relationships/entity"
      }
     },
     "project": {
@@ -515,7 +515,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46820/relationships/project"
+      "self": "/api/v1/entity/tasks/46847/relationships/project"
      }
     },
     "step": {
@@ -526,19 +526,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/8",
-      "self": "/api/v1/entity/tasks/46820/relationships/step"
+      "self": "/api/v1/entity/tasks/46847/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46820/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46847/relationships/task_assignees"
      }
     }
    },
@@ -547,9 +547,9 @@
   {
    "attributes": {
     "content": "Model",
-    "created_at": "2026-09-15T17:08:28Z",
+    "created_at": "2026-09-15T17:25:00Z",
     "due_date": "2026-09-29",
-    "entity.Asset.image": "media/Task_46823_image.jpg",
+    "entity.Asset.image": "media/Task_46850_image.jpg",
     "entity.Shot.image": null,
     "est_in_mins": null,
     "sg_description": "Block out from the art department sketch.",
@@ -557,22 +557,22 @@
     "sg_status_list": "wtg",
     "start_date": null,
     "time_logs_sum": 0,
-    "updated_at": "2026-09-15T17:08:28Z"
+    "updated_at": "2026-09-15T17:25:00Z"
    },
-   "id": 46823,
+   "id": 46850,
    "links": {
-    "self": "/api/v1/entity/tasks/46823"
+    "self": "/api/v1/entity/tasks/46850"
    },
    "relationships": {
     "entity": {
      "data": {
-      "id": 10129,
+      "id": 10138,
       "name": "prop_lamp",
       "type": "Asset"
      },
      "links": {
-      "related": "/api/v1/entity/assets/10129",
-      "self": "/api/v1/entity/tasks/46823/relationships/entity"
+      "related": "/api/v1/entity/assets/10138",
+      "self": "/api/v1/entity/tasks/46850/relationships/entity"
      }
     },
     "project": {
@@ -583,7 +583,7 @@
      },
      "links": {
       "related": "/api/v1/entity/projects/1180",
-      "self": "/api/v1/entity/tasks/46823/relationships/project"
+      "self": "/api/v1/entity/tasks/46850/relationships/project"
      }
     },
     "step": {
@@ -594,19 +594,19 @@
      },
      "links": {
       "related": "/api/v1/entity/steps/14",
-      "self": "/api/v1/entity/tasks/46823/relationships/step"
+      "self": "/api/v1/entity/tasks/46850/relationships/step"
      }
     },
     "task_assignees": {
      "data": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
      "links": {
-      "self": "/api/v1/entity/tasks/46823/relationships/task_assignees"
+      "self": "/api/v1/entity/tasks/46850/relationships/task_assignees"
      }
     }
    },

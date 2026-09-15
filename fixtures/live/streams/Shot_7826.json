@@ -1,22 +1,22 @@
 {
  "data": {
   "earliest_update_id": 0,
-  "entity_id": 7814,
+  "entity_id": 7826,
   "entity_type": "Shot",
-  "latest_update_id": 247377,
+  "latest_update_id": 247443,
   "updates": [
    {
-    "created_at": "2026-09-15T17:08:49Z",
+    "created_at": "2026-09-15T17:25:19Z",
     "created_by": {
-     "id": 88,
-     "image": "media/HumanUser_88_image.jpg",
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
      "name": "Kevin Sallee",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247373,
+    "id": 247439,
     "meta": {
-     "entity_id": 11033,
+     "entity_id": 11039,
      "entity_type": "Note",
      "sudo_actual_user": {
       "id": 298,
@@ -30,18 +30,18 @@
     "primary_entity": {
      "addressings_to": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
-     "id": 11033,
+     "id": 11039,
      "name": "roto approved - Clean. Approved.",
      "sg_status_list": "clsd",
      "status": "clsd",
      "tasks": [
       {
-       "id": 46817,
+       "id": 46844,
        "name": "Roto",
        "template_task_id": null,
        "type": "Task"
@@ -53,18 +53,18 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:47Z",
+    "created_at": "2026-09-15T17:25:18Z",
     "created_by": {
-     "id": 88,
-     "image": "media/HumanUser_88_image.jpg",
+     "id": 253,
+     "image": "media/HumanUser_253_image.jpg",
      "name": "Kevin Sallee",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247372,
+    "id": 247438,
     "meta": {
      "content": "Good. Keep the streak speed, the slowdown reads better.",
-     "entity_id": 612,
+     "entity_id": 615,
      "entity_type": "Reply",
      "sudo_actual_user": {
       "id": 298,
@@ -78,18 +78,18 @@
     "primary_entity": {
      "addressings_to": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
-     "id": 11032,
+     "id": 11038,
      "name": "rain density - Rain is too even. Cluster it toward the top of frame.",
      "sg_status_list": "opn",
      "status": "opn",
      "tasks": [
       {
-       "id": 46816,
+       "id": 46843,
        "name": "Comp",
        "template_task_id": null,
        "type": "Task"
@@ -101,17 +101,17 @@
     "update_type": "create_reply"
    },
    {
-    "created_at": "2026-09-15T17:08:36Z",
+    "created_at": "2026-09-15T17:25:07Z",
     "created_by": {
-     "id": 253,
-     "image": "media/HumanUser_253_image.jpg",
-     "name": "Kevin Sallee",
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247366,
+    "id": 247432,
     "meta": {
-     "entity_id": 32108,
+     "entity_id": 32114,
      "entity_type": "Version",
      "platform_id": null,
      "sudo_actual_user": {
@@ -124,12 +124,12 @@
      "type": "new_entity"
     },
     "primary_entity": {
-     "id": 32108,
-     "image": "media/Task_46817_image.jpg",
+     "id": 32114,
+     "image": "pending",
      "name": "sq010_sh020_roto_v001",
      "sg_status_list": "apr",
      "sg_task": {
-      "id": 46817,
+      "id": 46844,
       "name": "Roto",
       "type": "Task"
      },
@@ -140,17 +140,17 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:33Z",
+    "created_at": "2026-09-15T17:25:05Z",
     "created_by": {
-     "id": 253,
-     "image": "media/HumanUser_253_image.jpg",
-     "name": "Kevin Sallee",
+     "id": 451,
+     "image": null,
+     "name": "Kevin Artist",
      "status": "act",
      "type": "HumanUser"
     },
-    "id": 247365,
+    "id": 247431,
     "meta": {
-     "entity_id": 32107,
+     "entity_id": 32113,
      "entity_type": "Version",
      "platform_id": null,
      "sudo_actual_user": {
@@ -163,12 +163,12 @@
      "type": "new_entity"
     },
     "primary_entity": {
-     "id": 32107,
-     "image": "media/Version_32107_image.jpg",
+     "id": 32113,
+     "image": "pending",
      "name": "sq010_sh020_comp_v001",
      "sg_status_list": "rev",
      "sg_task": {
-      "id": 46816,
+      "id": 46843,
       "name": "Comp",
       "type": "Task"
      },
@@ -179,7 +179,7 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:23Z",
+    "created_at": "2026-09-15T17:24:57Z",
     "created_by": {
      "id": 298,
      "image": null,
@@ -187,22 +187,22 @@
      "status": null,
      "type": "ApiUser"
     },
-    "id": 247356,
+    "id": 247422,
     "meta": {
-     "entity_id": 46817,
+     "entity_id": 46844,
      "entity_type": "Task",
      "type": "new_entity"
     },
     "primary_entity": {
      "due_date": "2026-09-08",
-     "id": 46817,
+     "id": 46844,
      "name": "Roto",
      "sg_status_list": "fin",
      "status": "fin",
      "task_assignees": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
@@ -212,7 +212,7 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:23Z",
+    "created_at": "2026-09-15T17:24:56Z",
     "created_by": {
      "id": 298,
      "image": null,
@@ -220,22 +220,22 @@
      "status": null,
      "type": "ApiUser"
     },
-    "id": 247355,
+    "id": 247421,
     "meta": {
-     "entity_id": 46816,
+     "entity_id": 46843,
      "entity_type": "Task",
      "type": "new_entity"
     },
     "primary_entity": {
      "due_date": "2026-09-16",
-     "id": 46816,
+     "id": 46843,
      "name": "Comp",
      "sg_status_list": "rev",
      "status": "rev",
      "task_assignees": [
       {
-       "id": 253,
-       "name": "Kevin Sallee",
+       "id": 451,
+       "name": "Kevin Artist",
        "type": "HumanUser"
       }
      ],
@@ -245,7 +245,7 @@
     "update_type": "create"
    },
    {
-    "created_at": "2026-09-15T17:08:10Z",
+    "created_at": "2026-09-15T17:24:44Z",
     "created_by": {
      "id": 298,
      "image": null,
@@ -253,15 +253,15 @@
      "status": null,
      "type": "ApiUser"
     },
-    "id": 247348,
+    "id": 247414,
     "meta": {
-     "entity_id": 7814,
+     "entity_id": 7826,
      "entity_type": "Shot",
      "platform_id": null,
      "type": "new_entity"
     },
     "primary_entity": {
-     "id": 7814,
+     "id": 7826,
      "name": "sq010_sh020",
      "status": "wtg",
      "type": "Shot"
@@ -272,6 +272,6 @@
   ]
  },
  "links": {
-  "self": "/api/v1/entity/shots/7814/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
+  "self": "/api/v1/entity/shots/7826/activity_stream?entity_fields%5BNote%5D=sg_status_list%2Caddressings_to%2Ctasks&entity_fields%5BTask%5D=sg_status_list%2Cdue_date%2Ctask_assignees&entity_fields%5BVersion%5D=sg_status_list%2Cimage%2Csg_task&limit=100"
  }
 }
