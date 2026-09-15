@@ -96,13 +96,15 @@ Writes in v1: reply and note status. Forward once the client has `create`.
 ## Simulating a site
 
 No production site is reachable, and the test site's demo project has 5,944 notes with no threads,
-no tasks and no attachments (`research/07`). Three layers, and the demo runs on the last:
+no tasks and no attachments (`research/07`). Two layers, and the page runs on the first:
 
 1. **Seed** (`tools/seed.py`, `--write`, one sandbox project, never the demo project). Grows from
    one artist's day to a lead's month: a few hundred notes over dozens of records on a long tail, a
    third unaddressed, a third client-facing, threads of 0 to 5, attachments on a third, tasks on half.
-2. **Capture** (`tools/capture.py`) into `fixtures/live/`: real shapes, committed, offline.
-3. **Authored month**: timestamps spread over weeks, which the sandbox's all-"now" cannot give.
+   Timestamps are the seed's own: the event log cannot be authored, so the month is a month by
+   volume and "what changed since" is measured from the seed onward.
+2. **Capture** (`tools/capture.py`) into `fixtures/live/`: real shapes, committed, offline, the
+   reference for what a field looks like rather than what the page reads.
 
 ## Open questions
 
