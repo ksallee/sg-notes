@@ -1,143 +1,106 @@
-# sg-artistpage
+# sg-notes
 
-An artist's landing page for their day on Flow Production Tracking. One screen: the tasks assigned to
-you, what changed since you left, the notes waiting on your reply, and one click to act. Built on
-`../sg-widgets`, and meant to be the first real host those widgets live in.
+The notes workbench for Flow Production Tracking: every note in a project, filtered, grouped by the
+record it is about, threaded, with reply, close and forward as first-class actions, and "waiting on
+whom" as a column. Built on `../sg-widgets` and meant to be the first real host those widgets live
+in. It started life as an artist landing page; `research/` holds why it changed.
 
-Status: build-order step 1 done on 2026-09-15 (the feed probe, the seed, the capture, three research
-passes under `research/`). No page yet. Read `Open questions` before any code.
+Status, 2026-09-15: research, probes, a seed and a capture exist. No page yet.
 
 ## Why this, and why first
 
-- It is the view every studio rebuilds and Flow PT never quite gives: not a grid of My Tasks, but
-  "what do I do now." Review already lives in Flow PT; this does not compete with it.
-- It is the first app over sg-widgets. Sixty widgets in two frameworks have never lived outside the
-  docs site. This is the test that they compose.
-- It stresses composition on purpose. The page mixes sg-widgets items with foreign shadcn-svelte
-  widgets — a sidebar, resizable panes, a command palette, toasts, a small chart — to find where the
-  token contract holds and where it breaks. Every seam that fights is the next sg-widgets issue.
-- It carries no infrastructure. Local-first, one process the artist runs, the same install story as
-  sg-comfyui.
+- It is the loudest, oldest, still-open complaint on the Flow PT community forum: the Inbox at
+  "99+" with no filters, no way to forward a note, notes on the wrong record, and Review shipping GA
+  in June 2026 without the ability to reply. `research/02` and `03`.
+- It is the first app over sg-widgets, and it hits the library where it is thickest: the filter bar
+  and dialog, the user, status, entity and project pickers, the grouped list, the entity table,
+  thumbnails, cards, avatars, the value editor. An artist page used the display widgets and little
+  else.
+- It stresses composition on purpose. Foreign shadcn-svelte widgets layer on the same tokens: a
+  sidebar for projects and saved filters, a resizable split between list and thread, a command
+  palette, toasts for write results, one chart. Every seam that fights is the next sg-widgets issue.
+- It is what shapes sg-apps. The blueprint is extracted from this app, not designed ahead of it.
+- It carries no infrastructure. One local process, sign-in through the browser with the App Session
+  Launcher, no script key. Clone, run, see your own project's notes.
 
-## Name
+## Decisions
 
-`sg-artistpage` for now. `sg-day` if a crisper name is wanted. Not `sg-apps`: this is the first app
-and the source the blueprint is extracted from; the extracted patterns may become sg-apps later.
+- **Lead view first.** The person triaging a project's notes, not the artist reading theirs. The
+  artist's "mine" view is the same data filtered to me, and comes second.
+- **No LLM in v1.** The evidence for an LLM here is on writing (draft a reply, summarise a thread,
+  route a note), not on reading. It comes after the page has been used for real. `research/05`, `06`.
+- **The client grows in sg-widgets, the proper way.** Issue, PR, merge to dev and main. This app does
+  not carry a private client extension. What it needs that `SgClient` lacks today: `create` (Reply,
+  Note), `threadContents`, an event-log read, upload, following. `docs/sg-widgets-issues.md`.
+- **"What changed" comes from the event log**, one `_search` on `event_log_entries` by project,
+  entity and `created_at`, with `old_value` and `new_value` in `meta` (corpus finding 025). Not the
+  activity stream: status changes made over the API were absent from every stream 20 minutes after
+  the write, while creates and replies took 33 s (findings 066, 067).
+- Writes as people. A Note or Reply written by the bare script never reaches a stream or an Inbox;
+  every seed write goes through `sudo_as_login` (finding 067).
+- The seed reuses the one sandbox project and keeps a manifest of what it made. Thumbnails are a
+  standard-library PNG generator. The artist persona is the site's Artist-permission account; the
+  supervisor is the operator, so notes written in the web app land on the page.
+- Name: `sg-notes`.
 
 ## Sources
 
 - `../sg-widgets`. The client, the widgets, the proxy handler and session auth. Read its CLAUDE.md.
   `docs/proposals/connect-panel.md` is the Mock/Live pattern to reuse.
-- `../sg-groundtruth`. The corpus and the FPT client. Read `corpus/INDEX.md` first. The seed and
-  capture scripts call the API through its `FPT` client.
-- `../sg-comfyui`. The precedent for a local host: routes, settings, login, profile, a publish that
-  is a sequential pipeline. `src/comfyui_sg/routes.py` is the shape.
-- `../llm-ui-annotation`. The precedent for the agent channel: a Vite plugin as the only writer, a
-  file queue under a dot-directory, an `annot watch` CLI the agent runs, a websocket back to the
-  page. The protocol transfers; the package does not.
+- `../sg-groundtruth`. The corpus and the FPT client. Read `corpus/INDEX.md` first. Findings 043,
+  066, 067 (attention, the user feed, notes in the stream), 025 (event log), entity cards for Note,
+  Reply, Attachment.
+- `../sg-comfyui`. The precedent for a local host: routes, settings, login, profile.
+- `../llm-ui-annotation`. The precedent for an agent channel, when one is wanted.
+- `research/`. Seven passes: the artist's day, review notes, the Inbox and feed, Toolkit and
+  actions, what people ask, generative UI, what a site's notes look like.
 
 Clean room applies (the rule is in `../sg-chrome/BRIEF.md`). Derive from public docs, the corpus, and
 public shotgunsoftware repos. Never read the private sources it names.
 
 ## What it reads
 
-The signed-in person is HumanUser 253 on the test site. Everything below goes through the widgets'
-client.
-
 | block | from |
 |---|---|
-| My tasks | Task where `task_assignees` includes me, with due date, status, linked entity |
-| The entity and its thumbnail | the Task's linked Shot or Asset, its image field. See `recipes/013` |
-| What changed | the activity stream on my entities. `corpus/endpoints/get_entity_type_id_activity_stream.md` |
-| Notes waiting | Note linked to my tasks and its thread. `corpus/endpoints/get_entity_notes_id_thread_contents.md` |
-| Following | who and what I follow. `human_users/<id>/following`, `.../followers` |
+| Notes in the project | `POST /entity/notes/_search`, with `note_links`, `tasks`, `addressings_to`, `addressings_cc`, `sg_status_list`, `sg_note_type`, `client_note`, `read_by_current_user`, `replies`, `attachments` |
+| The thread | `GET /entity/notes/<id>/thread_contents`: Note, Attachments, Replies in time order; author under `created_by` on two of them and `user` on the third |
+| Who owes a reply | derived: last thread row's author versus the addressee, status not `clsd` |
+| The record and its thumbnail | the linked Shot, Asset or Version, its `image` |
+| Annotations | Attachments named `annot_version_<version>.<frame>.png`, one image each |
+| What changed since | `event_log_entries` by project and `created_at`, filtered to the attributes the view shows |
+| People | `human_users` with `image`, for pickers and avatars; `following` for the "mine" view |
 
-Settled by probe 066 (2026-09-15): a HumanUser's activity stream is what that person *created*, not
-what they follow. "My feed" is a fan-out over the Shots and Assets behind my tasks, one stream each,
-merged on update id. A Shot's stream holds its Tasks, Versions, Notes and Replies; a Task's holds
-less. Probe 067: replies and person-attributed creates reach every linked stream in about 33 s; a
-Note written by the bare script user never appears, so the seed writes as people
-(`sudo_as_login`). Status changes made over the API had not appeared after ten minutes; how long
-they take is still open, and the seeded rows are the measurement.
+## Actions, by what the machine has
 
-## Simulating activity
+| always | with a mounted storage root | with Toolkit configured for the project |
+|---|---|---|
+| reply, set note status, forward (duplicate with new addressees, the forum's own workaround), mark read, open the row in the web app, preview media and annotation frames | reveal in Finder, open with the OS | open in the associated app with Task context, through `sgtk.bootstrap.ToolkitManager` headless (`research/04`) |
 
-The site is sandbox projects with little real activity, and the activity stream is populated only by
-real mutations, all stamped "now." So there are three layers, and the demo runs on the last.
+Writes in v1: reply and note status. Forward once the client has `create`.
 
-1. **Seed** (`tools/seed.py`, through the corpus `FPT` client, `--write`, one sandbox project only,
-   never Big Buck Bunny). Creates a project, tasks assigned to the user, linked Shots and Assets with
-   generated thumbnails, statuses, Versions, Notes and Replies. Then it *mutates* — flips statuses,
-   adds notes — because that, and only that, writes activity-stream entries. Proves the real API
-   shapes end to end.
-2. **Capture** (`tools/capture.py`). Snapshots the seeded project's responses into `fixtures/`, the
-   groundtruth way: real shapes, committed, offline, deterministic.
-3. **Authored day.** The fixtures are then tuned into a believable day — timestamps spread over
-   yesterday and this morning, a mix of statuses, a couple of unread notes — which the sandbox's
-   all-"now" timestamps cannot give. The mock source serves these. Dev and every demo run on the mock.
+## Simulating a site
 
-Live runs against the seeded sandbox occasionally, the sg-widgets `--live` discipline. Generated
-media only, so the public demo carries no one else's licensing.
+No production site is reachable, and the test site's demo project has 5,944 notes with no threads,
+no tasks and no attachments (`research/07`). Three layers, and the demo runs on the last:
 
-## The local service
-
-One process the artist starts. It holds the session token from the App Session Launcher (sg-widgets
-`session-auth`), serves the page on localhost, exposes the widgets' proxy protocol (sg-widgets
-`proxy-handler`), and exposes the same commands to an agent as a CLI. Register a command once; it is
-a route and a CLI verb both. This is the blueprint the whole set is circling: params typed per
-command, `check()` then `do()`, hooks and runners added only when a second command needs them.
-
-The agent channel follows llm-ui-annotation: a watched directory is the queue, a `watch` verb blocks
-until work lands, the page gets a websocket push. Read-only page first, then the channel, then write
-commands. Each ships alone.
-
-## Launching a Toolkit command (settled by probe, 2026-09-15)
-
-"Open in Associated Application," and any registered engine command, is reachable, but not the way it
-first looks.
-
-- Desktop's `wss://shotgunlocalhost.com:9000` is origin-locked by design. Its `server_protocol.py`
-  requires the connection Origin to be one of the site's own domains and the browser user to match
-  Desktop's own login, and every frame after the handshake is Fernet-encrypted with a secret only the
-  site issues. A localhost page cannot drive it. Do not try; the secret path is off-limits.
-- The sanctioned launcher is `sgtk.bootstrap.ToolkitManager`, or the `tank` command the config
-  installs on disk. The local service bootstraps the engine as the signed-in user and runs the
-  command headless — the same code path Desktop uses, no socket, no origin gate.
-- For a trigger that starts in the Flow PT web UI, register an Action Menu Item pointing at the local
-  service.
-
-The handshake transcript and the six-method public surface are in
-`../sg-groundtruth/probes/065_desktop_websocket.py`. Write the finding there.
-
-## Stack
-
-- Svelte 5 first, matching sg-widgets' build order and llm-ui-annotation. React later if wanted.
-- Native CSS and shadcn tokens, per sg-widgets design rules. Foreign widgets layer on the same tokens.
-- The house writing rules apply: `../sg-widgets/docs/writing-rules.md`.
+1. **Seed** (`tools/seed.py`, `--write`, one sandbox project, never the demo project). Grows from
+   one artist's day to a lead's month: a few hundred notes over dozens of records on a long tail, a
+   third unaddressed, a third client-facing, threads of 0 to 5, attachments on a third, tasks on half.
+2. **Capture** (`tools/capture.py`) into `fixtures/live/`: real shapes, committed, offline.
+3. **Authored month**: timestamps spread over weeks, which the sandbox's all-"now" cannot give.
 
 ## Open questions
 
-Prototype, don't search.
-
-- Local service tooling: plain Vite plus a small server, or the sg-comfyui route style in Node.
-- Which sg-widgets items the page uses, and which foreign widgets it deliberately pulls in to stress.
-- How "one click" maps to commands: open in app (Toolkit bootstrap), reply to a note (write), change
-  a status (write). Which are read, which write, which launch.
-
-Decisions.
-
-- The name.
-- Decided 2026-09-15: the seed reuses the one sandbox and keeps a manifest of what it made;
-  thumbnails are a trivial local generator (standard library PNG); git is initialised.
-- Which account is "the artist". HumanUser 253 is an Admin; the only Artist-permission account on
-  the site is 451, which cannot create Tasks. A page tested as 253 will not hit artist limits.
+- Which sg-widgets items the lead view uses, and which foreign widgets it deliberately pulls in.
+- Local service tooling: plain Vite plus a small server, or the sg-comfyui route style.
+- The lead's "waiting on whom" rule when a note has several addressees and a mixed thread.
+- How the page survives a project where every optional column is empty.
 
 ## Build order
 
-1. Done: the user-feed probe, and the seed and capture scripts (`tools/`, `fixtures/live/`).
-   Still to do in this step: the authored day, layer three, tuned from `fixtures/live/`.
-2. The read-only page on the mock source: tasks, activity, notes, thumbnails.
-3. The local service: proxy, session login, one read command.
-4. The agent channel, then the first write command.
-5. The first launch command through Toolkit bootstrap.
-6. The compose pass: pull in the foreign widgets, log every seam.
+1. Done: the probes, the seed and capture for one day, the research.
+2. The sg-widgets client issues, filed and merged, so the page has `create` and `threadContents`.
+3. The seed grown to a lead's month, captured, then the authored month.
+4. The read-only lead view on the mock source: list, filters, groups, thread, annotation previews.
+5. The local service: proxy, browser sign-in, the first write (reply), then note status.
+6. The "mine" view. Then the compose pass with the foreign widgets, logging every seam.
