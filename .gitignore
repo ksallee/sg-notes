@@ -1,5 +1,12 @@
-.env.local
+.env
+.env.*
+!.env.example
 *.local.json
 node_modules/
 .venv/
 __pycache__/
+/.svelte-kit
+/build
+.DS_Store
+vite.config.ts.timestamp-*
+.playwright-mcp/
