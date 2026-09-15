@@ -1,7 +1,7 @@
 // A reply written from the pane lands in the thread and in the row's count.
 const rows = $$('[data-slot="notes-row"]');
 if (rows.length === 0) return { verdict: 'FAIL no note rows' };
-rows[0].querySelector('button').click();
+rows[0].querySelector('button[aria-pressed]').click();
 await wait(1500);
 const pane = $('[data-slot="thread-pane"]');
 const before = $$('[data-thread-type="Reply"]', pane).length;

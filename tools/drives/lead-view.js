@@ -5,7 +5,7 @@ const groups = $$('[data-slot="notes-group"]');
 const rows = $$('[data-slot="notes-row"]');
 if (!bar) return { verdict: 'FAIL no site bar' };
 if (rows.length === 0) return { verdict: 'FAIL no note rows', count: text($('[data-slot="row-count"]')) };
-rows[0].querySelector('button').click();
+rows[0].querySelector('button[aria-pressed]').click();
 await wait(1500);
 const thread = $('[data-slot="thread-pane"]');
 // Text cut off without a truncate rule: a box whose content is wider than it and is visible.

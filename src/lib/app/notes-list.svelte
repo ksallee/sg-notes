@@ -65,7 +65,8 @@
 		query?: string;
 		/** Ids of the ticked notes, for a bulk action. */
 		ticked: ReadonlySet<number>;
-		onTickChange: (ids: number[], on: boolean) => void;
+		/** `last` is the row the press landed on, so the page can open it in the pane. */
+		onTickChange: (ids: number[], on: boolean, last: number) => void;
 		onActions: () => void;
 	};
 
@@ -110,15 +111,29 @@
 	/** Every note id in the order the list shows them, across groups. */
 	const order = $derived(groups.flatMap((group) => group.notes.map((note) => note.id)));
 
-	function tick(note: EntityRow, on: boolean): void {
+	function tick(note: EntityRow, on: boolean, range = shiftHeld): void {
 		let ids = [note.id];
-		if (shiftHeld && lastTick !== null) {
-			const a = order.indexOf(lastTick);
+		const from = lastTick ?? (selected?.type === 'Note' ? selected.id : null);
+		if (range && from !== null) {
+			const a = order.indexOf(from);
 			const b = order.indexOf(note.id);
 			if (a !== -1 && b !== -1) ids = order.slice(Math.min(a, b), Math.max(a, b) + 1);
 		}
 		lastTick = note.id;
-		onTickChange([...new Set(ids)], on);
+		onTickChange([...new Set(ids)], on, note.id);
+	}
+
+	/** A plain press opens the note; shift ticks the run from the last one; option or ⌘ toggles the tick. */
+	function rowClick(note: EntityRow, event: MouseEvent): void {
+		if (event.shiftKey) {
+			tick(note, true, true);
+			return;
+		}
+		if (event.altKey || event.metaKey || event.ctrlKey) {
+			tick(note, !ticked.has(note.id), false);
+			return;
+		}
+		onSelect(note);
 	}
 
 	function groupTick(group: { notes: EntityRow[] }): 'all' | 'some' | 'none' {
@@ -308,7 +323,7 @@
 								checked={tickState === 'all'}
 								indeterminate={tickState === 'some'}
 								aria-label="Tick every note in this group"
-								onCheckedChange={(on) => onTickChange(group.notes.map((note) => note.id), on === true)}
+								onCheckedChange={(on) => onTickChange(group.notes.map((note) => note.id), on === true, group.notes[group.notes.length - 1]!.id)}
 							/>
 							{#if group.record?.type === 'HumanUser'}
 								<UserAvatar name={group.record.name ?? '?'} image={imageOf(people.get(group.record.id))} size="sm" />
@@ -364,8 +379,8 @@
 									<button
 										type="button"
 										aria-pressed={chosen}
-										onclick={() => onSelect(note)}
-										class="focus-visible:ring-ring focus-visible:ring-offset-background flex min-w-0 flex-1 items-start gap-2 px-2 py-1.5 text-left text-sm outline-none focus-visible:ring-2 focus-visible:ring-inset"
+										onclick={(event) => rowClick(note, event)}
+										class="focus-visible:ring-ring focus-visible:ring-offset-background flex min-w-0 flex-1 select-none items-start gap-2 px-2 py-1.5 text-left text-sm outline-none focus-visible:ring-2 focus-visible:ring-inset"
 									>
 										<span class="flex h-5 shrink-0 items-center">
 											<UserAvatar name={author?.name ?? '?'} image={personImage(author)} size="sm" />

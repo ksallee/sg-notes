@@ -9,7 +9,8 @@
 // request. --project writes the project pick the page reads from localStorage. The drive
 // is the body of an async function receiving ({wait, $, $$, text, pw}); `pw.click`, `pw.fill`
 // and `pw.press` take a Playwright selector and act with real input events, for controls that
-// ignore synthetic ones (a Bits UI select opens on a pointer sequence). The return value is
+// ignore synthetic ones (a Bits UI select opens on a pointer sequence); `pw.click(sel, ['Shift'])`
+// holds modifiers. The return value is
 // printed as `result`, and the exit code is 1 when the page threw, the console logged an
 // error, or `result.verdict` starts with FAIL. Console errors and warnings are printed;
 // nothing else is, so a run costs a few lines.
@@ -78,7 +79,7 @@ function boot(ctx) {
 	const $$ = (s, root = document) => [...root.querySelectorAll(s)];
 	const text = (el) => (el ? el.textContent.replace(/\s+/g, ' ').trim() : '');
 	const pw = {
-		click: (selector) => window.__pw('click', selector),
+		click: (selector, modifiers) => window.__pw('click', selector, modifiers),
 		fill: (selector, value) => window.__pw('fill', selector, value),
 		press: (selector, key) => window.__pw('press', selector, key),
 	};
@@ -122,7 +123,7 @@ async function main() {
 	});
 	await page.exposeFunction('__pw', async (action, selector, value) => {
 		const el = page.locator(selector).first();
-		if (action === 'click') await el.click({ timeout: 5000 });
+		if (action === 'click') await el.click({ timeout: 5000, ...(Array.isArray(value) ? { modifiers: value } : {}) });
 		else if (action === 'fill') await el.fill(value, { timeout: 5000 });
 		else if (action === 'press') await el.press(value, { timeout: 5000 });
 		return true;

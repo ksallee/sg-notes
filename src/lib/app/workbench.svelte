@@ -13,6 +13,7 @@
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
 	import ThreadPane from './thread-pane.svelte';
+	import ThreadStack from './thread-stack.svelte';
 
 	let { context, writer, projectId }: { context: SgContext; writer: SgClient; projectId: number } = $props();
 
@@ -129,11 +130,6 @@
 	/** The chosen note as the source now holds it, so a status write shows without a re-pick. */
 	const selected = $derived(selectedRef ? (snapshot.rows.find((row) => row.id === selectedRef!.id) ?? null) : null);
 
-	async function setStatus(code: string): Promise<void> {
-		if (!selected) return;
-		await source.updateRow({ type: 'Note', id: selected.id }, { sg_status_list: code });
-	}
-
 	/* Ticking, and what is done to the ticked. */
 
 	const ticked = new SvelteSet<number>();
@@ -141,12 +137,19 @@
 	let paletteOpen = $state(false);
 	let job = $state<Job | null>(null);
 
-	function tickChange(ids: number[], on: boolean): void {
+	/** The note the pane opens when several are ticked: the last one ticked, unless a line was pressed since. */
+	let expandedId = $state<number | null>(null);
+
+	function tickChange(ids: number[], on: boolean, last?: number): void {
 		for (const id of ids) {
 			if (on) ticked.add(id);
 			else ticked.delete(id);
 		}
+		expandedId = on && last !== undefined ? last : expandedId !== null && ticked.has(expandedId) ? expandedId : null;
 	}
+
+	/** The ticked notes in the order the source holds them. */
+	const tickedRows = $derived(snapshot.rows.filter((row) => ticked.has(row.id)));
 
 	/** The ticked notes as the source holds them, else the open one. */
 	const targets = $derived(ticked.size > 0 ? snapshot.rows.filter((row) => ticked.has(row.id)) : selected ? [selected] : []);
@@ -199,9 +202,7 @@
 		}
 	}
 
-	async function reply(content: string): Promise<void> {
-		if (!selected) return;
-		const note = selected;
+	async function replyTo(note: EntityRow, content: string): Promise<void> {
 		await createReply(writer, { type: 'Note', id: note.id }, content);
 		// The thread is read from Reply rows, and the note's own `replies` list moved too.
 		const fresh = await readReplies(context.client, [note]);
@@ -212,6 +213,20 @@
 </script>
 
 <svelte:window onkeydown={onKeydown} />
+
+{#snippet pane(note: EntityRow)}
+	<ThreadPane
+		{context}
+		{writer}
+		{note}
+		replies={replies.get(note.id) ?? []}
+		{records}
+		{statuses}
+		{projectId}
+		onStatus={(code) => source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: code }).then(() => undefined)}
+		onReply={(content) => replyTo(note, content)}
+	/>
+{/snippet}
 
 <div class="flex min-h-0 flex-1 flex-col" data-slot="workbench">
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-3 py-2">
@@ -244,9 +259,11 @@
 			onActions={() => (paletteOpen = true)}
 		/>
 		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
-			{#if selected}
+			{#if tickedRows.length > 1}
+				<ThreadStack notes={tickedRows} {statuses} expanded={expandedId} onExpand={(id) => (expandedId = id)} {pane} />
+			{:else if selected}
 				{#key selected.id}
-					<ThreadPane {context} {writer} note={selected} replies={replies.get(selected.id) ?? []} {records} {statuses} {projectId} onStatus={setStatus} onReply={reply} />
+					{@render pane(selected)}
 				{/key}
 			{:else}
 				<p class="text-muted-foreground flex items-center justify-center px-4 py-10 text-sm">Pick a note to read its thread.</p>
@@ -267,7 +284,7 @@
 	onRead={bulkRead}
 	onReply={bulkReply}
 	onGroupBy={(value) => (groupBy = value)}
-	onSelectAll={() => tickChange(snapshot.rows.map((row) => row.id), true)}
+	onSelectAll={() => tickChange(snapshot.rows.map((row) => row.id), true, selectedRef?.id)}
 	onClearSelection={() => ticked.clear()}
 	onCollapseAll={() => list?.collapseAll()}
 	onExpandAll={() => list?.expandAll()}
