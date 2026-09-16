@@ -19,6 +19,10 @@
 
 	/** The pills the bar offers, in the order a lead reaches for them. */
 	// `client_note` is false on every API-written note (README), so it is not offered.
+	// The facet counts are a tally of one read of up to 1000 rows (`sampleSize`), exact for a project
+	// this size. The bar's `counts` hook would count through `_summarize`, but in that mode the values
+	// come from the schema alone, so an entity facet lists nobody, and the site refuses to group on
+	// `read_by_current_user` at all (docs/seams.md).
 	const FACETS = ['sg_status_list', 'addressings_to', 'created_by', 'sg_note_type', 'read_by_current_user'];
 	// The project and the context are what this component was built for; the page rebuilds it to change them.
 	const PROJECT = condition('project', 'is', { type: 'Project', id: untrack(() => projectId) });
@@ -339,6 +343,7 @@
 			labels={{ addressings_to: 'To', created_by: 'From', sg_note_type: 'Type', read_by_current_user: 'Read' }}
 			baseFilter={group('and', [PROJECT])}
 			bind:value={filter}
+			sampleSize={1000}
 			class="min-w-0 flex-1"
 		/>
 		<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums" data-slot="row-count">

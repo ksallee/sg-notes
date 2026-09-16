@@ -81,7 +81,17 @@ list imports the collapse state, the bar names its pills To, From, Type and Read
 the rows draw `MatchText`, and the dark block carries the site's corrected values. Left with the
 designer: the primitives' half-strength focus ring at 2.67:1 and muted text on a highlighted row.
 
-## 8. Not a seam: the live pattern carried over as is
+## 8. The filter bar's `counts` hook cannot count an entity facet
+
+With no `counts`, the bar tallies facet values from one page of `sampleSize` rows, 200 by default,
+so on a 325-note project the read-state facet said 104 read and 96 unread. With `counts`, the values
+come from `facetValues([], field)`, the schema's `validValues` alone, so a list facet counts through
+`_summarize` but an entity facet (To, From) lists nobody, and `_summarize` refuses to group on
+`read_by_current_user` at all (400 "Grouping is not allowed"). This app raises `sampleSize` to 1000
+instead, exact for its projects and a sample on a bigger one. The hook wants to take its values from
+the summarize groups, which carry the entity's name and id, and to fall back per field.
+
+## 9. Not a seam: the live pattern carried over as is
 
 The docs site's `live.ts`, the two launcher endpoints and the dev-token endpoint moved into
 SvelteKit without a change of shape. `RestClient` from the browser, `createSgContext` once,
