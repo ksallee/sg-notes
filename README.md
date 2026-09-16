@@ -80,7 +80,9 @@ Measured on the test site, once, on rows the seed owns.
   `editable: false`. The month is real: notes and replies are spread over five weeks with a working
   week's rhythm, and so are the Tasks and Versions under them.
 - The seed sends no `updated_at`, so every row's is the moment it ran. A note whose `updated_at` is a
-  month newer than its `created_at` is the normal case here, not a signal.
+  month newer than its `created_at` is the normal case here, not a signal. The site would take one:
+  `updated_at` is accepted on create for Note, Task and Version (a Reply has no such field), per
+  sg-groundtruth finding 070, so a later seed can date both.
 - `client_note` is refused twice over: a create answers `Client Notes can not be created through the
   API` and an update answers `Note.client_note is editable on create only`. It is false on every note
   in these fixtures. A client-facing note carries `sg_note_type` `Client` and nothing else.
