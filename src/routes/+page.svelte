@@ -23,7 +23,7 @@
 		{:else if !state.project}
 			<p class="text-muted-foreground flex flex-1 items-center justify-center text-sm">Pick a project to read its notes.</p>
 		{:else}
-			<Workbench {context} writer={liveWriter()} projectId={state.project.id} />
+			<Workbench {context} writer={liveWriter()} projectId={state.project.id} asPerson={state.session !== null} />
 		{/if}
 	{:catch error}
 		<p class="text-destructive p-4 text-sm">{error.message}</p>

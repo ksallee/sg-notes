@@ -55,6 +55,8 @@
 		targets: EntityRow[];
 		/** True when more than one note is selected. */
 		several: boolean;
+		/** True when a person is signed in. A script has no read state: its write stores nothing (finding 068). */
+		asPerson: boolean;
 		statuses: Record<string, StatusRecord>;
 		/** The codes a Note may take on this project, in the schema's order. */
 		noteStatuses: string[];
@@ -84,6 +86,7 @@
 		addressOpen = $bindable(false),
 		targets,
 		several,
+		asPerson,
 		statuses,
 		noteStatuses,
 		groupBy,
@@ -238,10 +241,10 @@
 					<Command.Item value="forward copy" onSelect={() => run(() => (forwardOpen = true))}>
 						<Forward aria-hidden="true" /> Forward a copy of {count} {noun}…<span class="text-muted-foreground ml-1 text-xs">a new note, the original untouched</span>
 					</Command.Item>
-					<Command.Item value="mark read" onSelect={() => run(() => onRead(targets, true))}>
-						<Eye aria-hidden="true" /> Mark {count} {noun} read <Command.Shortcut>U</Command.Shortcut>
+					<Command.Item value="mark read" disabled={!asPerson} onSelect={() => run(() => onRead(targets, true))}>
+						<Eye aria-hidden="true" /> Mark {count} {noun} read{#if !asPerson}<span class="text-muted-foreground ml-1 text-xs">sign in first: a dev key has no read state</span>{/if} <Command.Shortcut>U</Command.Shortcut>
 					</Command.Item>
-					<Command.Item value="mark unread" onSelect={() => run(() => onRead(targets, false))}>
+					<Command.Item value="mark unread" disabled={!asPerson} onSelect={() => run(() => onRead(targets, false))}>
 						<EyeOff aria-hidden="true" /> Mark {count} {noun} unread
 					</Command.Item>
 					<Command.Item value="open web" onSelect={() => run(() => onOpen(targets))}>

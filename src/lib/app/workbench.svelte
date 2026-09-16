@@ -15,7 +15,7 @@
 	import ThreadPane from './thread-pane.svelte';
 	import ThreadStack from './thread-stack.svelte';
 
-	let { context, writer, projectId }: { context: SgContext; writer: SgClient; projectId: number } = $props();
+	let { context, writer, projectId, asPerson }: { context: SgContext; writer: SgClient; projectId: number; asPerson: boolean } = $props();
 
 	/** The pills the bar offers, in the order a lead reaches for them. */
 	// `client_note` is false on every API-written note (README), so it is not offered.
@@ -277,7 +277,7 @@
 		if (selectedRows.length > 0) bulkStatus(selectedRows, CLOSED);
 	}
 	function toggleReadSelected(): void {
-		if (selectedRows.length === 0) return;
+		if (selectedRows.length === 0 || !asPerson) return;
 		const unread = selectedRows.some((row) => text(row, 'read_by_current_user') === 'unread');
 		bulkRead(selectedRows, unread);
 	}
@@ -405,6 +405,7 @@
 	bind:open={paletteOpen}
 	{targets}
 	several={selectedRows.length > 1}
+	{asPerson}
 	{statuses}
 	{noteStatuses}
 	{groupBy}
