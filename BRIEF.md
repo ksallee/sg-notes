@@ -5,10 +5,13 @@ record it is about, threaded, with reply, close and forward as first-class actio
 whom" as a column. Built on `../sg-widgets` and meant to be the first real host those widgets live
 in. It started life as an artist landing page; `research/` holds why it changed.
 
-Status, 2026-09-15, evening: the lead view stands on a seeded month of 321 notes: grouped on
-anything, searched on everything, threaded, with reply, status and read state as writes, singly or
-in bulk through a command palette. The sg-widgets client has what it needed; the registry seams are
-being closed.
+Status, end of 2026-09-15: the lead view stands on a seeded month of 321 notes: grouped on
+anything, searched on everything, threaded, with reply, reply-and-close, status, read state and
+recipients as writes, singly or in bulk through a ⌘K palette and single keys; three themes in light
+and dark; a design review applied (`docs/ux-review.md`). Every library seam the day found is fixed
+on sg-widgets `dev` (#192 to #232) and taken up here on a clean registry reinstall; the corpus has
+the day's measurements (sg-groundtruth PR #70). Both sibling repos are being audited in their own
+sessions and will differ from what this one left.
 
 ## Why this, and why first
 
@@ -127,5 +130,10 @@ no tasks and no attachments (`research/07`). Two layers, and the page runs on th
    thread through `threadContents`, annotation previews, sign-in. `tools/qa.mjs` drives it headless.
 5. Done: the writes: reply, status, read state, singly from the pane and in bulk from the ⌘K
    palette over ticked rows.
-6. The "mine" view. The event log as "what changed since". The rest of the compose pass: a sidebar
-   for projects and saved filters, a resizable split, toasts. Every seam logged.
+6. Next: pull sg-widgets `dev`, rebuild core, reinstall the registry, restart the dev server (a
+   reinstall replaces the components folder and Vite's watcher misses it). Then the "mine" view, the
+   event log as "what changed since", the rest of the compose pass (a sidebar for projects and saved
+   filters, a resizable split, toasts), and the facet-count hook once the library counts entity
+   facets. Open small calls: unread weighting (semibold unread, regular read); whether opening a
+   note marks it read; whether a person added to To after the fact reaches the Inbox (check in the
+   web app as Other Artist).
