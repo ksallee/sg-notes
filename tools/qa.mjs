@@ -111,7 +111,7 @@ async function main() {
 	if (a.project) {
 		await ctx.addInitScript((id) => localStorage.setItem('sg-notes:project', JSON.stringify({ id })), a.project);
 	}
-	// The look, from the keys $lib/theme reads: `--theme weave|graphite|paper`, `--mode light|dark|system`.
+	// The look, from the keys $lib/theme reads: `--theme default|supabase|claude`, `--mode light|dark|system`.
 	if (a.theme || a.mode) {
 		await ctx.addInitScript(
 			([theme, mode]) => {

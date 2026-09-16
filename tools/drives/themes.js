@@ -12,5 +12,5 @@ await wait(300);
 await pw.click('[role="menuitemradio"]:has-text("Light")');
 await wait(300);
 const light = { dark: root.classList.contains('dark'), bg: bg(), scheme: root.style.colorScheme, stored: localStorage.getItem('sg-notes:mode') };
-const ok = start.theme === 'weave' && start.dark && supabase.theme === 'supabase' && supabase.bg !== start.bg && /Outfit/.test(supabase.font) && !light.dark && light.bg !== supabase.bg && light.stored === 'light';
+const ok = start.theme === 'default' && start.dark && supabase.theme === 'supabase' && supabase.bg !== start.bg && /Outfit/.test(supabase.font) && !light.dark && light.bg !== supabase.bg && light.stored === 'light';
 return { verdict: ok ? 'PASS' : 'FAIL see fields', start, supabase, light };

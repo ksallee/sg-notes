@@ -216,7 +216,8 @@
 			}}
 		/>
 		<div class="flex items-center gap-2">
-			<Button type="submit" size="sm" disabled={!replyable || sending || draft.trim() === ''}>{sending ? 'Sending…' : 'Reply'} <Kbd>⌘↵</Kbd></Button>
+			<!-- The chip on the primary surface wears the primary's own foreground, since a muted grey chip does not read on it. -->
+			<Button type="submit" size="sm" disabled={!replyable || sending || draft.trim() === ''}>{sending ? 'Sending…' : 'Reply'} <Kbd class="bg-primary-foreground/20 text-primary-foreground">⌘↵</Kbd></Button>
 			{#if text(note, 'sg_status_list') !== CLOSED}
 				<Button type="button" size="sm" variant="outline" disabled={!replyable || sending || draft.trim() === ''} onclick={() => void send(true)} data-slot="reply-and-close">
 					Reply and close <Kbd>⇧⌘↵</Kbd>

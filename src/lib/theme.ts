@@ -2,7 +2,7 @@
  * What the page wears: a theme, and light or dark.
  *
  * Three themes, each a full set of the shadcn tokens in both schemes, in
- * `app.css`, all three the sg-widgets docs site's own: Weave, the one it wears
+ * `app.css`, all three the sg-widgets docs site's own: Default, the one it wears
  * by default and the default here; Supabase and Claude, two of the presets it
  * offers, with the corrections it made where a preset missed AA. The page is a
  * place to see the widgets wear a palette they were not drawn on, and to see
@@ -12,11 +12,11 @@
  * class, which is what the token sheet keys on. `app.html` applies both before
  * the first paint from the same storage keys, so there is no flash.
  */
-export type Theme = 'weave' | 'supabase' | 'claude';
+export type Theme = 'default' | 'supabase' | 'claude';
 export type Mode = 'light' | 'dark' | 'system';
 
 export const THEMES: ReadonlyArray<{ value: Theme; label: string; note: string }> = [
-	{ value: 'weave', label: 'Weave', note: 'The sg-widgets default, in Geist' },
+	{ value: 'default', label: 'Default', note: 'The sg-widgets default, in Geist' },
 	{ value: 'supabase', label: 'Supabase', note: 'Neutral with a green accent, in Outfit' },
 	{ value: 'claude', label: 'Claude', note: 'Warm ink and orange, in the system face' }
 ];
@@ -47,7 +47,7 @@ function write(key: string, value: string): void {
 
 export function theme(): Theme {
 	const value = read(KEYS.theme);
-	return THEMES.some((option) => option.value === value) ? (value as Theme) : 'weave';
+	return THEMES.some((option) => option.value === value) ? (value as Theme) : 'default';
 }
 
 export function mode(): Mode {

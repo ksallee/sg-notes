@@ -16,7 +16,7 @@ html:not(.dark) {
 }
 
 /*
- * The palette the sg-widgets docs site wears, so the two read as one family: Weave's
+ * The palette the sg-widgets docs site wears, so the two read as one family: the default theme's
  * light and dark-blue medium-density themes, the values copied from
  * `../sg-widgets/apps/site/src/styles/global.css` with their comments. The page is dark
  * only; the light block is here so a widget dropped on a light surface still has tokens.
@@ -312,6 +312,8 @@ html[data-sg-theme='claude'] {
 
 @theme inline {
 	--font-sans: 'Geist Variable', sans-serif;
+	/* One step past 2xl, for the thread pane on a wide monitor. */
+	--breakpoint-3xl: 120rem;
 	--font-mono: 'Geist Mono Variable', ui-monospace, monospace;
 	--color-sidebar-ring: var(--sidebar-ring);
 	--color-sidebar-border: var(--sidebar-border);

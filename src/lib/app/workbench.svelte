@@ -382,7 +382,8 @@
 			}}
 			onActions={() => (paletteOpen = true)}
 		/>
-		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l" data-slot="thread">
+		<!-- The thread pane grows with the screen: 32rem to 2xl, 38rem to 3xl (1920px), 44rem past it. -->
+		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l 2xl:w-[38rem] 3xl:w-[44rem]" data-slot="thread">
 			{#if selectedRows.length > 1}
 				<ThreadStack
 					{context}

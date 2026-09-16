@@ -499,7 +499,10 @@
 									data-unread={unread ? 'true' : undefined}
 									class={cn(
 										'group/row border-border flex items-stretch border-b border-l-2 transition-colors duration-150 motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150',
-										chosen ? 'bg-primary/12 border-l-primary' : 'border-l-transparent hover:bg-foreground/4',
+										// `--row-surface` is the colour the row actually shows, for the ring that separates stacked avatars.
+										chosen
+											? 'bg-primary/12 border-l-primary [--row-surface:color-mix(in_oklab,var(--primary)_12%,var(--background))]'
+											: 'border-l-transparent hover:bg-foreground/4 [--row-surface:var(--background)] hover:[--row-surface:color-mix(in_oklab,var(--foreground)_4%,var(--background))]',
 										code === 'clsd' && !chosen && 'opacity-60'
 									)}
 								>
@@ -570,7 +573,7 @@
 												{@const who = waitingWho(waiting)}
 												<span class="flex shrink-0 -space-x-1">
 													{#each who.slice(0, 3) as ref (ref.id)}
-														<UserAvatar name={ref.name ?? '?'} image={personImage(ref)} size="sm" class="ring-background ring-1" />
+														<UserAvatar name={ref.name ?? '?'} image={personImage(ref)} size="sm" class="ring-1 ring-[var(--row-surface)]" />
 													{/each}
 												</span>
 												<span class="min-w-0 truncate" title={waitingLabel(waiting)}>{who.map((ref) => ref.name ?? '').filter(Boolean).join(', ')}</span>
