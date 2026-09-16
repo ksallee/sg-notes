@@ -38,6 +38,7 @@ function args(argv) {
 			case '--settle': a.settle = Number(next()); break;
 			case '--project': a.project = Number(next()); break;
 			case '--theme': a.theme = next(); break;
+			case '--log-requests': a.logRequests = new RegExp(next()); break;
 			case '--mode': a.mode = next(); break;
 			case '--reduced-motion': a.reducedMotion = true; break;
 			case '--headed': a.headed = true; break;
@@ -126,6 +127,13 @@ async function main() {
 		if (m.type() === 'error' || m.type() === 'warning') console_.push(`${m.type()}: ${m.text()}`);
 	});
 	page.on('pageerror', (e) => console_.push(`pageerror: ${e.message}`));
+	// `--log-requests <regex>`: the method, url and body of every matching request, printed under `requests`.
+	const requests = [];
+	if (a.logRequests) {
+		page.on('request', (req) => {
+			if (a.logRequests.test(req.url())) requests.push({ method: req.method(), url: req.url().replace(/^https?:\/\/[^/]+/, ''), body: req.postData() ?? null });
+		});
+	}
 	// A navigation mid-drive is worth knowing about: Vite's own console line says why when it is Vite.
 	page.on('framenavigated', (frame) => {
 		if (frame === page.mainFrame()) console_.push(`navigated: ${frame.url()}`);
@@ -170,7 +178,7 @@ async function main() {
 	proc?.kill();
 
 	const errors = console_.filter((line) => !line.includes('favicon.ico'));
-	const out = { result, ...(errors.length ? { console: errors } : {}), ...(a.shot ? { shot: a.shot } : {}) };
+	const out = { result, ...(errors.length ? { console: errors } : {}), ...(a.logRequests ? { requests } : {}), ...(a.shot ? { shot: a.shot } : {}) };
 	console.log(JSON.stringify(out, null, 1));
 	const verdict = result && typeof result.verdict === 'string' ? result.verdict : '';
 	process.exit(failed || errors.some((l) => l.startsWith('error') || l.startsWith('pageerror')) || verdict.startsWith('FAIL') ? 1 : 0);

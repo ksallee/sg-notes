@@ -22,6 +22,12 @@ not declare `read_by_current_user` at all, so the override never applies and the
 pill disabled. The override has to add the field when the schema lacks it; handed to the seams work
 (`docs/seams.md`). A probe in sg-groundtruth should record the absence.
 
+Measured 2026-09-15 evening on the operator's site, while chasing a filter that filtered nothing:
+`read_by_current_user` honours `is` and `is_not` but silently ignores `in`, answering 200 with every
+row (and `_summarize` counts every row), where `sg_status_list in [...]` filters on the same site. The
+filter bar builds every list facet as `in`, so the read-state pill selected nothing until the field
+carried an operator hint. Handed to sg-widgets; sg-groundtruth wants a probe.
+
 Follow-ups the work surfaced, not filed: a widget that draws a thread; `Delivery.read_by_current_user`
 needs its own probe; `SgClient` has no `delete`, and a Reply whose `entity` is null cannot be deleted
 (report 005); multipart upload (044) has no path; nothing checks the upload's ETag; a create that also
