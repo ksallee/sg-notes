@@ -528,9 +528,10 @@
 										<span class="flex min-w-0 flex-1 flex-col">
 											<span class="flex items-center gap-1.5">
 												{#if unread}
-													<span class="bg-primary size-1.5 shrink-0 rounded-full" role="img" aria-label="Unread"></span>
+													<span class="bg-primary size-1.5 shrink-0 rounded-full" role="img" aria-label="Unread" title="Unread"></span>
 												{/if}
-												<span class={cn('min-w-0 truncate', unread && 'font-medium')} title={firstLine(note)}><MatchText text={firstLine(note)} {query} /></span>
+												<!-- Unread is bold and read is regular, the weight every mail client teaches. -->
+												<span class={cn('min-w-0 truncate', unread ? 'font-semibold' : 'font-normal')} title={firstLine(note)}><MatchText text={firstLine(note)} {query} /></span>
 												{#if code}
 													<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 												{/if}
