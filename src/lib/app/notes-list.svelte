@@ -21,6 +21,7 @@
 	on hover and stay while anything is selected.
 -->
 <script lang="ts">
+	import type { Snippet } from 'svelte';
 	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
 	import { cellValue, collapseAll, expandAll, formatDateTime, isCollapsed, preferencesOf, toggleCollapsed, type CollapseState } from '@sg-widgets/core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
@@ -36,6 +37,7 @@
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Kbd } from '$lib/components/ui/kbd/index.js';
+	import * as ContextMenu from '$lib/components/ui/context-menu/index.js';
 	import * as Select from '$lib/components/ui/select/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import EntityChip from '$lib/components/entity-chip.svelte';
@@ -77,6 +79,8 @@
 		query?: string;
 		onClearFilters: () => void;
 		onActions: () => void;
+		/** The right-click menu's items, on the selection. A right-click on a row outside the selection selects it first. */
+		menu?: Snippet;
 	};
 
 	let {
@@ -98,7 +102,8 @@
 		sortBy = $bindable('newest'),
 		query = $bindable(''),
 		onClearFilters,
-		onActions
+		onActions,
+		menu
 	}: Props = $props();
 
 	/** Who a note has to be waiting on to be shown. Decided on the loaded rows. */
@@ -192,6 +197,11 @@
 		if (event.shiftKey) extend(note.id);
 		else if (event.metaKey || event.ctrlKey || event.altKey) toggle(note.id);
 		else selectOne(note.id);
+	}
+
+	/** A right-click acts on the selection, so a row outside it becomes the selection first, as Finder does. */
+	function rowContext(note: EntityRow): void {
+		if (!selected.has(note.id)) selectOne(note.id);
 	}
 
 	/** The checkbox is the toggle for a mouse with no modifier; shift still makes a run. */
@@ -375,7 +385,8 @@
 		</Button>
 		<Button variant={selected.size > 1 ? 'default' : 'outline'} onclick={onActions} data-slot="actions-button">
 			{selected.size > 1 ? `${selected.size} selected` : 'Actions'}
-			<Kbd>⌘K</Kbd>
+			<!-- On the primary surface the chip wears the primary foreground, as the Reply button's does. -->
+			<Kbd class={selected.size > 1 ? 'bg-primary-foreground/20 text-primary-foreground' : undefined}>⌘K</Kbd>
 		</Button>
 	</div>
 	{#if status === 'error'}
@@ -423,7 +434,12 @@
 		</div>
 	{:else}
 		<!-- svelte-ignore a11y_no_noninteractive_element_interactions -- the handler only moves focus between the row buttons -->
+		<ContextMenu.Root>
+		<ContextMenu.Trigger>
+			{#snippet child({ props })}
+		<!-- The trigger's props come first so the region keeps its own slot, role and class. -->
 		<div
+			{...props}
 			bind:this={list}
 			class={cn('group/list min-h-0 flex-1 overflow-auto transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
 			role="region"
@@ -523,6 +539,7 @@
 										type="button"
 										aria-pressed={chosen}
 										onclick={(event) => rowClick(note, event)}
+										oncontextmenu={() => rowContext(note)}
 										class="focus-visible:ring-ring focus-visible:ring-offset-background flex min-w-0 flex-1 select-none items-start gap-2 px-2 py-1.5 text-left text-sm outline-none focus-visible:ring-2 focus-visible:ring-inset"
 									>
 										<span class="flex h-5 shrink-0 items-center">
@@ -604,5 +621,13 @@
 				</div>
 			{/if}
 		</div>
+			{/snippet}
+		</ContextMenu.Trigger>
+		{#if menu}
+			<ContextMenu.Content class="w-64" data-slot="notes-menu">
+				{@render menu()}
+			</ContextMenu.Content>
+		{/if}
+		</ContextMenu.Root>
 	{/if}
 </div>

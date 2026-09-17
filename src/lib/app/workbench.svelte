@@ -12,6 +12,16 @@
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
+	import * as ContextMenu from '$lib/components/ui/context-menu/index.js';
+	import CircleCheck from '@lucide/svelte/icons/circle-check';
+	import ExternalLink from '@lucide/svelte/icons/external-link';
+	import Eye from '@lucide/svelte/icons/eye';
+	import EyeOff from '@lucide/svelte/icons/eye-off';
+	import Forward from '@lucide/svelte/icons/forward';
+	import MessageSquareReply from '@lucide/svelte/icons/message-square-reply';
+	import RefreshCw from '@lucide/svelte/icons/refresh-cw';
+	import Tag from '@lucide/svelte/icons/tag';
+	import UserPlus from '@lucide/svelte/icons/user-plus';
 	import ThreadPane from './thread-pane.svelte';
 	import ThreadStack from './thread-stack.svelte';
 
@@ -218,6 +228,8 @@
 	}
 	let forwardOpen = $state(false);
 	let addressOpen = $state(false);
+	let replyOpen = $state(false);
+	let replyAndClose = $state(false);
 
 	/** One write per note, in order, each failure named; then everything is read again. */
 	async function runJob(label: string, notes: EntityRow[], write: (note: EntityRow) => Promise<void>): Promise<void> {
@@ -296,7 +308,7 @@
 	function typing(event: KeyboardEvent): boolean {
 		const target = event.target as HTMLElement | null;
 		if (!target) return false;
-		if (target.closest('input, textarea, select, [contenteditable="true"], [role="dialog"], [data-slot="popover-content"], [data-slot="select-content"]')) return true;
+		if (target.closest('input, textarea, select, [contenteditable="true"], [role="dialog"], [role="menu"], [data-slot="popover-content"], [data-slot="select-content"]')) return true;
 		return paletteOpen || job !== null;
 	}
 
@@ -335,6 +347,59 @@
 </script>
 
 <svelte:window onkeydown={onKeydown} />
+
+<!--
+	The row menu: the palette's verbs on the selection, one right-click away. The dialogs
+	are the palette's own, opened through its two-way flags, so a reply reads the same
+	whichever way it was asked for.
+-->
+{#snippet menu()}
+	{@const count = selectedRows.length}
+	{@const noun = count === 1 ? 'note' : 'notes'}
+	{#if count === 0}
+		<ContextMenu.Item disabled>Select a note first</ContextMenu.Item>
+	{:else}
+		<ContextMenu.Group>
+		<ContextMenu.GroupHeading>{count} {noun}</ContextMenu.GroupHeading>
+		<ContextMenu.Item onSelect={() => ((replyAndClose = false), (replyOpen = true))}>
+			<MessageSquareReply aria-hidden="true" /> Reply… <ContextMenu.Shortcut>R</ContextMenu.Shortcut>
+		</ContextMenu.Item>
+		<ContextMenu.Item onSelect={() => ((replyAndClose = true), (replyOpen = true))}>
+			<CircleCheck aria-hidden="true" /> Reply and close…
+		</ContextMenu.Item>
+		<ContextMenu.Item onSelect={() => bulkStatus(selectedRows, CLOSED)}>
+			<CircleCheck aria-hidden="true" /> Close <ContextMenu.Shortcut>E</ContextMenu.Shortcut>
+		</ContextMenu.Item>
+		<ContextMenu.Sub>
+			<ContextMenu.SubTrigger><Tag aria-hidden="true" /> Set status</ContextMenu.SubTrigger>
+			<ContextMenu.SubContent class="w-48">
+				{#each noteStatuses as code (code)}
+					<ContextMenu.Item onSelect={() => bulkStatus(selectedRows, code)}>{statuses[code]?.name ?? code}</ContextMenu.Item>
+				{/each}
+			</ContextMenu.SubContent>
+		</ContextMenu.Sub>
+		</ContextMenu.Group>
+		<ContextMenu.Separator />
+		<ContextMenu.Item onSelect={() => (addressOpen = true)}>
+			<UserPlus aria-hidden="true" /> Change recipients… <ContextMenu.Shortcut>F</ContextMenu.Shortcut>
+		</ContextMenu.Item>
+		<ContextMenu.Item onSelect={() => (forwardOpen = true)}>
+			<Forward aria-hidden="true" /> Forward a copy…
+		</ContextMenu.Item>
+		<ContextMenu.Separator />
+		<ContextMenu.Item disabled={!asPerson} onSelect={() => bulkRead(selectedRows, true)}>
+			<Eye aria-hidden="true" /> Mark read <ContextMenu.Shortcut>U</ContextMenu.Shortcut>
+		</ContextMenu.Item>
+		<ContextMenu.Item disabled={!asPerson} onSelect={() => bulkRead(selectedRows, false)}>
+			<EyeOff aria-hidden="true" /> Mark unread
+		</ContextMenu.Item>
+		<ContextMenu.Item onSelect={() => openInWebApp(selectedRows)}>
+			<ExternalLink aria-hidden="true" /> Open in the web app
+		</ContextMenu.Item>
+	{/if}
+	<ContextMenu.Separator />
+	<ContextMenu.Item onSelect={() => void sync()}><RefreshCw aria-hidden="true" /> Sync from SG</ContextMenu.Item>
+{/snippet}
 
 {#snippet pane(note: EntityRow)}
 	<ThreadPane
@@ -388,6 +453,7 @@
 			{people}
 			{statuses}
 			selected={selection}
+			{menu}
 			onSelectionChange={setSelection}
 			bind:groupBy
 			bind:sortBy
@@ -436,6 +502,8 @@
 	{projectId}
 	bind:forwardOpen
 	bind:addressOpen
+	bind:replyOpen
+	bind:replyAndClose
 	onAddressees={bulkAddressees}
 	onStatus={bulkStatus}
 	onRead={bulkRead}

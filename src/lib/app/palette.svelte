@@ -52,6 +52,9 @@
 		forwardOpen?: boolean;
 		/** The Add-to-To dialog, two-way, so a key can open it. */
 		addressOpen?: boolean;
+		/** The Reply dialog, two-way, so the row menu can open it; `replyAndClose` says which. */
+		replyOpen?: boolean;
+		replyAndClose?: boolean;
 		/** The notes an action applies to. */
 		targets: EntityRow[];
 		/** True when more than one note is selected. */
@@ -87,6 +90,8 @@
 		projectId,
 		forwardOpen = $bindable(false),
 		addressOpen = $bindable(false),
+		replyOpen = $bindable(false),
+		replyAndClose: closeToo = $bindable(false),
 		targets,
 		several,
 		asPerson,
@@ -114,9 +119,7 @@
 	type Page = 'actions' | 'status' | 'group';
 	let page = $state<Page>('actions');
 	let search = $state('');
-	let replyOpen = $state(false);
 	let draft = $state('');
-	let closeToo = $state(false);
 	let forwardTo = $state<EntityRef[]>([]);
 	let forwardCc = $state<EntityRef[]>([]);
 	let forwardMessage = $state('');
