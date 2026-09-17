@@ -307,6 +307,22 @@
 		}
 	}
 
+	/**
+	 * Read everything on screen again from the site: the rows, every loaded thread, the
+	 * records the rows link to, and the count. The list dims while the rows come back, per the
+	 * re-read rule; the threads and records swap in behind them. Nothing here is a write.
+	 */
+	async function sync(): Promise<void> {
+		context.invalidate();
+		total = null;
+		const rows = snapshot.rows;
+		const linked = [...records.values()].map((row) => ({ type: row.type, id: row.id }));
+		const [threads, fresh] = await Promise.all([readReplies(context.client, rows), readRecords(context.client, linked), source.refresh()]);
+		replies = threads;
+		records = fresh;
+		total = await source.count().catch(() => null);
+	}
+
 	async function replyTo(note: EntityRow, content: string, close = false): Promise<void> {
 		await createReply(writer, { type: 'Note', id: note.id }, content);
 		if (close) await source.updateRow({ type: 'Note', id: note.id }, { sg_status_list: CLOSED });
@@ -433,5 +449,6 @@
 	onCollapseAll={() => list?.collapseAllGroups()}
 	onExpandAll={() => list?.expandAllGroups()}
 	onOpen={openInWebApp}
+	onSync={() => void sync()}
 	onJobRead={() => (job = null)}
 />

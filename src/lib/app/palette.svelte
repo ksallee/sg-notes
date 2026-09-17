@@ -18,6 +18,7 @@
 	import ListChecks from '@lucide/svelte/icons/list-checks';
 	import Forward from '@lucide/svelte/icons/forward';
 	import Plus from '@lucide/svelte/icons/plus';
+	import RefreshCw from '@lucide/svelte/icons/refresh-cw';
 	import UserPlus from '@lucide/svelte/icons/user-plus';
 	import X from '@lucide/svelte/icons/x';
 	import Keyboard from '@lucide/svelte/icons/keyboard';
@@ -73,6 +74,8 @@
 		onSelectAll: () => void;
 		onClearSelection: () => void;
 		onCollapseAll: () => void;
+		/** Read the rows, threads and records again from the site. */
+		onSync: () => void;
 		onExpandAll: () => void;
 		onOpen: (notes: EntityRow[]) => void;
 		onJobRead: () => void;
@@ -104,6 +107,7 @@
 		onCollapseAll,
 		onExpandAll,
 		onOpen,
+		onSync,
 		onJobRead
 	}: Props = $props();
 
@@ -261,6 +265,7 @@
 				<Command.Item value="group by" onSelect={() => (page = 'group')}><Layers aria-hidden="true" /> Group by…</Command.Item>
 				<Command.Item value="collapse all" onSelect={() => run(onCollapseAll)}><ChevronsDownUp aria-hidden="true" /> Collapse all</Command.Item>
 				<Command.Item value="expand all" onSelect={() => run(onExpandAll)}><ChevronsUpDown aria-hidden="true" /> Expand all</Command.Item>
+				<Command.Item value="sync from sg refresh reload" onSelect={() => run(onSync)}><RefreshCw aria-hidden="true" /> Sync from SG<span class="text-muted-foreground ml-1 text-xs">read the notes and threads again</span></Command.Item>
 			</Command.Group>
 			<Command.Group heading="Keys">
 				<Command.Item value="keys" disabled>
