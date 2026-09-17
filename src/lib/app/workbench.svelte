@@ -12,6 +12,8 @@
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
+	import { notesOfReplies, watch, type Changes } from './watch';
+	import { Button } from '$lib/components/ui/button/index.js';
 	import * as ContextMenu from '$lib/components/ui/context-menu/index.js';
 	import CircleCheck from '@lucide/svelte/icons/circle-check';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
@@ -326,6 +328,7 @@
 	 */
 	async function sync(): Promise<void> {
 		context.invalidate();
+		pending = 0;
 		total = null;
 		const rows = snapshot.rows;
 		const linked = [...records.values()].map((row) => ({ type: row.type, id: row.id }));
@@ -333,6 +336,54 @@
 		replies = threads;
 		records = fresh;
 		total = await source.count().catch(() => null);
+	}
+
+	/**
+	 * Staying current without a reload. The event log is watched while the tab is visible
+	 * (`./watch`); a note someone else changed is read again in place, its thread with it,
+	 * and a note someone else wrote is counted in the pill rather than pushed into the
+	 * list, so nothing jumps under the reader. Showing the pill's notes is a sync.
+	 */
+	let pending = $state(0);
+	let watchError = $state<string | null>(null);
+
+	async function applyChanges(changes: Changes): Promise<void> {
+		const loaded = new Set(snapshot.rows.map((row) => row.id));
+		const viaReplies = await notesOfReplies(context.client, changes.replies);
+		const touched = [...new Set([...changes.changed, ...changes.retired, ...viaReplies])].filter((id) => loaded.has(id));
+		if (touched.length > 0) {
+			context.invalidate();
+			const rows = snapshot.rows.filter((row) => touched.includes(row.id));
+			const [threads] = await Promise.all([readReplies(context.client, rows), source.rereadRows(touched)]);
+			replies = new Map([...replies, ...threads]);
+		}
+		const fresh = changes.created.filter((id) => !loaded.has(id));
+		if (fresh.length > 0) pending += await countMatching(fresh);
+	}
+
+	/** How many of these notes the page's filter and search would show. */
+	async function countMatching(ids: number[]): Promise<number> {
+		const wire = toApi3Hash(scope(filter, searchFilter(query, linkTypes, statuses, noteTypes)));
+		const res = await context.client.search('Note', {
+			filters: { logical_operator: 'and', conditions: [...(wire ? [wire] : []), ['id', 'in', ids]] },
+			fields: ['id'],
+			page: { size: ids.length, number: 1 }
+		});
+		return res.data.length;
+	}
+
+	onMount(() =>
+		watch({
+			client: context.client,
+			projectId,
+			onChanges: applyChanges,
+			onError: (error) => (watchError = error instanceof Error ? error.message : String(error))
+		})
+	);
+
+	async function showPending(): Promise<void> {
+		pending = 0;
+		await sync();
 	}
 
 	async function replyTo(note: EntityRow, content: string, close = false): Promise<void> {
@@ -427,6 +478,11 @@
 			sampleSize={1000}
 			class="min-w-0 flex-1"
 		/>
+		{#if pending > 0}
+			<Button size="sm" variant="secondary" onclick={() => void showPending()} title={watchError ?? 'Read the list again with them in it'} data-slot="new-notes" class="motion-safe:animate-in motion-safe:fade-in motion-safe:duration-150">
+				{pending} new {pending === 1 ? 'note' : 'notes'}
+			</Button>
+		{/if}
 		<span class="text-muted-foreground shrink-0 font-mono text-xs tabular-nums" data-slot="row-count">
 			{#if total === null}
 				{snapshot.rows.length}{snapshot.hasMore ? '+' : ''} notes
@@ -437,7 +493,7 @@
 			{/if}
 		</span>
 	</div>
-	<div class="flex min-h-0 flex-1">
+	<div class="flex min-h-0 min-w-0 flex-1">
 		<NotesList
 			bind:this={list}
 			{context}
@@ -465,7 +521,7 @@
 			onActions={() => (paletteOpen = true)}
 		/>
 		<!-- The thread pane grows with the screen: 32rem to 2xl, 38rem to 3xl (1920px), 44rem past it. -->
-		<aside class="border-border bg-background w-[32rem] shrink-0 overflow-auto border-l 2xl:w-[38rem] 3xl:w-[44rem]" data-slot="thread">
+		<aside class="border-border bg-background relative w-[32rem] shrink-0 overflow-auto overscroll-contain border-l 2xl:w-[38rem] 3xl:w-[44rem]" data-slot="thread">
 			{#if selectedRows.length > 1}
 				<ThreadStack
 					{context}

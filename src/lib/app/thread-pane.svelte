@@ -21,6 +21,7 @@
 	import StateLine from '$lib/components/state-line.svelte';
 	import StatusPicker from '$lib/components/status-picker.svelte';
 	import UserAvatar from '$lib/components/user-avatar.svelte';
+	import Markdown from '$lib/components/markdown.svelte';
 	import { addressees, CLOSED, isClientFacing, recordOf, refKey, refsOf, text, versionOf, waitingOn, type Waiting } from '$lib/notes';
 	import { canCreate } from '$lib/writes';
 
@@ -189,7 +190,7 @@
 						</a>
 					{:else}
 						{@render person(row.author, row.createdAt)}
-						<p class={row.type === 'Reply' ? 'whitespace-pre-wrap pl-8 text-sm' : 'whitespace-pre-wrap text-sm'}>{row.content ?? ''}</p>
+						<Markdown text={row.content ?? ''} class={row.type === 'Reply' ? 'pl-8 text-sm' : 'text-sm'} />
 					{/if}
 				</li>
 			{/each}

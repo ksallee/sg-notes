@@ -16,6 +16,14 @@ opens, and pick a project. The pick is remembered. With `.env.local` holding `FP
 `FPT_API_SCRIPT_NAME` and `FPT_API_API_KEY` (see `.env.example`), `pnpm dev` reads through the
 script key and no sign-in is needed; a production build ignores those and always signs in.
 
+The page stays current on its own. While the tab is visible it reads the project's Note and
+Reply events from the event log every twenty seconds, and at once when the tab comes back: a note
+someone else changed or answered is read again in place, and a note someone else wrote shows as a
+"new notes" pill beside the count rather than moving the list under you. Sync from SG, in the
+palette and the row menu, reads everything again. Note bodies render as the site's markdown
+(GitHub Flavored, `marked`), from the token tree and never from HTML: a raw tag shows as typed,
+an image is a link, and a link opens only over http, https or mailto.
+
 `@sg-widgets/core` is linked from `../sg-widgets/packages/core`, so that checkout has to exist and
 be built (`pnpm --filter @sg-widgets/core build` there). The widgets under `src/lib/components` are
 registry copies; `docs/seams.md` says how they were installed and what to repair after an `add`.
@@ -42,6 +50,7 @@ interpreter:
     PY=../sg-groundtruth/.venv/bin/python
     $PY tools/seed.py                                    # dry run: the plan, no writes
     $PY tools/seed.py --write --artist <login> --artist2 <login> --supervisor <login>
+    $PY tools/seed.py --markdown --write
     $PY tools/capture.py                                 # snapshot to fixtures/live/ and fixtures/media/
     $PY tools/seed.py --clean                            # delete every seeded row
 

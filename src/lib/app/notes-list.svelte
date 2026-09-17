@@ -336,7 +336,8 @@
 	</span>
 {/snippet}
 
-<div class="flex min-h-0 flex-1 flex-col" data-slot="notes-list" data-state={status} data-group-by={groupBy}>
+<!-- `min-w-0`: a one-line preview is nowrap, and without it the column would take the widest line as its floor and push the pane off the page. -->
+<div class="flex min-h-0 min-w-0 flex-1 flex-col" data-slot="notes-list" data-state={status} data-group-by={groupBy}>
 	<div class="border-border flex shrink-0 items-center gap-2 border-b px-2 py-1.5" data-slot="notes-tools">
 		<div class="relative min-w-0 flex-1 max-w-xs">
 			<SearchIcon aria-hidden="true" class="text-muted-foreground pointer-events-none absolute top-1/2 left-2.5 size-4 -translate-y-1/2" />
@@ -437,11 +438,17 @@
 		<ContextMenu.Root>
 		<ContextMenu.Trigger>
 			{#snippet child({ props })}
-		<!-- The trigger's props come first so the region keeps its own slot, role and class. -->
+		<!--
+			The trigger's props come first so the region keeps its own slot, role and class.
+			`relative` makes this the containing block of every absolutely positioned descendant
+			(the avatars' screen-reader names, for one), so the scroller clips them; otherwise they
+			sit against the page and stretch the document to the last row, and the wheel hands
+			over to a page scroll at the bottom. `overscroll-contain` keeps the wheel here too.
+		-->
 		<div
 			{...props}
 			bind:this={list}
-			class={cn('group/list min-h-0 flex-1 overflow-auto transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
+			class={cn('group/list relative min-h-0 flex-1 overflow-auto overscroll-contain transition-opacity duration-150', rereading && 'pointer-events-none opacity-50')}
 			role="region"
 			aria-label="Notes"
 			data-slot="notes-scroll"
@@ -551,7 +558,7 @@
 													<span class="bg-primary size-1.5 shrink-0 rounded-full" role="img" aria-label="Unread" title="Unread"></span>
 												{/if}
 												<!-- Unread is bold and read is regular, the weight every mail client teaches. -->
-												<span class={cn('min-w-0 truncate', unread ? 'font-semibold' : 'font-normal')} title={firstLine(note)}><MatchText text={firstLine(note)} {query} /></span>
+												<span class={cn('min-w-0 truncate', unread ? 'font-semibold' : 'font-normal')} title={firstLine(note)} data-slot="notes-row-subject"><MatchText text={firstLine(note)} {query} /></span>
 												{#if code}
 													<StatusBadge {code} status={statuses[code] ?? null} variant="icon" size="xs" />
 												{/if}
