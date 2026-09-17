@@ -3,6 +3,7 @@
     python tools/seed.py                          # dry run: resolve ids, print the plan, write nothing
     python tools/seed.py --write --supervisor LOGIN [--artist LOGIN] [--artist2 LOGIN]
     python tools/seed.py --clean                  # delete every row in fixtures/seed-manifest.json
+    python tools/seed.py --markdown --write       # rewrite the bodies of the rows it already made
 
 Three layers make the demo (BRIEF.md, "Simulating a site"). This is the first: real rows, real
 shapes, real activity-stream entries. `tools/_plan.py` builds the month from a fixed random seed, so
@@ -11,6 +12,10 @@ the same anchor date produces the same site; this file only executes it.
 Notes and replies are written as people through `sudo_as_login`, never as the bare script, except for
 a handful deliberately left to the script user: a script's Note reaches no stream and no Inbox
 (finding 067), which is a shape the page has to render.
+
+Bodies carry markdown on a share of the notes and replies: a Note and a Reply render GitHub Flavored
+Markdown on the site, and a review note uses it. `--markdown` rewrites the content of the rows in the
+manifest in place, so a sandbox that was seeded before does not double.
 
 `created_at` is sent on every create and read back exactly, so the month has a month's spread.
 Event-log timestamps cannot be authored, so a run ends with a pass of mutations: those are the only
@@ -343,6 +348,73 @@ class Seed:
                 "created": self.made}
 
 
+def markdown(e, write):
+    """Rewrite the content of the notes and replies the manifest owns, in place.
+
+    The plan is a pure function of its anchor date, so rebuilding it on the manifest's own `today`
+    hands back the rows the last run wrote, in the order it wrote them: the manifest's notes and
+    replies zip onto the plan's, label for label. Only `content` is sent, only on the ids the
+    manifest names, and only on the rows the plan marks up. Nothing is created and nothing the seed
+    does not own is read or touched.
+
+    A Note and a Reply render GitHub Flavored Markdown on the site, so this is what a seeded month
+    looks like once the bodies carry what a real review note carries.
+    """
+    m = _site.read_manifest()
+    if not m:
+        raise SystemExit("nothing to rewrite: no fixtures/seed-manifest.json")
+    plan = _plan.build(dt.date.fromisoformat(m["today"]), ["script", "artist", "artist2", "sup"])
+    rows = [r for r in m["created"] if r[0] in ("notes", "replies")]
+    want = []
+    for note in plan["notes"]:
+        want.append(("notes", f"note:{note['created_at']}:{note['subject']}", note, note["author"]))
+        for r in note["replies"]:
+            want.append(("replies", f"reply:{note['subject']}:{r['author']}", r, r["author"]))
+    if len(rows) != len(want):
+        raise SystemExit(f"the manifest holds {len(rows)} notes and replies, the plan {len(want)}: "
+                         "it was written by another plan and this pass will not guess the pairing")
+    for (slug, i, label), (slug2, label2, _, _) in zip(rows, want):
+        if (slug, label) != (slug2, label2):
+            raise SystemExit(f"manifest {slug}/{i} is {label!r}, the plan says {label2!r}: "
+                             "the rows do not line up and nothing has been written")
+
+    marked = [(row[1], w) for row, w in zip(rows, want) if w[2]["markup"]]
+    notes = sum(1 for i, w in marked if w[0] == "notes")
+    print(f"project {m['project']}, manifest of {m['seeded_at']}")
+    print(f"{notes} notes and {len(marked) - notes} replies carry markdown; "
+          f"the other {len(rows) - len(marked)} rows stay plain prose")
+    for kind, _ in _plan.MARKUP_MIX:
+        ids = [i for i, w in marked if w[0] == "notes" and w[2]["markup"] == kind]
+        print(f"  {kind:<11} {len(ids):>3} notes  {', '.join(str(i) for i in ids[:6])}"
+              f"{' ...' if len(ids) > 6 else ''}")
+    if not write:
+        print("\ndry run. Pass --write to send these bodies.")
+        return
+
+    clients = {"script": _site.client(e)}
+    for role, key in (("artist", "artist_login"), ("artist2", "artist2_login"), ("sup", "supervisor_login")):
+        login = (m.get(key) or "").strip()
+        clients[role] = _site.client(e, as_login=login) if login else clients["script"]
+
+    print()
+    t0, done, failed = time.time(), 0, []
+    for i, (slug, label, row, role) in marked:
+        r = clients[role].put(f"/entity/{slug}/{i}", headers=_site.JSON, json={"content": row["content"]})
+        if r.ok:
+            done += 1
+        else:
+            failed.append((slug, i, r.status_code, r.text[:200]))
+            print(f"  ! {slug}/{i} -> {r.status_code} {r.text[:200]}")
+        if slug == "notes":
+            print(f"  Note      {i:>6}  {row['markup']:<11} {label.rsplit(':', 1)[-1]}")
+    print(f"\n{done} of {len(marked)} rows rewritten in {time.time() - t0:.0f}s")
+    if failed:
+        raise SystemExit(f"{len(failed)} rows the site would not take")
+    m["markdown"] = {"at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds"),
+                     "notes": notes, "replies": len(marked) - notes}
+    _site.write_manifest(m)
+
+
 def clean(e):
     m = _site.read_manifest()
     if not m:
@@ -363,6 +435,9 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--write", action="store_true", help="write the rows; without it, print the plan")
     ap.add_argument("--clean", action="store_true", help="delete every row in the manifest and exit")
+    ap.add_argument("--markdown", action="store_true",
+                    help="rewrite the content of the notes and replies in the manifest, in place, "
+                         "so the rows the seed already made carry the markdown the plan now writes")
     ap.add_argument("--artist", default="", metavar="LOGIN",
                     help="first artist's login; default FPT_USER_LOGIN")
     ap.add_argument("--artist2", default="", metavar="LOGIN",
@@ -373,6 +448,8 @@ def main():
     e = _site.env()
     if a.clean:
         return clean(e)
+    if a.markdown:
+        return markdown(e, a.write)
     if _site.read_manifest():
         raise SystemExit("fixtures/seed-manifest.json exists: run --clean first, the seed does not reuse rows")
 

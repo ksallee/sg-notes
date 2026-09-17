@@ -205,6 +205,119 @@ REPLIES_CLIENT = [
 
 ATTACHMENT_KINDS = ["reference frame", "grade chart", "paint-out", "diagram"]
 
+# Markdown in the bodies. A Note and a Reply render GitHub Flavored Markdown on the site (Autodesk,
+# "Formatting text fields with ShotGrid Markdown"), and a real review note reaches for it: the ask in
+# bold, the fixes as a list, a node name in a code span, the supervisor quoted. Most notes stay plain
+# prose. A block hangs under the note's own first line, which is never marked up, because the list
+# shows that line as the subject.
+MARKUP = {
+    "bold": [
+        "**This is the one to fix before the client version.** The rest can wait for the round after.",
+        "**Needed for Thursday's playlist.** Anything else on this shot is next week's problem.",
+        "Everything else is a nicety, but **the edge has to be fixed before it goes out**.",
+        "**Do not start the next version until this one is signed off.**",
+    ],
+    "italic": [
+        "_Not urgent._ Next version is fine.",
+        "Only if there is time: _the same note applies to the neighbouring shot_.",
+        "_Same note as last week_, which is why I am leaving this one open.",
+    ],
+    "bullets": [
+        "**Three things, in the order they matter:**\n\n"
+        "- the edge, because the client sees it first\n"
+        "- the grain, after the grade and not before\n"
+        "- the black levels, once the rest sits",
+        "To be clear about the scope:\n\n"
+        "- the fix is in comp, not in light\n"
+        "- only the frames in the hero move\n"
+        "- nothing else in the sequence changes",
+        "Two passes left on this one:\n\n"
+        "- a soften on the matte edge\n"
+        "- a regrain over the whole frame",
+    ],
+    "numbered": [
+        "Order of work:\n\n"
+        "1. Pull the fix into the working script.\n"
+        "2. Re-render the affected range only.\n"
+        "3. Post the new version before dailies.",
+        "How I would go at it:\n\n"
+        "1. Match the plate's grain size first.\n"
+        "2. Regrain after the grade.\n"
+        "3. Check it at 200% against the plate.",
+    ],
+    "tasks": [
+        "Checklist from dailies:\n\n"
+        "- [x] key direction\n- [x] contact shadow\n- [ ] colour temperature\n- [ ] bounce off the floor",
+        "What is left on this one:\n\n- [x] the edge\n- [ ] the grain\n- [ ] the black levels",
+        "- [x] raised in dailies\n- [x] version submitted\n- [ ] signed off by the supervisor",
+    ],
+    "code": [
+        "The node is `precomp_edge` in the comp script. Leave `grade_main` alone.",
+        "It is the `matte_soften` node doing it, not the keyer.",
+        "Look at `sq020_sh040_comp_v003.nk`, the last write node before the output.",
+    ],
+    "fence": [
+        "The frames it reads on:\n\n```\n1012-1018   edge chatter\n1036-1044   grain sits on top\n```",
+        "To see what I am looking at:\n\n```\nrvio sq010_sh020_comp_v003.mov -t 1012-1044 -o /tmp/check.mov\n```",
+        "Submit the fix range only:\n\n```\nsubmit --shot sq030_sh050 --step comp --range 1001-1096\n```",
+    ],
+    "quote": [
+        "From dailies, and it still stands:\n\n> Match the neighbouring shot before anything else.",
+        "The supervisor's line on the turnover, so it does not get lost:\n\n"
+        "> Nothing goes to the client with a soft edge on it.",
+        "Quoting the supervisor:\n\n> Keep the speed. The slower version read better.",
+    ],
+    "link": [
+        "Reference frames are here: [the grade reference](https://flow.example-studio.com/page/2841).",
+        "The turnover sheet is on the wiki: https://wiki.example-studio.com/shows/nightfall/turnovers",
+        "Compare against [the approved version]"
+        "(https://flow.example-studio.com/page/media_center?entity_type=Version&entity_id=8812).",
+    ],
+    "strike": [
+        "~~Also drop the rain density by a third.~~ Withdrawn: editorial changed the cut.",
+        "~~Reframe the headroom while you are in there.~~ Ignore that, the previs was wrong, not the shot.",
+        "~~And lift the whole frame half a stop.~~ Struck: that was my monitor, not the shot.",
+    ],
+    "table": [
+        "Frame by frame:\n\n| frame | issue |\n|---|---|\n"
+        "| 1012 | edge chatter on the shoulder |\n| 1027 | grain sits on top of the plate |\n"
+        "| 1044 | blacks crushed in the lower third |",
+        "What I marked up:\n\n| frame | issue |\n|---|---|\n"
+        "| 1004 | contact shadow missing |\n| 1031 | eyeline drifts off the mark |",
+    ],
+    # Two bodies that are not markup at all, and must not be treated as any: a site takes whatever is
+    # pasted into it, and the page has to show both as the characters typed.
+    "html": [
+        "Pasted from the turnover sheet, tags and all: <b>not bold</b>. The old tracker writes HTML "
+        "into every field it exports and nobody has fixed it.",
+    ],
+    "javascript": [
+        "Editorial sent this over and I am pasting it as it came: [open the playlist]"
+        "(javascript:alert('not a link')). That is not a link I would click.",
+    ],
+}
+# How many of a run's notes carry each shape. The rare ones are claimed first.
+MARKUP_MIX = [("html", 1), ("javascript", 1), ("table", 2), ("bold", 12), ("bullets", 12),
+              ("code", 12), ("tasks", 10), ("italic", 9), ("numbered", 9), ("fence", 9),
+              ("quote", 9), ("link", 9), ("strike", 7)]
+# A client writes about the picture, never about a node, a frame range or a shell command.
+MARKUP_NOT_CLIENT = {"code", "fence", "table", "tasks", "numbered", "html", "javascript"}
+
+REPLY_MARKUP = {
+    "bold": ["**The edge is the one I am doing first.**", "**Rendering now**, version up within the hour."],
+    "italic": ["_After the rooftop turnover_, if that is alright."],
+    "bullets": ["- soften pass done\n- regrain done\n- black levels still to do"],
+    "numbered": ["1. New version up.\n2. Playlist updated.\n3. Nothing else in the shot changed."],
+    "tasks": ["- [x] edge\n- [x] grain\n- [ ] black levels", "- [x] re-tracked\n- [ ] re-rendered"],
+    "code": ["It was the `matte_soften` node all along.", "Fixed in `sq010_sh020_comp_v004`."],
+    "fence": ["The range I re-rendered:\n\n```\n1012-1044\n```"],
+    "quote": ["> Match the neighbouring shot.\n\nDone, and it holds now."],
+    "link": ["Turntable is here: https://flow.example-studio.com/page/media_center?entity_id=9014"],
+    "strike": ["~~Blocked on the FX cache.~~ It landed this morning, so I am on it."],
+}
+REPLY_MARKUP_MIX = [("bold", 10), ("tasks", 9), ("code", 9), ("bullets", 8), ("quote", 7),
+                    ("link", 7), ("italic", 6), ("fence", 6), ("strike", 6), ("numbered", 5)]
+
 
 def _weighted(rng, values, weights):
     return rng.choices(values, weights=weights, k=1)[0]
@@ -411,6 +524,7 @@ def _notes(plan, rng, cal, records):
             # `sg_note_type` is often unset on a real project (research/07).
             "note_type": "Client" if client else rng.choice(["Internal"] * 5 + [None]),
             "created_at": iso(created), "replies": [], "attachments": [], "read_by": [],
+            "markup": "",
         }
         n_replies = _weighted(rng, [0, 1, 2, 3, 4, 5], [40, 24, 15, 10, 7, 4])
         last = created
@@ -422,7 +536,8 @@ def _notes(plan, rng, cal, records):
                 who = (assignee or "artist") if i % 2 == 0 else ("sup" if author != "sup" else assignee or "artist")
                 bank = REPLIES_ARTIST if who in ("artist", "artist2") else REPLIES_REVIEWER
             last = cal.moment(after=last + dt.timedelta(minutes=11), within_days=2)
-            note["replies"].append({"author": who, "content": rng.choice(bank), "created_at": iso(last)})
+            note["replies"].append({"author": who, "content": rng.choice(bank),
+                                    "created_at": iso(last), "markup": ""})
 
         if rng.random() < 0.33:
             if kind == "version" and rng.random() < 0.7:
@@ -442,8 +557,41 @@ def _notes(plan, rng, cal, records):
         plan["notes"].append(note)
 
     plan["notes"].sort(key=lambda n: n["created_at"])
+    _markdown(plan)
     # The last few days carry the changes the event log can still see: everything else is history.
     plan["mutations"] = _mutations(plan, rng)
+
+
+def _markdown(plan):
+    """Hang a markdown block under the body of a share of the notes and replies.
+
+    Its own random stream, seeded apart from the plan's, so what the rest of this file draws is
+    unchanged: a site seeded before this pass existed holds the same rows in the same order, and the
+    seed can rewrite their content in place from a plan rebuilt on the same anchor date.
+    """
+    rng = random.Random(SEED + 1)
+    notes = plan["notes"]
+    free = list(range(len(notes)))
+    rng.shuffle(free)
+    for kind, count in MARKUP_MIX:
+        taken, rest = [], []
+        for i in free:
+            allowed = kind not in MARKUP_NOT_CLIENT or not notes[i]["client_note"]
+            (taken if allowed and len(taken) < count else rest).append(i)
+        free = rest
+        for n, i in enumerate(taken):
+            notes[i]["markup"] = kind
+            notes[i]["content"] += "\n\n" + MARKUP[kind][n % len(MARKUP[kind])]
+
+    free = [(i, j) for i, note in enumerate(notes) for j in range(len(note["replies"]))]
+    rng.shuffle(free)
+    at = 0
+    for kind, count in REPLY_MARKUP_MIX:
+        for n, (i, j) in enumerate(free[at:at + count]):
+            reply = notes[i]["replies"][j]
+            reply["markup"] = kind
+            reply["content"] += "\n\n" + REPLY_MARKUP[kind][n % len(REPLY_MARKUP[kind])]
+        at += count
 
 
 def _mutations(plan, rng):
@@ -488,6 +636,9 @@ def summary(plan):
             f"{k} {sum(1 for x in n if len(x['replies']) == k)}" for k in range(6)),
         "authors " + ", ".join(f"{a} {sum(1 for x in n if x['author'] == a)}"
                                for a in ("sup", "artist", "artist2", "script")),
+        f"markdown in {sum(1 for x in n if x['markup'])} notes and "
+        f"{sum(1 for x in n for r in x['replies'] if r['markup'])} replies (" +
+        ", ".join(f"{k} {sum(1 for x in n if x['markup'] == k)}" for k, _ in MARKUP_MIX) + ")",
         f"{len(plan['mutations'])} mutations after the write, so the event log has a window",
     ]
     return "\n".join(lines)
