@@ -6,10 +6,11 @@
 	 * (Autodesk, "Formatting text fields with ShotGrid Markdown"), and a newline is a line
 	 * break there as it is in the web app, so `breaks` is on.
 	 */
-	const lexer = new Lexer({ gfm: true, breaks: true });
+	const OPTIONS = { gfm: true, breaks: true };
 
+	/** A fresh lexer per body: a Lexer keeps every token it has made and hands the pile back to the next call. */
 	export function parse(source: string): Token[] {
-		return lexer.lex(source);
+		return new Lexer(OPTIONS).lex(source);
 	}
 
 	/** The schemes a link may open. Anything else renders as its text. */
