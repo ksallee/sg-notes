@@ -42,6 +42,33 @@ A drive is the body of an async function; it returns `{verdict, ...}` and the ex
 `tools/drives/` holds one per behaviour: the lead view, search and grouping, a reply, bulk actions.
 The reply and bulk drives write to the project they run on.
 
+## Deploy
+
+<https://sg-notes.vercel.app>, from `main` alone. `vercel.json` names SvelteKit as the framework,
+enables `main` under `git.deploymentEnabled`, and skips every other ref in `ignoreCommand` off
+`VERCEL_GIT_COMMIT_REF`, so a feature branch never builds a preview. The build is
+`@sveltejs/adapter-vercel`: the page is a client-rendered shell (`ssr = false`) and the three routes
+under `/live/` are serverless functions.
+
+The app is live-only. There is no mock and no seeded copy of anything: the deployed page shows
+nothing until a person names a Flow PT site and approves a session through the App Session Launcher,
+and says why it cannot read otherwise.
+
+Set in the Vercel project, values never in the repo:
+
+| var | what it does deployed |
+|---|---|
+| `PUBLIC_FPT_SITE_URL` | the site the sign-in form offers by default. The only one the deployed page reads. |
+| `FPT_API_SITE_URL`, `FPT_API_SCRIPT_NAME`, `FPT_API_API_KEY` | the script key `/live/dev-token` mints a bearer from. Read under `vite dev` only: the deployed build answers that route 404 before it looks at them, so a public deployment has no reason to carry the key. |
+
+One thing is still in the way of a green build. `sg-widgets-core` is a `link:` to
+`../sg-widgets/packages/core`, a checkout Vercel does not have, so `pnpm install` there fails before
+anything is compiled. It clears when core is published to npm — the sg-widgets release gate — and
+this repo names the published version instead of the link.
+
+Every one of the four is read through `$env/dynamic/private` or `$env/dynamic/public`, which is the
+platform's environment at request time; nothing reads `.env.local` off a disk.
+
 ## Seed and capture
 
 Both scripts read `../sg-groundtruth/.env.local` and use its client, so run them with that repo's

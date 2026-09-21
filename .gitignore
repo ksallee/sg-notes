@@ -7,6 +7,7 @@ node_modules/
 __pycache__/
 /.svelte-kit
 /build
+/.vercel
 .DS_Store
 vite.config.ts.timestamp-*
 .playwright-mcp/
