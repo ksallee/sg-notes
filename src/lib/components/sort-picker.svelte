@@ -20,8 +20,8 @@
 	import GripVerticalIcon from '@lucide/svelte/icons/grip-vertical';
 	import XIcon from '@lucide/svelte/icons/x';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { SgContext, SortKey } from '@sg-widgets/core';
-	import { friendlyFieldPath, isSortable, toSortString } from '@sg-widgets/core';
+	import type { SgContext, SortKey } from 'sg-widgets-core';
+	import { friendlyFieldPath, isSortable, toSortString } from 'sg-widgets-core';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import * as Popover from '$lib/components/ui/popover/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
@@ -40,10 +40,12 @@
 		hidePaths?: string[];
 		/** Only these paths are offered; a link stays in the list while a path runs through it. */
 		paths?: string[];
+		/** Exactly these paths, offered flat: no links and no descending. */
+		options?: string[];
 		size?: SortPickerSize;
 		disabled?: boolean;
 		/** Both the keys and the `sort` string they serialise to. */
-		onChange?: (value: SortKey[], sort: string) => void;
+		onValueChange?: (value: SortKey[], sort: string) => void;
 		/** Whether the popover is showing, two-way. */
 		open?: boolean;
 		onOpenChange?: (open: boolean) => void;
@@ -56,9 +58,10 @@
 		value = $bindable([]),
 		hidePaths = [],
 		paths,
+		options,
 		size = 'md',
 		disabled = false,
-		onChange,
+		onValueChange,
 		open = $bindable(false),
 		onOpenChange,
 		class: className,
@@ -100,6 +103,8 @@
 	}
 
 	const chosen = $derived(value.map((k) => k.field));
+	/** A flat list offers no `exclude`, so a key already held is dropped here. */
+	const flat = $derived(options?.filter((path) => !chosen.includes(path)));
 	const label = $derived(
 		value.length === 0 ? 'Sort' : value.map((k) => nameOf(k.field)).join(', ')
 	);
@@ -116,7 +121,7 @@
 
 	function commit(next: SortKey[]): void {
 		value = next;
-		onChange?.(next, toSortString(next));
+		onValueChange?.(next, toSortString(next));
 	}
 
 	function move(index: number, delta: number): void {
@@ -161,6 +166,9 @@
 	`project.Project.name` under `-` (026_result_order), so the field picker descends
 	through links. An unsortable or unknown field is a silent 200 no-op with the rows
 	in default order, so only types that sort are offered.
+
+	`options` hands the field picker a flat list instead: a table's toolbar offers
+	exactly the columns it shows, a linked one included, with no descending.
 -->
 <div
 	bind:this={ref}
@@ -174,7 +182,7 @@
 			data-slot="sort-trigger"
 			data-size={size}
 			class={cn(
-				'border-border bg-background hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-w-0 items-center gap-1.5 rounded-lg border text-sm font-medium outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50',
+				'border-border bg-background hover:bg-muted focus-visible:border-ring focus-visible:ring-ring/50 inline-flex min-w-0 items-center gap-1.5 rounded-lg border text-sm font-medium shadow-xs outline-none focus-visible:ring-3 disabled:pointer-events-none disabled:opacity-50',
 				BOX[size]
 			)}
 		>
@@ -272,6 +280,7 @@
 				{context}
 				{entityType}
 				{hidePaths}
+				options={flat}
 				{disabled}
 				{size}
 				bind:value={adding}

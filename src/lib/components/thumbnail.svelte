@@ -36,7 +36,7 @@
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import { imageState } from '@sg-widgets/core';
+	import { imageState } from 'sg-widgets-core';
 	import Hourglass from '@lucide/svelte/icons/hourglass';
 	import ImageIcon from '@lucide/svelte/icons/image';
 	import Play from '@lucide/svelte/icons/play';
@@ -119,7 +119,7 @@
 		<span
 			role="img"
 			aria-label="No image"
-			class="text-muted-foreground flex items-center justify-center opacity-70"
+			class="text-muted-foreground flex items-center justify-center"
 		>
 			<Empty aria-hidden="true" class={GLYPH[size]} />
 		</span>

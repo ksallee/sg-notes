@@ -1,36 +1,23 @@
 <script lang="ts" module>
 	export type FieldPickerSize = 'sm' | 'md' | 'lg';
-
-	/**
-	 * Controls follow the input ladder of `docs/design-rules.md`. `data-empty` takes the
-	 * leading inset down one step, so an empty control is tighter than a filled one. The
-	 * height is fixed, so there is no vertical inset to take.
-	 */
-	const BOX: Record<FieldPickerSize, string> = {
-		sm: 'h-7 px-2 data-empty:pl-1.5',
-		md: 'h-8 px-3 data-empty:pl-2',
-		lg: 'h-9 px-3 data-empty:pl-2'
-	};
-	const GLYPH: Record<FieldPickerSize, string> = {
-		sm: 'size-4',
-		md: 'size-4',
-		lg: 'size-5'
-	};
 </script>
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { FieldHop, FieldOption, FieldSchema, SgContext } from '@sg-widgets/core';
+	import type { FieldHop, FieldOption, FieldPathOption, FieldSchema, SgContext } from 'sg-widgets-core';
 	import {
 		currentType,
 		deriveFieldOptions,
+		errorText,
 		friendlyFieldPath,
 		iconNameFor,
 		NO_MATCH_LABEL,
 		pickerKeyIntent,
+		resolveFieldPathOptions,
 		searchFieldOptions,
+		searchFieldPathOptions,
 		stateLine
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import Braces from '@lucide/svelte/icons/braces';
 	import Calendar from '@lucide/svelte/icons/calendar';
 	import CalendarClock from '@lucide/svelte/icons/calendar-clock';
@@ -66,13 +53,21 @@
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import { cn, type WithElementRef } from '$lib/utils.js';
 	import StateLine from '$lib/components/state-line.svelte';
-	import { PICKER_ICON_BUTTON } from '$lib/components/picker-classes.js';
+	import {
+		PICKER_CONTROL,
+		PICKER_GLYPH,
+		PICKER_ICON_BUTTON,
+		PICKER_TEXT_BOX,
+		PICKER_TRAILING
+	} from '$lib/components/picker-classes.js';
 
 	type Props = WithElementRef<HTMLAttributes<HTMLDivElement>, HTMLDivElement> & {
 		/** The widget context. The schema is read through it, once per page. */
 		context: SgContext;
 		/** The type the path starts on. */
 		entityType: string;
+		/** A fixed list of paths, offered flat. The list restrictions do not apply to it. */
+		options?: string[];
 		/** The dotted path, `field` or `field.Type.field…`. Empty when nothing is chosen. */
 		value?: string;
 		onValueChange?: (value: string) => void;
@@ -120,6 +115,7 @@
 	let {
 		context,
 		entityType,
+		options,
 		value = $bindable(''),
 		onValueChange,
 		deepLinks = false,
@@ -152,13 +148,6 @@
 
 	// The context's own service, so every widget on the page shares one schema read.
 	const schema = $derived(context.schema);
-
-	/** The trailing controls ride the first row, so they stay with it when the value wraps. */
-const TRAILING: Record<FieldPickerSize, string> = {
-	sm: 'h-7',
-	md: 'h-8',
-	lg: 'h-9'
-}
 
 const ICONS: Record<string, typeof Type> = {
 		braces: Braces,
@@ -205,16 +194,35 @@ const ICONS: Record<string, typeof Type> = {
 	/** The field whose target type is being chosen, when it declares more than one. */
 	let choosing = $state<FieldOption | null>(null);
 	let loaded = $state<{ type: string; fields: Record<string, FieldSchema> } | null>(null);
+	/** The caller's fixed list, resolved. Keyed on what was asked for, so a change re-reads. */
+	let fixed = $state<{ key: string; rows: FieldPathOption[] } | null>(null);
 	let resolved = $state<{ path: string; label: string } | null>(null);
 	let failure = $state<string | null>(null);
 
 	const type = $derived(currentType(entityType, hops));
+	const fixedKey = $derived(options ? `${entityType}|${options.join(',')}` : null);
+
+	// Every path of the fixed list is resolved through the types it travels, once per list.
+	$effect(() => {
+		const service = schema;
+		const key = fixedKey;
+		const paths = options;
+		if (key === null || paths === undefined) return;
+		let live = true;
+		void resolveFieldPathOptions(service, entityType, paths).then((rows) => {
+			if (live) fixed = { key, rows };
+		});
+		return () => {
+			live = false;
+		};
+	});
 
 	// `/schema/<Type>/fields` is 48KB and ~330ms (probe 002); the schema service caches
 	// it, so a hop back to a type already visited costs nothing.
 	$effect(() => {
 		const service = schema;
 		const wanted = type;
+		if (options) return;
 		let live = true;
 		service
 			.fields(wanted)
@@ -222,7 +230,7 @@ const ICONS: Record<string, typeof Type> = {
 				if (live) loaded = { type: wanted, fields };
 			})
 			.catch((error: unknown) => {
-				if (live) failure = error instanceof Error ? error.message : String(error);
+				if (live) failure = errorText(error);
 			});
 		return () => {
 			live = false;
@@ -251,8 +259,9 @@ const ICONS: Record<string, typeof Type> = {
 		};
 	});
 
+	const fixedRows = $derived(fixed?.key === fixedKey ? fixed.rows : null);
 	const fields = $derived(loaded?.type === type ? loaded.fields : null);
-	const options = $derived(
+	const nested = $derived(
 		fields
 			? deriveFieldOptions(fields, {
 					rootType: entityType,
@@ -269,21 +278,46 @@ const ICONS: Record<string, typeof Type> = {
 				})
 			: []
 	);
-	const rows = $derived(choosing ? [] : searchFieldOptions(options, search));
+	/** One shape for both lists, so a fixed row and a schema row draw the same. */
+	const rows = $derived(
+		fixedRows
+			? searchFieldPathOptions(fixedRows, search).map((row) => ({
+					path: row.path,
+					label: row.label,
+					code: row.name,
+					sub: row.subLabel,
+					dataType: row.dataType,
+					field: null as FieldOption | null
+				}))
+			: choosing
+				? []
+				: searchFieldOptions(nested, search).map((row) => ({
+						path: row.path,
+						label: row.displayName,
+						code: row.name,
+						sub: row.computed ? 'computed' : row.dataType,
+						dataType: row.dataType,
+						field: row as FieldOption | null
+					}))
+	);
 	const targets = $derived(choosing ? choosing.targets.filter((t) => matchesType(t)) : []);
 	/** Every row's value, in the order they are drawn: what the arrow keys walk. */
 	const values = $derived(choosing ? targets : rows.map((row) => row.path));
 	const cursor = $derived(values.includes(highlighted) ? highlighted : (values[0] ?? ''));
 	const computed = $derived(extraFields?.find((extra) => extra.name === value));
+	const offered = $derived(fixedRows?.find((row) => row.path === value));
 	const label = $derived(
 		computed
 			? (computed.displayName ?? computed.name)
-			: resolved?.path === value
-				? resolved.label
-				: null
+			: offered
+				? offered.label
+				: resolved?.path === value
+					? resolved.label
+					: null
 	);
+	const ready = $derived(options ? fixedRows !== null : fields !== null);
 	const showClear = $derived(clearable && value !== '' && !readonly && !disabled);
-	const breadcrumb = $derived(hops.length > 0 || choosing !== null);
+	const breadcrumb = $derived(!options && (hops.length > 0 || choosing !== null));
 
 	function matchesType(target: string): boolean {
 		return target.toLowerCase().includes(search.trim().toLowerCase());
@@ -302,9 +336,9 @@ const ICONS: Record<string, typeof Type> = {
 		highlighted = '';
 	}
 
-	function activate(row: FieldOption): void {
-		if (row.traversable && !row.selectable) {
-			descendInto(row);
+	function activate(row: { path: string; field: FieldOption | null }): void {
+		if (row.field?.traversable && !row.field.selectable) {
+			descendInto(row.field);
 			return;
 		}
 		emit(row.path);
@@ -363,7 +397,7 @@ const ICONS: Record<string, typeof Type> = {
 				}
 				return;
 			}
-			const row = rows.find((r) => r.path === cursor);
+			const row = rows.find((r) => r.path === cursor)?.field;
 			if (row?.traversable) {
 				event.preventDefault();
 				descendInto(row);
@@ -387,6 +421,9 @@ const ICONS: Record<string, typeof Type> = {
 	types asks which one first. `dataTypes` and `validTypes` bind what may be chosen,
 	not what may be walked through, so a picker restricted to dates still reaches a
 	date behind a link.
+
+	`options` replaces the schema list with a caller's own paths, flat: no links, no
+	descending, no breadcrumb, and the list restrictions do not apply.
 -->
 <div
 	bind:this={ref}
@@ -409,8 +446,10 @@ const ICONS: Record<string, typeof Type> = {
 			{disabled}
 			title={label ?? placeholder}
 			class={cn(
-				'border-input bg-background hover:bg-muted/30 focus-visible:ring-ring focus-visible:ring-offset-background aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 flex w-full min-w-0 items-center rounded-lg border text-sm outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-2',
-				BOX[size],
+				PICKER_CONTROL,
+				/* The trigger is the focusable element itself, not a box round an input. */
+				'focus-visible:ring-ring focus-visible:ring-offset-background aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 aria-invalid:ring-2',
+				PICKER_TEXT_BOX[size],
 				readonly ? 'pr-3' : showClear ? 'pr-14' : 'pr-8'
 			)}
 		>
@@ -447,7 +486,7 @@ const ICONS: Record<string, typeof Type> = {
 						aria-label="Go back one level"
 						title="Back (Left arrow)"
 						onclick={back}
-						class="hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background shrink-0 rounded-sm p-0.5 opacity-70 outline-none transition-colors duration-150 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 motion-safe:active:scale-[0.98]"
+						class={PICKER_ICON_BUTTON}
 					>
 						<ChevronLeft aria-hidden="true" class="size-4" />
 					</button>
@@ -471,7 +510,7 @@ const ICONS: Record<string, typeof Type> = {
 						aria-label="Back to the root type"
 						title="Reset"
 						onclick={reset}
-						class="hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background shrink-0 rounded-sm p-0.5 opacity-70 outline-none transition-colors duration-150 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 motion-safe:active:scale-[0.98]"
+						class={PICKER_ICON_BUTTON}
 					>
 						<RotateCcw aria-hidden="true" class="size-4" />
 					</button>
@@ -515,7 +554,7 @@ const ICONS: Record<string, typeof Type> = {
 								<ChevronRight aria-hidden="true" class="size-4 shrink-0 opacity-50" />
 							</Command.Item>
 						{/each}
-					{:else if fields === null}
+					{:else if !ready}
 						<div
 							data-slot="field-picker-loading"
 							class="flex flex-col"
@@ -539,34 +578,34 @@ const ICONS: Record<string, typeof Type> = {
 								value={row.path}
 								onSelect={() => activate(row)}
 								data-checked={row.path === value ? 'true' : undefined}
-								data-traversable={row.traversable ? 'true' : undefined}
+								data-traversable={row.field?.traversable ? 'true' : undefined}
 								class="items-start"
 							>
 								<Glyph aria-hidden="true" class="mt-0.5 size-4 shrink-0 opacity-70" />
 								<span class="flex min-w-0 flex-1 flex-col">
 									<span class="flex min-w-0 items-center gap-1.5">
-										<span class="truncate">{row.displayName}</span>
-										{#if showCode && row.name !== row.displayName}
-											<span class="text-muted-foreground shrink-0 font-mono text-xs">{row.name}</span>
+										<span class="truncate">{row.label}</span>
+										{#if showCode && row.code !== '' && row.code !== row.label}
+											<span class="text-muted-foreground shrink-0 font-mono text-xs">{row.code}</span>
 										{/if}
 									</span>
 									<span class="text-muted-foreground truncate text-xs">
-										{row.computed ? 'computed' : row.dataType}
+										{row.sub}
 									</span>
 								</span>
-								{#if row.traversable}
+								{#if row.field?.traversable}
 									<button
 										type="button"
 										tabindex={-1}
 										data-slot="field-picker-descend"
-										aria-label={`Open ${row.displayName}`}
+										aria-label={`Open ${row.label}`}
 										title="Open (Right arrow)"
 										onmousedown={(event) => event.preventDefault()}
 										onclick={(event) => {
 											event.stopPropagation();
-											descendInto(row);
+											if (row.field) descendInto(row.field);
 										}}
-										class="hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background shrink-0 rounded-sm p-0.5 opacity-70 outline-none transition-colors duration-150 hover:opacity-100 focus-visible:ring-2 focus-visible:ring-offset-2 motion-safe:active:scale-[0.98]"
+										class={PICKER_ICON_BUTTON}
 									>
 										<ChevronRight aria-hidden="true" class="size-4" />
 									</button>
@@ -580,7 +619,7 @@ const ICONS: Record<string, typeof Type> = {
 	</Popover.Root>
 
 	{#if !readonly}
-		<div class={cn('pointer-events-none absolute top-0 right-2 flex items-center gap-1', TRAILING[size])}>
+		<div class={cn('pointer-events-none absolute top-0 right-2 flex items-center gap-1', PICKER_TRAILING[size])}>
 			{#if showClear}
 				<button
 					type="button"
@@ -589,10 +628,10 @@ const ICONS: Record<string, typeof Type> = {
 					onclick={() => emit('')}
 					class={PICKER_ICON_BUTTON}
 				>
-					<X aria-hidden="true" class={GLYPH[size]} />
+					<X aria-hidden="true" class={PICKER_GLYPH[size]} />
 				</button>
 			{/if}
-			<ChevronDown aria-hidden="true" class={cn('shrink-0 opacity-50', GLYPH[size])} />
+			<ChevronDown aria-hidden="true" class={cn('shrink-0 opacity-50', PICKER_GLYPH[size])} />
 		</div>
 	{/if}
 </div>

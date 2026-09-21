@@ -6,10 +6,18 @@
 
 	/** The control ladder of `docs/design-rules.md`, which a condition's own controls stand on. */
 	const BOX: Record<FilterEditorSize, string> = { sm: 'h-7', md: 'h-8', lg: 'h-9' };
-	const INNER: Record<FilterEditorSize, 'sm' | 'md'> = { sm: 'sm', md: 'sm', lg: 'md' };
+	const ROW: Record<FilterEditorSize, string> = { sm: 'min-h-7', md: 'min-h-8', lg: 'min-h-9' };
+	/** Every control in a row stands on the row's own step, so one row has one height. */
+	const INNER: Record<FilterEditorSize, FilterEditorSize> = { sm: 'sm', md: 'md', lg: 'lg' };
 	/** A cross sits one step under the row's own control on the chip ladder. */
 	const CROSS: Record<FilterEditorSize, ChipSize> = { sm: 'xs', md: 'xs', lg: 'sm' };
-	const TOGGLE: Record<FilterEditorSize, 'sm' | 'default'> = { sm: 'sm', md: 'sm', lg: 'default' };
+	const TOGGLE: Record<FilterEditorSize, 'sm' | 'default' | 'lg'> = { sm: 'sm', md: 'default', lg: 'lg' };
+	/** The select trigger has two steps of its own; the third is its default step lifted to `h-9`. */
+	const SELECT: Record<FilterEditorSize, { size: 'sm' | 'default'; class?: string }> = {
+		sm: { size: 'sm' },
+		md: { size: 'default' },
+		lg: { size: 'default', class: 'data-[size=default]:h-9' }
+	};
 	import type {
 		ConditionValue,
 		EntityRef,
@@ -20,7 +28,7 @@
 		NodePath,
 		Operator,
 		Scalar
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 
 	/** What the field slot is given. Its job is to call `onSelect` with a dotted path. */
 	export interface FieldChooserArgs {
@@ -94,7 +102,7 @@
 	import PlusIcon from '@lucide/svelte/icons/plus';
 	import XIcon from '@lucide/svelte/icons/x';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { SgContext, TimeUnit } from '@sg-widgets/core';
+	import type { SgContext, TimeUnit } from 'sg-widgets-core';
 	import {
 		appendAt,
 		applyPreset,
@@ -118,7 +126,7 @@
 		withListValue,
 		withoutListValue,
 		withRelativeWindow
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { CONTROL_BUTTON } from '$lib/components/control-classes.js';
 	import * as Select from '$lib/components/ui/select/index.js';
@@ -157,7 +165,7 @@
 		emptyLabel?: string;
 		size?: FilterEditorSize;
 		disabled?: boolean;
-		onChange?: (value: FilterGroup) => void;
+		onValueChange?: (value: FilterGroup) => void;
 		fieldChooser?: Snippet<[FieldChooserArgs]>;
 		valueEditor?: Snippet<[ValueEditorArgs]>;
 		entityEditor?: Snippet<[ValueEditorArgs]>;
@@ -173,7 +181,7 @@
 		emptyLabel = NOTHING_CHOSEN_LABEL,
 		size = 'md',
 		disabled = false,
-		onChange,
+		onValueChange,
 		fieldChooser,
 		valueEditor,
 		entityEditor,
@@ -243,7 +251,7 @@
 
 	function commit(next: FilterGroup): void {
 		value = next;
-		onChange?.(next);
+		onValueChange?.(next);
 	}
 
 	function edit(path: NodePath, node: FilterCondition | FilterGroup): void {
@@ -271,8 +279,11 @@
 </script>
 
 {#snippet fieldSlot(path: NodePath, node: FilterCondition)}
-	<!-- The field is the row's widest cell: it takes 14rem, truncates, and gives the rest back. -->
-	<div data-slot="filter-field" class="min-w-24 max-w-56 grow basis-24">
+	<!--
+		The field is the row's widest cell: it takes 14rem, truncates, and gives the rest back.
+		It is one line tall whatever the value beside it grows to.
+	-->
+	<div data-slot="filter-field" class={cn('flex min-w-24 max-w-56 grow basis-24 items-center', ROW[size])}>
 		{#if fieldChooser}
 			{@render fieldChooser({
 				entityType,
@@ -305,26 +316,29 @@
 	{@const operators = operatorsOf(node.path)}
 	{@const menu = operatorMenu(dataType, operators)}
 	{@const current = presetIdOf(node, dataType)}
-	<Select.Root
-		type="single"
-		value={current}
-		disabled={disabled || menu.length === 0}
-		onValueChange={(id) => pickPreset(path, node, id)}
-	>
-		<Select.Trigger class={cn(BOX[size], 'w-40 shrink-0')} data-slot="filter-operator">
-			{presetById(dataType, current, operators)?.label ?? current}
-		</Select.Trigger>
-		<Select.Content>
-			{#each menu as run (run.label)}
-				<Select.Group>
-					<Select.GroupHeading>{run.label}</Select.GroupHeading>
-					{#each run.presets as preset (preset.id)}
-						<Select.Item value={preset.id} label={preset.label} data-preset={preset.id} />
-					{/each}
-				</Select.Group>
-			{/each}
-		</Select.Content>
-	</Select.Root>
+	<!-- The menu stands on the row's first line, beside the field, not in the middle of a grown value. -->
+	<div class={cn('flex shrink-0 items-center', ROW[size])}>
+		<Select.Root
+			type="single"
+			value={current}
+			disabled={disabled || menu.length === 0}
+			onValueChange={(id) => pickPreset(path, node, id)}
+		>
+			<Select.Trigger size={SELECT[size].size} class={cn(SELECT[size].class, 'w-40 shrink-0')} data-slot="filter-operator">
+				{presetById(dataType, current, operators)?.label ?? current}
+			</Select.Trigger>
+			<Select.Content>
+				{#each menu as run (run.label)}
+					<Select.Group>
+						<Select.GroupHeading>{run.label}</Select.GroupHeading>
+						{#each run.presets as preset (preset.id)}
+							<Select.Item value={preset.id} label={preset.label} data-preset={preset.id} />
+						{/each}
+					</Select.Group>
+				{/each}
+			</Select.Content>
+		</Select.Root>
+	</div>
 {/snippet}
 
 <!--
@@ -471,7 +485,7 @@
 	{@const kind = valueEditorFor(dataType, node.operator)}
 	{@const arity = conditionArity(node, dataType)}
 	{@const set = (v: ConditionValue) => edit(path, { ...node, value: v })}
-	<div class="flex min-w-40 flex-1 flex-wrap items-center gap-2" data-slot="filter-value">
+	<div class={cn('flex min-w-40 flex-1 flex-wrap items-start gap-2', ROW[size])} data-slot="filter-value">
 		{#if unresolved(node.path)}
 			<Skeleton class={cn(BOX[size], 'min-w-0 flex-1')} />
 		{:else if valueEditor}
@@ -558,7 +572,7 @@
 				{projectId}
 				entityType={field?.entityType ?? entityType}
 				field={field?.name}
-				value={typeof node.value === 'string' && node.value !== '' ? node.value : undefined}
+				value={typeof node.value === 'string' && node.value !== '' ? node.value : null}
 				onValueChange={(next) => set(next ?? '')}
 			/>
 		{:else if kind === 'options' && arity === 'many'}
@@ -598,18 +612,23 @@
 {/snippet}
 
 <!--
-	A row is two bands: the field, the operator and the value on one 36px line, and
+	A row is two bands: the field, the operator and the value on one line of the row's own height, and
 	the remove button on its own. The remove sits outside the wrapping band, so it
 	holds the same vertical axis at every depth and never costs the row a line.
+
+	Both bands hang off the row's first line. A multi-value operator grows the value into one line
+	per value and an add row, and the controls beside it belong to the row rather than to the list:
+	top-aligned, each on the axis of the first value line, so a list that grows pushes only the rows
+	under it. Each control cell stands the row's own control height, which is that axis.
 -->
 {#snippet conditionRow(path: NodePath, node: FilterCondition)}
-	<div class="flex min-h-9 min-w-0 items-center gap-2" data-slot="filter-row" data-path={path.join('.')}>
-		<div class="flex min-w-0 flex-1 flex-wrap items-center gap-2" data-slot="filter-row-content">
+	<div class={cn('flex min-w-0 items-start gap-2', ROW[size])} data-slot="filter-row" data-path={path.join('.')}>
+		<div class="flex min-w-0 flex-1 flex-wrap items-start gap-2" data-slot="filter-row-content">
 			{@render fieldSlot(path, node)}
 			{@render operatorSlot(path, node)}
 			{@render valueSlot(path, node)}
 		</div>
-		<div class="flex h-9 shrink-0 items-center self-start">
+		<div class={cn('flex shrink-0 items-center self-start', BOX[size])}>
 			<button
 				type="button"
 				class={cn(REMOVE_CONTROL, 'disabled:pointer-events-none disabled:opacity-50')}
@@ -638,7 +657,7 @@
 		data-depth={depth}
 		data-logical-operator={node.logicalOperator}
 	>
-		<div class="flex min-h-9 min-w-0 items-center gap-2" data-slot="filter-group-header">
+		<div class={cn('flex min-w-0 items-center gap-2', ROW[size])} data-slot="filter-group-header">
 			<ToggleGroup.Root
 				type="single"
 				size={TOGGLE[size]}
@@ -654,7 +673,7 @@
 			</ToggleGroup.Root>
 			<span class="text-muted-foreground min-w-0 flex-1 truncate text-xs">of these match</span>
 			{#if depth > 0}
-				<div class="flex h-9 shrink-0 items-center self-start">
+				<div class={cn('flex shrink-0 items-center self-start', BOX[size])}>
 					<button
 						type="button"
 						class={cn(REMOVE_CONTROL, 'disabled:pointer-events-none disabled:opacity-50')}

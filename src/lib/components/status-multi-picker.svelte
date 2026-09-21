@@ -1,13 +1,13 @@
 <script lang="ts" module>
-	import type { PickerSummary } from '@sg-widgets/core';
+	import type { PickerSummary } from 'sg-widgets-core';
 
 	export type StatusMultiPickerSize = 'sm' | 'md' | 'lg';
 </script>
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { FieldSchema, PickerRow, SgContext, StatusOption, StatusRecord } from '@sg-widgets/core';
-	import { clearableForField, matchesTokens, NO_MATCH_LABEL } from '@sg-widgets/core';
+	import type { FieldSchema, PickerRow, SgContext, StatusOption, StatusRecord } from 'sg-widgets-core';
+	import { clearableForField, errorText, matchesEveryWord, NO_MATCH_LABEL } from 'sg-widgets-core';
 	import { Combobox } from 'bits-ui';
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import { cn, type WithElementRef } from '$lib/utils.js';
@@ -137,7 +137,7 @@
 			field: null,
 			statuses: new Map()
 		});
-		// The field itself, for its `mandatory` flag.
+		// The field itself, for its display name and its `mandatory` flag.
 		const named = name === undefined ? schema.statusField(type) : schema.field(type, name);
 		Promise.all([optionsFor(type, ids, name), named, statusTable.byCode()]).then(
 			([options, found, statuses]) => {
@@ -147,7 +147,7 @@
 				state.loading = false;
 			},
 			(error: unknown) => {
-				state.error = error instanceof Error ? error.message : String(error);
+				state.error = errorText(error);
 				state.loading = false;
 			}
 		);
@@ -174,7 +174,7 @@
 	]);
 	// A status list has no substring operator, so the vocabulary is read once and the
 	// search box narrows it here (field_types/status_list).
-	const shown = $derived(rows.filter((option) => matchesTokens(search, option.label, option.code)));
+	const shown = $derived(rows.filter((option) => matchesEveryWord(`${option.label} ${option.code}`, search)));
 	const byCode = $derived(new Map(rows.map((option) => [option.code, option])));
 
 	/**
@@ -271,6 +271,7 @@
 		{readonly}
 		{invalid}
 		clearable={clearableForField(clearable, query.field)}
+		controlProps={{ 'aria-label': query.field?.displayName, 'aria-required': query.field?.mandatory }}
 		{placeholder}
 		{searchPlaceholder}
 		bind:open
