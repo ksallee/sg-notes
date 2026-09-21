@@ -12,7 +12,7 @@
  * which loaded notes to read again, which threads to re-read, and which new notes exist.
  * It never writes and never touches the page itself.
  */
-import type { EntityRef, EventLogEntry, SgClient } from '@sg-widgets/core';
+import type { EntityRef, EventLogEntry, SgClient } from 'sg-widgets-core';
 
 /** The event types that can change what the page shows. */
 export const NOTE_EVENTS = [

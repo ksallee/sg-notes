@@ -25,6 +25,15 @@
 	 * would otherwise run the bar past the width it was given (`docs/design-rules.md` rule 2).
 	 */
 	const VALUE_WIDTH = 'max-w-64';
+	/** One row of whole badges: a status value wraps past the cap and the rows below are clipped. */
+	const VALUE_ROW: Record<FilterBarSize, string> = { sm: 'max-h-5', md: 'max-h-6', lg: 'max-h-8' };
+	/**
+	 * A pill is the outline button: a bordered control on the height ladder that presses
+	 * to open a list, so it wears the button's border, radius and shadow rather than a
+	 * badge's flat surface.
+	 */
+	const PILL =
+		'border-border inline-flex max-w-full min-w-0 items-center overflow-hidden rounded-lg border text-sm shadow-xs';
 </script>
 
 <script lang="ts">
@@ -35,6 +44,8 @@
 	import XIcon from '@lucide/svelte/icons/x';
 	import type {
 		FacetCondition,
+		FacetCounts,
+		FacetList,
 		FacetValue,
 		FieldSchema,
 		FilterGroup,
@@ -42,23 +53,23 @@
 		Scalar,
 		SgContext,
 		WireGroup
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import {
 		conditionParts,
 		conditionValues,
 		describeCondition,
 		emptyFilter,
+		errorText,
+		facetLists,
+		facetScopes,
 		facetShape,
-		facetValues,
 		findFacet,
 		renderKindFor,
 		setFacet,
-		toApi3Hash,
 		asFilterGroup,
-		group,
-		matchesTokens,
+		matchesEveryWord,
 		withoutPaths
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Checkbox } from '$lib/components/ui/checkbox/index.js';
 	import * as Command from '$lib/components/ui/command/index.js';
@@ -86,16 +97,17 @@
 		hidePaths?: string[];
 		size?: FilterBarSize;
 		disabled?: boolean;
-		/**
-		 * Counts per value for one facet. Wire it to a `_summarize` grouping call.
-		 * Without it the bar reads one page of rows and tallies them.
-		 */
 		/** Conditions every facet query carries, such as a project scope. Never edited by the bar. */
 		baseFilter?: FilterGroup | WireGroup | null;
-		counts?: (field: string, filters: WireGroup | null) => Promise<Record<string, number>>;
-		/** Rows read for the tally when `counts` is not given. */
+		/**
+		 * The groups of a `_summarize` call grouped on one facet's field, which is
+		 * `facetCounts(context.client, entityType)`. Without it the bar reads one page of
+		 * rows and tallies them, as it does for a field the site refuses to group.
+		 */
+		counts?: FacetCounts;
+		/** Rows read for a tally. */
 		sampleSize?: number;
-		onChange?: (value: FilterGroup) => void;
+		onValueChange?: (value: FilterGroup) => void;
 		class?: string;
 	};
 
@@ -112,7 +124,7 @@
 		counts,
 		baseFilter = null,
 		sampleSize = 200,
-		onChange,
+		onValueChange,
 		class: className,
 		ref = $bindable(null),
 		...rest
@@ -124,38 +136,39 @@
 	);
 	const fields = $derived(schemaFields.current);
 
-	// Counts are read against the filter with every facet's own condition stripped, so
-	// ticking one value does not empty its neighbours. One read serves every pill.
+	// A facet is counted against the whole filter less its own condition, so it keeps
+	// every value it could switch to while the other pills show what remains.
 	const base = $derived(asFilterGroup(baseFilter));
-	const scope = $derived(toApi3Hash(base ? group('and', [base, withoutPaths(value, facets)]) : withoutPaths(value, facets)));
-	const tally = $derived(loadFacets(scope, fields, facets));
+	const scopes = $derived(facetScopes(value, base, facets));
+	/** Fields the site refused to group, so it is asked once per field. */
+	const refused = new Set<string>();
+	const tally = $derived(loadFacets(scopes, fields, facets));
 	/** What the open facet's search box holds. */
 	let facetQuery = $state('');
+	/** The facet whose checklist is open, if any. */
+	let openFacet = $state<string | null>(null);
+	let searchEl = $state<HTMLInputElement | null>(null);
 	const activeCount = $derived(facets.filter((name) => Boolean(facetOf(name))).length);
 
 	async function loadFacets(
-		filters: WireGroup | null,
+		filters: Record<string, WireGroup | null>,
 		schemaFields: Record<string, FieldSchema>,
 		names: string[]
-	): Promise<Record<string, FacetValue[]>> {
+	): Promise<Record<string, FacetList>> {
 		const present = names.map((name) => schemaFields[name]).filter((f): f is FieldSchema => Boolean(f));
 		if (present.length === 0) return {};
-		if (counts) {
-			const out: Record<string, FacetValue[]> = {};
-			for (const field of present) {
-				const found = await counts(field.name, filters);
-				out[field.name] = facetValues([], field).map((v) => ({ ...v, count: found[v.key] ?? 0 }));
-			}
-			return out;
-		}
-		const rows = await context.client.search(entityType, {
-			filters,
-			fields: present.map((f) => f.name),
-			page: { size: sampleSize }
+		return facetLists(present, filters, {
+			counts,
+			refused,
+			sample: async (sampleFields, sampleFilters) =>
+				(
+					await context.client.search(entityType, {
+						filters: sampleFilters,
+						fields: [...sampleFields],
+						page: { size: sampleSize }
+					})
+				).data
 		});
-		const out: Record<string, FacetValue[]> = {};
-		for (const field of present) out[field.name] = facetValues(rows.data, field);
-		return out;
 	}
 
 	/** The `Status` rows, for a facet over a status field (probe 010). */
@@ -191,7 +204,7 @@
 
 	function commit(next: FilterGroup): void {
 		value = next;
-		onChange?.(next);
+		onValueChange?.(next);
 	}
 
 	/** The list operator the checklist writes: the one the pill already holds, else `in`. */
@@ -232,6 +245,8 @@
 			size={BADGE[size]}
 			siteUrl={context.siteUrl}
 		/>
+	{:catch}
+		<StatusBadge code={key} field={fields[name] ?? null} size={BADGE[size]} siteUrl={context.siteUrl} />
 	{/await}
 {/snippet}
 
@@ -248,6 +263,8 @@
 				fallback
 				class={LEAF_GLYPH[size]}
 			/>
+		{:catch}
+			<StatusGlyph siteUrl={context.siteUrl} fallback class={LEAF_GLYPH[size]} />
 		{/await}
 	{/if}
 	<MatchText text={label} query={facetQuery} class="truncate" />
@@ -262,12 +279,16 @@
 	{#if shown.shown.length > 0}
 		<span
 			data-slot="filter-pill-values"
-			class={cn('flex min-w-0 items-center gap-1.5 truncate', VALUE_WIDTH)}
+			class={cn(
+				'flex min-w-0 items-center gap-1.5',
+				VALUE_WIDTH,
+				isStatus(name) && shown.values.length > 0 ? `flex-wrap content-start overflow-hidden ${VALUE_ROW[size]}` : 'truncate'
+			)}
 			title={shown.title}
 		>
 			{#if isStatus(name) && shown.values.length > 0}
-				{#each shown.values as scalar, i (i)}
-					<span class="flex min-w-0 items-center truncate">
+				{#each shown.values as scalar (keyOf(scalar as Scalar))}
+					<span class="flex shrink-0 items-center">
 						{@render valueBadge(name, keyOf(scalar as Scalar))}
 					</span>
 				{/each}
@@ -285,9 +306,17 @@
 
 {#snippet facetList(name: string)}
 	{@const selected = selectedOf(name)}
-	<Popover.Content strategy="fixed" class="w-64 p-0" align="start">
+	<Popover.Content
+		strategy="fixed"
+		class="w-64 p-0"
+		align="start"
+		onOpenAutoFocus={(event) => {
+			event.preventDefault();
+			searchEl?.focus({ preventScroll: true });
+		}}
+	>
 		<Command.Root shouldFilter={false}>
-			<Command.Input bind:value={facetQuery} placeholder="Search values…" />
+			<Command.Input bind:ref={searchEl} bind:value={facetQuery} placeholder="Search values…" />
 			<Command.List>
 				{#await tally}
 					<p class="text-muted-foreground py-6 text-center text-sm">Counting…</p>
@@ -296,7 +325,7 @@
 						<StateLine state="empty" icon={SearchXIcon} label="No value." pad="none" />
 					</Command.Empty>
 					<!-- The box matches what it was given rather than what a read answered, so the rows drawn are the rows the list holds. -->
-					{#each (found[name] ?? []).filter((option) => matchesTokens(facetQuery, option.label, option.key)) as option (option.key)}
+					{#each (found[name]?.values ?? []).filter((option) => matchesEveryWord(`${option.label} ${option.key}`, facetQuery)) as option (option.key)}
 						<Command.Item
 							value={option.key}
 							data-option={option.key}
@@ -320,11 +349,22 @@
 						state="error"
 						slotName="filter-bar-error"
 						icon={TriangleAlertIcon}
-						label={error.message}
+						label={errorText(error)}
 					/>
 				{/await}
 			</Command.List>
 		</Command.Root>
+		<!-- A tally is as complete as the page it read, and the list says so. -->
+		{#await tally then found}
+			{#if found[name]?.sampled !== undefined}
+				<p
+					data-slot="facet-sample"
+					class="text-muted-foreground border-border border-t px-2 py-1.5 text-xs tabular-nums"
+				>
+					Counts from a sample of {found[name].sampled} rows
+				</p>
+			{/if}
+		{/await}
 		{#if selected.length > 0}
 			<div class="border-border border-t p-1">
 				<Button
@@ -350,9 +390,10 @@
 	the same tree in the full editor, so the two edit one value: a condition the editor
 	wrote on an operator the checklist cannot hold reads as text in its pill.
 
-	Counts come from a `_summarize` grouping call when one is wired to `counts`, and
-	otherwise from tallying one page of rows, which makes them as complete as the page
-	size allowed.
+	Each facet is counted against the whole filter less its own condition. With `counts`
+	a facet's values are the site's own groups, an entity facet among them; a field the
+	site refuses to group, and every field without `counts`, is tallied from one page of
+	rows, and its list says so.
 -->
 <div
 	bind:this={ref}
@@ -367,7 +408,9 @@
 		{@const shown = found ? conditionValues(found.summary, field, maxValues) : null}
 		{#if !found || found.checklist}
 			<!-- One popover and one trigger across both looks, so the first tick does not close the list. -->
-			<Popover.Root>
+			<Popover.Root
+				bind:open={() => openFacet === name, (next) => (openFacet = next ? name : null)}
+			>
 				<div
 					data-slot="filter-pill"
 					data-field={name}
@@ -376,7 +419,7 @@
 					role={found ? 'group' : undefined}
 					aria-label={found ? describeCondition(found.summary, field) : undefined}
 					class={cn(
-						'border-border inline-flex max-w-full min-w-0 items-center overflow-hidden rounded-lg border text-sm',
+						PILL,
 						CONTROL_HEIGHT[size],
 						found && parts && CROSS_PAD[size],
 						found ? 'bg-background' : 'text-muted-foreground max-w-72 border-dashed'
@@ -417,11 +460,7 @@
 				data-active="true"
 				role="group"
 				aria-label={describeCondition(found.summary, field)}
-				class={cn(
-					'border-border bg-background inline-flex max-w-full min-w-0 items-center overflow-hidden rounded-lg border text-sm',
-					CONTROL_HEIGHT[size],
-					CROSS_PAD[size]
-				)}
+				class={cn(PILL, 'bg-background', CONTROL_HEIGHT[size], CROSS_PAD[size])}
 			>
 				<span
 					class={cn('inline-flex min-w-0 items-center gap-1.5', CONTROL_HEIGHT[size], CONTROL_PAD[size])}
@@ -430,7 +469,7 @@
 					<span class="text-muted-foreground shrink-0">{parts.operator}</span>
 					{#if shown}{@render pillValues(name, shown)}{/if}
 				</span>
-				{@render remove(name, parts.field)}
+				{@render remove(name, labelOf(name))}
 			</div>
 		{/if}
 	{/each}
@@ -456,6 +495,6 @@
 		{size}
 		label="More filters"
 		bind:value
-		onChange={(next) => onChange?.(next)}
+		onValueChange={(next) => onValueChange?.(next)}
 	/>
 </div>

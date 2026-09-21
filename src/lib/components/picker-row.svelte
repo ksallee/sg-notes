@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { FieldSpec, PickerRow as PickerRowData, SgContext } from '@sg-widgets/core';
+	import type { FieldSpec, PickerRow as PickerRowData, SgContext } from 'sg-widgets-core';
 
 	export type PickerRowSize = 'sm' | 'md' | 'lg';
 
@@ -35,7 +35,7 @@
 		/** Right-aligned text of the caller's own making. Wins over `secondaryField`. */
 		secondary?: string;
 		size?: PickerRowSize;
-		/** The widget context. The secondary's schema and the status table are read through it. */
+		/** The widget context. The two fields' schemas and the status table are read through it. */
 		context?: SgContext;
 		/** The site the status sprite is served from. Defaults to the context's. */
 		siteUrl?: string;
@@ -51,17 +51,18 @@
 
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { FieldSchema, StatusRecord } from '@sg-widgets/core';
+	import type { RowAnatomy, RowFieldPlan } from 'sg-widgets-core';
 	import {
 		isEmptyValue,
 		pathOf,
-		renderKindFor,
+		resolveRowFields,
 		rowCode,
 		rowSecondary,
 		rowSubLabel,
 		rowThumbnail,
-		secondaryType
-	} from '@sg-widgets/core';
+		secondaryType,
+		subLabelType
+	} from 'sg-widgets-core';
 	import { cn } from '$lib/utils.js';
 	import { PICKER_ROW_INDICATOR } from '$lib/components/picker-classes.js';
 	import FieldValue from '$lib/components/field-value.svelte';
@@ -72,8 +73,6 @@
 	type Props = PickerRowProps & {
 		/** Drawn in the leading slot when the row carries no picture. */
 		glyph?: Snippet;
-		/** The row's main text, where a row's label is not text: a status option is a badge. */
-		label?: Snippet;
 		/** What the indicator column holds: a tick, a checkbox, or nothing while the row is not taken. */
 		indicator?: Snippet;
 	};
@@ -93,7 +92,6 @@
 		context,
 		siteUrl,
 		glyph,
-		label,
 		indicator,
 		indicatorSlot,
 		indicatorAt = 'start'
@@ -102,7 +100,6 @@
 	const anatomy = $derived({ thumbnail, subLabelField, secondaryField, showCode });
 	const site = $derived(siteUrl ?? context?.siteUrl);
 	const picture = $derived(rowThumbnail(row.values, anatomy));
-	const sub = $derived(subLabel ?? rowSubLabel(row.values, anatomy));
 	const code = $derived(rowCode(row.values, row.name, showCode));
 	const raw = $derived(rowSecondary(row, anatomy));
 	const secondaryPath = $derived(pathOf(secondaryField));
@@ -111,41 +108,39 @@
 	const person = $derived(PEOPLE.includes(row.type));
 	const title = $derived([...crumbs, row.name].join(' › '));
 
-	interface SecondaryPlan {
-		field: FieldSchema | null;
-		/** `Status` rows by code, read only when the field is a status (probe 010). */
-		statuses: Record<string, StatusRecord> | null;
-	}
-
 	/**
-	 * What the secondary column draws with. A resolved column already carries its
-	 * field, so only a bare path costs a schema read, and that read is the context's
-	 * cached one. The read hangs off the props through a derived rather than an
-	 * effect with a "last seen" key.
+	 * What the sub-label and the secondary draw with: their fields and, when either is a
+	 * status, the one status table behind both. The read hangs off the props through a
+	 * derived rather than an effect with a "last seen" key.
 	 */
-	function loadSecondary(type: string, spec: FieldSpec | null, ctx: SgContext | undefined): SecondaryPlan {
-		const plan = $state<SecondaryPlan>({
-			field: spec && typeof spec !== 'string' ? spec.field : null,
+	function loadFields(type: string, shape: RowAnatomy, ctx: SgContext | undefined): RowFieldPlan {
+		const column = (spec: FieldSpec | null | undefined) =>
+			spec && typeof spec !== 'string' ? spec.field : null;
+		const plan = $state<RowFieldPlan>({
+			subLabel: column(shape.subLabelField),
+			secondary: column(shape.secondaryField),
 			statuses: null
 		});
-		const path = pathOf(spec);
-		if (!ctx || path.length === 0 || path === 'id') return plan;
-		const resolved = spec && typeof spec !== 'string' ? Promise.resolve(spec.field ?? undefined) : ctx.schema.field(type, path);
-		const declared = spec && typeof spec !== 'string' ? spec.dataType : undefined;
-		void Promise.resolve(resolved).then(async (found) => {
-			plan.field = found ?? null;
-			const dataType = declared ?? found?.dataType;
-			if (dataType && renderKindFor(dataType) === 'status') {
-				plan.statuses = Object.fromEntries(await ctx.statuses.byCode());
-			}
+		if (!ctx) return plan;
+		void resolveRowFields(ctx.schema, ctx.statuses, type, shape).then((found) => {
+			plan.subLabel = found.subLabel;
+			plan.secondary = found.secondary;
+			plan.statuses = found.statuses;
 		}, () => {
-			// A secondary the schema cannot answer renders as text, which is always readable.
+			// A field the schema cannot answer renders as text, which is always readable.
 		});
 		return plan;
 	}
 
-	const plan = $derived(loadSecondary(row.type, secondaryField, context));
-	const dataType = $derived(secondaryType(anatomy, plan.field?.dataType));
+	const plan = $derived(loadFields(row.type, anatomy, context));
+	const dataType = $derived(secondaryType(anatomy, plan.secondary?.dataType));
+	const sub = $derived(
+		subLabel ??
+			rowSubLabel(row.values, anatomy, {
+				dataType: subLabelType(anatomy, plan.subLabel?.dataType),
+				statuses: plan.statuses
+			})
+	);
 </script>
 
 <!--
@@ -155,8 +150,7 @@
 	caller learns the six props once.
 
 	The component draws the row's contents, not its box: the caller owns the list item,
-	its selection state and anything it puts in front, such as a checkbox. A row whose
-	label is not text gives one: a status option is a badge, which marks its own runs.
+	its selection state and anything it puts in front, such as a checkbox.
 -->
 {#snippet indicatorCell()}
 	<!-- Fixed whether or not the row is ticked, so the labels, or the secondaries before a trailing tick, sit at one x. -->
@@ -201,7 +195,7 @@
 
 <span data-slot="picker-row-text" class={cn('flex min-w-0 flex-1 flex-col', TEXT[size])}>
 	<span data-slot="picker-row-label" class="flex min-w-0 items-center gap-1.5" {title}>
-		{#if label}{@render label()}{:else}<span class="truncate"
+		<span class="truncate"
 			>{#each crumbs as crumb, i (i)}<span class="text-muted-foreground">{crumb}</span><span
 					aria-hidden="true"
 					class="text-muted-foreground">{' › '}</span
@@ -211,7 +205,7 @@
 				{query}
 				class={crumbs.length > 0 ? 'font-medium' : undefined}
 			/></span
-		>{/if}
+		>
 		{#if code}
 			<span data-slot="picker-row-code" class="text-muted-foreground shrink-0 font-mono text-xs">{code}</span>
 		{/if}
@@ -241,7 +235,7 @@
 		<FieldValue
 			value={raw}
 			{dataType}
-			field={plan.field}
+			field={plan.secondary}
 			statuses={plan.statuses}
 			{context}
 			siteUrl={site}

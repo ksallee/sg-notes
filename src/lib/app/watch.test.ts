@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import type { EventLogEntry } from '@sg-widgets/core';
+import type { EventLogEntry } from 'sg-widgets-core';
 import { advance, askFrom, classify, stamp, type Cursor } from './watch';
 
 function event(id: number, eventType: string, entity: { type: string; id: number } | null, extra: Partial<EventLogEntry> = {}): EventLogEntry {

@@ -22,8 +22,8 @@
 -->
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
-	import { cellValue, collapseAll, expandAll, formatDateTime, isCollapsed, preferencesOf, toggleCollapsed, type CollapseState } from '@sg-widgets/core';
+	import type { EntityRef, EntityRow, SgContext, StatusRecord } from 'sg-widgets-core';
+	import { cellValue, collapseAll, expandAll, formatDateTime, isCollapsed, preferencesOf, toggleCollapsed, type CollapseState } from 'sg-widgets-core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';

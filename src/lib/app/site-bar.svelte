@@ -6,7 +6,7 @@
 	old one (the docs site's Connect panel follows the same rule).
 -->
 <script lang="ts">
-	import type { EntityRef, SgContext } from '@sg-widgets/core';
+	import type { EntityRef, SgContext } from 'sg-widgets-core';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import { Input } from '$lib/components/ui/input/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';

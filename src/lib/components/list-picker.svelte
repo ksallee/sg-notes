@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { StatusOption } from '@sg-widgets/core';
+	import type { StatusOption } from 'sg-widgets-core';
 
 	export type ListPickerSize = 'sm' | 'md' | 'lg';
 
@@ -13,14 +13,14 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { FieldSchema } from '@sg-widgets/core';
+	import type { FieldSchema } from 'sg-widgets-core';
 	import {
 		clearableForField,
-		matchesTokens,
+		matchesEveryWord,
 		NO_ROWS_LABEL,
 		statusLabel,
 		usableStatuses
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import { Combobox } from 'bits-ui';
 	import PickerControl from '$lib/components/picker-control.svelte';
 	import Check from '@lucide/svelte/icons/check';
@@ -86,8 +86,6 @@
 		errorMessage?: Snippet<[string]>;
 		/** A row's leading mark. Given, every row carries one. */
 		mark?: Snippet<[ListOption]>;
-		/** A row's main text, where an option is not text: a status is a badge. */
-		optionLabel?: Snippet<[ListOption]>;
 		/** The control's value. Drawn as plain text when the caller passes none. */
 		valueChip?: Snippet<[string]>;
 	};
@@ -124,7 +122,6 @@
 		onOpenChange,
 		errorMessage,
 		mark,
-		optionLabel,
 		valueChip,
 		class: className,
 		ref = $bindable(null),
@@ -148,7 +145,7 @@
 	);
 	// The vocabulary is one read, so a search box narrows it here.
 	const shown = $derived(
-		searchable ? rows.filter((option) => matchesTokens(search, option.label, option.code)) : rows
+		searchable ? rows.filter((option) => matchesEveryWord(`${option.label} ${option.code}`, search)) : rows
 	);
 	const selected = $derived(value ? [value] : []);
 
@@ -243,9 +240,6 @@
 
 			{#snippet rows()}
 				{#each shown as option (option.code)}
-					{#snippet rowLabel()}
-						{@render optionLabel?.(option)}
-					{/snippet}
 					<Combobox.Item
 						data-slot={`${slot}-option`}
 						data-option={option.code}
@@ -262,7 +256,6 @@
 							secondary={secondaryOf(option)}
 							{size}
 							indicatorAt="end"
-							label={optionLabel ? rowLabel : undefined}
 						>
 							{#snippet indicator()}
 								{#if option.code === value}<Check aria-hidden="true" class="size-4" />{/if}

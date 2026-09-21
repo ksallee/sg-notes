@@ -6,15 +6,15 @@
 -->
 <script lang="ts">
 	import type { Snippet } from 'svelte';
-	import type { EntityRow, StatusRecord } from '@sg-widgets/core';
+	import type { EntityRow, StatusRecord } from 'sg-widgets-core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
 	import { Button } from '$lib/components/ui/button/index.js';
 	import StatusBadge from '$lib/components/status-badge.svelte';
 	import { cn } from '$lib/utils.js';
-	import { formatDateTime, preferencesOf } from '@sg-widgets/core';
-	import type { SgContext } from '@sg-widgets/core';
+	import { formatDateTime, preferencesOf } from 'sg-widgets-core';
+	import type { SgContext } from 'sg-widgets-core';
 	import { refOf, text } from '$lib/notes';
 
 	type Props = {

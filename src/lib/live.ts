@@ -18,7 +18,7 @@
  */
 import { dev } from '$app/environment';
 import { env } from '$env/dynamic/public';
-import { createSessionTokenAuth, createSgContext, RestClient, type EntityRow, type SgContext } from '@sg-widgets/core';
+import { createSessionTokenAuth, createSgContext, RestClient, type EntityRow, type SgContext } from 'sg-widgets-core';
 
 const KEYS = {
 	site: 'sg-notes:site',

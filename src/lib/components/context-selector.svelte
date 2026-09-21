@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { EntityRef, FieldSpec } from '@sg-widgets/core';
+	import type { EntityRef, FieldSpec } from 'sg-widgets-core';
 
 	import { CONTROL_GLYPH, type ControlSize } from '$lib/components/control-classes.js';
 
@@ -14,10 +14,10 @@
 	const BOX: Record<ContextSelectorSize, string> = {
 		sm: 'min-h-7 pr-2 pl-0.75 py-0.75 data-empty:pl-1.5 data-empty:py-0',
 		md: 'min-h-8 pr-3 pl-0.75 py-0.75 data-empty:pl-2 data-empty:py-0',
-		lg: 'min-h-9 pr-3 pl-px py-px data-empty:pl-2 data-empty:py-0'
+		lg: 'min-h-9 pr-3 pl-[5px] py-[5px] data-empty:pl-2 data-empty:py-0'
 	};
 	/** A chip inside a control sits one step down the leaf ladder. */
-	const CHIP: Record<ContextSelectorSize, 'xs' | 'sm' | 'md'> = { sm: 'xs', md: 'sm', lg: 'md' };
+	const CHIP: Record<ContextSelectorSize, 'xs' | 'sm'> = { sm: 'xs', md: 'sm', lg: 'sm' };
 	/** A skeleton stands in for a row, so its leading slot is the row's picture. */
 	const LEAD: Record<ContextSelectorSize, string> = { sm: 'size-6', md: 'size-8', lg: 'size-10' };
 
@@ -68,8 +68,8 @@
 
 <script lang="ts">
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { PickerRow, SgContext } from '@sg-widgets/core';
-	import { NO_ROWS_LABEL, pathOf, prependRecent, rowFields, watchOverflow } from '@sg-widgets/core';
+	import type { PickerRow, SgContext } from 'sg-widgets-core';
+	import { NO_ROWS_LABEL, pathOf, prependRecent, rowFields, watchOverflow } from 'sg-widgets-core';
 	import ChevronDown from '@lucide/svelte/icons/chevron-down';
 	import History from '@lucide/svelte/icons/history';
 	import ListChecks from '@lucide/svelte/icons/list-checks';
@@ -291,7 +291,7 @@
 			data-size={size}
 			data-empty={chips.length === 0 ? '' : undefined}
 			class={cn(
-				'border-border bg-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background flex w-full min-w-0 items-center gap-1.5 rounded-lg border text-left text-sm outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2',
+				'border-input bg-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring focus-visible:ring-offset-background flex w-full min-w-0 items-center gap-1.5 rounded-lg border text-left text-sm shadow-xs outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-offset-2',
 				BOX[size]
 			)}
 			aria-label={`Context: ${label(workContext)}`}

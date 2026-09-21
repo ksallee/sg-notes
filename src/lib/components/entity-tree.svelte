@@ -1,5 +1,5 @@
 <script lang="ts" module>
-	import type { TreeCheckState, TreeNode } from '@sg-widgets/core';
+	import type { TreeCheckState, TreeNode } from 'sg-widgets-core';
 	import type { StatusBadgeSize } from '$lib/components/status-badge.svelte';
 
 	export type EntityTreeSize = 'sm' | 'md' | 'lg';
@@ -29,6 +29,8 @@
 	const LEAF: Record<EntityTreeSize, 'sm' | 'md'> = { sm: 'sm', md: 'sm', lg: 'md' };
 	/** A badge sits one step under the row it is in, on the chip ladder of `docs/design-rules.md`. */
 	const BADGE: Record<EntityTreeSize, StatusBadgeSize> = { sm: 'xs', md: 'sm', lg: 'md' };
+	/** The search input's trailing inset: room for the spinner, `end-2` either side of the glyph. */
+	const SEARCH_TRAIL: Record<EntityTreeSize, string> = { sm: 'pe-8', md: 'pe-8', lg: 'pe-9' };
 
 	/** `aria-checked` as a tree row spells it: `mixed` for a part-checked branch. */
 	function checkedAttr(state: TreeCheckState): 'true' | 'false' | 'mixed' {
@@ -41,7 +43,15 @@
 <script lang="ts">
 	import { untrack, type Snippet } from 'svelte';
 	import type { HTMLAttributes } from 'svelte/elements';
-	import type { EntityRef, FieldSpec, SgContext, TreeFieldPlan, TreeRow, TreeSelectionMode } from '@sg-widgets/core';
+	import type {
+		EntityRef,
+		FieldSpec,
+		SgContext,
+		TreeFieldNames,
+		TreeFieldPlan,
+		TreeRow,
+		TreeSelectionMode
+	} from 'sg-widgets-core';
 	import {
 		createTree,
 		hierarchyLoader,
@@ -51,10 +61,13 @@
 		NO_ROWS_LABEL,
 		pathOf,
 		resolveTreeFields,
+		rowSubLabel,
+		rowThumbnail,
+		subLabelType,
 		sameIds,
 		stateLine,
 		TREE_STATUS_FIELDS
-	} from '@sg-widgets/core';
+	} from 'sg-widgets-core';
 	import ChevronRight from '@lucide/svelte/icons/chevron-right';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import Inbox from '@lucide/svelte/icons/inbox';
@@ -64,6 +77,7 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { Skeleton } from '$lib/components/ui/skeleton/index.js';
 	import { cn, type WithElementRef } from '$lib/utils.js';
+	import { CONTROL_BOX, CONTROL_GLYPH } from '$lib/components/control-classes.js';
 	import FieldValue from '$lib/components/field-value.svelte';
 	import MatchText from '$lib/components/match-text.svelte';
 	import StateLine from '$lib/components/state-line.svelte';
@@ -270,19 +284,23 @@
 	 * through the cached schema service. The read hangs off the props through a
 	 * derived and never off an effect with a "last seen" key.
 	 */
-	function loadPlan(seen: string, name: string | undefined): TreeFieldPlan {
-		const plan = $state<TreeFieldPlan>({ status: {}, secondary: {}, statuses: null });
+	function loadPlan(seen: string, names: TreeFieldNames): TreeFieldPlan {
+		const plan = $state<TreeFieldPlan>({ status: {}, secondary: {}, subLabel: {}, statuses: null });
 		const types = seen.split(',').filter(Boolean);
-		void resolveTreeFields(schema, statusTable, types, name).then((found) => {
+		void resolveTreeFields(schema, statusTable, types, names).then((found) => {
 			plan.status = found.status;
 			plan.secondary = found.secondary;
+			plan.subLabel = found.subLabel;
 			plan.statuses = found.statuses;
 		}, onError);
 		return plan;
 	}
 
 	const secondaryPath = $derived(pathOf(secondaryField));
-	const plan = $derived(loadPlan(typeKey, secondaryPath || undefined));
+	const subPath = $derived(pathOf(subLabelField));
+	const plan = $derived(
+		loadPlan(typeKey, { secondary: secondaryPath || undefined, subLabel: subPath || undefined })
+	);
 	const hasSubLabel = $derived(Boolean(subLabelField || subLabel));
 	/** An id is a code, and codes are the mono treatment of `docs/design-rules.md`. */
 	const secondaryIsId = $derived(secondaryPath === 'id');
@@ -299,16 +317,11 @@
 
 	function subLabelOf(node: TreeNode): string {
 		if (subLabel) return subLabel(node);
-		const path = pathOf(subLabelField);
-		if (!path) return '';
-		const raw = node.values[path];
-		return raw === null || raw === undefined ? '' : String(raw);
-	}
-
-	function thumbOf(node: TreeNode): string | null {
-		if (thumbnail === false) return null;
-		const raw = node.values[thumbnail];
-		return typeof raw === 'string' ? raw : null;
+		const field = node.entity ? plan.subLabel[node.entity.type] : null;
+		return rowSubLabel(node.values, { subLabelField }, {
+			dataType: subLabelType({ subLabelField }, field?.dataType),
+			statuses: plan.statuses
+		});
 	}
 
 	function statusOf(node: TreeNode): string {
@@ -429,12 +442,15 @@
 				aria-label={searchPlaceholder}
 				aria-busy={snap.searching ? true : undefined}
 				data-slot="entity-tree-search"
-				class="h-8 px-3 pe-8"
+				class={cn(CONTROL_BOX[size], SEARCH_TRAIL[size])}
 			/>
 			{#if snap.searching}
 				<Loader
 					aria-hidden="true"
-					class="text-muted-foreground pointer-events-none absolute end-2 size-4 motion-safe:animate-spin"
+					class={cn(
+						'text-muted-foreground pointer-events-none absolute end-2 motion-safe:animate-spin',
+						CONTROL_GLYPH[size]
+					)}
 				/>
 			{/if}
 		</div>
@@ -587,9 +603,9 @@
 							{:else}
 								{#if thumbnail !== false}
 									<span class={cn('flex shrink-0 items-center', LEAD[size])}>
-										{#if thumbOf(node)}
+										{#if rowThumbnail(node.values, { thumbnail })}
 											<Thumbnail
-												src={thumbOf(node)}
+												src={rowThumbnail(node.values, { thumbnail })}
 												aspect="square"
 												size={LEAF[size]}
 												entityType={node.entity?.type ?? null}

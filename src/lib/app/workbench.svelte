@@ -5,8 +5,8 @@
 <script lang="ts">
 	import { onMount, untrack } from 'svelte';
 	import { SvelteSet } from 'svelte/reactivity';
-	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from '@sg-widgets/core';
-	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from '@sg-widgets/core';
+	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from 'sg-widgets-core';
+	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from 'sg-widgets-core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
 	import { addressees, CLOSED, editedLine, forwardBody, type AddresseeEdit, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
