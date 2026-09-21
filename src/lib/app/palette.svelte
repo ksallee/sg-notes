@@ -6,7 +6,7 @@
 -->
 <script lang="ts">
 	import { untrack } from 'svelte';
-	import type { EntityRef, EntityRow, SgContext, StatusRecord } from '@sg-widgets/core';
+	import type { EntityRef, EntityRow, SgContext, StatusRecord } from 'sg-widgets-core';
 	import CheckIcon from '@lucide/svelte/icons/check';
 	import ChevronsDownUp from '@lucide/svelte/icons/chevrons-down-up';
 	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';

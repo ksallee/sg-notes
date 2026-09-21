@@ -5,8 +5,8 @@
  * Framework-neutral on purpose, so the rules are testable without a page, and so
  * the ones that survive can move to sg-widgets core when a second host wants them.
  */
-import type { EntityRef, EntityRow, FilterGroup, SgClient } from '@sg-widgets/core';
-import { condition, group, toApi3Hash } from '@sg-widgets/core';
+import type { EntityRef, EntityRow, FilterGroup, SgClient } from 'sg-widgets-core';
+import { condition, group, toApi3Hash } from 'sg-widgets-core';
 
 /** What a note row carries in the list and the thread (entity_types/Note). */
 export const NOTE_FIELDS = [

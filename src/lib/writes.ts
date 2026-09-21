@@ -4,7 +4,7 @@
  * `create` came to `SgClient` with sg-widgets #193. The check stays so a build
  * against an older core offers the reply disabled rather than failing on send.
  */
-import type { EntityRef, EntityRow, SgClient } from '@sg-widgets/core';
+import type { EntityRef, EntityRow, SgClient } from 'sg-widgets-core';
 
 export function canCreate(client: SgClient): boolean {
 	return typeof client.create === 'function';

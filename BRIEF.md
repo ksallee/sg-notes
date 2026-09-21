@@ -54,7 +54,7 @@ sessions and will differ from what this one left.
   Live mode does (probe 062), or says why it cannot. The fixtures are reference shapes, not a data
   source. A dev-only route mints a bearer from `.env.local` so a headless drive needs no approval.
 - **The widgets are registry copies**, installed with the documented one-liner from a local build
-  of the registry, with `@sg-widgets/core` linked until it is published. Every seam that fought
+  of the registry, with `sg-widgets-core` linked until it is published. Every seam that fought
   is in `docs/seams.md`, each one an sg-widgets issue in waiting.
 - **The list groups notes itself.** `GroupedList` groups on a sorted path, and the record a note is
   about is derived from `note_links`, which the site will not sort on. The app's grouping follows

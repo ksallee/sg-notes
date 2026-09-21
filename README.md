@@ -24,8 +24,8 @@ palette and the row menu, reads everything again. Note bodies render as the site
 (GitHub Flavored, `marked`), from the token tree and never from HTML: a raw tag shows as typed,
 an image is a link, and a link opens only over http, https or mailto.
 
-`@sg-widgets/core` is linked from `../sg-widgets/packages/core`, so that checkout has to exist and
-be built (`pnpm --filter @sg-widgets/core build` there). The widgets under `src/lib/components` are
+`sg-widgets-core` is linked from `../sg-widgets/packages/core`, so that checkout has to exist and
+be built (`pnpm --filter sg-widgets-core build` there). The widgets under `src/lib/components` are
 registry copies; `docs/seams.md` says how they were installed and what to repair after an `add`.
 
     pnpm check                                             # svelte-check

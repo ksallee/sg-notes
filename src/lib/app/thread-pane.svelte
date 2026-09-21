@@ -8,8 +8,8 @@
 	line with a retry; a failed write says so beside the control that made it.
 -->
 <script lang="ts">
-	import type { EntityRef, EntityRow, SgClient, SgContext, StatusRecord, ThreadRow } from '@sg-widgets/core';
-	import { cellValue, entityDetailUrl, formatDateTime, preferencesOf } from '@sg-widgets/core';
+	import type { EntityRef, EntityRow, SgClient, SgContext, StatusRecord, ThreadRow } from 'sg-widgets-core';
+	import { cellValue, entityDetailUrl, formatDateTime, preferencesOf } from 'sg-widgets-core';
 	import CircleAlert from '@lucide/svelte/icons/circle-alert';
 	import ExternalLink from '@lucide/svelte/icons/external-link';
 	import { Button } from '$lib/components/ui/button/index.js';
@@ -62,7 +62,7 @@
 	});
 
 	let statusFailure = $state<string | null>(null);
-	async function pickStatus(code: string | undefined): Promise<void> {
+	async function pickStatus(code: string | null): Promise<void> {
 		if (!code || code === text(note, 'sg_status_list')) return;
 		statusFailure = null;
 		try {
