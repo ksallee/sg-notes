@@ -5,7 +5,7 @@
 	"type": "module",
 	"description": "The notes workbench for Flow Production Tracking, built on sg-widgets.",
 	"engines": {
-		"node": ">=22"
+		"node": "24.x"
 	},
 	"scripts": {
 		"dev": "vite dev",
