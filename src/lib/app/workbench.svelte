@@ -8,7 +8,7 @@
 	import type { EntityRef, EntityRow, FilterGroup, SgClient, SgContext, StatusRecord, WireGroup } from 'sg-widgets-core';
 	import { condition, createEntitySource, emptyFilter, entityDetailUrl, group, isEmptyFilter, toApi3Hash } from 'sg-widgets-core';
 	import FilterBar from '$lib/components/filter-bar.svelte';
-	import { addressees, CLOSED, editedLine, forwardBody, type AddresseeEdit, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
+	import { addressees, CLOSED, editedLine, filterableLinkTypes, forwardBody, type AddresseeEdit, GROUP_OPTIONS, NOTE_FIELDS, readPeople, readRecords, readReplies, refKey, refOf, refsOf, searchFilter, text, throughRefs, type GroupBy, type SortBy } from '$lib/notes';
 	import { createReply } from '$lib/writes';
 	import NotesList from './notes-list.svelte';
 	import Palette, { type Job } from './palette.svelte';
@@ -72,7 +72,7 @@
 	let noteStatuses = $state<string[]>([]);
 	onMount(() => {
 		void context.client.fields('Note').then((fields) => {
-			linkTypes = fields.note_links?.validTypes ?? [];
+			void filterableLinkTypes(context.client, fields.note_links?.validTypes ?? []).then((types) => (linkTypes = types));
 			noteTypes = fields.sg_note_type?.validValues ?? [];
 			noteStatuses = fields.sg_status_list?.validValues ?? [];
 		});
