@@ -251,6 +251,28 @@ export function waitingOn(note: EntityRow, replies: readonly EntityRow[] | null)
 	return { kind: 'addressees', who: to };
 }
 
+/** The path a search reaches a linked record's name through. */
+export function linkNamePath(type: string): string {
+	return `note_links.${type}.cached_display_name`;
+}
+
+/**
+ * The link types a search can name. A type can be in `note_links`' valid types, enabled,
+ * with `cached_display_name` in its schema, and still 400 on every dotted path through it
+ * (CustomEntity12 and 13 on the operator's site, 2026-11-17, issue #6). One bad path fails
+ * the whole search, so each is asked once, a row at most, and kept only if it answers.
+ */
+export async function filterableLinkTypes(client: SgClient, types: readonly string[]): Promise<string[]> {
+	const answers = await Promise.all(
+		types.map((type) =>
+			client
+				.search('Note', { filters: toApi3Hash(group('and', [condition(linkNamePath(type), 'is', 'sg-notes link probe')])), fields: ['id'], page: { size: 1 } })
+				.then(() => true, () => false)
+		)
+	);
+	return types.filter((_, i) => answers[i]);
+}
+
 /**
  * A search as the site runs it, over everything the list can group on: the
  * subject and content, the author's and the addressees' names, the note type,
@@ -284,7 +306,7 @@ export function searchFilter(
 			condition('addressings_cc.HumanUser.name', 'contains', q),
 			condition('addressings_to.Group.code', 'contains', q),
 			condition('tasks.Task.content', 'contains', q),
-			...linkTypes.map((type) => condition(`note_links.${type}.cached_display_name`, 'contains', q)),
+			...linkTypes.map((type) => condition(linkNamePath(type), 'contains', q)),
 			...(codes.length > 0 ? [condition('sg_status_list', 'in', codes)] : []),
 			...(types.length > 0 ? [condition('sg_note_type', 'in', types)] : [])
 		]);

@@ -188,6 +188,24 @@
 		action();
 	}
 
+	/**
+	 * For an action that moves focus: closing hands focus back to what had it before
+	 * the palette opened, after anything `run` did, so the action waits for that hand-back
+	 * and takes its place.
+	 */
+	let afterClose: (() => void) | null = null;
+	function runAfterClose(action: () => void): void {
+		afterClose = action;
+		open = false;
+	}
+	function closeAutoFocus(event: Event): void {
+		const action = afterClose;
+		afterClose = null;
+		if (!action) return;
+		event.preventDefault();
+		action();
+	}
+
 	function sendReply(): void {
 		const content = draft.trim();
 		if (!content) return;
@@ -219,7 +237,7 @@
 	}
 </script>
 
-<Command.Dialog bind:open bind:value={search} title="Actions" description="What to do with the notes" class="max-w-md" data-slot="palette">
+<Command.Dialog bind:open bind:value={search} onCloseAutoFocus={closeAutoFocus} title="Actions" description="What to do with the notes" class="max-w-md" data-slot="palette">
 	<Command.Input placeholder={page === 'status' ? 'Which status…' : page === 'group' ? 'Group by…' : 'What to do…'} />
 	<Command.List>
 		<Command.Empty>Nothing matches.</Command.Empty>
@@ -264,7 +282,7 @@
 				<Command.Item value="clear selection" disabled={count === 0} onSelect={() => run(onClearSelection)}><SquareX aria-hidden="true" /> Clear the selection <Command.Shortcut>Esc</Command.Shortcut></Command.Item>
 			</Command.Group>
 			<Command.Group heading="List">
-				<Command.Item value="search" onSelect={() => run(onFocusSearch)}><Search aria-hidden="true" /> Search <Command.Shortcut>/</Command.Shortcut></Command.Item>
+				<Command.Item value="search" onSelect={() => runAfterClose(onFocusSearch)}><Search aria-hidden="true" /> Search <Command.Shortcut>/</Command.Shortcut></Command.Item>
 				<Command.Item value="group by" onSelect={() => (page = 'group')}><Layers aria-hidden="true" /> Group by…</Command.Item>
 				<Command.Item value="collapse all" onSelect={() => run(onCollapseAll)}><ChevronsDownUp aria-hidden="true" /> Collapse all</Command.Item>
 				<Command.Item value="expand all" onSelect={() => run(onExpandAll)}><ChevronsUpDown aria-hidden="true" /> Expand all</Command.Item>
